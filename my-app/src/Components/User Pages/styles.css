@@ -1,0 +1,25 @@
+.title {
+    position: absolute;
+    align-content: center;
+    top: 15.72%;
+    bottom: 78.32%;
+    width: 100%;
+
+    font-family: 'IBM Plex Sans Devanagari';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 61px;
+    text-align: center;
+    color: #6190BC;
+}
+
+.titleunderline {
+    position: absolute;
+    width: 1248.03px;
+    height: 0px;
+    left: 96px;
+    top: 240.06px;
+    
+    background-color: 4px solid #000000;
+}
