@@ -23,3 +23,15 @@
     
     background-color: 4px solid #000000;
 }
+
+.form {
+    background-color: #fff;
+    border-radius: 25px;
+    height: 300px;
+    width: 300px;
+}
+
+.input {
+    background: #FFFFFF;
+    border-radius: 10px;
+}
