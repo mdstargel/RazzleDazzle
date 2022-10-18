@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import CancelButton from '../Buttons/CancelButton';
+import ConfirmButton from '../Buttons/ConfirmButton';
 import './styles.css'
 
 const SignUp = ({setSignedIn, setwpage}) => {
@@ -79,7 +81,7 @@ const SignUp = ({setSignedIn, setwpage}) => {
     }
             
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='form'>
             <label>First Name:</label>
             <input
             type="text"
@@ -110,8 +112,8 @@ const SignUp = ({setSignedIn, setwpage}) => {
             onChange={handlePasswordInputChange}
             />
 
-            <input type="submit" value="Sign Up" />
-            <input type="button" value="Cancel" onClick={handleCancel} />
+            <ConfirmButton buttonText='Sign Up' type="button" value="Sign Up" onClick={handleSubmit}/>
+            <CancelButton type="button" value="Cancel" onClick={handleCancel} />
             <span onClick={() => setwpage('Log In')}>Log In</span>
             <span onClick={() => setwpage('Forgot Password')}>Forgot Password</span>
         </form>

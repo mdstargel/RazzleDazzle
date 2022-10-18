@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './styles.css'
+import CancelButton from '../Buttons/CancelButton';
+import ConfirmButton from '../Buttons/ConfirmButton';
 
 const LogIn = ({setSignedIn, setwpage}) => {
     /**
@@ -51,21 +53,22 @@ const LogIn = ({setSignedIn, setwpage}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className='form'>
             <label>Email Address:</label>
             <input
-            type="text"
-            onChange={handleEmailInputChange}
+                type="text"
+                onChange={handleEmailInputChange}
             />
 
             <label>Password:</label>
             <input
-            type="text"
-            onChange={handlePasswordInputChange}
+                type="text"
+                onChange={handlePasswordInputChange}
             />
 
-            <input type="submit" value="Log In" />
-            <input type="button" value="Cancel" onClick={handleCancel}/>
+            <CancelButton onClick={handleCancel} />
+            <ConfirmButton buttonText='Confirm' onClick={handleSubmit}/>
+
         </form>
     );
 }

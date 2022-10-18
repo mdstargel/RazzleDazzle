@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import './styles.css'
+import CancelButton from '../../Buttons/CancelButton';
+import ConfirmButton from '../../Buttons/ConfirmButton';
+import '../styles.css'
 
 const ChangePassword = ({setSignedIn, setwpage}) => {
     /**
@@ -43,8 +45,8 @@ const ChangePassword = ({setSignedIn, setwpage}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if ((values.firstPassword === values.secondPassword) && values.newPassword) {
-            // Need to validate that change password actually changes the password
+        if (values.firstPassword && (values.secondPassword === values.thirdPassword)) {
+            // Need to validate that change password actually changes the password with backend
             setwpage('Calendar')
 
             // Remove the below comment later
@@ -62,7 +64,7 @@ const ChangePassword = ({setSignedIn, setwpage}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='form'>
             <label>Please enter current password:</label>
             <input
             type="text"
@@ -81,8 +83,8 @@ const ChangePassword = ({setSignedIn, setwpage}) => {
             onChange={handleThirdPasswordInputChange}
             />
 
-            <input type="submit" value="Change" />
-            <input type="button" value="Cancel" onClick={handleCancel}/>
+            <CancelButton type="button" value="Cancel" onClick={handleCancel}/>
+            <ConfirmButton buttonText='Change' type="submit" value="Change" onClick={handleSubmit}/>
         </form>
     );
 }
