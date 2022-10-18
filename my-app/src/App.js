@@ -7,9 +7,11 @@ import Services from './Components/User Pages/Services';
 import News from './Components/User Pages/News';
 import LogIn from './Components/User Pages/LogIn';
 import SignUp from './Components/User Pages/SignUp';
+import Calendar from './Components/User Pages/Calendar';
 
 function App() {
   const [wpage, setwpage] = useState('About Us')
+  const [signedIn, setSignedIn] = useState(false)
 
 
   const ChosenWebpage = () => {
@@ -19,9 +21,11 @@ function App() {
     } else if (wpage === 'Services') {
       chosenpage = <Services/>
     } else if (wpage === 'Log In') {
-      chosenpage = <LogIn/>
+      chosenpage = <LogIn setSignedIn={setSignedIn} setwpage={setwpage} />
     } else if (wpage === 'Sign Up') {
-      chosenpage = <SignUp/>
+      chosenpage = <SignUp setSignedIn={setSignedIn} setwpage={setwpage} />
+    } else if (wpage === 'Calendar') {
+      chosenpage = <Calendar/>
     }
     else {
       chosenpage = <AboutUs/>
@@ -31,7 +35,7 @@ function App() {
 
   const webpage = (
     <div>
-      <Banner setwpage={setwpage} wpage={wpage} />
+      <Banner setwpage={setwpage} wpage={wpage} signedIn={signedIn} />
       <ChosenWebpage />
     </div>
   );
