@@ -111,7 +111,9 @@ const SignUp = ({setSignedIn, setwpage}) => {
             />
 
             <input type="submit" value="Sign Up" />
-            <input type="button" value="Cancel" onClick={handleCancel}/>
+            <input type="button" value="Cancel" onClick={handleCancel} />
+            <span onClick={() => setwpage('Log In')}>Log In</span>
+            <span onClick={() => setwpage('Forgot Password')}>Forgot Password</span>
         </form>
     );
 }

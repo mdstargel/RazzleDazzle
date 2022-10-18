@@ -8,12 +8,12 @@ import News from './Components/User Pages/News';
 import LogIn from './Components/User Pages/LogIn';
 import SignUp from './Components/User Pages/SignUp';
 import Calendar from './Components/User Pages/Calendar';
+import ForgotPassword from './Components/User Pages/ForgotPassword';
 
 function App() {
   const [wpage, setwpage] = useState('About Us')
   const [signedIn, setSignedIn] = useState(false)
-
-
+  
   const ChosenWebpage = () => {
     let chosenpage;
     if(wpage === 'News') {
@@ -26,6 +26,8 @@ function App() {
       chosenpage = <SignUp setSignedIn={setSignedIn} setwpage={setwpage} />
     } else if (wpage === 'Calendar') {
       chosenpage = <Calendar/>
+    } else if (wpage === 'Forgot Password') {
+      chosenpage = <ForgotPassword setSignedIn={setSignedIn} setwpage={setwpage} />
     }
     else {
       chosenpage = <AboutUs/>
