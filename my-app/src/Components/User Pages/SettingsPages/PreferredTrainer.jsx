@@ -41,6 +41,11 @@ const PreferredTrainer = () => {
             };
           }))
     }
+    const handleSetTrainer = (event) => {
+        event.preventDefault();
+        // Sending information to Database
+        console.log(AvailableTrainers);
+    };
 
     const trainersList = 
         AvailableTrainers.map((data) => (
@@ -48,8 +53,7 @@ const PreferredTrainer = () => {
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr 1fr',                   
-                }}
-                onClick={() => handleSetPrefferedTrainer(data.Trainer)}>
+                }}>
                     <span style={{ backgroundColor: '#FFFF00' }}>{data.Trainer}</span>
                     <span style={{ backgroundColor: '#FFFF00' }}>{data.Style}</span>
                     <span style={{ backgroundColor: '#FFFF00' }}>{data.Experience}</span>
@@ -87,7 +91,7 @@ const PreferredTrainer = () => {
                 {PreferredTrainerFormHeading}
                 {trainersList}
                 <CancelButton />
-                <ConfirmButton buttonText={'Set Trainer'}/>
+                <ConfirmButton buttonText={'Set Trainer'} onClick={handleSetTrainer} />
             </div>
         </>
     );

@@ -17,7 +17,7 @@ import PreferredTrainer from './Components/User Pages/SettingsPages/PreferredTra
 import AddEditSessionNotes from './Components/User Pages/SettingsPages/AddEditSessionNotes';
 import NotifyCustomers from './Components/User Pages/SettingsPages/NotifyCustomers';
 import EditPersonalInformation from './Components/User Pages/SettingsPages/EditPersonalInformation';
-
+import ManageAppointment from './Components/User Pages/ManageAppointment'
 function App() {
   const [wpage, setwpage] = useState('About Us')
   const [signedIn, setSignedIn] = useState(false)
@@ -26,9 +26,9 @@ function App() {
    * We need backend to validate when the user signs in who they are
    */
   const [userPermissions, setUserPermissions] = useState({
-    isAdmin: false,
+    isAdmin: true,
     isTrainer: false,
-    isCustomer: true,
+    isCustomer: false,
   })
   
   const ChosenWebpage = () => {
@@ -57,16 +57,8 @@ function App() {
       chosenpage = <NotifyCustomers setwpage={setwpage} />
     }else if (wpage === 'Manage Customers') {
       chosenpage = <ForgotPassword setSignedIn={setSignedIn} setwpage={setwpage} />
-    }else if (wpage === 'Add Appointment') {
-      chosenpage = <ForgotPassword setSignedIn={setSignedIn} setwpage={setwpage} />
-    }else if (wpage === 'Remove Appointment') {
-      chosenpage = <ForgotPassword setSignedIn={setSignedIn} setwpage={setwpage} />
-    } else if (wpage === 'Assign Appointment') {
-      chosenpage = <ForgotPassword setSignedIn={setSignedIn} setwpage={setwpage} />
-    } else if (wpage === 'Unassign Appointment') {
-      chosenpage = <ForgotPassword setSignedIn={setSignedIn} setwpage={setwpage} />
-    } else if (wpage === 'Edit Appointment') {
-      chosenpage = <ForgotPassword setSignedIn={setSignedIn} setwpage={setwpage} />
+    } else if (wpage === 'Manage Appointments') {
+      chosenpage = <ManageAppointment setwpage={setwpage}/>
     } else if (wpage === 'Delete Account') {
       chosenpage = <DeleteAccount setSignedIn={setSignedIn} setwpage={setwpage} />
     }  else if (wpage === 'Preferred Trainer') {
