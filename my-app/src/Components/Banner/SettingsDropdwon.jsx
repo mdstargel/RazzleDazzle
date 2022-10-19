@@ -37,10 +37,7 @@ const SettingsDropdown = ({userPermissions, setwpage, setSignedIn}) => {
             <div onClick={() => setwpage('Manage Customers')}>Manage Customers</div>
             <div onClick={() => setwpage('Edit Trainer Workload')}>Edit Trainer Workload</div>
             <div onClick={() => setwpage('Manage Trainers')}>Manage Trainers</div>
-            <div onClick={() => setwpage('Add Appointment')}>Add Appointment</div>
-            <div onClick={() => setwpage('Assign Appointment')}>Assign Appointment</div>
-            <div onClick={() => setwpage('Unassign Appointment')}>Unassign Appointment</div>
-            <div onClick={() => setwpage('Edit Appointment')}>Edit Appointment</div>
+            <div onClick={() => setwpage('Manage Appointments')}>Manage Appointments</div>
             <div onClick={() => setSignedIn(false)}>Log Out</div>
         </div>
     );

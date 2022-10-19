@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import '../styles.css'
-import ConfirmButton from '../../Buttons/ConfirmButton';
-import CancelButton from '../../Buttons/CancelButton';
-const AddAppointment = ({setSelectedTab}) => {
+import '../User Pages/styles.css'
+import ConfirmButton from "../Buttons/ConfirmButton";
+import CancelButton from "../Buttons/CancelButton";
+
+const EditAppointment = ({setSelectedTab}) => {
     const [values, setValues] = useState({
-        trainerName: '',
-        date: '',
-        startTime: '',
-        endTime: '',
-        style: '',
-        lessonType: '',
+        trainerName: 'John Doe',
+        date: '8/24/2022',
+        startTime: '8:00 AM',
+        endTime: '9:00 AM',
+        style: 'English',
+        lessonType: 'Individual',
     });
 
     const handleTrainerNameChange = (event) => {
@@ -61,15 +62,18 @@ const AddAppointment = ({setSelectedTab}) => {
         }));
         console.log('lessonType', values.lessonType);
     };
-    const handleAddAppointment = () => {
-        console.log('Made it here!')
+    const handleEditAppointment = () => {
+        /**
+         * Send edited information to the backend
+         */
         if (values.trainerName && values.date && values.startTime &&
             values.endTime && values.style && values.lessonType) {
-            console.log('Adding Appointment!', values);
+            console.log('Editing Appointment!', values);
             // Send Values to backend to validate
         } else {
-            console.log('Failed to add appointment!')
+            console.log('Failed to edit appointment!')
         }
+        
     };
 
     return(
@@ -114,10 +118,10 @@ const AddAppointment = ({setSelectedTab}) => {
                 {//this button is going to need to close add Appointment popup
                 }
                 <CancelButton onClick={() => setSelectedTab('')} />
-                <ConfirmButton buttonText={'Add'} onClick={handleAddAppointment} />
+                <ConfirmButton buttonText={'Edit'} onClick={handleEditAppointment} />
             </div>
         </>
     );
 }
 
-export default AddAppointment;
+export default EditAppointment;
