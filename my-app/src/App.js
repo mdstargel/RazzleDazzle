@@ -18,9 +18,28 @@ import AddEditSessionNotes from './Components/User Pages/SettingsPages/AddEditSe
 import NotifyCustomers from './Components/User Pages/SettingsPages/NotifyCustomers';
 import EditPersonalInformation from './Components/User Pages/SettingsPages/EditPersonalInformation';
 import ManageAppointment from './Components/User Pages/ManageAppointment'
+import AddEditNews from './Components/User Pages/SettingsPages/AddEditNews';
+import ManageTrainers from './Components/User Pages/ManageTrainers';
 function App() {
   const [wpage, setwpage] = useState('About Us')
   const [signedIn, setSignedIn] = useState(false)
+  /**
+   * Backend needs to assign this
+   */
+  const [newsArticles, setNewsArticles] = useState([
+    {
+      title: 'title1',
+      url: 'website1',
+      image: 'image1',
+      description: 'description1',
+    },
+    {
+      title: 'title2',
+      url: 'website2',
+      image: 'image2',
+      description: 'description2',
+    },
+  ])
 
   /**
    * We need backend to validate when the user signs in who they are
@@ -34,7 +53,7 @@ function App() {
   const ChosenWebpage = () => {
     let chosenpage;
     if(wpage === 'News') {
-      chosenpage = <News/>
+      chosenpage = <News newsArticles={newsArticles} />
     } else if (wpage === 'Services') {
       chosenpage = <Services/>
     } else if (wpage === 'Log In') {
@@ -52,7 +71,7 @@ function App() {
     }else if (wpage === 'View Session Notes') {
       chosenpage = <ViewSessionNotes />
     }else if (wpage === 'Add/Edit News') {
-      chosenpage = <ForgotPassword setSignedIn={setSignedIn} setwpage={setwpage} />
+      chosenpage = <AddEditNews setSignedIn={setSignedIn} setwpage={setwpage} />
     }else if (wpage === 'Notify Customers') {
       chosenpage = <NotifyCustomers setwpage={setwpage} />
     }else if (wpage === 'Manage Customers') {
@@ -65,7 +84,10 @@ function App() {
       chosenpage = <PreferredTrainer setwpage={setwpage} />
     } else if (wpage === 'Add/Edit Session Notes') {
       chosenpage = <AddEditSessionNotes setwpage={setwpage} />
-    } else {
+    } else if (wpage === 'Manage Trainers') {
+      chosenpage = <ManageTrainers setwpage={setwpage} />
+    }
+    else {
       chosenpage = <AboutUs/>
     }
     return (chosenpage);
