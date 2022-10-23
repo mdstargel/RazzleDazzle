@@ -11,15 +11,15 @@ const AddEditNews = () => {
     return (
         <>
             <PageTitle name="Add/Edit News" />
-            <div>
+            <div style={{marginTop: '200px'}}>
                 <label>News Title</label>
-                <input></input>
+                <input type="text"></input>
                 <label>News URL</label>
-                <input></input>
+                <input type="text"></input>
                 <label>News Image</label>
-                <input></input>
+                <input type="text"></input>
                 <label>News Description</label>
-                <input></input>
+                <input type="text"></input>
                 <ConfirmButton buttonText='Submit'></ConfirmButton>
                 <CancelButton></CancelButton>
             </div>
