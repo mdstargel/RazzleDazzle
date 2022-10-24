@@ -21,6 +21,7 @@ import ManageAppointment from './Components/User Pages/ManageAppointment'
 import AddEditNews from './Components/User Pages/SettingsPages/AddEditNews';
 import ManageTrainers from './Components/User Pages/ManageTrainers';
 import ManageCustomers from './Components/User Pages/ManageCustomers/ManageCustomers';
+import TrainerWorkload from './Components/User Pages/Trainer Workload/TrainerWorkload';
 function App() {
   const [wpage, setwpage] = useState('About Us')
   const [signedIn, setSignedIn] = useState(false)
@@ -75,8 +76,6 @@ function App() {
       chosenpage = <AddEditNews setSignedIn={setSignedIn} setwpage={setwpage} />
     }else if (wpage === 'Notify Customers') {
       chosenpage = <NotifyCustomers setwpage={setwpage} />
-    }else if (wpage === 'Manage Customers') {
-      chosenpage = <ForgotPassword setSignedIn={setSignedIn} setwpage={setwpage} />
     } else if (wpage === 'Manage Appointments') {
       chosenpage = <ManageAppointment setwpage={setwpage}/>
     } else if (wpage === 'Delete Account') {
@@ -87,13 +86,16 @@ function App() {
       chosenpage = <AddEditSessionNotes setwpage={setwpage} />
     } else if (wpage === 'Manage Trainers') {
       chosenpage = <ManageTrainers setwpage={setwpage} />
-    } else if (wpage === 'Manage Trainers') {
+    } else if (wpage === 'Manage Customers') {
       chosenpage = <ManageCustomers setwpage={setwpage} />
+    } else if (wpage === 'Edit Trainer Workload') {
+      chosenpage = <TrainerWorkload setwpage={setwpage}/>
     }
     else {
       chosenpage = <AboutUs/>
     }
-    return (chosenpage);
+    // return (chosenpage);
+    return (<TrainerWorkload></TrainerWorkload>)
   };
 
   const webpage = (
