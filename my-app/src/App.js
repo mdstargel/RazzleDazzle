@@ -93,8 +93,7 @@ function App() {
     else {
       chosenpage = <AboutUs/>
     }
-    // return (chosenpage);
-    return (<ManageCustomers setwpage={setwpage} />);
+    return (chosenpage);
   };
 
   const webpage = (
