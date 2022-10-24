@@ -20,6 +20,7 @@ import EditPersonalInformation from './Components/User Pages/SettingsPages/EditP
 import ManageAppointment from './Components/User Pages/ManageAppointment'
 import AddEditNews from './Components/User Pages/SettingsPages/AddEditNews';
 import ManageTrainers from './Components/User Pages/ManageTrainers';
+import ManageCustomers from './Components/User Pages/ManageCustomers/ManageCustomers';
 function App() {
   const [wpage, setwpage] = useState('About Us')
   const [signedIn, setSignedIn] = useState(false)
@@ -86,11 +87,14 @@ function App() {
       chosenpage = <AddEditSessionNotes setwpage={setwpage} />
     } else if (wpage === 'Manage Trainers') {
       chosenpage = <ManageTrainers setwpage={setwpage} />
+    } else if (wpage === 'Manage Trainers') {
+      chosenpage = <ManageCustomers setwpage={setwpage} />
     }
     else {
       chosenpage = <AboutUs/>
     }
-    return (chosenpage);
+    // return (chosenpage);
+    return (<ManageCustomers setwpage={setwpage} />);
   };
 
   const webpage = (

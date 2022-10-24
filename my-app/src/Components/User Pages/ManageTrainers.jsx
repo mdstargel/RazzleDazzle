@@ -23,8 +23,8 @@ const ManageAppointment = () => {
 
     const tabs = (
         <div style={{marginTop: '200px'}}>
-            <div onClick={() => setSelectedTab('Access Trainer')}>Add Trainer</div>
-            <div onClick={() => setSelectedTab('Add Trainer')}>Remove Appointment</div>
+            <div onClick={() => setSelectedTab('Add Trainer')}>Add Trainer</div>
+            <div onClick={() => setSelectedTab('Access Trainer')}>Access Appointment</div>
             <div onClick={() => setSelectedTab('Remove Trainer')}>Remove Trainer</div>
         </div>
     );
