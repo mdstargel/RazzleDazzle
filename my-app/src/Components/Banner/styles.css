@@ -52,7 +52,7 @@
    }
 
   .aboutus {
-/*   
+    /*   
     left: 47vw;
     top: 35px;
     position: absolute;
@@ -96,4 +96,39 @@
     /* left: 25vw; */
 
   }
+
+  .dropDownMenu {
+    position: absolute;
+    top: 67px;
+    left: calc(100vw - 260px);;
+    background-color: #FFFFFF;
+    border: 2px #0C1526;
+    border-style: solid;
+    border-radius: 20px;
+    width: 250px;
+    height:auto;
+    display: block;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    /* padding: 15px; */
+    /* margin: 0 auto; */
+    /* right: 10px; */
+  }
+
+  .dropEntry {
+    margin-top: 5px;
+
+  }
+
+.menunUnderline {
+  position: relative;
+  width: 250px;
+  height: 0px;
+  
+  background-color: 4px solid #0C1526;
+}
+
+.pad {
+  padding-left: 20px;
+}
   

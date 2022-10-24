@@ -16,12 +16,12 @@
 
 .titleunderline {
     position: absolute;
-    width: 1248.03px;
+    width: calc(100vw - 22vw);
+    left: 11vw;
     height: 0px;
-    left: 96px;
-    top: 240.06px;
+    top: 275px;
     
-    background-color: 4px solid #000000;
+    background-color: 4px solid #0C1526;
 }
 
 .form {
