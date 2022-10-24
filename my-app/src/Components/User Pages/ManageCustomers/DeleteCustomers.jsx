@@ -1,35 +1,35 @@
 import React, { useState } from 'react';
-import ConfirmButton from '../../../Buttons/ConfirmButton';
-import CancelButton from '../../../Buttons/CancelButton';
+import ConfirmButton from '../../Buttons/ConfirmButton';
+import CancelButton from '../../Buttons/CancelButton';
 
-const RemoveTrainer = () => {
+const DeleteCustomer = () => {
     /**
      * Replace following object with information from the backend
      */
-    const [AvailableTrainers, setAvailableTrainers] = useState([{
-        Trainer: 'John Doe',
+    const [AvailableCustomers, setAvailableCustomers] = useState([{
+        Customer: 'John Doe',
         Style: 'Western',
-        Experience: '1',
+        Level: 'Beginner',
         isPreffered: false
     },
     {
-        Trainer: 'Jane Doe',
+        Customer: 'Jane Doe',
         Style: 'English',
-        Experience: '2',
+        Level: 'Intermediate',
         isPreffered: true
 
     },
     {
-        Trainer: 'James Doe',
+        Customer: 'James Doe',
         Style: 'Show',
-        Experience: '3',
+        Level: 'Expert',
         isPreffered: false
 
     },]);
     
-    const handleSetRemoveTrainer = ({ data }) => {
-        setAvailableTrainers([...AvailableTrainers].map(object => {
-            if(object.Trainer === data.Trainer) {
+    const handleSetDeleteCustomer = ({ data }) => {
+        setAvailableCustomers([...AvailableCustomers].map(object => {
+            if(object.Customer === data.Customer) {
               return {
                 ...object,
                 isPreffered: true,
@@ -41,17 +41,17 @@ const RemoveTrainer = () => {
           }))
     }
 
-    const handleCancelRemoveTrainer = (event) => {
+    const handleCancelDeleteCustomer = (event) => {
         event.preventDefault();
 
-        setAvailableTrainers([...AvailableTrainers].filter(object =>
+        setAvailableCustomers([...AvailableCustomers].filter(object =>
             object.isPreffered !== true))       
     };
 
-    const handleRemoveTrainer = (event) => {
+    const handleDeleteCustomer = (event) => {
         event.preventDefault();
 
-        setAvailableTrainers([...AvailableTrainers].filter(object =>
+        setAvailableCustomers([...AvailableCustomers].filter(object =>
             object.isPreffered !== true))       
         
         /**
@@ -59,51 +59,51 @@ const RemoveTrainer = () => {
          */
     };
 
-    const trainersList = 
-        AvailableTrainers.map((data) => (
+    const CustomersList = 
+        AvailableCustomers.map((data) => (
             data.isPreffered === true ?
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr 1fr',                   
                 }}>
-                    <span style={{ backgroundColor: '#FFFF00' }}>{data.Trainer}</span>
+                    <span style={{ backgroundColor: '#FFFF00' }}>{data.Customer}</span>
                     <span style={{ backgroundColor: '#FFFF00' }}>{data.Style}</span>
-                    <span style={{ backgroundColor: '#FFFF00' }}>{data.Experience}</span>
+                    <span style={{ backgroundColor: '#FFFF00' }}>{data.Level}</span>
                 
                 </div> :
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr 1fr',
                 }}
-                    onClick={() => handleSetRemoveTrainer({ data })}>
-                    <span >{data.Trainer}</span>
+                    onClick={() => handleSetDeleteCustomer({ data })}>
+                    <span >{data.Customer}</span>
                     <span >{data.Style}</span>
-                    <span >{data.Experience}</span>
+                    <span >{data.Level}</span>
                 
                 </div>
 
         ))
             
-    const PreferredTrainerFormHeading = (
+    const PreferredCustomerFormHeading = (
         <div style={{display: 'grid',
             gridTemplateColumns: '1fr 1fr 1fr',
             marginTop: '300px'
             }
         }>
-            <div>Trainer</div>
+            <div>Customer</div>
             <div>Style</div>
-            <div>Experience</div>
+            <div>Level</div>
         </div>
     )
     
     return (
         <div>
-            {PreferredTrainerFormHeading}
-            {trainersList}
-            <CancelButton onClick={handleCancelRemoveTrainer} />
-            <ConfirmButton buttonText={'Remove Trainer'} onClick={handleRemoveTrainer} />
+            {PreferredCustomerFormHeading}
+            {CustomersList}
+            <CancelButton onClick={handleCancelDeleteCustomer} />
+            <ConfirmButton buttonText={'Delete'} onClick={handleDeleteCustomer} />
         </div>
     );
 }
 
-export default RemoveTrainer;
+export default DeleteCustomer;
