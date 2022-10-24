@@ -29,6 +29,12 @@
     color: #E4E4E4;
   }
 
+  .tab:hover {
+    font-size: 26px;
+    cursor: pointer;
+    /* color: yellow; */
+  }
+
   .loginTab {
     position: right;
     font-family: 'Inter';
@@ -78,14 +84,24 @@
     height: 22px;
     right: 125px;
     top: 20px;
+    cursor: pointer;
   }
   
+  .login:hover {
+    font-weight: bold;
+  }
+
   .signup {
     position: absolute;
     width: 86px;
     height: 22px;
     right: 25px;
     top: 20px;
+    cursor: pointer;
+  }
+
+  .signup:hover {
+    font-weight: bold;
   }
 
   .centerTabs {
@@ -113,6 +129,7 @@
     /* padding: 15px; */
     /* margin: 0 auto; */
     /* right: 10px; */
+    z-index: 1;
   }
 
   .dropEntry {
@@ -131,4 +148,9 @@
 .pad {
   padding-left: 20px;
 }
-  
+
+.pad:hover {
+  font-weight:bold;
+  cursor: pointer;
+  /* font-size: 22px; */
+}
