@@ -3,42 +3,64 @@ import './styles.css'
 
 const SettingsDropdown = ({userPermissions, setwpage, setSignedIn}) => {
     const customerSettings = (
-        <div>
-            <div onClick={() => setwpage('Edit Personal Information')}>Edit Personal Information</div>
-            <div onClick={() => setwpage('Change Password')}>Change Password</div>
-            <div onClick={() => setwpage('Manage Notifications')}>Manage Notifications</div>
-            <div onClick={() => setwpage('View Session Notes')}>View Session Notes</div>
-            <div onClick={() => setwpage('Delete Account')}>Delete Account</div>
-            <div onClick={() => setwpage('Preferred Trainer')}>Preferred Trainer</div>
-            <div onClick={() => setSignedIn(false)}>Log Out</div>
+        <div className="dropDownMenu" style={{right: '0px'}}>
+            <div className="pad" onClick={() => setwpage('Edit Personal Information')}>Edit Personal Information</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Change Password')}>Change Password</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Manage Notifications')}>Manage Notifications</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('View Session Notes')}>View Session Notes</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Delete Account')}>Delete Account</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Preferred Trainer')}>Preferred Trainer</div>
+            <hr/>
+            <div className="pad" onClick={() => setSignedIn(false)}>Log Out</div>
         </div>
     );
     
     const trainerSettings = (
-        <div>
-            <div onClick={() => setwpage('Edit Personal Information')}>Edit Personal Information</div>
-            <div onClick={() => setwpage('Change Password')}>Change Password</div>
-            <div onClick={() => setwpage('Manage Notifications')}>Manage Notifications</div>
-            <div onClick={() => setwpage('View Session Notes')}>View Session Notes</div>
-            <div onClick={() => setwpage('Add/Edit Session Notes')}>Add/Edit Session Notes</div>
-            <div onClick={() => setwpage('Notify Customers')}>Notify Customers</div>
-            <div onClick={() => setSignedIn(false)}>Log Out</div>
+        <div className="dropDownMenu">
+            <div className="pad" onClick={() => setwpage('Edit Personal Information')}>Edit Personal Information</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Change Password')}>Change Password</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Manage Notifications')}>Manage Notifications</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('View Session Notes')}>View Session Notes</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Add/Edit Session Notes')}>Add/Edit Session Notes</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Notify Customers')}>Notify Customers</div>
+            <hr/>
+            <div className="pad" onClick={() => setSignedIn(false)}>Log Out</div>
         </div>
     );
 
     const adminSettings = (
-        <div>
-            <div onClick={() => setwpage('Edit Personal Information')}>Edit Personal Information</div>
-            <div onClick={() => setwpage('Change Password')}>Change Password</div>
-            <div onClick={() => setwpage('Manage Notifications')}>Manage Notifications</div>
-            <div onClick={() => setwpage('View Session Notes')}>View Session Notes</div>
-            <div onClick={() => setwpage('Add/Edit News')}>Add/Edit News</div>
-            <div onClick={() => setwpage('Notify Customers')}>Notify Customers</div>
-            <div onClick={() => setwpage('Manage Customers')}>Manage Customers</div>
-            <div onClick={() => setwpage('Edit Trainer Workload')}>Edit Trainer Workload</div>
-            <div onClick={() => setwpage('Manage Trainers')}>Manage Trainers</div>
-            <div onClick={() => setwpage('Manage Appointments')}>Manage Appointments</div>
-            <div onClick={() => setSignedIn(false)}>Log Out</div>
+        <div className="dropDownMenu" style={{right: '0px'}}>
+            <div className="pad" onClick={() => setwpage('Edit Personal Information')}>Edit Personal Information</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Change Password')}>Change Password</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Manage Notifications')}>Manage Notifications</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('View Session Notes')}>View Session Notes</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Add/Edit News')}>Add/Edit News</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Notify Customers')}>Notify Customers</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Manage Customers')}>Manage Customers</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Edit Trainer Workload')}>Edit Trainer Workload</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Manage Trainers')}>Manage Trainers</div>
+            <hr/>
+            <div className="pad" onClick={() => setwpage('Manage Appointments')}>Manage Appointments</div>
+            <hr/>
+            <div className="pad" onClick={() => setSignedIn(false)}>Log Out</div>
         </div>
     );
 
