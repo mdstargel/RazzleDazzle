@@ -94,8 +94,8 @@ function App() {
     else {
       chosenpage = <AboutUs/>
     }
-    // return (chosenpage);
-    return (<TrainerWorkload></TrainerWorkload>)
+    return (chosenpage);
+    // return (<TrainerWorkload></TrainerWorkload>)
   };
 
   const webpage = (
