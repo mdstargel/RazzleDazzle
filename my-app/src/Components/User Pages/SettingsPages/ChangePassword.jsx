@@ -14,6 +14,9 @@ const ChangePassword = ({setSignedIn, setwpage}) => {
         thirdPassword: '',
     });
     
+    const [error, setErrorMessage] = useState('');
+    const [passwordChangeMessage, setPasswordChangeMessage] = useState('');
+
     const handleFirstPasswordInputChange = (event) => {
         event.persist();
         setValues((values) => ({
@@ -47,13 +50,15 @@ const ChangePassword = ({setSignedIn, setwpage}) => {
 
         if (values.firstPassword && (values.secondPassword === values.thirdPassword)) {
             // Need to validate that change password actually changes the password with backend
-            setwpage('Calendar')
+            // setwpage('Calendar')
 
             // Remove the below comment later
             console.log('Successful Password Change!')
+            setPasswordChangeMessage('Your password has been changed!')
         } else {
             console.log('Unsuccessful Password Change!')
-        }
+            setErrorMessage('Unable to change password.')
+        }   
     };
     const handleCancel = (event) => {
         event.preventDefault();
@@ -82,7 +87,9 @@ const ChangePassword = ({setSignedIn, setwpage}) => {
             type="text"
             onChange={handleThirdPasswordInputChange}
             />
-            <br/>
+            <br />
+            <div style={{ color: 'red' }}>{error}</div>
+            <div style={{color: 'green'}}>{passwordChangeMessage}</div>
             <CancelButton type="button" value="Cancel" onClick={handleCancel}/>
             <ConfirmButton buttonText='Change' type="submit" value="Change" onClick={handleSubmit}/>
         </form>

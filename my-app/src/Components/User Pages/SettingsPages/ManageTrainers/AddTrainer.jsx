@@ -111,7 +111,7 @@ const AddTrainer = () => {
             />
             <br/>
             <label>Trainer Permissions:</label>
-            <div onClick={() => setTrainerOn(!trainerOn)}>Trainer: {trainerOn ? 'True' : 'False'}</div>
+            {/* <div onClick={() => setTrainerOn(!trainerOn)}>Trainer: {trainerOn ? 'True' : 'False'}</div> */}
             <div onClick={() => setAdminOn(!adminOn)}>Admin: {adminOn ? 'True' : 'False'}</div>
             <br/>
 

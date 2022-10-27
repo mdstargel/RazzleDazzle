@@ -80,9 +80,8 @@ const RemoveTrainer = () => {
                     <span >{data.Style}</span>
                     <span >{data.Experience}</span>
                 
-                </div>
-
-        ))
+                </div> 
+        ) )
             
     const PreferredTrainerFormHeading = (
         <div style={{display: 'grid',
@@ -98,7 +97,8 @@ const RemoveTrainer = () => {
     
     return (
         <div>
-            {PreferredTrainerFormHeading}
+            {AvailableTrainers.length > 0 ?
+                PreferredTrainerFormHeading : <div>No trainers to available to remove</div>}
             {trainersList}
             <CancelButton onClick={handleCancelRemoveTrainer} />
             <ConfirmButton buttonText={'Remove Trainer'} onClick={handleRemoveTrainer} />

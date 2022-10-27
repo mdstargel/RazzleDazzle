@@ -45,8 +45,7 @@ const AccessTrainer = () => {
         isTrainer: true,
     },]);
     
-   
-    
+    const [trainerInfoUpdateMessage, setTrainerInfoUpdateMessage] = useState('');
     const [showEditTrainer, setShowEditTrainer] = useState(false);
 
     const handleSetPrefferedTrainer = ({ data }) => {
@@ -77,6 +76,7 @@ const AccessTrainer = () => {
             }
         });
         console.log(updatedTrainerInfo);
+        setTrainerInfoUpdateMessage('Trainer Information has been updated!');
     };
 
     const handleSetIsTrainer = ({data}) => {
@@ -192,7 +192,6 @@ const AccessTrainer = () => {
                     <span >{`${data.FirstName} ${data.LastName}` }</span>
                     <span >{data.Style}</span>
                     <span >{data.Experience}</span>
-                
                 </div>
 
         ))
@@ -231,11 +230,11 @@ const AccessTrainer = () => {
                     >
                         Trainer: {data.isTrainer ? 'True' : 'False'}
                     </div>
-                    <div
-                        onClick={() => handleSetIsAdmin({data})}
+                    {data.isTrainer && <div
+                        onClick={() => handleSetIsAdmin({ data })}
                     >
                         Admin: {data.isAdmin ? 'True' : 'False'}
-                    </div>
+                    </div> }
             </div>
         ))
             
@@ -256,8 +255,9 @@ const AccessTrainer = () => {
             {!showEditTrainer ?
                 PreferredTrainerFormHeading && trainersList
                 : editChosenTrainer}
+            <div style={{color: 'green'}}>{trainerInfoUpdateMessage}</div>
             <CancelButton onClick={() => setShowEditTrainer(false)}/>
-            <ConfirmButton buttonText={showEditTrainer ? 'Change' : 'Edit'} onClick={showEditTrainer ? () => handleEditTrainer : () => setShowEditTrainer(true)} />
+            <ConfirmButton buttonText={showEditTrainer ? 'Change' : 'Edit'} onClick={showEditTrainer ? handleEditTrainer : () => setShowEditTrainer(true)} />
         </div>
     );
 }
