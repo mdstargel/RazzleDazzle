@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import './styles.css'
 import PageTitle from "./PageTitle";
 
@@ -35,23 +35,52 @@ const NewsArticleText = {
 }
 
 const News = ({ newsArticles }) => {
-    const newsFeed = (
-        newsArticles.map((data) => (
-        <div style={{newsItem}}>
-                <div style={newsImage}>{data.image}</div>
-            <div style={newsTitleCenter}>{data.title}</div>
-            <div style={NewsArticleText}>{data.description}</div>
-        </div>
-        ))
-        
-    );
+    const [articleID, setArticleID] = useState(0);
+    const SelectedFeedItem = () => {
+        return (
+            <a href={newsArticles[articleID].url} style={{ newsItem }}> 
+                <div style={newsImage}>Center Feed Item{newsArticles[articleID].image}</div>
+                <div style={newsTitleCenter}>{newsArticles[articleID].title}</div>
+                <div style={NewsArticleText}>{newsArticles[articleID].description}</div>
+            </a>
+        );
+    };
 
+    const handleSetArticleLeft = () => {
+        // We add newsArticles.length in order to prevent taking the mod of a negative number
+        setArticleID( () => (articleID + newsArticles.length -1) % newsArticles.length)
+    }
+    const handleSetArticleRight = () => {
+        setArticleID( () => (articleID + 1) % newsArticles.length);
+    }
+
+    const RightFeedItem = () => {
+        const index = (articleID + 1) % newsArticles.length;
+        return (
+            <div>
+                <div style={newsImage}>Right Feed Item{newsArticles[index].image}</div>
+                <div style={newsTitleCenter}>{newsArticles[index].title}</div>
+            </div>
+        );
+    }
+
+    const LeftFeedItem = () => {
+        const index = (articleID + newsArticles.length - 1) % newsArticles.length;
+        return (
+            <div>
+                <div style={newsImage}>Left Feed Item{newsArticles[index].image}</div>
+                <div style={newsTitleCenter}>{newsArticles[index].title}</div>
+            </div>
+        );
+    }
     return (
         <div>
             <PageTitle name="News" />
-            {newsFeed}
-            <div style={{marginTop: '-190px', marginLeft: '1400px'}}>Right Button</div>
-            <div>Left Button</div>
+            <SelectedFeedItem />
+            <RightFeedItem />
+            <LeftFeedItem />
+            <div onClick={handleSetArticleRight} style={{marginTop: '-190px', paddingLeft: '1400px'}}>Right Button</div>
+            <div onClick={handleSetArticleLeft}>Left Button</div>
 
         </div>
     );

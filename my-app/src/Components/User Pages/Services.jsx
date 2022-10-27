@@ -7,12 +7,19 @@ const Services = () => {
     const [groupLessonPackages, setGroupLessonPackages] = useState(false);
     const [ridingStylePackages, setRidingStylePackages] = useState(false);
     const [competitionPackages, setCompetitionPackages] = useState(false);
-    console.log(individualLessonPackages);
+    
+    const rightCaret = (
+        <span>></span>
+    );
+    const downCaret = (
+        <span>v</span>
+    );
     return (
         <div>
             <PageTitle name="Services" />  
-            <div style={{marginTop: '400px'}}>
-                <div onClick={() => setIndividualLessonPackages(!individualLessonPackages)}>Individual Lesson Packages
+            <div style={{ marginTop: '400px' }}> 
+                <div onClick={() => setIndividualLessonPackages(!individualLessonPackages)}>
+                    {individualLessonPackages ? downCaret : rightCaret} Individual Lesson Packages
                     {individualLessonPackages && <div>
                         <div>Beginner Lessons
                             <p></p>
@@ -24,7 +31,8 @@ const Services = () => {
                             <p></p>
                     </div>}
                 </div>
-                <div onClick={() => setGroupLessonPackages(!groupLessonPackages)}>Group Lesson Packages
+                <div onClick={() => setGroupLessonPackages(!groupLessonPackages)}>
+                    {groupLessonPackages ? downCaret : rightCaret}Group Lesson Packages
                     {groupLessonPackages && <div>
                         <div>Beginner Lessons
                             <p></p>
@@ -36,7 +44,8 @@ const Services = () => {
                             <p></p>
                     </div>}
                 </div>
-                <div onClick={() => setRidingStylePackages(!ridingStylePackages)}>Riding Style Packages
+                <div onClick={() => setRidingStylePackages(!ridingStylePackages)}>
+                    {ridingStylePackages ? downCaret : rightCaret} Riding Style Packages
                     {ridingStylePackages && <div>
                         <div>Beginner Lessons
                             <p></p>
@@ -48,7 +57,8 @@ const Services = () => {
                             <p></p>
                     </div>}
                 </div>
-                <div onClick={() => setCompetitionPackages(!competitionPackages)}>Competition Packages
+                <div onClick={() => setCompetitionPackages(!competitionPackages)}>
+                    {competitionPackages ? downCaret : rightCaret} Competition Packages
                     {competitionPackages && <div>
                         <div>Beginner Lessons
                             <p></p>

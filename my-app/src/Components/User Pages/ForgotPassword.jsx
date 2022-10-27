@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import './styles.css'
+import CancelButton from '../Buttons/CancelButton';
+import ConfirmButton from '../Buttons/ConfirmButton';
 
 const ForgotPassword = ({ setSignedIn, setwpage }) => {
     /**
      * Reference for Forms logic
      * https://www.freecodecamp.org/news/beginner-react-project-build-basic-forms-using-react-hooks/
      * */
-
+    const [passwordError, setPasswordError] = useState(''); 
     const [values, setValues] = useState({
         email: '',
         firstPassword: '',
@@ -70,13 +72,16 @@ const ForgotPassword = ({ setSignedIn, setwpage }) => {
         /**
          * confirm code matches one sent to email, and send new password to backend
          */
+        console.log('valuse: ',values);
         if (values.confirmationCode && (values.firstPassword === values.secondPassword)) {
-            setSentCode(true)
-            setSignedIn(true)
+            setSentCode(true);
+            setSignedIn(true);
             setwpage('Calendar')
 
             // Remove the below comment later
             console.log('Forgot Password: Changed password!')
+        } else {
+            setPasswordError('Passwords do not match.')
         }
     };
 
@@ -89,43 +94,50 @@ const ForgotPassword = ({ setSignedIn, setwpage }) => {
     }
 
     const sendCodeForm = (
-        <form onSubmit={handleSendCode}>
+        <form >
             <label>Email Address:</label>
             <input
                 type="text"
                 onChange={handleEmailInputChange}
             />
-
-            <input type="submit" value="Send" />
-            <input type="button" value="Cancel" onClick={handleCancel} />
+            <CancelButton onClick={handleCancel} />
+            <ConfirmButton buttonText='Send' onClick={handleSendCode} />
+            {/* <input type="submit" value="Send" />
+            <input type="button" value="Cancel" onClick={handleSendCode} /> */}
+            <span onClick={() => setwpage('Log In')}>Log In</span>
+            <span onClick={() => setwpage('Sign Up')}>Sign Up</span>
         </form>
     )
 
     const forgotPasswordForm = (
-        <form onSubmit={handleChangePassword}>
+        <form >
             <label>Confirmation Code:</label>
             <input
                 type="text"
                 onChange={handleConfirmationCodeInputChange}
                 placeholder=''
             />
-
+            <br />
+            
             <label>New Password:</label>
             <input
                 type="text"
                 placeholder=''
                 onChange={handleFirstPasswordInputChange}
             />
+            <br />
 
             <label>Re-enter Password:</label>
             <input
                 type="text"
                 onChange={handleSecondPasswordInputChange}
             />
-
-
-            <input type="submit" value="Change" />
-            <input type="button" value="Cancel" onClick={handleCancel} />
+            <br />
+            <div style={{color: 'red'}}>{passwordError}</div>
+            <ConfirmButton buttonText={'Change'} onClick={handleChangePassword} />
+            <CancelButton onClick={handleCancel} />
+            
+            <div style={{ color: 'green' }}>Please Check Your Email for a Comfirmation Code</div>
         </form>
     )
 
