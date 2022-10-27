@@ -115,14 +115,12 @@ const ForgotPassword = ({ setSignedIn, setwpage }) => {
             <input
                 type="text"
                 onChange={handleConfirmationCodeInputChange}
-                placeholder=''
             />
             <br />
             
             <label>New Password:</label>
             <input
                 type="text"
-                placeholder=''
                 onChange={handleFirstPasswordInputChange}
             />
             <br />

@@ -8,14 +8,14 @@ const ManageNotifications = ({setwpage}) => {
     /**
      * Need database to set these notification settings
      */
-    const [emailOn, setEmailOn] = useState(false);
     const [textOn, setTextOn] = useState(false);
-
+    const [successfulChangeMessage, setSuccessfulChangeMessage] = useState('');
     const handleChangeNotificationSettings = () => {
+        
         // This should update the database with the preferred notification settings
         console.log('This should information changing Notification Settings!');
         console.log('Text:', textOn ? 'True' : 'False')
-        console.log('Email:', emailOn ? 'True' : 'False' )
+        setSuccessfulChangeMessage('Your preferences have been changed!')
     };
 
     return (
@@ -24,8 +24,8 @@ const ManageNotifications = ({setwpage}) => {
             <div style={{marginTop: '300px'}}>
                 <div>Please select your notification preferences below:</div>
                 <div onClick={() => setTextOn(!textOn)}>Text: {textOn ? 'True' : 'False'}</div>
-                <div onClick={() => setEmailOn(!emailOn)}>Email: {emailOn ? 'True' : 'False'}</div>
-                <CancelButton onClick={() => setwpage('Calendar')}/>
+                <div style={{color: 'green'}}>{successfulChangeMessage}</div>
+                <CancelButton onClick={() => setwpage('Calendar')} />
                 <ConfirmButton buttonText='Confirm' onClick={handleChangeNotificationSettings}/>
             </div>
         </>

@@ -23,7 +23,7 @@ const DeleteAccount = ({ setwpage, setSignedIn }) => {
                     will not need it in the future.
                 </div>
                 <ConfirmButton buttonText='Delete' onClick={handleDeleteAccount}/>
-                <CancelButton onClick={() => setwpage('Calendar')}/>
+                <CancelButton onClick={() => setwpage('About Us')}/>
         </div>
         </>
     );

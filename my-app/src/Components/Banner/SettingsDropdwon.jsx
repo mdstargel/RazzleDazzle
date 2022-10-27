@@ -1,7 +1,12 @@
 import React from "react";
 import './styles.css'
 
-const SettingsDropdown = ({userPermissions, setwpage, setSignedIn}) => {
+const SettingsDropdown = ({ userPermissions, setwpage, setSignedIn }) => {
+    const handleLogOut = () => {
+        setwpage('About Us')
+        setSignedIn(false)
+    }
+
     const customerSettings = (
         <div className="dropDownMenu" style={{right: '0px'}}>
             <div className="pad" onClick={() => setwpage('Edit Personal Information')}>Edit Personal Information</div>
@@ -16,7 +21,7 @@ const SettingsDropdown = ({userPermissions, setwpage, setSignedIn}) => {
             <hr/>
             <div className="pad" onClick={() => setwpage('Preferred Trainer')}>Preferred Trainer</div>
             <hr/>
-            <div className="pad" onClick={() => setSignedIn(false)}>Log Out</div>
+            <div className="pad" onClick={handleLogOut}>Log Out</div>
         </div>
     );
     
@@ -34,7 +39,7 @@ const SettingsDropdown = ({userPermissions, setwpage, setSignedIn}) => {
             <hr/>
             <div className="pad" onClick={() => setwpage('Notify Customers')}>Notify Customers</div>
             <hr/>
-            <div className="pad" onClick={() => setSignedIn(false)}>Log Out</div>
+            <div className="pad" onClick={handleLogOut}>Log Out</div>
         </div>
     );
 
@@ -58,9 +63,9 @@ const SettingsDropdown = ({userPermissions, setwpage, setSignedIn}) => {
             <hr/>
             <div className="pad" onClick={() => setwpage('Manage Trainers')}>Manage Trainers</div>
             <hr/>
-            <div className="pad" onClick={() => setwpage('Manage Appointments')}>Manage Appointments</div>
-            <hr/>
-            <div className="pad" onClick={() => setSignedIn(false)}>Log Out</div>
+            {/* <div className="pad" onClick={() => setwpage('Manage Appointments')}>Manage Appointments</div>
+            <hr/> */}
+            <div className="pad" onClick={handleLogOut}>Log Out</div>
         </div>
     );
 
