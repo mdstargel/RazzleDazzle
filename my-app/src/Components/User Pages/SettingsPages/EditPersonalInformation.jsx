@@ -97,21 +97,21 @@ const EditPersonalInformation = ({setwpage}) => {
             value={values.firstName}
             onChange={handleFirstNameInputChange}
             />
-                
+            <br/>
             <label>Last Name:</label>
             <input
             type="text"
             value={values.lastName}
             onChange={handleLastNameInputChange}
-            />
-                
+                />
+            <br/>
             <label>Email Address:</label>
             <input
                 type="text"
                 value={values.email}
                 onChange={handleEmailInputChange}
             />
-                
+            <br/>
             <label>Phone Number:</label>
             <input
                 type="text"

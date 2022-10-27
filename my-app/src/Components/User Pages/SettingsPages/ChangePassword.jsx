@@ -70,19 +70,19 @@ const ChangePassword = ({setSignedIn, setwpage}) => {
             type="text"
             onChange={handleFirstPasswordInputChange}
             />
-
+            <br/>
             <label>Please enter new password:</label>
             <input
             type="text"
             onChange={handleSecondPasswordInputChange}
             />
-
+            <br/>
             <label>Please re-enter new password:</label>
             <input
             type="text"
             onChange={handleThirdPasswordInputChange}
             />
-
+            <br/>
             <CancelButton type="button" value="Cancel" onClick={handleCancel}/>
             <ConfirmButton buttonText='Change' type="submit" value="Change" onClick={handleSubmit}/>
         </form>
