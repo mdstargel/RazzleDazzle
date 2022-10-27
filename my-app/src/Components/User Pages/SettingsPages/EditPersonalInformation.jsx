@@ -15,6 +15,7 @@ const EditPersonalInformation = ({setwpage}) => {
         phone: '(800) 444-5555',
         address: '253 Horserace Rd. Bighorse, MT 12345',
      });
+    const [message, setMessage] = useState('');
     
     const handleFirstNameInputChange = (event) => {
         event.persist();
@@ -79,10 +80,11 @@ const EditPersonalInformation = ({setwpage}) => {
             console.log('email', values.email);
             console.log('phone', values.phone);
             console.log('address', values.address);
-
+            setMessage('Information changed successfully!')
             // Remove the below comment later
             console.log('Successful personal info change!')
         } else {
+            setMessage('Information changed unsuccessfully!')
             console.log('Unsuccessful personal info Change!')
         }
     };
@@ -125,8 +127,7 @@ const EditPersonalInformation = ({setwpage}) => {
                 value={values.address}
                 onChange={handleAddressInputChange}
             />
-
-
+            <div style={message !== 'Information changed successfully!' ? {color: 'green'}: {color: 'green'}}>{message}</div>
             <CancelButton type="button" value="Cancel" onClick={handleCancel}/>
             <ConfirmButton buttonText='Change' type="submit" value="Change" onClick={handleSubmit}/>
             </form>
