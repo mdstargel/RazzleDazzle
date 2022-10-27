@@ -7,7 +7,8 @@ const SignUp = ({setSignedIn, setwpage}) => {
     /**
      * Reference for Forms logic
      * https://www.freecodecamp.org/news/beginner-react-project-build-basic-forms-using-react-hooks/
-     * */ 
+     * */
+    const [signUpError, setSignUpError ] = useState(false);
     const [values, setValues] = useState({
         firstName: '',
         lastName: '',
@@ -62,7 +63,9 @@ const SignUp = ({setSignedIn, setwpage}) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (values.password && values.email && values) {
+        if (values.password && values.email &&
+            values.phone && values.password && values.firstName && values.lastName) {
+            
             setSignedIn(true);
             setwpage('Calendar')
 
@@ -70,6 +73,8 @@ const SignUp = ({setSignedIn, setwpage}) => {
 
             // Remove the below comment later
             console.log('Successful Sign Up!')
+        } else {
+            setSignUpError(true);
         }
     };
     const handleCancel = (event) => {
@@ -79,41 +84,53 @@ const SignUp = ({setSignedIn, setwpage}) => {
         // Remove the below comment later
         console.log('Canceling Sign up!')
     }
-            
+    const error = (
+        <div style={{color: 'red'}}>*</div>
+    );
     return (
         <form className='form'>
-            <label>First Name:</label>
+            <label>{!values.firstName && error}First Name:</label>
             <input
             type="text"
             onChange={handleFirstNameInputChange}
             />
-
-            <label>Last Name:</label>
+            <br />
+            
+            <label>{!values.lastName && error}Last Name:</label>
             <input
             type="text"
-            onChange={handlePasswordInputChange}
+            onChange={handleLastNameInputChange}
             />
-
-            <label>Email Address:</label>
+            <br /> 
+            
+            <label>{!values.email && error}Email Address:</label>
             <input
             type="text"
             onChange={handleEmailInputChange}
             />
-
-            <label>Phone Number:</label>
+            <br />
+            
+            <label>{!values.phone && error}Phone Number:</label>
             <input
             type="text"
             onChange={handlePhoneNumberInputChange}
             />
+            <br/>
 
-            <label>Password:</label>
+            <label>{!values.password && error}Password:</label>
             <input
             type="text"
             onChange={handlePasswordInputChange}
             />
-
+            <br/>
+            {signUpError &&
+                <div style={{fontWeight: 'bold'}}>
+                    Please fill in all fields with a {error}
+                </div>
+            }
             <ConfirmButton buttonText='Sign Up' type="button" value="Sign Up" onClick={handleSubmit}/>
             <CancelButton type="button" value="Cancel" onClick={handleCancel} />
+            
             <span onClick={() => setwpage('Log In')}>Log In</span>
             <span onClick={() => setwpage('Forgot Password')}>Forgot Password</span>
         </form>

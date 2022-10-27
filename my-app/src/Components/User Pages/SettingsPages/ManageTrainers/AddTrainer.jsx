@@ -88,28 +88,33 @@ const AddTrainer = () => {
                 onChange={handleFirstNameInputChange}
                 value={values.firstName}
             />
+            <br/>
             <label>Last Name:</label>
             <input
                 type="text"
                 onChange={handleLastNameInputChange}
                 value={values.lastName}
             />
+            <br/>
             <label>Email Address:</label>
             <input
                 type="text"
                 onChange={handleEmailInputChange}
                 value={values.email}
             />
+            <br/>
             <label>Address:</label>
             <input
                 type="text"
                 onChange={handleAddressInputChange}
                 value={values.address}
             />
+            <br/>
             <label>Trainer Permissions:</label>
             <div onClick={() => setTrainerOn(!trainerOn)}>Trainer: {trainerOn ? 'True' : 'False'}</div>
             <div onClick={() => setAdminOn(!adminOn)}>Admin: {adminOn ? 'True' : 'False'}</div>
-            
+            <br/>
+
             <CancelButton onClick={handleCancelAddTrainer}/>
             <ConfirmButton onClick={handleAddTrainer} buttonText="Add" />
         </div>

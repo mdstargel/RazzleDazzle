@@ -58,12 +58,13 @@ const NotifyCustomers = ({setwpage}) => {
                         type="text"
                         onChange={handleCustomerNameIdChange}
                     />
+                    <br/>
                     <label>Message to Customer:</label>
                     <input
                         type="text"
                         onChange={handleMessageToCustomerChange}
                     />
-                
+                    <br/>
                     <CancelButton onClick={handleCancel} />
                     <ConfirmButton buttonText='Confirm' onClick={handleSubmit}/>
             </form>

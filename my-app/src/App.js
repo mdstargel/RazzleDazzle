@@ -30,16 +30,39 @@ function App() {
    */
   const [newsArticles, setNewsArticles] = useState([
     {
+      id: 1,
       title: 'title1',
       url: 'website1',
       image: 'image1',
       description: 'description1',
     },
     {
+      id: 2,
       title: 'title2',
       url: 'website2',
       image: 'image2',
       description: 'description2',
+    },
+    {
+      id: 3,
+      title: 'title3',
+      url: 'website3',
+      image: 'image3',
+      description: 'description3',
+    },
+    {
+      id: 4,
+      title: 'title4',
+      url: 'website4',
+      image: 'image4',
+      description: 'description4',
+    },
+    {
+      id: 5,
+      title: 'title5',
+      url: 'website5',
+      image: 'image5',
+      description: 'description5',
     },
   ])
 
@@ -90,6 +113,8 @@ function App() {
       chosenpage = <ManageCustomers setwpage={setwpage} />
     } else if (wpage === 'Edit Trainer Workload') {
       chosenpage = <TrainerWorkload setwpage={setwpage}/>
+    } else if (wpage === 'Forgot Password') {
+      chosenpage = <ForgotPassword setwpage={setwpage}/>
     }
     else {
       chosenpage = <AboutUs/>

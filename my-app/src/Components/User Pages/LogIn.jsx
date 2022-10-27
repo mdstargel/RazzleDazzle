@@ -3,11 +3,12 @@ import './styles.css'
 import CancelButton from '../Buttons/CancelButton';
 import ConfirmButton from '../Buttons/ConfirmButton';
 
-const LogIn = ({setSignedIn, setwpage}) => {
+const LogIn = ({ setSignedIn, setwpage }) => {
     /**
      * Reference for Forms logic
      * https://www.freecodecamp.org/news/beginner-react-project-build-basic-forms-using-react-hooks/
-     * */ 
+     * */
+    const [showError, setShowError] = useState(false);
     const [values, setValues] = useState({
         email: '',
         password: '',
@@ -42,7 +43,10 @@ const LogIn = ({setSignedIn, setwpage}) => {
 
             // Remove the below comment later
             console.log('Successful Sign In!')
+        } else {
+            setShowError(true);
         }
+        
     };
     const handleCancel = (event) => {
         event.preventDefault();
@@ -65,10 +69,11 @@ const LogIn = ({setSignedIn, setwpage}) => {
                 type="text"
                 onChange={handlePasswordInputChange}
             />
-
+            {showError && < div style={{color: 'red'}} > Your password or email are incorrect.</div>}
             <CancelButton onClick={handleCancel} />
-            <ConfirmButton buttonText='Confirm' onClick={handleSubmit}/>
-
+            <ConfirmButton buttonText='Confirm' onClick={handleSubmit} />
+            <span onClick={() => setwpage('Sign Up')}>Sign Up</span>
+            <span onClick={() => setwpage('Forgot Password')}>Forgot Password</span>
         </form>
     );
 }
