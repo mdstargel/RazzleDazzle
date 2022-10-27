@@ -81,36 +81,42 @@ const AddAppointment = ({setSelectedTab}) => {
                     value={values.trainerName}
                     onChange={handleTrainerNameChange}
                 />
+                <br/>
                 <label>Date:</label>
                 <input
                     type="text"
                     value={values.date}
                     onChange={handleDateChange}
                 />
+                <br/>
                 <label>Start Time:</label>
                 <input
                     type="text"
                     value={values.startTime}
                     onChange={handleStartTimeChange}
                 />
+                <br/>
                 <label>End Time:</label>
                 <input
                     type="text"
                     value={values.endTime}
                     onChange={handleEndTimeChange}
                 />
+                <br/>
                 <label>Lesson Style:</label>
                 <input
                     type="text"
                     value={values.style}
                     onChange={handleStyleChange}
                 />
+                <br/>
                 <label>Lesson Type:</label>
                 <input
                     type="text"
                     value={values.lessonType}
                     onChange={handleLessonTypeChange}
                 />
+                <br/>
                 {//this button is going to need to close add Appointment popup
                 }
                 <CancelButton onClick={() => setSelectedTab('')} />

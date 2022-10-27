@@ -63,18 +63,22 @@ const AddEditNews = () => {
         <>
             <PageTitle name="Add/Edit News" />
             <div style={{marginTop: '200px'}}>
-                <label>News Title</label>
+                <label>News Title: </label>
                 <input type="text" value={values.title}
                     onChange={handleTitleChange}></input>
-                <label>News URL</label>
+                <br/>
+                <label>News URL: </label>
                 <input type="text" value={values.url}
                     onChange={handleURLChange}></input>
-                <label>News Image</label>
+                <br/>
+                <label>News Image: </label>
                 <input type="text" value={values.image}
                     onChange={handleImageChange}></input>
-                <label>News Description</label>
+                <br/>
+                <label>News Description: </label>
                 <input type="text" value={values.description}
                     onChange={handleDescriptionChange}></input>
+                <br/>
                 <ConfirmButton buttonText='Submit' onClick={handleUploadNewsArticle}></ConfirmButton>
                 <CancelButton></CancelButton>
             </div>
