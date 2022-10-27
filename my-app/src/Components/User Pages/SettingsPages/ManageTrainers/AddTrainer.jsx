@@ -5,6 +5,7 @@ import ConfirmButton from "../../../Buttons/ConfirmButton";
 const AddTrainer = () => {
     const [adminOn, setAdminOn] = useState(false);
     const [trainerOn, setTrainerOn] = useState(false);
+    const [trainerAddedUpdateMessage, setTrainerAddedUpdateMessage] = useState('');
 
      const [values, setValues] = useState({
         firstName: '',
@@ -53,18 +54,18 @@ const AddTrainer = () => {
         /**
          * Configure database to recieve trainer information
         */
-        if (values.firstName && values.lastName && values.email && values.address && (trainerOn || adminOn)) {
+        if (values.firstName && values.lastName && values.email && values.address) {
             console.log('Successful Addition of Trainer!')
-                setValues((values) => ({
+            setValues((values) => ({
                 ...values,
                 firstName: '',
                 lastName: '',
                 email: '',
                 address: '',
-        }));
+            }));
+            setTrainerAddedUpdateMessage('Trainer has been added!');
         } else {
             console.log('Unsuccessful Addition of Trainer!')
-
         }
     }; 
 
@@ -114,7 +115,7 @@ const AddTrainer = () => {
             {/* <div onClick={() => setTrainerOn(!trainerOn)}>Trainer: {trainerOn ? 'True' : 'False'}</div> */}
             <div onClick={() => setAdminOn(!adminOn)}>Admin: {adminOn ? 'True' : 'False'}</div>
             <br/>
-
+            <div>{trainerAddedUpdateMessage}</div>
             <CancelButton onClick={handleCancelAddTrainer}/>
             <ConfirmButton onClick={handleAddTrainer} buttonText="Add" />
         </div>

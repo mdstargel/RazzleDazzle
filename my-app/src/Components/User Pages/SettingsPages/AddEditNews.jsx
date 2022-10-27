@@ -4,7 +4,7 @@ import PageTitle from "../PageTitle";
 import ConfirmButton from "../../Buttons/ConfirmButton";
 import CancelButton from "../../Buttons/CancelButton";
 
-const AddEditNews = () => {
+const AddEditNews = ({setwpage}) => {
     /**
      * Needs to be completed
      */
@@ -14,6 +14,8 @@ const AddEditNews = () => {
         image: '',
         description: '',
     });
+    const [message, setMessage] = useState('');
+    const [error, setError] = useState('');
 
     const handleTitleChange = (event) => {
         event.persist();
@@ -57,6 +59,11 @@ const AddEditNews = () => {
          */
         if (values.title && values.url && values.description && values.image && values.url) {
             console.log('Uploading news article');
+            setMessage('News article uploaded!')
+            setError('')
+        } else {
+            setMessage('')
+            setError('Failed upload!');
         }
     };
     return (
@@ -78,9 +85,11 @@ const AddEditNews = () => {
                 <label>News Description: </label>
                 <input type="text" value={values.description}
                     onChange={handleDescriptionChange}></input>
-                <br/>
+                <br />
+                <div style={{color: 'green'}}>{message}</div>
+                <div style={{ color: 'red' }}>{error}</div>
                 <ConfirmButton buttonText='Submit' onClick={handleUploadNewsArticle}></ConfirmButton>
-                <CancelButton></CancelButton>
+                <CancelButton onClick={() => setwpage('Calendar')}></CancelButton>
             </div>
         </>
     );
