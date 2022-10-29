@@ -121,7 +121,8 @@
     position: absolute;
     display: block;
     margin-top: 200px;
-    padding-top: 25px;
+    padding-top: 75px;
+    /* padding-bottom: 100px; */
     left: calc(50% - 350px);
     background-color: #FFFFFF;
     border-radius: 25px;
@@ -188,6 +189,14 @@
 
 .label2 {
     padding-left: 100px;
+    font-weight: bold;
+    color: #0C1526;
+
+}
+
+.label3 {
+    padding-left: 15px;
+    padding-right: 15px;
     font-weight: bold;
     color: #0C1526;
 
