@@ -29,8 +29,11 @@ const ViewSessionNotes = () => {
         <div className="backGround">
         <>
             <PageTitle name="View Session Notes" />
-            <div className="form2 label">
-                {sessionNotesList}
+            <div className="form2">
+                <div className="label3">
+                    {sessionNotesList}
+                </div>
+                
             </div>
         </>
         </div>

@@ -115,6 +115,7 @@ const AccessTrainer = () => {
     return (
         <div>
             {PreferredTrainerFormHeading && trainersList}
+            <br />
             <form>
                 <label className='label2'>Beginner: </label>
                 <input type="radio" name="experienceLevel" onClick={() => SetRidigingLevel('Beginner')}/>
