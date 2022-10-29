@@ -22,17 +22,21 @@ const ManageCustomers = () => {
     };
 
     const tabs = (
-        <div style={{marginTop: '200px'}}>
-            <div onClick={() => setSelectedTab('Set Riding Level')}>Set Riding Level</div>
-            <div onClick={() => setSelectedTab('Delete Customers')}>Delete Customers</div>
+        <div className='subTitle1'>
+            <div className='subLeft2' onClick={() => setSelectedTab('Set Riding Level')}>Set Riding Level</div>
+            <div className='subRight2' onClick={() => setSelectedTab('Delete Customers')}>Delete Customers</div>
+            <hr className="titleunderline2"></hr>
         </div>
     );
 
     return (
-        <div>
+        <div className='backGround'>
             <PageTitle name="Manage Customers" />
             {tabs}
-            <ChosenPopup />
+            <div className='form2'>
+                <ChosenPopup />
+            </div>
+            
         </div>
     );
 }

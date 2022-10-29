@@ -19,16 +19,25 @@ const ManageNotifications = ({setwpage}) => {
     };
 
     return (
-        <>
+        <div className='backGround'>
+            <>
         <PageTitle name="Manage Notifications" />
-            <div style={{marginTop: '300px'}}>
-                <div>Please select your notification preferences below:</div>
-                <div onClick={() => setTextOn(!textOn)}>Text: {textOn ? 'True' : 'False'}</div>
-                <div style={{color: 'green'}}>{successfulChangeMessage}</div>
-                <CancelButton onClick={() => setwpage('Calendar')} />
-                <ConfirmButton buttonText='Confirm' onClick={handleChangeNotificationSettings}/>
+            <div className='form2'>
+                <div className='label'>Please select your notification preferences below:</div><br />
+                <div className='label' onClick={() => setTextOn(!textOn)}>Text: {textOn ? 'True' : 'False'}</div>
+                <div className='label' style={{color: 'green'}}>{successfulChangeMessage}</div>
+                <div className='buttonContainer'>
+                    <br /><br />
+                    <div className='button1'>
+                        <CancelButton onClick={() => setwpage('Calendar')} />
+                        <ConfirmButton buttonText='Confirm' onClick={handleChangeNotificationSettings}/>
+                    </div>
+                </div>
+                
             </div>
         </>
+        </div>
+        
     );
 }
 

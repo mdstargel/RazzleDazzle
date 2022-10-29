@@ -107,9 +107,10 @@ const AddCustomers = () => {
     const PreferredTrainerFormHeading = (
         <div style={{display: 'grid',
             gridTemplateColumns: '1fr 1fr 1fr',
-            marginTop: '300px'
-            }
-        }>
+            alignContent: 'center',
+            textAlign: 'center', 
+        
+        }}>
             <div>Trainer</div>
             <div>Style</div>
             <div>Trainees</div>
@@ -119,9 +120,10 @@ const AddCustomers = () => {
     const customersFormHeading = (
         <div style={{display: 'grid',
             gridTemplateColumns: '1fr 1fr 1fr',
-            marginTop: '300px'
-            }
-        }>
+            alignContent: 'center',
+            textAlign: 'center', 
+            
+        }}>
             <div>Customer Name</div>
             <div>Style</div>
             <div>Level</div>
@@ -134,6 +136,8 @@ const AddCustomers = () => {
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr 1fr',
+                    alignContent: 'center',
+                    textAlign: 'center', 
                 }}>
                     <span style={{ backgroundColor: '#FFFF00' }}>{`${data.FirstName} ${data.LastName}`}</span>
                     <span style={{ backgroundColor: '#FFFF00' }}>{data.Style}</span>
@@ -143,6 +147,8 @@ const AddCustomers = () => {
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr 1fr',
+                    alignContent: 'center',
+                    textAlign: 'center', 
                 }}
                     onClick={() => handleSetSelectedTrainer({ data })}>
                     <span >{`${data.FirstName} ${data.LastName}`}</span>
@@ -174,6 +180,8 @@ const AddCustomers = () => {
                     <div style={{
                         display: 'grid',
                         gridTemplateColumns: '1fr 1fr 1fr',
+                        alignContent: 'center',
+                        textAlign: 'center', 
                     }}>
                         <span style={{ backgroundColor: '#FFFF00' }}>{`${data.FirstName} ${data.LastName}`}</span>
                         <span style={{ backgroundColor: '#FFFF00' }}>{data.Style}</span>
@@ -183,6 +191,8 @@ const AddCustomers = () => {
                     <div style={{
                         display: 'grid',
                         gridTemplateColumns: '1fr 1fr 1fr',
+                        alignContent: 'center',
+                        textAlign: 'center', 
                     }}
                         onClick={() => handleSetAddCustomer({ data })}>
                         <span >{`${data.FirstName} ${data.LastName}`}</span>
@@ -198,14 +208,23 @@ const AddCustomers = () => {
             * Show Trainers Table
             */}
             {PreferredTrainerFormHeading}
+            <br />
             {trainerTable}
+            <br /><br />
             {/**
              * Show Customers Table
              */}
             {customersFormHeading}
+            <br />
             {customersTable}
-            <CancelButton />
-            <ConfirmButton buttonText="Add" onClick={handleAddCustomers}/>
+            <div className='buttonContainer'>
+                <br /><br />
+                <div className='button1'>
+                    <CancelButton />
+                    <ConfirmButton buttonText="Add" onClick={handleAddCustomers}/>
+                </div>
+            </div>
+            
         </div>
     );
 }

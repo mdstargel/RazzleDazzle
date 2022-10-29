@@ -64,7 +64,9 @@ const DeleteCustomer = () => {
             data.isPreffered === true ?
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: '1fr 1fr 1fr',                   
+                    gridTemplateColumns: '1fr 1fr 1fr',
+                    alignContent: 'center',
+                    textAlign: 'center',                    
                 }}>
                     <span style={{ backgroundColor: '#FFFF00' }}>{data.Customer}</span>
                     <span style={{ backgroundColor: '#FFFF00' }}>{data.Style}</span>
@@ -74,6 +76,8 @@ const DeleteCustomer = () => {
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr 1fr',
+                    alignContent: 'center',
+                    textAlign: 'center', 
                 }}
                     onClick={() => handleSetDeleteCustomer({ data })}>
                     <span >{data.Customer}</span>
@@ -87,9 +91,9 @@ const DeleteCustomer = () => {
     const PreferredCustomerFormHeading = (
         <div style={{display: 'grid',
             gridTemplateColumns: '1fr 1fr 1fr',
-            marginTop: '300px'
-            }
-        }>
+            alignContent: 'center',
+            textAlign: 'center', 
+        }}>
             <div>Customer</div>
             <div>Style</div>
             <div>Level</div>
@@ -99,9 +103,16 @@ const DeleteCustomer = () => {
     return (
         <div>
             {PreferredCustomerFormHeading}
+            <br />
             {CustomersList}
-            <CancelButton onClick={handleCancelDeleteCustomer} />
-            <ConfirmButton buttonText={'Delete'} onClick={handleDeleteCustomer} />
+            <div className='buttonContainer'>
+                <br /><br />
+                <div className='button1'>
+                    <CancelButton onClick={handleCancelDeleteCustomer} />
+                    <ConfirmButton buttonText={'Delete'} onClick={handleDeleteCustomer} />
+                </div>
+            </div>
+            
         </div>
     );
 }

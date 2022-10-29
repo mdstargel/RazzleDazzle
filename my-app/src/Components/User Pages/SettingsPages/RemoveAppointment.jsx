@@ -29,7 +29,8 @@ const RemoveAppointment = ({setSelectedTab}) => {
     };
 
     return(
-        <>
+        <div className='backGround'>
+            <>
             <div className="form">
                 <label>Trainer Name:</label>
                 <input
@@ -67,6 +68,7 @@ const RemoveAppointment = ({setSelectedTab}) => {
                 <ConfirmButton buttonText={'Remove'} onClick={handleRemoveAppointment} />
             </div>
         </>
+        </div>
     );
 }
 

@@ -64,7 +64,9 @@ const RemoveTrainer = () => {
             data.isPreffered === true ?
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: '1fr 1fr 1fr',                   
+                    gridTemplateColumns: '1fr 1fr 1fr',
+                    alignContent: 'center',
+                    textAlign: 'center',                  
                 }}>
                     <span style={{ backgroundColor: '#FFFF00' }}>{data.Trainer}</span>
                     <span style={{ backgroundColor: '#FFFF00' }}>{data.Style}</span>
@@ -74,6 +76,8 @@ const RemoveTrainer = () => {
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr 1fr',
+                    alignContent: 'center',
+                    textAlign: 'center', 
                 }}
                     onClick={() => handleSetRemoveTrainer({ data })}>
                     <span >{data.Trainer}</span>
@@ -86,7 +90,8 @@ const RemoveTrainer = () => {
     const PreferredTrainerFormHeading = (
         <div style={{display: 'grid',
             gridTemplateColumns: '1fr 1fr 1fr',
-            marginTop: '300px'
+            alignContent: 'center',
+            textAlign: 'center', 
             }
         }>
             <div>Trainer</div>
@@ -99,9 +104,16 @@ const RemoveTrainer = () => {
         <div>
             {AvailableTrainers.length > 0 ?
                 PreferredTrainerFormHeading : <div>No trainers to available to remove</div>}
+            <br />
             {trainersList}
-            <CancelButton onClick={handleCancelRemoveTrainer} />
-            <ConfirmButton buttonText={'Remove Trainer'} onClick={handleRemoveTrainer} />
+            <div className='buttonContainer'>
+                <br /><br />
+                <div className='button1'>
+                    <CancelButton onClick={handleCancelRemoveTrainer} />
+                    <ConfirmButton buttonText={'Remove Trainer'} onClick={handleRemoveTrainer} />
+                </div>
+            </div>
+            
         </div>
     );
 }

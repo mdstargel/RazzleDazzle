@@ -3,7 +3,10 @@ import PageTitle from "../PageTitle";
 
 const RemoveCustomers = () => {
     return(
-        <PageTitle name="Remove Customers"/>
+        <div className="backGround">
+            <PageTitle name="Remove Customers"/>
+        </div>
+        
     );
 }
 
