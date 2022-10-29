@@ -88,36 +88,37 @@ const SignUp = ({setSignedIn, setwpage}) => {
         <div style={{color: 'red'}}>*</div>
     );
     return (
-        <form className='form'>
-            <label>{!values.firstName && error}First Name:</label>
+        <div className='backGround'>
+            <form className='form'>
+            <label className='label'>{!values.firstName && error}First Name:</label>
             <input
             type="text"
             onChange={handleFirstNameInputChange}
             />
             <br />
             
-            <label>{!values.lastName && error}Last Name:</label>
+            <label className='label'>{!values.lastName && error}Last Name:</label>
             <input
             type="text"
             onChange={handleLastNameInputChange}
             />
             <br /> 
             
-            <label>{!values.email && error}Email Address:</label>
+            <label className='label'>{!values.email && error}Email Address:</label>
             <input
             type="text"
             onChange={handleEmailInputChange}
             />
             <br />
             
-            <label>{!values.phone && error}Phone Number:</label>
+            <label className='label'>{!values.phone && error}Phone Number:</label>
             <input
             type="text"
             onChange={handlePhoneNumberInputChange}
             />
             <br/>
 
-            <label>{!values.password && error}Password:</label>
+            <label className='label'>{!values.password && error}Password:</label>
             <input
             type="text"
             onChange={handlePasswordInputChange}
@@ -128,12 +129,19 @@ const SignUp = ({setSignedIn, setwpage}) => {
                     Please fill in all fields with a {error}
                 </div>
             }
-            <ConfirmButton buttonText='Sign Up' type="button" value="Sign Up" onClick={handleSubmit}/>
-            <CancelButton type="button" value="Cancel" onClick={handleCancel} />
+            <div className='buttonContainer'>
+                <br /><br />
+                <div className='button1'>
+                    <ConfirmButton buttonText='Sign Up' type="button" value="Sign Up" onClick={handleSubmit}/>
+                    <CancelButton type="button" value="Cancel" onClick={handleCancel} />
+                </div>
+            </div>
             
-            <span onClick={() => setwpage('Log In')}>Log In</span>
-            <span onClick={() => setwpage('Forgot Password')}>Forgot Password</span>
+            
+            <span className='span' onClick={() => setwpage('Log In')}>Log In</span>
+            <span className='span2' onClick={() => setwpage('Forgot Password')}>Forgot Password</span>
         </form>
+        </div>
     );
 }
 

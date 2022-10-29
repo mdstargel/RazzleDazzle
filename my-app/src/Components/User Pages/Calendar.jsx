@@ -5,7 +5,7 @@ import ReactCalendar from "./Calendar/ReactCalendar";
 
 const Calendar = () => {
     return ( 
-    <div> 
+    <div className="backGround"> 
             <PageTitle name="Calendar" />
             <ReactCalendar></ReactCalendar>
     </div>

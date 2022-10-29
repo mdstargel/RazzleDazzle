@@ -160,7 +160,7 @@ const ReactCalendar = () => {
             </div>
         )));
   return (
-    <div>
+    <div style={{paddingTop: '300px'}}>
           <Calendar
               onClickDay={handleGetAppointments}
               onChange={onChange}

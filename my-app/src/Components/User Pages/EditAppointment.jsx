@@ -77,7 +77,8 @@ const EditAppointment = ({setSelectedTab}) => {
     };
 
     return(
-        <>
+        <div className='backGround'>
+            <>
             <div className="form">
                 <label>Trainer Name:</label>
                 <input
@@ -121,6 +122,7 @@ const EditAppointment = ({setSelectedTab}) => {
                 <ConfirmButton buttonText={'Edit'} onClick={handleEditAppointment} />
             </div>
         </>
+        </div>
     );
 }
 

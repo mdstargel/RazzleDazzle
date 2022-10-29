@@ -85,7 +85,8 @@ const PreferredTrainer = () => {
     )
     
     return (
-        <>
+        <div className='backGround'>
+            <>
             <PageTitle name="Preferred Trainer" />
             <div>
                 {PreferredTrainerFormHeading}
@@ -94,6 +95,7 @@ const PreferredTrainer = () => {
                 <ConfirmButton buttonText={'Set Trainer'} onClick={handleSetTrainer} />
             </div>
         </>
+        </div>
     );
 }
 

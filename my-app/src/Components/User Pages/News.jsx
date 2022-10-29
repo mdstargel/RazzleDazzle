@@ -74,7 +74,7 @@ const News = ({ newsArticles }) => {
         );
     }
     return (
-        <div>
+        <div className="backGround">
             <PageTitle name="News" />
             <SelectedFeedItem />
             <RightFeedItem />

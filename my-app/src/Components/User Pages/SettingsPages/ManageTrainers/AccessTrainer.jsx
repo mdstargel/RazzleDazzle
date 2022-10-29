@@ -178,6 +178,8 @@ const AccessTrainer = () => {
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr 1fr',                   
+                    alignContent: 'center',
+                    textAlign: 'center', 
                 }}>
                     <span style={{ backgroundColor: '#FFFF00' }}>{`${data.FirstName} ${data.LastName}` }</span>
                     <span style={{ backgroundColor: '#FFFF00' }}>{data.Style}</span>
@@ -187,6 +189,8 @@ const AccessTrainer = () => {
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr 1fr',
+                    alignContent: 'center',
+                    textAlign: 'center', 
                 }}
                     onClick={() => handleSetPrefferedTrainer({ data })}>
                     <span >{`${data.FirstName} ${data.LastName}` }</span>
@@ -241,9 +245,10 @@ const AccessTrainer = () => {
     const PreferredTrainerFormHeading = (
         <div style={{display: 'grid',
             gridTemplateColumns: '1fr 1fr 1fr',
-            marginTop: '300px'
-            }
-        }>
+            alignContent: 'center',
+            textAlign: 'center', 
+            
+        }}>
             <div>Trainer</div>
             <div>Style</div>
             <div>Experience</div>
@@ -256,8 +261,14 @@ const AccessTrainer = () => {
                 PreferredTrainerFormHeading && trainersList
                 : editChosenTrainer}
             <div style={{color: 'green'}}>{trainerInfoUpdateMessage}</div>
-            <CancelButton onClick={() => setShowEditTrainer(false)}/>
-            <ConfirmButton buttonText={showEditTrainer ? 'Change' : 'Edit'} onClick={showEditTrainer ? handleEditTrainer : () => setShowEditTrainer(true)} />
+            <div className='buttonContainer'>
+                <br /><br />
+                <div className='button1'>
+                    <CancelButton onClick={() => setShowEditTrainer(false)}/>
+                    <ConfirmButton buttonText={showEditTrainer ? 'Change' : 'Edit'} onClick={showEditTrainer ? handleEditTrainer : () => setShowEditTrainer(true)} />
+                </div>
+            </div>
+
         </div>
     );
 }

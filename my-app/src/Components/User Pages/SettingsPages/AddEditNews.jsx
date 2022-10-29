@@ -67,31 +67,39 @@ const AddEditNews = ({setwpage}) => {
         }
     };
     return (
-        <>
+        <div className='backGround'>
+            <>
             <PageTitle name="Add/Edit News" />
-            <div style={{marginTop: '200px'}}>
-                <label>News Title: </label>
-                <input type="text" value={values.title}
+            <div className='form2'>
+                <label className='label'>News Title: </label>
+                <input className='input2' type="text" value={values.title}
                     onChange={handleTitleChange}></input>
-                <br/>
-                <label>News URL: </label>
-                <input type="text" value={values.url}
+                <br/><br />
+                <label className='label'>News URL: </label>
+                <input className='input2' type="text" value={values.url}
                     onChange={handleURLChange}></input>
-                <br/>
-                <label>News Image: </label>
-                <input type="text" value={values.image}
+                <br/><br />
+                <label className='label'>News Image: </label>
+                <input className='input2' type="text" value={values.image}
                     onChange={handleImageChange}></input>
-                <br/>
-                <label>News Description: </label>
-                <input type="text" value={values.description}
+                <br/><br />
+                <label className='label'>News Description: </label>
+                <input className='input2' type="text" value={values.description}
                     onChange={handleDescriptionChange}></input>
-                <br />
+                <br /><br />
                 <div style={{color: 'green'}}>{message}</div>
                 <div style={{ color: 'red' }}>{error}</div>
-                <ConfirmButton buttonText='Submit' onClick={handleUploadNewsArticle}></ConfirmButton>
-                <CancelButton onClick={() => setwpage('Calendar')}></CancelButton>
+                <div className='buttonContainer'>
+                    <br /><br />
+                    <div className='button1'>
+                        <ConfirmButton buttonText='Submit' onClick={handleUploadNewsArticle}></ConfirmButton>
+                        <CancelButton onClick={() => setwpage('Calendar')}></CancelButton>
+                    </div>
+                </div>
+                
             </div>
         </>
+        </div>
     );
 }
 

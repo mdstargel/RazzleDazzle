@@ -69,30 +69,38 @@ const ChangePassword = ({setSignedIn, setwpage}) => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className='form'>
-            <label>Please enter current password:</label>
-            <input
+        <div className='backGround'>
+            <form onSubmit={handleSubmit} className='form'>
+            <label className='label2'>Please enter current password:</label>
+            <input className='input3'
             type="text"
             onChange={handleFirstPasswordInputChange}
             />
-            <br/>
-            <label>Please enter new password:</label>
-            <input
+            <br/><br />
+            <label className='label2'>Please enter new password:</label>
+            <input className='input3'
             type="text"
             onChange={handleSecondPasswordInputChange}
             />
-            <br/>
-            <label>Please re-enter new password:</label>
-            <input
+            <br/><br />
+            <label className='label2'>Please re-enter new password:</label>
+            <input className='input3'
             type="text"
             onChange={handleThirdPasswordInputChange}
             />
-            <br />
+            <br /><br />
             <div style={{ color: 'red' }}>{error}</div>
             <div style={{color: 'green'}}>{passwordChangeMessage}</div>
-            <CancelButton type="button" value="Cancel" onClick={handleCancel}/>
-            <ConfirmButton buttonText='Change' type="submit" value="Change" onClick={handleSubmit}/>
+            <div className='buttonContainer'>
+                <br /><br />
+                <div className='button1'>
+                    <CancelButton type="button" value="Cancel" onClick={handleCancel}/>
+                    <ConfirmButton buttonText='Change' type="submit" value="Change" onClick={handleSubmit}/>
+                </div>
+            </div>
         </form>
+        </div>
+        
     );
 }
 

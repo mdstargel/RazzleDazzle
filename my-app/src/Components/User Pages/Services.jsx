@@ -15,58 +15,60 @@ const Services = () => {
         <span>v</span>
     );
     return (
-        <div>
-            <PageTitle name="Services" />  
-            <div style={{ marginTop: '400px' }}> 
-                <div onClick={() => setIndividualLessonPackages(!individualLessonPackages)}>
+        // Need to reinsert on line 22 (original stuff: <div style={{ marginTop: '400px' }}>)
+        <div className='backGround'>
+            <PageTitle name="Services" />
+            
+            <div className='form3'> 
+                <div className='serviceLabel' onClick={() => setIndividualLessonPackages(!individualLessonPackages)}>
                     {individualLessonPackages ? downCaret : rightCaret} Individual Lesson Packages
                     {individualLessonPackages && <div>
-                        <div>Beginner Lessons
+                        <div className='serviceLabel'>Beginner Lessons
                             <p></p>
                         </div>
                             <p></p>
-                        <div>Intermediate Lessons</div>
+                        <div className='serviceLabel'>Intermediate Lessons</div>
                             <p></p>
-                        <div>Advanced Lessons</div>
+                        <div className='serviceLabel'>Advanced Lessons</div>
                             <p></p>
                     </div>}
                 </div>
-                <div onClick={() => setGroupLessonPackages(!groupLessonPackages)}>
-                    {groupLessonPackages ? downCaret : rightCaret}Group Lesson Packages
+                <div className='serviceLabel' onClick={() => setGroupLessonPackages(!groupLessonPackages)}>
+                    {groupLessonPackages ? downCaret : rightCaret} Group Lesson Packages
                     {groupLessonPackages && <div>
-                        <div>Beginner Lessons
+                        <div className='serviceLabel'>Beginner Lessons
                             <p></p>
                         </div>
                             <p></p>
-                        <div>Intermediate Lessons</div>
+                        <div className='serviceLabel'>Intermediate Lessons</div>
                             <p></p>
-                        <div>Advanced Lessons</div>
+                        <div className='serviceLabel'>Advanced Lessons</div>
                             <p></p>
                     </div>}
                 </div>
-                <div onClick={() => setRidingStylePackages(!ridingStylePackages)}>
+                <div className='serviceLabel' onClick={() => setRidingStylePackages(!ridingStylePackages)}>
                     {ridingStylePackages ? downCaret : rightCaret} Riding Style Packages
                     {ridingStylePackages && <div>
-                        <div>Beginner Lessons
+                        <div className='serviceLabel'>Beginner Lessons
                             <p></p>
                         </div>
                             <p></p>
-                        <div>Intermediate Lessons</div>
+                        <div className='serviceLabel'>Intermediate Lessons</div>
                             <p></p>
-                        <div>Advanced Lessons</div>
+                        <div className='serviceLabel'>Advanced Lessons</div>
                             <p></p>
                     </div>}
                 </div>
-                <div onClick={() => setCompetitionPackages(!competitionPackages)}>
+                <div className='serviceLabel' onClick={() => setCompetitionPackages(!competitionPackages)}>
                     {competitionPackages ? downCaret : rightCaret} Competition Packages
                     {competitionPackages && <div>
-                        <div>Beginner Lessons
+                        <div className='serviceLabel'>Beginner Lessons
                             <p></p>
                         </div>
                             <p></p>
-                        <div>Intermediate Lessons</div>
+                        <div className='serviceLabel'>Intermediate Lessons</div>
                             <p></p>
-                        <div>Advanced Lessons</div>
+                        <div className='serviceLabel'>Advanced Lessons</div>
                             <p></p>
                     </div>}
                 </div>

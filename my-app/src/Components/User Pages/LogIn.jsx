@@ -57,24 +57,34 @@ const LogIn = ({ setSignedIn, setwpage }) => {
     }
 
     return (
+        <div className='backGround'>
         <form className='form'>
-            <label>Email Address:</label>
-            <input
+            <label className='label'>Email Address:</label>
+            <input className='input2'
                 type="text"
                 onChange={handleEmailInputChange}
             />
+            <br /><br />
 
-            <label>Password:</label>
-            <input
+            <label className='label'>Password:</label>
+            <input className='input2'
                 type="text"
                 onChange={handlePasswordInputChange}
             />
+            <br /><br />
             {showError && < div style={{color: 'red'}} > Your password or email are incorrect.</div>}
-            <CancelButton onClick={handleCancel} />
-            <ConfirmButton buttonText='Confirm' onClick={handleSubmit} />
-            <span onClick={() => setwpage('Sign Up')}>Sign Up</span>
-            <span onClick={() => setwpage('Forgot Password')}>Forgot Password</span>
+            <div className='buttonContainer'>
+                <br /><br />
+                <div className='button1'>
+                    <CancelButton style={{paddingRight: '20px'}} onClick={handleCancel} />
+                    <ConfirmButton buttonText='Confirm' onClick={handleSubmit} />
+                </div>
+            </div>
+            
+            <span className='span' onClick={() => setwpage('Sign Up')}>Sign Up</span>
+            <span className='span2' onClick={() => setwpage('Forgot Password')}>Forgot Password</span>
         </form>
+        </div>
     );
 }
 

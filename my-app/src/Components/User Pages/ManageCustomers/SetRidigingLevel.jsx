@@ -75,7 +75,9 @@ const AccessTrainer = () => {
             data.isPreffered === true ?
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: '1fr 1fr 1fr',                   
+                    gridTemplateColumns: '1fr 1fr 1fr', 
+                    alignContent: 'center',
+                    textAlign: 'center',                 
                 }}>
                     <span style={{ backgroundColor: '#FFFF00' }}>{`${data.FirstName} ${data.LastName}` }</span>
                     <span style={{ backgroundColor: '#FFFF00' }}>{data.Style}</span>
@@ -85,6 +87,8 @@ const AccessTrainer = () => {
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr 1fr',
+                    alignContent: 'center',
+                    textAlign: 'center',  
                 }}
                     onClick={() => handleSetPrefferedTrainer({ data })}>
                     <span >{`${data.FirstName} ${data.LastName}` }</span>
@@ -98,9 +102,10 @@ const AccessTrainer = () => {
     const PreferredTrainerFormHeading = (
         <div style={{display: 'grid',
             gridTemplateColumns: '1fr 1fr 1fr',
-            marginTop: '300px'
-            }
-        }>
+            alignContent: 'center',
+            textAlign: 'center',  
+            
+        }}>
             <div>Trainer</div>
             <div>Style</div>
             <div>Experience</div>
@@ -111,15 +116,21 @@ const AccessTrainer = () => {
         <div>
             {PreferredTrainerFormHeading && trainersList}
             <form>
-                <label>Beginner: </label>
+                <label className='label2'>Beginner: </label>
                 <input type="radio" name="experienceLevel" onClick={() => SetRidigingLevel('Beginner')}/>
-                <label>Intermediate: </label>
+                <label className='label2'>Intermediate: </label>
                 <input type="radio" name="experienceLevel" onClick={() => SetRidigingLevel('Intermediate')}/>
-                <label>Advanced: </label>
+                <label className='label2'>Advanced: </label>
                 <input type="radio" name="experienceLevel" onClick={() => SetRidigingLevel('Advanced')}/>
             </form>
-            <CancelButton/>
-            <ConfirmButton buttonText={'Change'} onClick={handleEditCustomer} />
+            <div className='buttonContainer'>
+                <br /><br />
+                <div className='button1'>
+                    <CancelButton/>
+                    <ConfirmButton buttonText={'Change'} onClick={handleEditCustomer} />
+                </div>
+            </div>
+            
         </div>
     );
 }
