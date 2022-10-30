@@ -13,6 +13,36 @@ con.connect(function(err) {
     if (err) throw err;
 })
 
+// login(email, password) {
+//     con.query("SELECT * FROM Login WHERE Email = '" + email + "' " +
+//         "AND Password = '" + password + "';",
+//         function(err, result) {
+//             if (err) throw err;
+
+//             // If login values match
+//             if (result != NULL) {
+//                 // If Customer
+//                 if (result[0].CID = !NULL) {
+//                     var user = customer(result[0].CID);
+//                 }
+
+//                 // If Trainer
+//                 else if (result[0].TID != NULL) {
+//                     // Check admin status
+//                     con.query("SELECT Admin FROM Trainer WHERE TID = " +
+//                         result[0].TID + ";",
+//                         function(err, administrator) {
+//                             if (err) throw err;
+//                             // If admin
+//                             if (administrator[0].Admin == 1) {
+//                                 var user = admin(result[0].TID);
+//                             } else var user = trainer(result[0].TID);
+//                         });
+//                 };
+//             };
+//         });
+// }
+
 /**
  * Customer Appointment Class. Class consists of:
  * Int          Appointment Key
@@ -271,6 +301,7 @@ class customer {
     delete() {
         con.query("UPDATE Login SET Decomission = 1 WHERE CID = " +
             this.customer_id + ";");
+        // TODO: REMOVE FROM FUTURE APPOINTMENTS
     }
 }
 
@@ -867,6 +898,8 @@ class admin {
     }
 
     // Delete Trainer and Delete Customer functions found in mini classes
+
+    // TODO: CREATE TRAINER ACCOUNT
 }
 
 con.end();
