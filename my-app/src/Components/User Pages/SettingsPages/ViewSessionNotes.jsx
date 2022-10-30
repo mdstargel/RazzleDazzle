@@ -26,12 +26,17 @@ const ViewSessionNotes = () => {
     ));
             
     return (
+        <div className="backGround">
         <>
             <PageTitle name="View Session Notes" />
-            <div style={{ marginTop: '500px' }}>
-                {sessionNotesList}
+            <div className="form2">
+                <div className="label3">
+                    {sessionNotesList}
+                </div>
+                
             </div>
         </>
+        </div>
     );
 }
 

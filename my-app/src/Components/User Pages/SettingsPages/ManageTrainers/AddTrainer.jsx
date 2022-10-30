@@ -83,41 +83,52 @@ const AddTrainer = () => {
 
     return (
         <div>
-            <label>First Name:</label>
-            <input
+            <label className='label'>First Name:</label>
+            <input className='input2'
                 type="text"
                 onChange={handleFirstNameInputChange}
                 value={values.firstName}
             />
-            <br/>
-            <label>Last Name:</label>
-            <input
+            <br/><br />
+            <label className='label'>Last Name:</label>
+            <input className='input2'
                 type="text"
                 onChange={handleLastNameInputChange}
                 value={values.lastName}
             />
-            <br/>
-            <label>Email Address:</label>
-            <input
+            <br/><br />
+            <label className='label'>Email Address:</label>
+            <input className='input2'
                 type="text"
                 onChange={handleEmailInputChange}
                 value={values.email}
             />
-            <br/>
-            <label>Address:</label>
-            <input
+            <br/><br />
+            <label className='label'>Address:</label>
+            <input className='input2'
                 type="text"
                 onChange={handleAddressInputChange}
                 value={values.address}
             />
-            <br/>
-            <label>Trainer Permissions:</label>
+            <br/><br />
+            <label className='label'>Trainer Permissions:</label>
+            <br /><br />
             {/* <div onClick={() => setTrainerOn(!trainerOn)}>Trainer: {trainerOn ? 'True' : 'False'}</div> */}
-            <div onClick={() => setAdminOn(!adminOn)}>Admin: {adminOn ? 'True' : 'False'}</div>
-            <br/>
+            <div className='label' onClick={() => setAdminOn(!adminOn)}>Admin: {adminOn ? 'True' : 'False'}</div>
+            <br/><br />
             <div>{trainerAddedUpdateMessage}</div>
-            <CancelButton onClick={handleCancelAddTrainer}/>
-            <ConfirmButton onClick={handleAddTrainer} buttonText="Add" />
+            <br /><br />
+            <div className='buttonContainer'>
+                <div className='button1'>
+                    <CancelButton onClick={handleCancelAddTrainer}/>
+                    <ConfirmButton style={{paddingLeft: '20px'}} onClick={handleAddTrainer} buttonText="Add" />
+                    
+                </div>
+                
+                
+                
+            </div>
+            
         </div>
     );
 }

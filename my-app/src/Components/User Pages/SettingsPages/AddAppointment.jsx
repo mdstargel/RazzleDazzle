@@ -74,7 +74,7 @@ const AddAppointment = ({setSelectedTab}) => {
 
     return(
         <>
-            <div className="form">
+            <div className="form backGround">
                 <label>Trainer Name:</label>
                 <input
                     type="text"

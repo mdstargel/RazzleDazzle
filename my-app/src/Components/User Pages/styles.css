@@ -1,9 +1,16 @@
+.backGround {
+    background-color: #D9D9D9;
+    height: 100vh;
+    width: 100%;
+    z-index: 0;
+}
+
 .title {
     position: absolute;
     align-content: center;
-    top: 15.72%;
-    bottom: 78.32%;
-    width: 100%;
+    top: 155px;
+    width: 480px;
+    left: calc(50% - 240px);
 
     font-family: 'IBM Plex Sans Devanagari';
     font-style: normal;
@@ -12,26 +19,255 @@
     line-height: 61px;
     text-align: center;
     color: #6190BC;
+    background-color: #D9D9D9;
+    z-index: 2;
+}
+.subTitle1 {
+        /* position: absolute; */
+    /* left: 68.33%;
+    right: 15.28%; */
+    align-content: center;
+    padding-top: 225px;
+    width: 100%;
+    /* left: 50%; */
+
+    font-family: 'IBM Plex Sans Devanagari';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 49px;
+    color: #6190BC;
+    text-align: center;
+}
+
+.subLeft {
+    position: absolute;
+    width: 250px;
+    left: calc(25% - 125px);
+    text-align: center;
+}
+
+.subLeft2 {
+    position: absolute;
+    width: 250px;
+    left: calc(37.5% - 125px);
+    text-align: center;
+}
+
+.subCenter {
+    position: absolute;
+    width: 250px;
+    left: calc(50% - 125px);
+    text-align: center;
+}
+
+.subRight {
+    position: absolute;
+    width: 250px;
+    left: calc(75% - 125px);
+    text-align: center;
+}
+
+.subRight2 {
+    position: absolute;
+    width: 250px;
+    left: calc(62.5% - 125px);
+    text-align: center;
 }
 
 .titleunderline {
     position: absolute;
+    border-color: #0C1526;
     width: calc(100vw - 22vw);
     left: 11vw;
     height: 0px;
     top: 275px;
+    z-index: 2;
     
+    /* Trying to change behind the line to gray, no difference */
     background-color: 4px solid #0C1526;
+    /* background-color: #D9D9D9; */
+}
+
+.titleunderline2 {
+    position: absolute;
+    border-color: #0C1526;
+    width: calc(100vw - 30vw);
+    left: 15vw;
+    height: 0px;
+    top: 400px;
+    z-index: 2;
+    
+    /* Trying to change behind the line to gray, no difference */
+    background-color: 4px solid #0C1526;
+    /* background-color: #D9D9D9; */
 }
 
 .form {
-    background-color: #fff;
+    position: absolute;
+    display: block;
+    margin-top: 10px;
+    padding-top: 15px;
+    left: calc(50% - 350px);
+    background-color: #FFFFFF;
     border-radius: 25px;
-    height: 300px;
-    width: 300px;
+    height: 700px;
+    width: 700px;
+    box-shadow: 0px 25px 25px #0C1526;
+    
+}
+
+.form2 {
+    position: absolute;
+    display: block;
+    margin-top: 200px;
+    padding-top: 75px;
+    /* padding-bottom: 100px; */
+    left: calc(50% - 350px);
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    height: 700px;
+    width: 700px;
+    /* border: 1px solid #0C1526; */
+    box-shadow: 0px 25px 25px #0C1526;
+}
+
+.form3 {
+    position: absolute;
+    display: block;
+    margin-top: 200px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    left: calc(50% - 350px);
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    height: auto;
+    width: 700px;
+    box-shadow: 0px 25px 25px #0C1526;
 }
 
 .input {
     background: #FFFFFF;
     border-radius: 10px;
+}
+
+.input2 {
+    position: absolute;
+    right: 150px;
+    border: 1px solid #0C1526;
+    /* box-shadow: 0px 4px 4px #0C1526; */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.input3 {
+    position: absolute;
+    right: 100px;
+    border: 1px solid #0C1526;
+    /* box-shadow: 0px 4px 4px #0C1526; */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.span {
+    position: absolute;
+    left: 20px;
+    bottom: 25px;
+}
+
+.span2 {
+    position: absolute;
+    left: 85px;
+    bottom: 25px;
+}
+
+.label {
+    padding-left: 175px;
+    font-weight: bold;
+    color: #0C1526;
+    /* padding-right: 150px; */
+
+}
+
+.label2 {
+    padding-left: 100px;
+    font-weight: bold;
+    color: #0C1526;
+
+}
+
+.label3 {
+    padding-left: 15px;
+    padding-right: 15px;
+    font-weight: bold;
+    color: #0C1526;
+
+}
+
+.serviceLabel {
+    padding-left: 25px;
+    font-weight: bold;
+    color: #0C1526;
+}
+
+.buttonContainer {
+    /* position: absolute; */
+    display: block;
+    width: 400px;
+    height: 80px;
+    /* padding-top: 25px; */
+    padding-left: calc(50% - 140px);
+    /* padding-right: 20px; */
+    /* left: calc(50vw - 100px); */
+}
+.button1 {
+    /* position: absolute; */
+    width: 280px;
+    /* padding-top: 25px; */
+    /* padding-left: 20px; */
+    /* left: calc(50vw - 160px); */
+}
+.button2 {
+    /* position: absolute; */
+    width: 140px;
+    /* padding-top: 25px; */
+    padding-left: 10px;
+    left: calc(50vw + 100px);
+}
+
+/* Testing image stuff out */
+.pic1 {
+    /* display: block; */
+    display: absolute;
+    /* border-style: none; */
+    border-radius: 20px;
+    margin-top: 300px;
+    border-radius: 20px;
+    /* border-style: solid #0C1526; */
+    width: 600px;
+    height: 600px;
+    z-index: 2;
+    /* background-image: url("./Assets/Rae\ Riding\ Lessons\ Logo\ _2_.png"); */
+}
+
+/* Testing image stuff out */
+.pic1Border {
+    position: absolute;
+    display: block;
+    margin-top: 350px;
+    margin-left: 1150px;
+    border-radius: 20px;
+    border-style: 20px solid #0C1526;
+    width: 682px;
+    height: 741px;
+    z-index: 2;
+    background-image: url("./Assets/Rae\ Riding\ Lessons\ Logo\ _2_.png");
+    /* background-color: #D9D9D9; */
+}
+
+/* Didn't really do anything, just added it to your hard coded section
+* for item lists */
+.itemList {
+    position: absolute;
+    align-content: center;
+    text-align: center;
+    color: #0C1526;
 }

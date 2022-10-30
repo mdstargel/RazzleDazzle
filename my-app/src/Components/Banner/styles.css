@@ -1,6 +1,6 @@
   .banner {
     background-color: #0C1526;
-    width: 100vw;
+    width: 100%;
     height: 99px;
     margin: 0 auto;
     display: flex;
@@ -53,7 +53,7 @@
     top: 35px;
     position: absolute; */
     top: 35px;
-    left: calc(25vw - 80px);
+    left: calc(25% - 80px);
     position: absolute;
    }
 
@@ -64,7 +64,8 @@
     position: absolute;
     align-items: center; */
     top: 35px;
-    left: calc(50vw - 80px);
+    /* left: 50%; */
+    left: calc(50% - 80px);
     position: absolute;
   }
 
@@ -74,7 +75,7 @@
     top: 35px;
     position: absolute; */
     top: 35px;
-    left: calc(75vw - 80px);
+    left: calc(75% - 80px);
     position: absolute;
   }
 
@@ -107,16 +108,20 @@
   .centerTabs {
     align-content: center;
     justify-content: center;
-    /* position: relative; */
-    width: 100vw;
-    /* left: 25vw; */
+    /* top: 35px; */
+    left: calc(50vw - 100px);
+    position: absolute;
+    text-align: center;
+    width: 200px;
+    /* position: absolute;
+    left: calc(50vw - 80px); */
 
   }
 
   .dropDownMenu {
     position: absolute;
     top: 67px;
-    left: calc(100vw - 260px);;
+    left: calc(100vw - 272px);;
     background-color: #FFFFFF;
     border: 2px #0C1526;
     border-style: solid;
@@ -126,10 +131,8 @@
     display: block;
     padding-top: 15px;
     padding-bottom: 15px;
-    /* padding: 15px; */
-    /* margin: 0 auto; */
-    /* right: 10px; */
-    z-index: 1;
+    box-shadow: 0px 25px 25px #0C1526;
+    z-index: 3;
   }
 
   .dropEntry {
@@ -141,6 +144,7 @@
   position: relative;
   width: 250px;
   height: 0px;
+  z-index: 0;
   
   background-color: 4px solid #0C1526;
 }

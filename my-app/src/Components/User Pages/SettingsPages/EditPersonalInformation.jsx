@@ -90,47 +90,53 @@ const EditPersonalInformation = ({setwpage}) => {
     };
 
     return (
-        <div>
-        <PageTitle name="Edit Personal Information" />
-        <form className='form' style={{marginTop: '500px'}}>
-            <label>First Name:</label>
-            <input
-            type="text"
-            value={values.firstName}
-            onChange={handleFirstNameInputChange}
-            />
-            <br/>
-            <label>Last Name:</label>
-            <input
-            type="text"
-            value={values.lastName}
-            onChange={handleLastNameInputChange}
+        <div className='backGround'>
+            <PageTitle name="Edit Personal Information" />
+            <form className='form2'>
+                <label className='label'>First Name:</label>
+                <input className='input2'
+                type="text"
+                value={values.firstName}
+                onChange={handleFirstNameInputChange}
                 />
-            <br/>
-            <label>Email Address:</label>
-            <input
+                <br/><br />
+                <label className='label'>Last Name:</label>
+                <input className='input2'
                 type="text"
-                value={values.email}
-                onChange={handleEmailInputChange}
-            />
-            <br/>
-            <label>Phone Number:</label>
-            <input
-                type="text"
-                value={values.phone}
-                onChange={handlePhoneInputChange}
-            />
-                
-            <label>Address:</label>
-            <input
-                type="text"
-                value={values.address}
-                onChange={handleAddressInputChange}
-            />
-            <div style={message !== 'Information changed successfully!' ? {color: 'green'}: {color: 'green'}}>{message}</div>
-            <CancelButton type="button" value="Cancel" onClick={handleCancel}/>
-            <ConfirmButton buttonText='Change' type="submit" value="Change" onClick={handleSubmit}/>
-            </form>
+                value={values.lastName}
+                onChange={handleLastNameInputChange}
+                />
+                <br/><br />
+                <label className='label'>Email Address:</label>
+                <input className='input2'
+                    type="text"
+                    value={values.email}
+                    onChange={handleEmailInputChange}
+                />
+                <br/><br />
+                <label className='label'>Phone Number:</label>
+                <input className='input2'
+                    type="text"
+                    value={values.phone}
+                    onChange={handlePhoneInputChange}
+                />
+                <br /><br />
+                <label className='label'>Address:</label>
+                <input className='input2'
+                    type="text"
+                    value={values.address}
+                    onChange={handleAddressInputChange}
+                />
+                <br /><br />
+                <div style={message !== 'Information changed successfully!' ? {color: 'green'}: {color: 'green'}}>{message}</div>
+                    <div className='buttonContainer'>
+                        <br /><br />
+                        <div className='button1'>
+                            <CancelButton type="button" value="Cancel" onClick={handleCancel}/>
+                            <ConfirmButton buttonText='Change' type="submit" value="Change" onClick={handleSubmit}/>
+                        </div>
+                    </div>
+                </form>
         </div>
     );
 }

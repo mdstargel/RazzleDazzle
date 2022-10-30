@@ -52,7 +52,9 @@ const PreferredTrainer = () => {
             data.isPreffered === true ?
                 <div style={{
                     display: 'grid',
-                    gridTemplateColumns: '1fr 1fr 1fr',                   
+                    gridTemplateColumns: '1fr 1fr 1fr',
+                    alignContent: 'center',
+                    textAlign: 'center',                  
                 }}>
                     <span style={{ backgroundColor: '#FFFF00' }}>{data.Trainer}</span>
                     <span style={{ backgroundColor: '#FFFF00' }}>{data.Style}</span>
@@ -62,6 +64,8 @@ const PreferredTrainer = () => {
                 <div style={{
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr 1fr',
+                    alignContent: 'center',
+                    textAlign: 'center', 
                 }}
                     onClick={() => handleSetPrefferedTrainer({ data })}>
                     <span >{data.Trainer}</span>
@@ -75,9 +79,10 @@ const PreferredTrainer = () => {
     const PreferredTrainerFormHeading = (
         <div style={{display: 'grid',
             gridTemplateColumns: '1fr 1fr 1fr',
-            marginTop: '300px'
-            }
-        }>
+            alignContent: 'center',
+            textAlign: 'center',
+        
+        }}>
             <div>Trainer</div>
             <div>Style</div>
             <div>Experience</div>
@@ -85,15 +90,24 @@ const PreferredTrainer = () => {
     )
     
     return (
-        <>
-            <PageTitle name="Preferred Trainer" />
-            <div>
-                {PreferredTrainerFormHeading}
-                {trainersList}
-                <CancelButton />
-                <ConfirmButton buttonText={'Set Trainer'} onClick={handleSetTrainer} />
-            </div>
-        </>
+        <div className='backGround'>
+            <>
+                <PageTitle name="Preferred Trainer" />
+                <div className='form2'>
+                    {PreferredTrainerFormHeading}
+                    <br />
+                    {trainersList}
+                    <div className='buttonContainer'>
+                        <br /><br />
+                        <div className='button1'>
+                            <CancelButton />
+                            <ConfirmButton buttonText={'Set Trainer'} onClick={handleSetTrainer} />
+                        </div>
+                    </div>
+                    
+                </div>
+            </>
+        </div>
     );
 }
 

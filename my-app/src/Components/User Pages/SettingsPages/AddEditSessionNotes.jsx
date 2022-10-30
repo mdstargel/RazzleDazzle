@@ -58,28 +58,40 @@ const AddEditSessionNotes = ({setwpage}) => {
     }
 
     return (
-        <>
+        <div className='backGround'>
+            <>
             <PageTitle name="Add/Edit Session Notes" />
-            <form className="form" style={{marginTop: '500px'}}>
-                <label>Customer Name:</label>
-                <input
+            <form className="form2">
+                <label className='label'>Customer Name:</label>
+                <input className='input2'
                     type="text"
                     onChange={handleCustomerNameChange}
                 />
-                <label>Session Date:</label>
-                <input
+                <br /><br />
+                <label className='label'>Session Date:</label>
+                <input className='input2'
                     type="text"
                     onChange={handleSessionDateChange}
                 />
-                <label>Session Notes:</label>
-                <input
+                <br /><br />
+                <label className='label'>Session Notes:</label>
+                <input className='input2'
                     type="text"
                     onChange={handleSessionNotesChange}
                 />
-                <CancelButton onClick={handleCancel} />
-                <ConfirmButton buttonText='Confirm' onClick={handleSubmit}/>
+                <br /><br />
+                <div className='buttonContainer'>
+                    <br /><br />
+                    <div className='button1'>
+                        <CancelButton onClick={handleCancel} />
+                        <ConfirmButton buttonText='Confirm' onClick={handleSubmit}/>
+                    </div>
+                </div>
+                
             </form>
         </>
+        </div>
+       
     );
 }
 

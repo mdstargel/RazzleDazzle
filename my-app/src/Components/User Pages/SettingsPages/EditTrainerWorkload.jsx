@@ -4,7 +4,10 @@ import PageTitle from "../PageTitle";
 
 const EditTrainerWorkload = () => {
     return(
-        <PageTitle name="Edit Trainer Workload"/>
+        <div className="backGround">
+            <PageTitle name="Edit Trainer Workload"/>
+        </div>
+        
     );
 }
 

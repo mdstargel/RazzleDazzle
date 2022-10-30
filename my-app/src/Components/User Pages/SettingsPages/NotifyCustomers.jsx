@@ -50,25 +50,33 @@ const NotifyCustomers = ({setwpage}) => {
     };
 
     return (
-        <>
+        <div className='backGround'>
+            <>
             <PageTitle name="Notify Customers" />
-            <form className="form" style={{marginTop: '500px'}}>
-                    <label>Customer Name/ID:</label>
-                    <input
+            <form className="form2">
+                    <label className='label2'>Customer Name/ID:</label>
+                    <input className='input3'
                         type="text"
                         onChange={handleCustomerNameIdChange}
                     />
-                    <br/>
-                    <label>Message to Customer:</label>
-                    <input
+                    <br/><br />
+                    <label className='label2'>Message to Customer:</label>
+                    <input className='input3'
                         type="text"
                         onChange={handleMessageToCustomerChange}
                     />
-                    <br/>
-                    <CancelButton onClick={handleCancel} />
-                    <ConfirmButton buttonText='Confirm' onClick={handleSubmit}/>
+                    <br/><br />
+                    <div className='buttonContainer'>
+                        <br /><br />
+                        <div className='button1'>
+                            <CancelButton onClick={handleCancel} />
+                            <ConfirmButton buttonText='Confirm' onClick={handleSubmit}/>
+                        </div>
+                    </div>
+                    
             </form>
         </>
+        </div>
     );
 }
 

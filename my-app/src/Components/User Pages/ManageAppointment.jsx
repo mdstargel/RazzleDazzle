@@ -29,12 +29,12 @@ const ManageAppointment = () => {
     };
 
     const tabs = (
-        <div style={{marginTop: '200px'}}>
-            <div onClick={() => setSelectedTab('Add Appointment')}>Add Appointment</div>
-            <div onClick={() => setSelectedTab('Remove Appointment')}>Remove Appointment</div>
-            <div onClick={() => setSelectedTab('Assign Appointment')}>Assign Appointment</div>
-            <div onClick={() => setSelectedTab('Unassign Appointment')}>Unassign Appointment</div>
-            <div onClick={() => setSelectedTab('Edit Appointment')}>Edit Appointment</div>
+        <div className='subTitle1'>
+            <div className='subLeft' onClick={() => setSelectedTab('Add Appointment')}>Add Appointment</div>
+            <div className='subLeft2' onClick={() => setSelectedTab('Remove Appointment')}>Remove Appointment</div>
+            <div className='subCenter' onClick={() => setSelectedTab('Assign Appointment')}>Assign Appointment</div>
+            <div className='subRight2' onClick={() => setSelectedTab('Unassign Appointment')}>Unassign Appointment</div>
+            <div className='subRight' onClick={() => setSelectedTab('Edit Appointment')}>Edit Appointment</div>
         </div>
     );
 
@@ -42,7 +42,10 @@ const ManageAppointment = () => {
         <div>
             <PageTitle name="Manage Appointments" />
             {tabs}
-            <ChosenPopup />
+            <div className='form2'>
+                <ChosenPopup />
+            </div>
+            
         </div>
     );
 }

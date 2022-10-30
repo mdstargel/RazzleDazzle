@@ -22,18 +22,22 @@ const ManageAppointment = () => {
     };
 
     const tabs = (
-        <div style={{marginTop: '200px'}}>
-            <div onClick={() => setSelectedTab('Add Trainer')}>Add Trainer</div>
-            <div onClick={() => setSelectedTab('Access Trainer')}>Access Trainer</div>
-            <div onClick={() => setSelectedTab('Remove Trainer')}>Remove Trainer</div>
+        <div className='subTitle1'>
+            <div className='subLeft' onClick={() => setSelectedTab('Add Trainer')}>Add Trainer</div>
+            <div className='subCenter' onClick={() => setSelectedTab('Access Trainer')}>Access Trainer</div>
+            <div className='subRight' onClick={() => setSelectedTab('Remove Trainer')}>Remove Trainer</div>
+            <hr className="titleunderline2"></hr>
         </div>
     );
 
     return (
-        <div>
+        <div className='backGround'>
             <PageTitle name="Manage Trainers" />
             {tabs}
-            <ChosenPopup />
+            <div className='form2'>
+                <ChosenPopup/>
+            </div>
+            
         </div>
     );
 }

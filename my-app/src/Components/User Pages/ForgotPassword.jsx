@@ -94,43 +94,44 @@ const ForgotPassword = ({ setSignedIn, setwpage }) => {
     }
 
     const sendCodeForm = (
-        <form >
-            <label>Email Address:</label>
+        <form className='form'>
+            <label className='label'>Email Address:</label>
             <input
                 type="text"
                 onChange={handleEmailInputChange}
             />
+            <br />
             <CancelButton onClick={handleCancel} />
             <ConfirmButton buttonText='Send' onClick={handleSendCode} />
             {/* <input type="submit" value="Send" />
             <input type="button" value="Cancel" onClick={handleSendCode} /> */}
-            <span onClick={() => setwpage('Log In')}>Log In</span>
-            <span onClick={() => setwpage('Sign Up')}>Sign Up</span>
+            <span className='span' onClick={() => setwpage('Log In')}>Log In</span>
+            <span className='span2' onClick={() => setwpage('Sign Up')}>Sign Up</span>
         </form>
     )
 
     const forgotPasswordForm = (
-        <form >
-            <label>Confirmation Code:</label>
+        <form className='form'>
+            <label className='label'>Confirmation Code:</label>
             <input
                 type="text"
                 onChange={handleConfirmationCodeInputChange}
             />
             <br />
             
-            <label>New Password:</label>
+            <label className='label'>New Password:</label>
             <input
                 type="text"
                 onChange={handleFirstPasswordInputChange}
             />
             <br />
 
-            <label>Re-enter Password:</label>
+            <label className='label'>Re-enter Password:</label>
             <input
                 type="text"
                 onChange={handleSecondPasswordInputChange}
             />
-            <br />
+            <br/>
             <div style={{color: 'red'}}>{passwordError}</div>
             <ConfirmButton buttonText={'Change'} onClick={handleChangePassword} />
             <CancelButton onClick={handleCancel} />
@@ -142,7 +143,13 @@ const ForgotPassword = ({ setSignedIn, setwpage }) => {
     let form = sentCode ? forgotPasswordForm : sendCodeForm;
 
     return (
+        // Can't do it here yet, blanks everything out
+        // <div className='backGround'>
+        //     form
+        // </div>
+
         form
+        
     );
 }
 
