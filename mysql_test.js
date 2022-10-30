@@ -267,6 +267,11 @@ class customer {
     getCalendar() {
         return this.calendar;
     }
+
+    delete() {
+        con.query("UPDATE Login SET Decomission = 1 WHERE CID = " +
+            this.customer_id + ";");
+    }
 }
 
 /**
@@ -577,7 +582,7 @@ class mini_customer {
             " WHERE CID = " + this.cust_id);
     }
 
-    // DELETE FUNCTION
+    // TODO: DELETE FUNCTION
 }
 
 /**
@@ -646,9 +651,12 @@ class mini_trainer {
             });
     }
 
-    // DELETE FUNCTION
+    // TODO: DELETE FUNCTION
 }
 
+/** 
+ * Micro trainer for drop down for assigning appointments to a trainer
+ */
 class micro_trainer {
     constructor(tr_ID, tr_name) {
         this.tr_ID = tr_ID;
@@ -665,6 +673,9 @@ class micro_trainer {
     }
 }
 
+/**
+ * Micro customer for admin to remove customer from appointment
+ */
 class micro_customer {
     constructor(cust_ID, cust_name) {
         this.cust_ID = cust_ID;
@@ -684,7 +695,7 @@ class micro_customer {
 class admin_appt {
     constructor(appt_key, appt_name, appt_date, appt_time, appt_difficulty,
         appt_desc, appt_pub_notes, appt_priv_notes, appt_size,
-        appt_micro_trainer, appt_micro_trainer_index, appt_micro_cust) {
+        appt_TID_1, appt_TID_2, appt_GID) {
         this.appt_key = appt_key;
         this.appt_name = appt_name;
         this.appt_date = appt_date;
@@ -694,9 +705,9 @@ class admin_appt {
         this.appt_pub_notes = appt_pub_notes;
         this.appt_priv_notes = appt_priv_notes;
         this.appt_size = appt_size;
-        this.appt_micro_trainer = appt_micro_trainer;
-        this.appt_micro_trainer_index = appt_micro_trainer_index;
-        this.appt_micro_cust;
+        this.appt_TID_1 = appt_TID_1;
+        this.appt_TID_2 = appt_TID_2;
+        this.appt_GID = appt_GID;
     }
 
     // Getters and Setters
@@ -709,6 +720,8 @@ class admin_appt {
         con.query("UPDATE Appointment SET Name = '" + name +
             "' WHERE Key = " + this.appt_key + ";");
     }
+
+    // TODO: more getters and setters
 }
 
 class admin {
@@ -720,7 +733,7 @@ class admin {
             "Emer_Num FROM Trainer WHERE TID = " + this.admin_id + ";",
             function(err, result) {
                 if (err) throw err;
-                t_name = result[0].Name;
+                admin_name = result[0].Name;
                 address = result[0].Address;
                 phone = result[0].Phone_Num;
                 email = result[0].Email_Addr;
@@ -761,25 +774,99 @@ class admin {
             if (err) throw err;
             var calendar = [];
             for (var i = 0; i < result.length; i++) {
-                // Get names of customers with CID's associated with the GID of result[i]
-                con.query("SELECT ", function(err, result2) {
-                    if (err) throw err;
-                    var appt_cust_names = [];
-                    for (var j = 0; j < result2.length; j++) {
-                        appt_cust_names.push(result2[j]);
-                    }
-                })
-                calendar.push(trainer_appt(result[i].Name,
-                    result[i].Date, result[i].Time, result[i].Description,
-                    result[i].Public_Notes, result[i].Private_Notes,
-                    appt_cust_names));
+                calendar.push(admin_appt(result[i].Key, result[i].Name,
+                    result[i].Date, result[i].Time, result[i].Difficulty,
+                    result[i].Description, result[i].Public_Notes,
+                    result[i].Private_Notes, result[i].Size, result[i].TID_1,
+                    result[i].TID_2, result[i].GID));
             };
         });
-
     }
 
     // Getters and setters
+    getName() {
+        return this.trainer_name;
+    }
 
+    setName(name) {
+        this.admin_name = name;
+        con.query("UPDATE Trainer SET Name = '" + name +
+            "' WHERE CID = " + this.customer_id + ";",
+            function(err) {
+                if (err) throw err;
+            });
+    }
+
+    getAddress() {
+        return this.address;
+    }
+
+    setAddress(address) {
+        this.address = address;
+        con.query("UPDATE Trainer SET Address = '" + address +
+            "' WHERE CID = " + this.customer_id + ";",
+            function(err) {
+                if (err) throw err;
+            });
+    }
+
+    getPhone() {
+        return this.phone;
+    }
+
+    setPhone(phone) {
+        this.phone = phone;
+        con.query("UPDATE Trainer SET Phone_Number = '" + phone +
+            "' WHERE CID = " + this.customer_id + ";",
+            function(err) {
+                if (err) throw err;
+            });
+    }
+
+    getEmail() {
+        return this.email;
+    }
+
+    setEmail(email) {
+        this.email = email;
+        con.query("UPDATE Trainer SET Email_Addr = '" + email +
+            "' WHERE CID = " + this.customer_id + ";",
+            function(err) {
+                if (err) throw err;
+            });
+    }
+
+    getEmerName() {
+        return this.emer_name;
+    }
+
+    setEmerName(name) {
+        this.emer_name = name;
+        con.query("UPDATE Trainer SET Emer_Name = '" + name +
+            "' WHERE CID = " + this.customer_id + ";",
+            function(err) {
+                if (err) throw err;
+            });
+    }
+
+    getEmerPhone() {
+        return this.emer_num;
+    }
+
+    setEmerPhone(phone) {
+        this.emer_num = phone;
+        con.query("UPDATE Trainer SET Emer_Num = '" + phone +
+            "' WHERE CID = " + this.customer_id + ";",
+            function(err) {
+                if (err) throw err;
+            });
+    }
+
+    getCalendar() {
+        return this.calendar;
+    }
+
+    // Delete Trainer and Delete Customer functions found in mini classes
 }
 
 con.end();
