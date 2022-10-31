@@ -22,56 +22,58 @@ const Services = () => {
             <div className='form3'> 
                 <div className='serviceLabel' onClick={() => setIndividualLessonPackages(!individualLessonPackages)}>
                     {individualLessonPackages ? downCaret : rightCaret} Individual Lesson Packages
-                    {individualLessonPackages && <div>
-                        <div className='serviceLabel'>Beginner Lessons
-                            <p></p>
-                        </div>
-                            <p></p>
-                        <div className='serviceLabel'>Intermediate Lessons</div>
-                            <p></p>
-                        <div className='serviceLabel'>Advanced Lessons</div>
-                            <p></p>
-                    </div>}
+                    
                 </div>
+                {individualLessonPackages && <div className='servicelabelsub'>
+                    <div >Beginner Lessons
+                        <p></p>
+                    </div>
+                        <p></p>
+                    <div >Intermediate Lessons</div>
+                        <p></p>
+                    <div >Advanced Lessons</div>
+                        <p></p>
+                </div>}
                 <div className='serviceLabel' onClick={() => setGroupLessonPackages(!groupLessonPackages)}>
                     {groupLessonPackages ? downCaret : rightCaret} Group Lesson Packages
-                    {groupLessonPackages && <div>
-                        <div className='serviceLabel'>Beginner Lessons
+                    
+                </div>
+                {groupLessonPackages && <div>
+                        <div >Beginner Lessons
                             <p></p>
                         </div>
                             <p></p>
-                        <div className='serviceLabel'>Intermediate Lessons</div>
+                        <div >Intermediate Lessons</div>
                             <p></p>
-                        <div className='serviceLabel'>Advanced Lessons</div>
+                        <div >Advanced Lessons</div>
                             <p></p>
                     </div>}
-                </div>
                 <div className='serviceLabel' onClick={() => setRidingStylePackages(!ridingStylePackages)}>
                     {ridingStylePackages ? downCaret : rightCaret} Riding Style Packages
-                    {ridingStylePackages && <div>
-                        <div className='serviceLabel'>Beginner Lessons
+                </div>
+                {ridingStylePackages && <div>
+                        <div>Beginner Lessons
                             <p></p>
                         </div>
                             <p></p>
-                        <div className='serviceLabel'>Intermediate Lessons</div>
+                        <div >Intermediate Lessons</div>
                             <p></p>
-                        <div className='serviceLabel'>Advanced Lessons</div>
+                        <div>Advanced Lessons</div>
                             <p></p>
                     </div>}
-                </div>
                 <div className='serviceLabel' onClick={() => setCompetitionPackages(!competitionPackages)}>
                     {competitionPackages ? downCaret : rightCaret} Competition Packages
-                    {competitionPackages && <div>
-                        <div className='serviceLabel'>Beginner Lessons
+                </div>
+                {competitionPackages && <div>
+                        <div >Beginner Lessons
                             <p></p>
                         </div>
                             <p></p>
-                        <div className='serviceLabel'>Intermediate Lessons</div>
+                        <div >Intermediate Lessons</div>
                             <p></p>
-                        <div className='serviceLabel'>Advanced Lessons</div>
+                        <div >Advanced Lessons</div>
                             <p></p>
                     </div>}
-                </div>
             </div>
         </div>
     );

@@ -34,6 +34,23 @@ const NewsArticleText = {
     color: '#000000',
 }
 
+const rightsideItem = {
+    width: '250px',
+    height: '200px',
+    backgroundColor: 'green',
+    marginTop: '-300px',
+    marginLeft: '80%',
+}
+
+const leftsideItem = {
+    width: '250px',
+    height: '200px',
+    backgroundColor: 'green',
+    marginTop: '-245px',
+    marginLeft: '5%',
+}
+
+
 const News = ({ newsArticles }) => {
     const [articleID, setArticleID] = useState(0);
     const SelectedFeedItem = () => {
@@ -58,8 +75,8 @@ const News = ({ newsArticles }) => {
         const index = (articleID + 1) % newsArticles.length;
         return (
             <div>
-                <div style={newsImage}>Right Feed Item{newsArticles[index].image}</div>
-                <div style={newsTitleCenter}>{newsArticles[index].title}</div>
+                <div style={rightsideItem}>Right Feed Item{newsArticles[index].image}</div>
+                <div>{newsArticles[index].title}</div>
             </div>
         );
     }
@@ -68,8 +85,8 @@ const News = ({ newsArticles }) => {
         const index = (articleID + newsArticles.length - 1) % newsArticles.length;
         return (
             <div>
-                <div style={newsImage}>Left Feed Item{newsArticles[index].image}</div>
-                <div style={newsTitleCenter}>{newsArticles[index].title}</div>
+                <div style={leftsideItem}>Left Feed Item{newsArticles[index].image}</div>
+                <div>{newsArticles[index].title}</div>
             </div>
         );
     }

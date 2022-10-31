@@ -18,31 +18,46 @@ const MakeAppointment = ({ setSelectedTab, AppointmentInformation, setShowAddApp
                     <input
                         type="text"
                         value={'Trainer Name'}
+                        className='input2'
                     />
+                    <br/>
+
                     <label>Date:</label>
                     <input
-                        type="text"
-                    value={AppointmentInformation.date}
+                        type="text" 
+                        className='input2'
+                        value={AppointmentInformation.date}
                     />
+                    <br/>
+                
                     <label>Start Time:</label>
                     <input
                         type="text"
                         value={AppointmentInformation.startTime}
+                        className='input2'
                     />
+                    <br />
+                    
                     <label>End Time:</label>
                     <input
                         type="text"
                         value={AppointmentInformation.endTime}
+                        className='input2'
                     />
+                    <br />
+                    
                     <label>Lesson Style:</label>
                 <input
                     type="text"
-                    value={AppointmentInformation.ridingStyle}
-                /> 
+                        value={AppointmentInformation.ridingStyle}
+                        className='input2'
+                    /> 
+                    <br/>
                      <label>Lesson Type:</label>
                 <input
                     type="text"
                     value={AppointmentInformation.isGroup ? 'Group' : 'Individual'}
+                    className='input2'
                     />
                     <div>Spots left {AppointmentInformation.remainingSpots}</div>
 

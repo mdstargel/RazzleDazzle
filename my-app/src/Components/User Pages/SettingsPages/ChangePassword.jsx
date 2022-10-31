@@ -72,19 +72,19 @@ const ChangePassword = ({setSignedIn, setwpage}) => {
         <div className='backGround'>
             <form onSubmit={handleSubmit} className='form'>
             <label className='label2'>Please enter current password:</label>
-            <input className='input3'
+            <input className='input2'
             type="text"
             onChange={handleFirstPasswordInputChange}
             />
             <br/><br />
             <label className='label2'>Please enter new password:</label>
-            <input className='input3'
+            <input className='input2'
             type="text"
             onChange={handleSecondPasswordInputChange}
             />
             <br/><br />
             <label className='label2'>Please re-enter new password:</label>
-            <input className='input3'
+            <input className='input2'
             type="text"
             onChange={handleThirdPasswordInputChange}
             />

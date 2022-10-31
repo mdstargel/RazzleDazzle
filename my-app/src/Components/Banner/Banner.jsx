@@ -42,7 +42,7 @@ const Banner = ({ setwpage, wpage, signedIn, userPermissions, setSignedIn }) => 
         <div className="loginTab">
             <div className="login" onClick={() => setwpage('Calendar')}>Calendar</div>
             <div className="signup" onClick={() => setShowDropdown(!showDropdown)}>Settings</div>
-            {showDropdown && <SettingsDropdown userPermissions={userPermissions} setwpage={setwpage} setSignedIn={setSignedIn} />}
+                {showDropdown && <SettingsDropdown userPermissions={userPermissions} setwpage={setwpage} setSignedIn={setSignedIn} setShowDropdown={setShowDropdown} />}
         </div>
     </div>
     );

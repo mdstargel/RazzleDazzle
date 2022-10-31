@@ -208,26 +208,38 @@ const AccessTrainer = () => {
                 <input
                     type="text"
                     onChange={handleFirstNameInputChange}
-                    value={data.FirstName}
+                        value={data.FirstName}
+                        className='input2'
                 />
+                <br/>   
+                
                 <label>Last Name:</label>
                 <input
                     type="text"
                     onChange={handleLastNameInputChange}
                     value={data.LastName}
+                    className='input2'
                 />
+                <br />
+                    
                 <label>Email Address:</label>
                 <input
                     type="text"
                     onChange={handleEmailInputChange}
                     value={data.Email}
+                    className='input2'
                 />
+                <br />
+                    
                 <label>Address:</label>
                 <input
                     type="text"
                     onChange={handleAddressInputChange}
                     value={data.Address}
+                    className='input2'
                 />
+                    <br />
+                    
                 <label>Trainer Permissions:</label>
                     <div
                         onClick={() => handleSetIsTrainer({data})}
