@@ -45,23 +45,23 @@ const SettingsDropdown = ({ userPermissions, setwpage, setSignedIn, setShowDropd
 
     const adminSettings = (
         <div className="dropDownMenu" style={{right: '0px'}}>
-            <div className="pad" onClick={() => setwpage('Edit Personal Information')}>Edit Personal Information</div>
+            <div className="pad" onClick={() => { setwpage('Edit Personal Information'); setShowDropdown(false) }}>Edit Personal Information</div>
             <hr/>
-            <div className="pad" onClick={() => setwpage('Change Password')}>Change Password</div>
+            <div className="pad" onClick={() => { setwpage('Change Password'); setShowDropdown(false) }}>Change Password</div>
             <hr/>
-            <div className="pad" onClick={() => setwpage('Manage Notifications')}>Manage Notifications</div>
+            <div className="pad" onClick={() => { setwpage('Manage Notifications'); setShowDropdown(false) }}>Manage Notifications</div>
             <hr/>
-            <div className="pad" onClick={() => setwpage('View Session Notes')}>View Session Notes</div>
+            <div className="pad" onClick={() => { setwpage('View Session Notes'); setShowDropdown(false) }}>View Session Notes</div>
             <hr/>
-            <div className="pad" onClick={() => setwpage('Add/Edit News')}>Add/Edit News</div>
+            <div className="pad" onClick={() => { setwpage('Add/Edit News'); setShowDropdown(false) }}>Add/Edit News</div>
             <hr/>
-            <div className="pad" onClick={() => setwpage('Notify Customers')}>Notify Customers</div>
+            <div className="pad" onClick={() => { setwpage('Notify Customers'); setShowDropdown(false) }}>Notify Customers</div>
             <hr/>
-            <div className="pad" onClick={() => setwpage('Manage Customers')}>Manage Customers</div>
+            <div className="pad" onClick={() => { setwpage('Manage Customers'); setShowDropdown(false) }}>Manage Customers</div>
             <hr/>
-            <div className="pad" onClick={() => setwpage('Edit Trainer Workload')}>Edit Trainer Workload</div>
+            <div className="pad" onClick={() => { setwpage('Edit Trainer Workload'); setShowDropdown(false) }}>Edit Trainer Workload</div>
             <hr/>
-            <div className="pad" onClick={() => setwpage('Manage Trainers')}>Manage Trainers</div>
+            <div className="pad" onClick={() => { setwpage('Manage Trainers'); setShowDropdown(false) }}>Manage Trainers</div>
             <hr/>
             {/* <div className="pad" onClick={() => setwpage('Manage Appointments')}>Manage Appointments</div>
             <hr/> */}

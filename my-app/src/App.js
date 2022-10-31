@@ -70,9 +70,9 @@ function App() {
    * We need backend to validate when the user signs in who they are
    */
   const [userPermissions, setUserPermissions] = useState({
-    isAdmin: false,
+    isAdmin: true,
     isTrainer: false,
-    isCustomer: true,
+    isCustomer: false,
   })
   
   const ChosenWebpage = () => {
@@ -123,6 +123,13 @@ function App() {
     // return (<TrainerWorkload></TrainerWorkload>)
   };
 
+
+  /**
+   * Sets background to be a certain color
+   */
+  document.body.style = 'background: red;';
+  // Or with CSS
+  // document.body.classList.add('background-red');
   const webpage = (
     <div>
       <Banner setwpage={setwpage} wpage={wpage} signedIn={signedIn} userPermissions={userPermissions} setSignedIn={setSignedIn}/>
