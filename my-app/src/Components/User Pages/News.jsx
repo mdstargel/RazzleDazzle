@@ -91,14 +91,15 @@ const News = ({ newsArticles }) => {
         );
     }
     return (
-        <div className="backGround">
+        <div >
             <PageTitle name="News" />
-            <SelectedFeedItem />
-            <RightFeedItem />
-            <LeftFeedItem />
-            <div onClick={handleSetArticleRight} style={{marginTop: '-190px', paddingLeft: '1400px'}}>Right Button</div>
-            <div onClick={handleSetArticleLeft}>Left Button</div>
-
+            <div className="backGround">
+                <SelectedFeedItem />
+                <RightFeedItem />
+                <LeftFeedItem />
+                <div onClick={handleSetArticleRight} style={{marginTop: '-190px', paddingLeft: '1400px'}}>Right Button</div>
+                <div onClick={handleSetArticleLeft}>Left Button</div>
+            </div>
         </div>
     );
 }

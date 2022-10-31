@@ -23,8 +23,17 @@ const ManageNotifications = ({setwpage}) => {
             <>
         <PageTitle name="Manage Notifications" />
             <div className='form2'>
-                <div className='label'>Please select your notification preferences below:</div><br />
-                <div className='label' onClick={() => setTextOn(!textOn)}>Text: {textOn ? 'True' : 'False'}</div>
+                    <div className='label'>Please select your notification preferences below:</div><br />
+                    <div>
+                        <div style={{marginTop: '30px', marginLeft: 'calc(50% - 35px)'}}>Text: </div>
+                        <div
+                            className='radioButton'
+                            style={textOn ?
+                                { backgroundColor: '#D9D9D9' } :
+                                { backgroundColor: '#0C1526'}}
+                            onClick={() => setTextOn(!textOn)}>
+                            </div>
+                    </div>
                 <div className='label' style={{color: 'green'}}>{successfulChangeMessage}</div>
                 <div className='buttonContainer'>
                     <br /><br />

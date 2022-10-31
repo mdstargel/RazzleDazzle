@@ -105,8 +105,8 @@ const ForgotPassword = ({ setSignedIn, setwpage }) => {
             <ConfirmButton buttonText='Send' onClick={handleSendCode} />
             {/* <input type="submit" value="Send" />
             <input type="button" value="Cancel" onClick={handleSendCode} /> */}
-            <span className='span' onClick={() => setwpage('Log In')}>Log In</span>
-            <span className='span2' onClick={() => setwpage('Sign Up')}>Sign Up</span>
+            <span className='span hyperlink' onClick={() => setwpage('Log In')}>Log In</span>
+            <span className='span2 hyperlink' onClick={() => setwpage('Sign Up')}>Sign Up</span>
         </form>
     )
 

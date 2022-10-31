@@ -107,11 +107,10 @@
     position: absolute;
     display: block;
     margin-top: 10px;
-    padding-top: 15px;
+    padding: 15px;
     left: calc(50% - 350px);
     background-color: #FFFFFF;
     border-radius: 25px;
-    height: 700px;
     width: 700px;
     box-shadow: 0px 25px 25px #0C1526;
     
@@ -121,12 +120,12 @@
     position: absolute;
     display: block;
     margin-top: 200px;
-    padding-top: 75px;
+    padding: 20px;
     /* padding-bottom: 100px; */
     left: calc(50% - 350px);
     background-color: #FFFFFF;
     border-radius: 25px;
-    height: 700px;
+    /* height: 700px; */
     width: 700px;
     /* border: 1px solid #0C1526; */
     box-shadow: 0px 25px 25px #0C1526;
@@ -175,13 +174,24 @@
 .span {
     position: absolute;
     left: 20px;
-    bottom: 25px;
+    bottom: 30px;
 }
 
 .span2 {
     position: absolute;
-    left: 85px;
-    bottom: 25px;
+    left: 20px;
+    bottom: 5px;
+}
+
+.hyperlink {
+    font-family: 'IBM Plex Sans Devanagari';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    text-decoration-line: underline;
+
+    color: #0000EE;
 }
 
 .label {
@@ -189,7 +199,6 @@
     font-weight: bold;
     color: #0C1526;
     /* padding-right: 150px; */
-
 }
 
 .label2 {
@@ -251,6 +260,15 @@
     /* padding-top: 25px; */
     padding-left: 10px;
     left: calc(50vw + 100px);
+}
+
+.radioButton {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    margin-top: -20px;
+    margin-left: calc(50% + 20px);
+    border: 1px solid;
 }
 
 /* Testing image stuff out */

@@ -13,7 +13,7 @@ const MakeAppointment = ({ setSelectedTab, AppointmentInformation, setShowAddApp
     
         return (
             <>
-                <div style={{ position: 'absolute', marginLeft: '50%', marginTop: '-320px'}} className="form">
+                <div style={{ position: 'absolute',  marginTop: '-320px'}} className="form">
                     <label>Trainer Name:</label>
                     <input
                         type="text"

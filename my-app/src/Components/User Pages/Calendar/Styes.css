@@ -117,3 +117,76 @@
 .react-calendar--selectRange .react-calendar__tile--hover {
   background-color: #e6e6e6;
 }
+
+.trainerPill {
+  background-color: #6190BC;
+  margin: 5px;
+  border-radius: 16px;
+  padding: 5px;
+  text-align: center;
+  box-shadow: 0px 25px 25px #0c1526;
+}
+
+.appointmentPill {
+  background-color: #61b3bc;
+  margin: 5px;
+  border-radius: 16px;
+  padding: 10px;
+  text-align: center;
+  width: 210px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.customerAppointmentPill {
+  background-color: #0b8c50;
+  margin: 5px;
+  border-radius: 16px;
+  padding: 10px;
+  text-align: center;
+  width: 210px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.appointmentInfo {
+  /* background-color: white; */
+  margin: 5px;
+  text-align: left;
+  /* font-weight: bold; */
+  cursor: default;
+
+  /* border-radius: 6px; */
+  padding: 2px;
+  /* box-shadow: 0px 5px 5px #0c1526; */
+
+}
+.appointmentTitle {
+  font-weight: 600;
+}
+
+.appointmentTitle:hover {
+  font-weight: bold;
+}
+
+.selectedAppointmentTitle {
+  font-weight: 700;
+}
+
+.addAppointmentButton {
+  background-color: #b50b0b;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 120px;
+  padding: 5px;
+  margin-top: 10px;
+  margin-left: 60px;
+}
+
+.addAppointmentButton:hover {
+    background-color: #d10000;
+}
+
+.pillScroller {
+  margin-top: 50px;
+}
