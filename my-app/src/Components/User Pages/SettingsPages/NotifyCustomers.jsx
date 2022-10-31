@@ -55,13 +55,13 @@ const NotifyCustomers = ({setwpage}) => {
             <PageTitle name="Notify Customers" />
             <form className="form2">
                     <label className='label2'>Customer Name/ID:</label>
-                    <input className='input3'
+                    <input className='input2'
                         type="text"
                         onChange={handleCustomerNameIdChange}
                     />
                     <br/><br />
                     <label className='label2'>Message to Customer:</label>
-                    <input className='input3'
+                    <input className='input2'
                         type="text"
                         onChange={handleMessageToCustomerChange}
                     />

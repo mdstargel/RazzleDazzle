@@ -54,11 +54,13 @@ const PreferredTrainer = () => {
                     display: 'grid',
                     gridTemplateColumns: '1fr 1fr 1fr',
                     alignContent: 'center',
-                    textAlign: 'center',                  
+                    textAlign: 'center',     
+                    marginLeft: '40px',
+                    marginRight: '40px',
                 }}>
-                    <span style={{ backgroundColor: '#FFFF00' }}>{data.Trainer}</span>
-                    <span style={{ backgroundColor: '#FFFF00' }}>{data.Style}</span>
-                    <span style={{ backgroundColor: '#FFFF00' }}>{data.Experience}</span>
+                    <span style={{ backgroundColor: '#727070' }}>{data.Trainer}</span>
+                    <span style={{ backgroundColor: '#727070' }}>{data.Style}</span>
+                    <span style={{ backgroundColor: '#727070' }}>{data.Experience}</span>
                 
                 </div> :
                 <div style={{
@@ -66,12 +68,14 @@ const PreferredTrainer = () => {
                     gridTemplateColumns: '1fr 1fr 1fr',
                     alignContent: 'center',
                     textAlign: 'center', 
+                    borderBottom: '1px solid black', 
+                    marginLeft: '40px',
+                    marginRight: '40px',
                 }}
                     onClick={() => handleSetPrefferedTrainer({ data })}>
-                    <span >{data.Trainer}</span>
-                    <span >{data.Style}</span>
-                    <span >{data.Experience}</span>
-                
+                    <span style={{ backgroundColor: '#D9D9D9' }}>{data.Trainer}</span>
+                    <span style={{ backgroundColor: '#D9D9D9' }}>{data.Style}</span>
+                    <span style={{ backgroundColor: '#D9D9D9' }}>{data.Experience}</span>
                 </div>
 
         ))
@@ -81,7 +85,9 @@ const PreferredTrainer = () => {
             gridTemplateColumns: '1fr 1fr 1fr',
             alignContent: 'center',
             textAlign: 'center',
-        
+            fontWeight: 'bold',
+            marginLeft: '40px',
+            marginRight: '40px',
         }}>
             <div>Trainer</div>
             <div>Style</div>
@@ -94,8 +100,7 @@ const PreferredTrainer = () => {
             <>
                 <PageTitle name="Preferred Trainer" />
                 <div className='form2'>
-                    {PreferredTrainerFormHeading}
-                    <br />
+                    {PreferredTrainerFormHeading}                    
                     {trainersList}
                     <div className='buttonContainer'>
                         <br /><br />

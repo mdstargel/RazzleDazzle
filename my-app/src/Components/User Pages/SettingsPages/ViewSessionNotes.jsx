@@ -17,11 +17,12 @@ const ViewSessionNotes = () => {
         Note: 'Keep coming back!',
     },
     ];
-    
+
     const sessionNotesList = sessionNotesData.map((data) => (
-        <div>
-            <span>{data.Date}</span>
-            <p>{data.Note}</p>
+        <div className="sessionNote">
+            <span className="sessionTitle">{data.Date}</span>
+            <hr className="sessionHR"></hr>
+            <p className="sessionDescription">{data.Note}</p>
         </div>
     ));
             
@@ -29,7 +30,7 @@ const ViewSessionNotes = () => {
         <div className="backGround">
         <>
             <PageTitle name="View Session Notes" />
-            <div className="form2">
+            <div>
                 <div className="label3">
                     {sessionNotesList}
                 </div>

@@ -92,6 +92,7 @@ const SignUp = ({setSignedIn, setwpage}) => {
             <form className='form'>
             <label className='label'>{!values.firstName && error}First Name:</label>
             <input
+            className='input2'
             type="text"
             onChange={handleFirstNameInputChange}
             />
@@ -101,6 +102,7 @@ const SignUp = ({setSignedIn, setwpage}) => {
             <input
             type="text"
             onChange={handleLastNameInputChange}
+            className='input2'  
             />
             <br /> 
             
@@ -108,6 +110,7 @@ const SignUp = ({setSignedIn, setwpage}) => {
             <input
             type="text"
             onChange={handleEmailInputChange}
+            className='input2'
             />
             <br />
             
@@ -115,13 +118,15 @@ const SignUp = ({setSignedIn, setwpage}) => {
             <input
             type="text"
             onChange={handlePhoneNumberInputChange}
+            className='input2'
             />
             <br/>
 
             <label className='label'>{!values.password && error}Password:</label>
             <input
-            type="text"
-            onChange={handlePasswordInputChange}
+                type="text"
+                onChange={handlePasswordInputChange}
+                className='input2'
             />
             <br/>
             {signUpError &&
