@@ -83,39 +83,66 @@ const AddTrainer = () => {
 
     return (
         <div>
-            <label className='label'>First Name:</label>
-            <input className='input2'
-                type="text"
-                onChange={handleFirstNameInputChange}
-                value={values.firstName}
-            />
+            <div className='inputTitles1'>
+                <label className='label'>First Name:</label>
+            </div>
+            <div className='inputBoxes1'>
+                <input className='input2'
+                    type="text"
+                    onChange={handleFirstNameInputChange}
+                    value={values.firstName}
+                />
+            </div>
             <br/><br />
-            <label className='label'>Last Name:</label>
-            <input className='input2'
-                type="text"
-                onChange={handleLastNameInputChange}
-                value={values.lastName}
-            />
+            
+            <div className='inputTitles2'>
+                <label className='label'>Last Name:</label>
+            </div>
+            <div className='inputBoxes2'>
+                <input className='input2'
+                    type="text"
+                    onChange={handleLastNameInputChange}
+                    value={values.lastName}
+                />
+            </div>
+            <br/><br />   
+            
+            <div className='inputTitles3'>
+                <label className='label'>Email Address:</label>
+            </div>
+            <div className='inputBoxes3'>
+                <input className='input2'
+                    type="text"
+                    onChange={handleEmailInputChange}
+                    value={values.email}
+                />
+            </div>
+            <br/><br />   
+            
+            <div className='inputTitles4'>
+                <label className='label'>Address:</label>
+            </div>
+            <div className='inputBoxes4'>
+                <input className='input2'
+                    type="text"
+                    onChange={handleAddressInputChange}
+                    value={values.address}
+                />
+            </div>
             <br/><br />
-            <label className='label'>Email Address:</label>
-            <input className='input2'
-                type="text"
-                onChange={handleEmailInputChange}
-                value={values.email}
-            />
-            <br/><br />
-            <label className='label'>Address:</label>
-            <input className='input2'
-                type="text"
-                onChange={handleAddressInputChange}
-                value={values.address}
-            />
-            <br/><br />
-            <label className='label'>Trainer Permissions:</label>
+            
+            <div className='inputTitles5'>
+                <label className='label'>Trainer Permissions:</label>
+            </div>
             <br /><br />
+            
+            
             {/* <div onClick={() => setTrainerOn(!trainerOn)}>Trainer: {trainerOn ? 'True' : 'False'}</div> */}
-            <div className='label' onClick={() => setAdminOn(!adminOn)}>Admin: {adminOn ? 'True' : 'False'}</div>
+            <div className='inputTitles6'>
+                <div className='label' onClick={() => setAdminOn(!adminOn)}>Admin: {adminOn ? 'True' : 'False'}</div>
+            </div>
             <br/><br />
+
             <div>{trainerAddedUpdateMessage}</div>
             <br /><br />
             <div className='buttonContainer'>

@@ -71,33 +71,47 @@ const ChangePassword = ({setSignedIn, setwpage}) => {
     return (
         <div className='backGround'>
             <form onSubmit={handleSubmit} className='form'>
-            <label className='label2'>Please enter current password:</label>
-            <input className='input2'
-            type="text"
-            onChange={handleFirstPasswordInputChange}
-            />
-            <br/><br />
-            <label className='label2'>Please enter new password:</label>
-            <input className='input2'
-            type="text"
-            onChange={handleSecondPasswordInputChange}
-            />
-            <br/><br />
-            <label className='label2'>Please re-enter new password:</label>
-            <input className='input2'
-            type="text"
-            onChange={handleThirdPasswordInputChange}
-            />
-            <br /><br />
-            <div style={{ color: 'red' }}>{error}</div>
-            <div style={{color: 'green'}}>{passwordChangeMessage}</div>
-            <div className='buttonContainer'>
-                <br /><br />
-                <div className='button1'>
-                    <CancelButton type="button" value="Cancel" onClick={handleCancel}/>
-                    <ConfirmButton buttonText='Change' type="submit" value="Change" onClick={handleSubmit}/>
+                <div className='inputTitles1Alt'>
+                    <label className='label2'>Please enter current password:</label>
                 </div>
-            </div>
+                <div className='inputBoxes1Alt'>
+                    <input className='input2'
+                    type="text"
+                    onChange={handleFirstPasswordInputChange}
+                    />
+                </div>
+                <br/><br />
+
+                <div className='inputTitles2Alt'>
+                    <label className='label2'>Please enter new password:</label>
+                </div>
+                <div className='inputBoxes2Alt'>
+                    <input className='input2'
+                    type="text"
+                    onChange={handleSecondPasswordInputChange}
+                    />
+                </div>
+                <br/><br />
+
+                <div className='inputTitles3Alt'>
+                    <label className='label2'>Please re-enter new password:</label>
+                </div>
+                <div className='inputBoxes3Alt'>
+                    <input className='input2'
+                    type="text"
+                    onChange={handleThirdPasswordInputChange}
+                    />
+                </div>
+                <br /><br />
+                <div style={{ color: 'red' }}>{error}</div>
+                <div style={{color: 'green'}}>{passwordChangeMessage}</div>
+                <div className='buttonContainer'>
+                    <br /><br />
+                    <div className='button1'>
+                        <CancelButton type="button" value="Cancel" onClick={handleCancel}/>
+                        <ConfirmButton buttonText='Change' type="submit" value="Change" onClick={handleSubmit}/>
+                    </div>
+                </div>
         </form>
         </div>
         

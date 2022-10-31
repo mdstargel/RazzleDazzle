@@ -27,7 +27,7 @@
     /* left: 68.33%;
     right: 15.28%; */
     align-content: center;
-    padding-top: 225px;
+    padding-top: 200px;
     width: 100%;
     /* left: 50%; */
 
@@ -81,7 +81,7 @@
     width: calc(100vw - 22vw);
     left: 11vw;
     height: 0px;
-    top: 275px;
+    top: 250px;
     z-index: 2;
     
     /* Trying to change behind the line to gray, no difference */
@@ -95,7 +95,7 @@
     width: calc(100vw - 30vw);
     left: 15vw;
     height: 0px;
-    top: 400px;
+    top: 375px;
     z-index: 2;
     
     /* Trying to change behind the line to gray, no difference */
@@ -106,7 +106,7 @@
 .form {
     position: absolute;
     display: block;
-    margin-top: 10px;
+    margin-top: 100px;
     padding: 15px;
     left: calc(50% - 350px);
     background-color: #FFFFFF;
@@ -125,7 +125,7 @@
     left: calc(50% - 350px);
     background-color: #FFFFFF;
     border-radius: 25px;
-    /* height: 700px; */
+    height: auto;
     width: 700px;
     /* border: 1px solid #0C1526; */
     box-shadow: 0px 25px 25px #0C1526;
@@ -152,14 +152,18 @@
 
 .input2 {
     position: absolute;
-    margin-left: 10px;
-    right: 150px;
-    width: 40px;
-    border: 0px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    /* margin-left: 10px; */
+    /* right: 150px; */
+    /* width: 40px; */
+    
+    font-size: 16px;
+    font-weight: bold;
     
     background: #D9D9D9;
+    /* box-shadow: 0px 4px 4px #0C1526; */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+    border: 1px;
     Width: 200px;
     Height: 40px;
 }
@@ -188,25 +192,190 @@
     font-family: 'IBM Plex Sans Devanagari';
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 28px;
     text-decoration-line: underline;
 
     color: #0000EE;
 }
 
-.label {
+.inputTitles1 {
+    position: absolute;
+    align-content: center;
+    height: 32px;
+    width: 200px;
+    margin-top: 10px;
     padding-left: 175px;
+    margin-bottom: 17px;
+}
+
+.inputTitles1Alt {
+    position: absolute;
+    align-content: center;
+    height: 32px;
+    width: 275px;
+    margin-top: 10px;
+    padding-left: 75px;
+    margin-bottom: 17px;
+}
+.inputTitles2 {
+    position: absolute;
+    align-content: center;
+    height: 32px;
+    width: 200px;
+    margin-top: 17px;
+    padding-left: 175px;
+    margin-bottom: 10px;
+}
+
+.inputTitles2Alt {
+    position: absolute;
+    align-content: center;
+    height: 32px;
+    width: 275px;
+    margin-top: 17px;
+    padding-left: 75px;
+    margin-bottom: 10px;
+}
+
+.inputTitles3 {
+    position: absolute;
+    align-content: center;
+    height: 32px;
+    width: 200px;
+    margin-top: 24px;
+    padding-left: 175px;
+    margin-bottom: 10px;
+}
+
+.inputTitles3Alt {
+    position: absolute;
+    align-content: center;
+    height: 32px;
+    width: 275px;
+    margin-top: 24px;
+    padding-left: 75px;
+    margin-bottom: 10px;
+}
+
+.inputTitles4 {
+    position: absolute;
+    align-content: center;
+    height: 32px;
+    width: 200px;
+    margin-top: 31px;
+    padding-left: 175px;
+    margin-bottom: 10px;
+}
+
+.inputTitles5 {
+    position: absolute;
+    align-content: center;
+    height: 32px;
+    width: 200px;
+    margin-top: 38px;
+    padding-left: 175px;
+    margin-bottom: 10px;
+}
+.inputTitles6 {
+    position: absolute;
+    align-content: center;
+    height: 32px;
+    width: 200px;
+    margin-top: 45px;
+    padding-left: 175px;
+    margin-bottom: 10px;
+}
+
+.inputBoxes1 {
+    position: absolute;
+    /* margin-left: 10px; */
+    /* padding-top: 10px; */
+    right: 150px;
+    height: 42px;
+    width: 204px;
+}
+
+.inputBoxes1Alt {
+    position: absolute;
+    /* margin-left: 10px; */
+    /* padding-top: 10px; */
+    right: 100px;
+    height: 42px;
+    width: 204px;
+}
+
+.inputBoxes2 {
+    position: absolute;
+    /* margin-left: 10px; */
+    /* padding-top: 7px; */
+    margin-top: 7px;
+    right: 150px;
+    height: 42px;
+    width: 204px;
+}
+
+.inputBoxes2Alt {
+    position: absolute;
+    /* margin-left: 10px; */
+    /* padding-top: 7px; */
+    margin-top: 7px;
+    right: 100px;
+    height: 42px;
+    width: 204px;
+}
+
+.inputBoxes3 {
+    position: absolute;
+    /* margin-left: 10px; */
+    /* padding-top: 7px; */
+    margin-top: 14px;
+    right: 150px;
+    height: 42px;
+    width: 204px;
+}
+
+.inputBoxes3Alt {
+    position: absolute;
+    /* margin-left: 10px; */
+    /* padding-top: 7px; */
+    margin-top: 14px;
+    right: 100px;
+    height: 42px;
+    width: 204px;
+}
+
+.inputBoxes4 {
+    position: absolute;
+    /* margin-left: 10px; */
+    /* padding-top: 7px; */
+    margin-top: 21px;
+    right: 150px;
+    height: 42px;
+    width: 204px;
+}
+
+.inputBoxes5 {
+    position: absolute;
+    /* margin-left: 10px; */
+    /* padding-top: 7px; */
+    margin-top: 28px;
+    right: 150px;
+    width: 204px;
+}
+
+.label {
+    /* padding-left: 175px; */
     font-weight: bold;
+    font-size: 18px;
     color: #0C1526;
     /* padding-right: 150px; */
 }
 
 .label2 {
-    padding-left: 100px;
     font-weight: bold;
+    font-size: 18px;
     color: #0C1526;
-
 }
 
 .label3 {
@@ -215,6 +384,14 @@
     font-weight: bold;
     color: #0C1526;
 
+}
+
+.labelCentered {
+    padding-left: 135px;
+    /* left: calc(50% - 350px); */
+    font-weight: bold;
+    font-size: 18px;
+    color: #0C1526;
 }
 
 .serviceLabel {
@@ -243,11 +420,12 @@
     display: block;
     width: 400px;
     height: 80px;
-    /* padding-top: 25px; */
+    padding-top: 25px;
     padding-left: calc(50% - 140px);
     /* padding-right: 20px; */
     /* left: calc(50vw - 100px); */
 }
+
 .button1 {
     /* position: absolute; */
     width: 280px;

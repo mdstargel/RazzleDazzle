@@ -62,26 +62,39 @@ const AddEditSessionNotes = ({setwpage}) => {
             <>
             <PageTitle name="Add/Edit Session Notes" />
             <form className="form2">
-                <label className='label'>Customer Name:</label>
-                <input className='input2'
-                    type="text"
-                    onChange={handleCustomerNameChange}
-                />
+                <div className='inputTitles1'>
+                    <label className='label'>Customer Name:</label>
+                </div>
+                <div className='inputBoxes1'>
+                    <input className='input2'
+                        type="text"
+                        onChange={handleCustomerNameChange}
+                    />
+                </div>
                 <br /><br />
-                <label className='label'>Session Date:</label>
-                <input className='input2'
-                    type="text"
-                    onChange={handleSessionDateChange}
-                />
+                
+                <div className='inputTitles2'>
+                    <label className='label'>Session Date:</label>
+                </div>
+                <div className='inputBoxes2'>
+                    <input className='input2'
+                        type="text"
+                        onChange={handleSessionDateChange}
+                    />
+                </div>
                 <br /><br />
-                    
-                <label style={{ marginTop: '100px'}} className='label'>Session Notes:</label>
-                <input
+                
+                <div className='inputTitles3'>
+                    <label style={{ marginTop: '100px'}} className='label'>Session Notes:</label>
+                </div>
+                <div className='inputBoxes3'>
+                    <input
                         style={{height: '375px'}}
-                    className='input2'
-                    type="text"
-                    onChange={handleSessionNotesChange}
-                />
+                        className='input2'
+                        type="text"
+                        onChange={handleSessionNotesChange}
+                    />
+                </div>
                 <br /><br />
                     
                 <div className='buttonContainer'>

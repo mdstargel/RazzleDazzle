@@ -59,19 +59,30 @@ const LogIn = ({ setSignedIn, setwpage }) => {
     return (
         <div className='backGround'>
         <form className='form'>
-            <label className='label'>Email Address:</label>
-            <input className='input2'
-                type="text"
-                onChange={handleEmailInputChange}
-            />
+            <div className='inputTitles1'>
+                <label className='label'>Email Address:</label>
+            </div>
+            <div className='inputBoxes1'>
+                <input className='input2'
+                    type="text"
+                    onChange={handleEmailInputChange}
+                />
+            </div>
+            <br /><br />    
+            
+            <div className='inputTitles2'>
+                <label className='label'>Password:</label>
+            </div>
+            <div className='inputBoxes2'>
+                <input className='input2'
+                    type="text"
+                    onChange={handlePasswordInputChange}
+                />
+            </div>
             <br /><br />
-
-            <label className='label'>Password:</label>
-            <input className='input2'
-                type="text"
-                onChange={handlePasswordInputChange}
-            />
-            <br /><br />
+            
+            
+            
             {showError && < div style={{color: 'red'}} > Your password or email are incorrect.</div>}
             <div className='buttonContainer'>
                 <br /><br />
