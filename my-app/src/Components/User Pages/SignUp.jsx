@@ -143,8 +143,8 @@ const SignUp = ({setSignedIn, setwpage}) => {
             </div>
             
             
-            <span className='span' onClick={() => setwpage('Log In')}>Log In</span>
-            <span className='span2' onClick={() => setwpage('Forgot Password')}>Forgot Password</span>
+            <span className='span hyperlink' onClick={() => setwpage('Log In')}>Log In</span>
+            <span className='span2 hyperlink' onClick={() => setwpage('Forgot Password')}>Forgot Password</span>
         </form>
         </div>
     );

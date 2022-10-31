@@ -126,7 +126,7 @@ function App() {
   const webpage = (
     <div>
       <Banner setwpage={setwpage} wpage={wpage} signedIn={signedIn} userPermissions={userPermissions} setSignedIn={setSignedIn}/>
-      <ChosenWebpage />
+      <ChosenWebpage  />
     </div>
   );
   return (

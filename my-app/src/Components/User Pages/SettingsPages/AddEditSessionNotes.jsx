@@ -74,12 +74,16 @@ const AddEditSessionNotes = ({setwpage}) => {
                     onChange={handleSessionDateChange}
                 />
                 <br /><br />
-                <label className='label'>Session Notes:</label>
-                <input className='input2'
+                    
+                <label style={{ marginTop: '100px'}} className='label'>Session Notes:</label>
+                <input
+                        style={{height: '375px'}}
+                    className='input2'
                     type="text"
                     onChange={handleSessionNotesChange}
                 />
                 <br /><br />
+                    
                 <div className='buttonContainer'>
                     <br /><br />
                     <div className='button1'>
