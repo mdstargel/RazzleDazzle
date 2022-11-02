@@ -345,3 +345,21 @@
     width: 340px;
     margin-left: -20px;
 }
+
+.customerAppointmentPill {
+  margin: 5px;
+  border-radius: 16px;
+  padding: 10px;
+  text-align: center;
+  width: 210px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.saturdayPill {
+    background-color: green;
+}
+
+.mondayPill {
+    background-color: #0000EE;
+}

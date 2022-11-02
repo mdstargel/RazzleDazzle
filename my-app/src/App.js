@@ -86,7 +86,7 @@ function App() {
     } else if (wpage === 'Sign Up') {
       chosenpage = <SignUp setSignedIn={setSignedIn} setwpage={setwpage} />
     } else if (wpage === 'Calendar') {
-      chosenpage = <Calendar/>
+      chosenpage = <Calendar userPermissions={userPermissions} />
     } else if (wpage === 'Edit Personal Information') {
       chosenpage = <EditPersonalInformation setwpage={setwpage} />
     } else if (wpage === 'Change Password') {
@@ -127,7 +127,7 @@ function App() {
   /**
    * Sets background to be a certain color
    */
-  document.body.style = 'background: red;';
+  document.body.style = 'background: #DFDFDF;';
   // Or with CSS
   // document.body.classList.add('background-red');
   const webpage = (
