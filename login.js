@@ -16,36 +16,46 @@ con.connect(function(err) {
     if (err) throw err;
 })
 
-// login = (email, passwrd) {
-//     var user;
-//     con.query("SELECT * FROM Login WHERE Email = '" + email + "' " +
-//         "AND Log_Password = '" + passwrd + "';",
-//         function(err, result) {
-//             if (err) throw err;
+// TODO: Change login? We need a way to return that the user is cust, trainer, or admin
+// Add getType to classes? Call user.getType() after generation to get type then load?
 
-//             // If login values match
-//             if (result != NULL) {
-//                 // If Customer
-//                 if (result[0].CID = !NULL) {
-//                     user = customer(result[0].CID);
-//                 }
+login = (email, passwrd) => {
+    var CID = null;
+    var TID = null;
+    var admin;
+    var user;
+    con.query("SELECT * FROM Login WHERE Email = '" + email + "' " +
+        "AND Log_Password = '" + passwrd + "';",
+        function(err, result) {
+            if (err) throw err;
 
-//                 // If Trainer
-//                 else if (result[0].TID != NULL) {
-//                     // Check admin status
-//                     con.query("SELECT Admin FROM Trainer WHERE TID = " +
-//                         result[0].TID + ";",
-//                         function(err, administrator) {
-//                             if (err) throw err;
-//                             // If admin
-//                             if (administrator[0].Admin == 1) {
-//                                 user = admin(result[0].TID);
-//                             } else user = trainer(result[0].TID);
-//                         });
-//                 };
-//             };
-//         });
-// }
+            // If login values match
+            if (result != NULL) {
+                // If Customer
+                if (result[0].CID = !NULL) {
+                    CID = result[0].CID;
+                }
+
+                // If Trainer
+                else if (result[0].TID != NULL) {
+                    TID = result[0].TID;
+                };
+            };
+        });
+    if (CID != null) {
+        user = new customer(CID);
+    } else {
+        con.query("SELECT Admin FROM Trainer WHERE TID = " + TID + ";",
+            function(err, result) {
+                if (err) throw err;
+                admin = result[0].Admin;
+            });
+        if (admin) user = new admin(TID);
+        else user = new trainer(TID);
+    }
+
+    return user;
+}
 
 /**
  * Customer Appointment Class. Class consists of:
