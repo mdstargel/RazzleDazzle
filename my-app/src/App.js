@@ -127,7 +127,7 @@ function App() {
   /**
    * Sets background to be a certain color
    */
-  document.body.style = 'background: #DFDFDF';
+  document.body.style = 'background: #DFDFDF;';
   // Or with CSS
   // document.body.classList.add('background-red');
   const webpage = (
