@@ -1661,6 +1661,8 @@ class admin {
         calendar.push(new admin_appt(appt_key, appt_name, appt_date, appt_time, appt_difficulty,
             appt_desc, appt_pub_notes, appt_priv_notes, appt_size, appt_TID_1, appt_TID_2, null));
     }
+
+    // TODO: CREATE NEWS
 }
 
 con.end();
