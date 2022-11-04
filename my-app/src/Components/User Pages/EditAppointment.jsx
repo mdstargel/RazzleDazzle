@@ -3,23 +3,16 @@ import '../User Pages/styles.css'
 import ConfirmButton from "../Buttons/ConfirmButton";
 import CancelButton from "../Buttons/CancelButton";
 
-const EditAppointment = ({setSelectedTab}) => {
-    const [values, setValues] = useState({
-        trainerName: 'John Doe',
-        date: '8/24/2022',
-        startTime: '8:00 AM',
-        endTime: '9:00 AM',
-        style: 'English',
-        lessonType: 'Individual',
-    });
+const EditAppointment = ({ appointment, setModifyAppointment}) => {
+    const [values, setValues] = useState(appointment);
 
-    const handleTrainerNameChange = (event) => {
+    const handletrainerNamesChange = (event) => {
         event.persist();
         setValues((values) => ({
             ...values,
-            trainerName: event.target.value,
+            trainerNames: event.target.value,
         }));
-        console.log('trainerName', values.trainerName);
+        console.log('trainerNames', values.trainerNames);
     };
     const handleDateChange = (event) => {
         event.persist();
@@ -46,13 +39,13 @@ const EditAppointment = ({setSelectedTab}) => {
         }));
         console.log('endTime', values.endTime);
     };
-    const handleStyleChange = (event) => {
+    const handleridingStyleChange = (event) => {
         event.persist();
         setValues((values) => ({
             ...values,
-            style: event.target.value,
+            ridingStyle: event.target.value,
         }));
-        console.log('style', values.style);
+        console.log('ridingStyle', values.ridingStyle);
     };
     const handleLessonTypeChange = (event) => {
         event.persist();
@@ -66,8 +59,8 @@ const EditAppointment = ({setSelectedTab}) => {
         /**
          * Send edited information to the backend
          */
-        if (values.trainerName && values.date && values.startTime &&
-            values.endTime && values.style && values.lessonType) {
+        if (values.trainerNames && values.date && values.startTime &&
+            values.endTime && values.ridingStyle && values.lessonType) {
             console.log('Editing Appointment!', values);
             // Send Values to backend to validate
         } else {
@@ -78,50 +71,58 @@ const EditAppointment = ({setSelectedTab}) => {
 
     return(
         <div className='backGround'>
-            <>
             <div className="form">
                 <label>Trainer Name:</label>
                 <input
                     type="text"
-                    value={values.trainerName}
-                    onChange={handleTrainerNameChange}
-                />
+                    value={values.trainerNames}
+                    onChange={handletrainerNamesChange}
+                    />
+                    <br />
+                    
                 <label>Date:</label>
                 <input
                     type="text"
                     value={values.date}
                     onChange={handleDateChange}
-                />
+                    />
+                <br/>
+
                 <label>Start Time:</label>
                 <input
                     type="text"
                     value={values.startTime}
                     onChange={handleStartTimeChange}
-                />
+                    />
+                    <br />
+                    
                 <label>End Time:</label>
                 <input
                     type="text"
                     value={values.endTime}
                     onChange={handleEndTimeChange}
-                />
-                <label>Lesson Style:</label>
+                    />
+                    <br />
+                    
+                <label>Lesson ridingStyle:</label>
                 <input
                     type="text"
-                    value={values.style}
-                    onChange={handleStyleChange}
-                />
+                    value={values.ridingStyle}
+                    onChange={handleridingStyleChange}
+                    />
+                    <br />
+                    
                 <label>Lesson Type:</label>
                 <input
                     type="text"
                     value={values.lessonType}
                     onChange={handleLessonTypeChange}
-                />
-                {//this button is going to need to close add Appointment popup
-                }
-                <CancelButton onClick={() => setSelectedTab('')} />
+                    />
+                    <br/>
+
+                <CancelButton onClick={() => setModifyAppointment()} />
                 <ConfirmButton buttonText={'Edit'} onClick={handleEditAppointment} />
             </div>
-        </>
         </div>
     );
 }
