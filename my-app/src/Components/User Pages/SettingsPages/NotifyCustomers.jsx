@@ -54,25 +54,35 @@ const NotifyCustomers = ({setwpage}) => {
             <>
             <PageTitle name="Notify Customers" />
             <form className="form2">
+                <div className='inputTitles1Alt'>
                     <label className='label2'>Customer Name/ID:</label>
+                </div>
+                <div className='inputBoxes1Alt'>
                     <input className='input2'
                         type="text"
                         onChange={handleCustomerNameIdChange}
                     />
-                    <br/><br />
+                </div>
+                <br/><br />
+
+                <div className='inputTitles2Alt'>
                     <label className='label2'>Message to Customer:</label>
+                </div>
+                <div className='inputBoxes2Alt'>
                     <input className='input2'
                         type="text"
                         onChange={handleMessageToCustomerChange}
                     />
-                    <br/><br />
-                    <div className='buttonContainer'>
-                        <br /><br />
-                        <div className='button1'>
-                            <CancelButton onClick={handleCancel} />
-                            <ConfirmButton buttonText='Confirm' onClick={handleSubmit}/>
-                        </div>
+                </div>
+                <br/><br />
+                 
+                <div className='buttonContainer'>
+                    <br /><br />
+                    <div className='button1'>
+                        <CancelButton onClick={handleCancel} />
+                        <ConfirmButton buttonText='Confirm' onClick={handleSubmit}/>
                     </div>
+                </div>
                     
             </form>
         </>

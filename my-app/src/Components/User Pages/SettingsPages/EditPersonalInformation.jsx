@@ -90,44 +90,69 @@ const EditPersonalInformation = ({setwpage}) => {
     };
 
     return (
-        <div className='backGround'>
+        <div>
             <PageTitle name="Edit Personal Information" />
             <form className='form2'>
-                <label className='label'>First Name:</label>
-                <input className='input2'
-                type="text"
-                value={values.firstName}
-                onChange={handleFirstNameInputChange}
-                />
-                <br/><br />
-                <label className='label'>Last Name:</label>
-                <input className='input2'
-                type="text"
-                value={values.lastName}
-                onChange={handleLastNameInputChange}
-                />
-                <br/><br />
-                <label className='label'>Email Address:</label>
-                <input className='input2'
+                <div className='inputTitles1'>
+                    <label className='label'>First Name:</label>
+                </div>
+                <div className='inputBoxes1'>
+                    <input className='input2'
                     type="text"
-                    value={values.email}
-                    onChange={handleEmailInputChange}
-                />
+                    value={values.firstName}
+                    onChange={handleFirstNameInputChange}
+                    />
+                </div>
                 <br/><br />
-                <label className='label'>Phone Number:</label>
-                <input className='input2'
+
+                <div className='inputTitles2'>
+                    <label className='label'>Last Name:</label>
+                </div>
+                <div className='inputBoxes2'>
+                    <input className='input2'
                     type="text"
-                    value={values.phone}
-                    onChange={handlePhoneInputChange}
-                />
+                    value={values.lastName}
+                    onChange={handleLastNameInputChange}
+                    />
+                </div>
+                <br/><br />
+
+                <div className='inputTitles3'>
+                    <label className='label'>Email Address:</label>
+                </div>
+                <div className='inputBoxes3'>
+                    <input className='input2'
+                        type="text"
+                        value={values.email}
+                        onChange={handleEmailInputChange}
+                    />
+                </div>
+                <br/><br />
+
+                <div className='inputTitles4'>
+                    <label className='label'>Phone Number:</label>
+                </div>
+                <div className='inputBoxes4'>
+                    <input className='input2'
+                        type="text"
+                        value={values.phone}
+                        onChange={handlePhoneInputChange}
+                    />
+                </div>
                 <br /><br />
-                <label className='label'>Address:</label>
-                <input className='input2'
-                    type="text"
-                    value={values.address}
-                    onChange={handleAddressInputChange}
-                />
+
+                <div className='inputTitles5'>
+                    <label className='label'>Address:</label>
+                </div>
+                <div className='inputBoxes5'>
+                    <input className='input2'
+                        type="text"
+                        value={values.address}
+                        onChange={handleAddressInputChange}
+                    />
+                </div>
                 <br /><br />
+
                 <div style={message !== 'Information changed successfully!' ? {color: 'green'}: {color: 'green'}}>{message}</div>
                     <div className='buttonContainer'>
                         <br /><br />

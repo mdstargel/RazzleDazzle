@@ -71,22 +71,42 @@ const AddEditNews = ({setwpage}) => {
             <>
             <PageTitle name="Add/Edit News" />
             <div className='form2'>
-                <label className='label'>News Title: </label>
-                <input className='input2' type="text" value={values.title}
-                    onChange={handleTitleChange}></input>
+                <div className='inputTitles1'>
+                    <label className='label'>News Title: </label>
+                </div>
+                <div className='inputBoxes1'>
+                    <input className='input2' type="text" value={values.title}
+                        onChange={handleTitleChange}></input>
+                </div>
                 <br/><br />
-                <label className='label'>News URL: </label>
-                <input className='input2' type="text" value={values.url}
-                    onChange={handleURLChange}></input>
+
+                <div className='inputTitles2'>
+                    <label className='label'>News URL: </label>
+                </div>
+                <div className='inputBoxes2'>
+                    <input className='input2' type="text" value={values.url}
+                        onChange={handleURLChange}></input>
+                </div>
                 <br/><br />
-                <label className='label'>News Image: </label>
-                <input className='input2' type="text" value={values.image}
-                    onChange={handleImageChange}></input>
+
+                <div className='inputTitles3'>
+                    <label className='label'>News Image: </label>
+                </div>
+                <div className='inputBoxes3'>
+                    <input className='input2' type="text" value={values.image}
+                        onChange={handleImageChange}></input>
+                </div>
                 <br/><br />
-                <label className='label'>News Description: </label>
-                <input className='input2' type="text" value={values.description}
-                    onChange={handleDescriptionChange}></input>
+
+                <div className='inputTitles4'>
+                    <label className='label'>News Description: </label>
+                </div>
+                <div className='inputBoxes4'>
+                    <input className='input2' type="text" value={values.description}
+                        onChange={handleDescriptionChange}></input>
+                </div>
                 <br /><br />
+
                 <div style={{color: 'green'}}>{message}</div>
                 <div style={{ color: 'red' }}>{error}</div>
                 <div className='buttonContainer'>

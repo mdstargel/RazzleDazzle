@@ -30,7 +30,7 @@ const ManageAppointment = () => {
 
     return (
         <div className='backGround'>
-            <PageTitle name="Manage Appointments" />
+            <PageTitle name="Edit Trainer Workload" />
             {tabs}
             <div className='form2'>
                 <ChosenPopup />

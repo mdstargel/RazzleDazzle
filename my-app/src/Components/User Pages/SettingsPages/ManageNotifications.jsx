@@ -23,9 +23,9 @@ const ManageNotifications = ({setwpage}) => {
             <>
         <PageTitle name="Manage Notifications" />
             <div className='form2'>
-                    <div className='label'>Please select your notification preferences below:</div><br />
+                    <div className='labelCentered'>Please select your notification preferences below:</div><br />
                     <div>
-                        <div style={{marginTop: '30px', marginLeft: 'calc(50% - 35px)'}}>Text: </div>
+                        <div style={{marginTop: '30px', marginLeft: 'calc(50% - 35px)', fontWeight: 'bold'}}>Text: </div>
                         <div
                             className='radioButton'
                             style={textOn ?

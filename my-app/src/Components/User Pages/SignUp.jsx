@@ -90,45 +90,68 @@ const SignUp = ({setSignedIn, setwpage}) => {
     return (
         <div className='backGround'>
             <form className='form'>
-            <label className='label'>{!values.firstName && error}First Name:</label>
-            <input
-            className='input2'
-            type="text"
-            onChange={handleFirstNameInputChange}
-            />
-            <br />
-            
-            <label className='label'>{!values.lastName && error}Last Name:</label>
-            <input
-            type="text"
-            onChange={handleLastNameInputChange}
-            className='input2'  
-            />
-            <br /> 
-            
-            <label className='label'>{!values.email && error}Email Address:</label>
-            <input
-            type="text"
-            onChange={handleEmailInputChange}
-            className='input2'
-            />
-            <br />
-            
-            <label className='label'>{!values.phone && error}Phone Number:</label>
-            <input
-            type="text"
-            onChange={handlePhoneNumberInputChange}
-            className='input2'
-            />
-            <br/>
+                <div className='inputTitles1'>
+                    <label className='label'>{!values.firstName && error}First Name:</label>
+                </div>
+                <div className='inputBoxes1'>
+                    <input
+                    className='input2'
+                    type="text"
+                    onChange={handleFirstNameInputChange}
+                    />
+                </div>
+                <br /><br />
 
-            <label className='label'>{!values.password && error}Password:</label>
-            <input
-                type="text"
-                onChange={handlePasswordInputChange}
-                className='input2'
-            />
-            <br/>
+
+                <div className='inputTitles2'>
+                    <label className='label'>{!values.lastName && error}Last Name:</label>
+                </div>
+                <div className='inputBoxes2'>
+                    <input
+                    type="text"
+                    onChange={handleLastNameInputChange}
+                    className='input2'  
+                    />
+                </div>
+                <br /><br />
+
+
+                <div className='inputTitles3'>
+                    <label className='label'>{!values.email && error}Email Address:</label>
+                </div>
+                <div className='inputBoxes3'>
+                    <input
+                    type="text"
+                    onChange={handleEmailInputChange}
+                    className='input2'
+                    />
+                </div>
+                <br /><br />
+            
+                <div className='inputTitles4'>
+                    <label className='label'>{!values.phone && error}Phone Number:</label>
+                </div>
+                <div className='inputBoxes4'>
+                    <input
+                    type="text"
+                    onChange={handlePhoneNumberInputChange}
+                    className='input2'
+                    />
+                </div>
+                <br/><br />
+             
+                <div className='inputTitles5'>
+                    <label className='label'>{!values.password && error}Password:</label>
+                </div>
+                <dir className='inputBoxes5'>
+                    <input
+                    type="text"
+                    onChange={handlePasswordInputChange}
+                    className='input2'
+                    />
+                </dir>
+                <br/><br />
+
             {signUpError &&
                 <div style={{fontWeight: 'bold'}}>
                     Please fill in all fields with a {error}
