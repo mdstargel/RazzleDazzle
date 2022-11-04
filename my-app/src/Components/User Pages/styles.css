@@ -346,6 +346,16 @@
     margin-left: -20px;
 }
 
+.addAppointmentButton {
+  background-color: #b50b0b;
+  cursor: pointer;
+  border-radius: 4px;
+  width: 120px;
+  padding: 5px;
+  margin-top: 10px;
+  margin-left: 60px;
+}
+
 .customerAppointmentPill {
   margin: 5px;
   border-radius: 16px;
@@ -356,10 +366,30 @@
   font-size: 14px;
 }
 
-.saturdayPill {
+.monPill {
+    background-color: red;
+}
+
+.tuePill {
+    background-color: orange;
+}
+
+.wedPill {
+    background-color: yellow;
+}
+
+.thuPill {
     background-color: green;
 }
 
-.mondayPill {
-    background-color: #0000EE;
+.friPill {
+    background-color: blue;
+}
+
+.satPill {
+    background-color: indigo;
+}
+
+.sunPill {
+    background-color: violet;
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import '../styles.css'
 import ConfirmButton from '../../Buttons/ConfirmButton';
 import CancelButton from '../../Buttons/CancelButton';
-const AddAppointment = ({setSelectedTab}) => {
+const AddAppointment = ({setShowAddAppointment}) => {
     const [values, setValues] = useState({
         trainerName: '',
         date: '',
@@ -119,7 +119,7 @@ const AddAppointment = ({setSelectedTab}) => {
                 <br/>
                 {//this button is going to need to close add Appointment popup
                 }
-                <CancelButton onClick={() => setSelectedTab('')} />
+                <CancelButton onClick={setShowAddAppointment}></CancelButton>
                 <ConfirmButton buttonText={'Add'} onClick={handleAddAppointment} />
             </div>
         </>

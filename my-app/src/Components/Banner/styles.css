@@ -35,6 +35,9 @@
     /* color: yellow; */
   }
 
+  .clickedTab {
+    font-size: 26px;
+  }
   .loginTab {
     position: right;
     font-family: 'Inter';

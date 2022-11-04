@@ -1,247 +1,127 @@
 import React, { useState } from 'react';
 import './styles.css'
+import './Calendar/Styes.css'
+
 import PageTitle from "./PageTitle";
-// import ReactCalendar from "./Calendar/ReactCalendar";
+import ReactCalendar from 'react-calendar';
 import AvailableAppointments from './AvailableAppointments';
 import MyCalendarView from './MyCalendarView';
+import AdminCalendarView from './AdminCalendarView';
+// import DayView from './Calendar/DayView';
+import AddAppointment from './SettingsPages/AddAppointment';
 
 const Calendar = ({userPermissions}) => {
     const [selectedTab, setSelectedTab] = useState('Calendar');
+    const [showAddAppointment, setShowAddAppointment] = useState();
    const [events, setEvents] = useState([
       {
-         trainerNames: 'John Doe',
-         appointmentId: '1',
-         date: '11/03/2022',
-         startTime: '8am',
-         endTime: '10am',
-         ridingStyle: 'Western',
-         ridingLevel: 'Beginner',
-         isGroup: true,
-         signedUp: false,
-         remainingSpots: 8,
-         hasTrainee: true,
+        trainerNames: 'John Doe',
+        appointmentId: '1',
+        date: '10/29/2022',
+        startTime: '8am',
+        endTime: '10am',
+        ridingStyle: 'Western',
+        ridingLevel: 'Beginner',
+        isGroup: true,
+        signedUp: false,
+        remainingSpots: 8,
+        hasTrainee: true,
+        lessonType: 'Group'
+      },
+      {
+        trainerNames: 'Jane Doe',
+        appointmentId: '2',
+        date: '10/30/2022',
+        startTime: '8am',
+        endTime: '10am',
+        ridingStyle: 'Western',
+        ridingLevel: 'Beginner',
+        isGroup: true,
+        signedUp: false,
+        remainingSpots: 8,
+        hasTrainee: true,
+        lessonType: 'Group'
+      },
+      {
+        trainerNames: 'James Doe',
+        appointmentId: '3',
+        date: '10/31/2022',
+        startTime: '8am',
+        endTime: '10am',
+        ridingStyle: 'Western',
+        ridingLevel: 'Beginner',
+        isGroup: true,
+        signedUp: false,
+        remainingSpots: 8,
+        hasTrainee: true,
+        lessonType: 'Group'
+      },
+      {
+        trainerNames: 'John Doe',
+        appointmentId: '4',
+        date: '11/01/2022',
+        startTime: '8am',
+        endTime: '10am',
+        ridingStyle: 'Western',
+        ridingLevel: 'Beginner',
+        isGroup: true,
+        signedUp: true,
+        remainingSpots: 8,
+        hasTrainee: true,
+        lessonType: 'Group'
+      },
+      {
+        trainerNames: 'John Doe',
+        appointmentId: '5',
+        date: '11/02/2022',
+        startTime: '8am',
+        endTime: '10am',
+        ridingStyle: 'Western',
+        ridingLevel: 'Beginner',
+        isGroup: true,
+        signedUp: true,
+        remainingSpots: 8,
+        hasTrainee: true,
+        lessonType: 'Group'
+
+      },
+      {
+        trainerNames: 'John Doe',
+        appointmentId: '6',
+        date: '11/03/2022',
+        startTime: '8am',
+        endTime: '10am',
+        ridingStyle: 'Western',
+        ridingLevel: 'Beginner',
+        isGroup: true,
+        signedUp: true,
+        remainingSpots: 8,
+        hasTrainee: true,
+        lessonType: 'Group'
+      },
+      {
+        trainerNames: 'John Doe',
+        appointmentId: '7',
+        date: '11/04/2022',
+        startTime: '8am',
+        endTime: '10am',
+        ridingStyle: 'Western',
+        ridingLevel: 'Beginner',
+        isGroup: true,
+        signedUp: false,
+        remainingSpots: 8,
+        hasTrainee: true,
+        lessonType: 'Group'
       }
    ])
 
+    function handleCancel () {
+        setShowAddAppointment();
+    }
+
     /**
-     * Dummy Data
+     * Schedule My Calendar View week view
      */
-   //   const [events, setEvents] = useState([
-   //       {
-   //          trainerNames: 'John Doe',
-   //          appointmentId: '1',
-   //          date: '11/01/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: true,
-   //          signedUp: false,
-   //          remainingSpots: 8,
-   //          hasTrainee: true,
-   //       },
-   //       {
-   //          trainerNames: 'James Doe',
-   //          appointmentId: '2',
-   //          date: '11/03/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: false,
-   //          signedUp: false,
-   //          remainingSpots: 1,
-   //          hasTrainee: true,
-
-   //       },
-   //       {
-   //          trainerNames: 'Jane Doe',
-   //          appointmentId: '3',
-   //          date: '11/03/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: false,
-   //          signedUp: false,
-   //          remainingSpots: 1,
-   //          hasTrainee: true,
-
-   //       },
-   //       {
-   //          trainerNames: 'John Doe',
-   //          appointmentId: '4',
-   //          date: '10/31/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: true,
-   //          signedUp: false,
-   //          remainingSpots: 8,
-   //          hasTrainee: true,
-
-   //       },
-   //       {
-   //          trainerNames: 'Jane Doe',
-   //          appointmentId: '5',
-   //          date: '10/31/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: true,
-   //          signedUp: false,
-   //          remainingSpots: 8,
-   //          hasTrainee: false,
-   //       },
-   //       {
-   //          trainerNames: 'James Doe',
-   //          appointmentId: '6',
-   //          date: '11/02/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: true,
-   //          signedUp: false,
-   //           remainingSpots: 8,
-   //          hasTrainee: false,
-   //       },
-   //       {
-   //          trainerNames: 'John Doe',
-   //          appointmentId: '7',
-   //          date: '10/02/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: true,
-   //          signedUp: false,
-   //           remainingSpots: 8,
-   //          hasTrainee: false,
-   //       },
-   //       {
-   //          trainerNames: 'Jane Doe',
-   //          appointmentId: '8',
-   //          date: '10/26/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: true,
-   //          signedUp: false,
-   //           remainingSpots: 8,
-   //          hasTrainee: false,
-   //       },
-   //       {
-   //          trainerNames: 'John Doe',
-   //          appointmentId: '9',
-   //          date: '10/26/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: true,
-   //          signedUp: true,
-   //           remainingSpots: 8,
-   //          hasTrainee: false,
-   //       },
-   //       {
-   //          trainerNames: 'John Doe',
-   //          appointmentId: '10',
-   //          date: '10/26/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: true,
-   //          signedUp: false,
-   //           remainingSpots: 8,
-   //          hasTrainee: false,
-   //       },
-   //       {
-   //          trainerNames: 'John Doe',
-   //          appointmentId: '11',
-   //          date: '11/02/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: true,
-   //          signedUp: true,
-   //           remainingSpots: 8,
-   //          hasTrainee: true,
-   //       },
-   //       {
-   //          trainerNames: 'John Doe',
-   //          appointmentId: '12',
-   //          date: '10/26/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: true,
-   //          signedUp: true,
-   //           remainingSpots: 8,
-   //          hasTrainee: true,
-   //       },
-   //       {
-   //          trainerNames: 'John Doe',
-   //          appointmentId: '13',
-   //          date: '10/26/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: true,
-   //          signedUp: true,
-   //           remainingSpots: 8,
-   //          hasTrainee: true,
-   //       },
-   //       {
-   //          trainerNames: 'John Doe',
-   //          appointmentId: '14',
-   //          date: '11/02/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: true,
-   //          signedUp: false,
-   //           remainingSpots: 8,
-   //          hasTrainee: true,
-   //       },
-   //       {
-   //          trainerNames: 'John Doe',
-   //          appointmentId: '15',
-   //          date: '10/26/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: true,
-   //          signedUp: false,
-   //           remainingSpots: 8,
-   //          hasTrainee: true,
-   //       },
-   //       {
-   //          trainerNames: 'John Doe',
-   //          appointmentId: '16',
-   //          date: '10/26/2022',
-   //          startTime: '8am',
-   //          endTime: '10am',
-   //          ridingStyle: 'Western',
-   //          ridingLevel: 'Beginner',
-   //          isGroup: true,
-   //          signedUp: false,
-   //           remainingSpots: 0,
-   //          hasTrainee: false,
-   //       },
-         
-   //   ]);
-    
-    // Schedule My Calendar View
     let myAppointments = [];
     if (userPermissions.isCustomer === true) {
         myAppointments = events.filter(appointment => appointment.signedUp);
@@ -251,13 +131,20 @@ const Calendar = ({userPermissions}) => {
         myAppointments = events.filter(appointment => appointment.hasTrainee)
     }
 
+    /**
+     * List out all available appointments
+     */
+    let availableAppointments = events.filter(appointment => (!appointment.signedUp && appointment.remainingSpots > 0))
+
     const ChosenPopup = () => {
         let popup;
 
         if (selectedTab === 'Available Appointments') {
-            popup = <AvailableAppointments setSelectedTab={setSelectedTab}/>;
+            popup = <AvailableAppointments setSelectedTab={setSelectedTab} availableAppointments={availableAppointments} userPermissions={userPermissions}/>;
         } else {
-            popup = <MyCalendarView setSelectedTab={setSelectedTab} UserSchdeule={myAppointments} userPermissions={userPermissions} />;
+            userPermissions.isAdmin ?
+                popup = <AdminCalendarView setSelectedTab={setSelectedTab} UserSchdeule={myAppointments} userPermissions={userPermissions} />
+                : popup = <MyCalendarView setSelectedTab={setSelectedTab} UserSchdeule={myAppointments} userPermissions={userPermissions} />;
         }
         return (popup);
     };
@@ -274,8 +161,10 @@ const Calendar = ({userPermissions}) => {
     <div className="backGround"> 
             <PageTitle name="Calendar" />
             {tabs}
+            <ReactCalendar />
+            {showAddAppointment}
+            <div style={{ color: 'blue', marginLeft: '50%' }} onClick={() => setShowAddAppointment(<AddAppointment setShowAddAppointment={setShowAddAppointment}></AddAppointment>)}>Make Appointment</div>
             <ChosenPopup />
-            {/* <ReactCalendar /> */}
     </div>
     );
 }
