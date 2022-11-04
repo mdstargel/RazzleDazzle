@@ -590,7 +590,121 @@ class trainer_appt {
         return this.appt_cust_names;
     }
 
-    // TODO: NOTIFICATIONS - COPY TO ADMIN_APPT
+    getPhoneNumbers() {
+        // Get all CID's
+        var CID_1, CID_2, CID_3, CID_4;
+        con.query("SELECT CID_1, CID_2, CID_3, CID_4 FROM Customer_Group INNER JOIN " +
+            "Appointment ON GID = Appointment.Appt_GID WHERE Appointment.Appt_Key = " +
+            this.appt_key + ";",
+            function(err, result) {
+                if (err) throw err;
+                CID_1 = result[0].CID_1;
+                CID_2 = result[0].CID_2;
+                CID_3 = result[0].CID_3;
+                CID_4 = result[0].CID_4;
+            })
+
+        // Get Phone Numbers
+        var phone = [];
+        con.query("SELECT Cust_Phone_Num, Phone_Notif FROM Customer INNER JOIN Customer_Group " +
+            "ON CID = Customer_Group.CID_1 INNER JOIN Appointment ON Customer_Group.GID " +
+            "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
+            function(err, result) {
+                if (err) throw err;
+                if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+            })
+
+        if (CID_2 != null) {
+            con.query("SELECT Cust_Phone_Num, Phone_Notif FROM Customer INNER JOIN Customer_Group " +
+                "ON CID = Customer_Group.CID_2 INNER JOIN Appointment ON Customer_Group.GID " +
+                "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
+                function(err, result) {
+                    if (err) throw err;
+                    if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+                })
+        }
+
+        if (CID_3 != null) {
+            con.query("SELECT Cust_Phone_Num, Phone_Notif FROM Customer INNER JOIN Customer_Group " +
+                "ON CID = Customer_Group.CID_3 INNER JOIN Appointment ON Customer_Group.GID " +
+                "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
+                function(err, result) {
+                    if (err) throw err;
+                    if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+                })
+        }
+
+        if (CID_4 != null) {
+            con.query("SELECT Cust_Phone_Num, Phone_Notif FROM Customer INNER JOIN Customer_Group " +
+                "ON CID = Customer_Group.CID_4 INNER JOIN Appointment ON Customer_Group.GID " +
+                "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
+                function(err, result) {
+                    if (err) throw err;
+                    if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+                })
+        }
+
+        return phone;
+    }
+
+    getEmails() {
+        // Get all CID's
+        var CID_1, CID_2, CID_3, CID_4;
+        con.query("SELECT CID_1, CID_2, CID_3, CID_4 FROM Customer_Group INNER JOIN " +
+            "Appointment ON GID = Appointment.Appt_GID WHERE Appointment.Appt_Key = " +
+            this.appt_key + ";",
+            function(err, result) {
+                if (err) throw err;
+                CID_1 = result[0].CID_1;
+                CID_2 = result[0].CID_2;
+                CID_3 = result[0].CID_3;
+                CID_4 = result[0].CID_4;
+            })
+
+        // Get email addresses
+        var emails = [];
+        con.query("SELECT Cust_Email_Addr FROM Customer INNER JOIN Customer_Group " +
+            "ON CID = Customer_Group.CID_1 INNER JOIN Appointment ON Customer_Group.GID " +
+            "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
+            function(err, result) {
+                if (err) throw err;
+                emails.push(result[0].Cust_Phone_Num);
+            })
+
+        if (CID_2 != null) {
+            con.query("SELECT Cust_Email_Addr FROM Customer INNER JOIN Customer_Group " +
+                "ON CID = Customer_Group.CID_2 INNER JOIN Appointment ON Customer_Group.GID " +
+                "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
+                function(err, result) {
+                    if (err) throw err;
+                    emails.push(result[0].Cust_Phone_Num);
+                })
+        }
+
+        if (CID_3 != null) {
+            con.query("SELECT Cust_Email_Addr FROM Customer INNER JOIN Customer_Group " +
+                "ON CID = Customer_Group.CID_3 INNER JOIN Appointment ON Customer_Group.GID " +
+                "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
+                function(err, result) {
+                    if (err) throw err;
+                    emails.push(result[0].Cust_Phone_Num);
+                })
+        }
+
+        if (CID_4 != null) {
+            con.query("SELECT Cust_Email_Addr FROM Customer INNER JOIN Customer_Group " +
+                "ON CID = Customer_Group.CID_4 INNER JOIN Appointment ON Customer_Group.GID " +
+                "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
+                function(err, result) {
+                    if (err) throw err;
+                    emails.push(result[0].Cust_Phone_Num);
+                })
+        }
+
+        return emails;
+    }
+
+    // TODO: SEND NOTIFICATIONS (SEE BOOKMARK)
 }
 
 /** 
@@ -899,24 +1013,7 @@ class micro_trainer {
     }
 }
 
-/**
- * Micro customer for admin to remove customer from appointment
- */
-class micro_customer {
-    constructor(cust_ID, cust_name) {
-        this.cust_ID = cust_ID;
-        this.cust_name = cust_name;
-    }
 
-    // Getters
-    getID() {
-        return this.cust_ID;
-    }
-
-    getName() {
-        return this.cust_name;
-    }
-}
 
 class admin_appt {
     constructor(appt_key, appt_name, appt_date, appt_time, appt_difficulty,
@@ -934,6 +1031,14 @@ class admin_appt {
         this.appt_TID_1 = appt_TID_1;
         this.appt_TID_2 = appt_TID_2;
         this.appt_GID = appt_GID;
+        this.appt_micro_trainers = [];
+        con.query("SELECT TID, Train_Name FROM Trainer;",
+            function(err, result) {
+                if (err) throw err;
+                for (var i = 0; i < result.length; i++) {
+                    this.appt_micro_trainers.push(new micro_trainer(result[i].TID, result[i].Train_Name));
+                }
+            });
     }
 
     // Getters, Updaters and Setters
@@ -1201,14 +1306,141 @@ class admin_appt {
             })
     }
 
-    // TODO: DELETE APPOINTMENT
     delete() {
         this.updateGID();
         if (this.appt_GID != null) {
-            con.query("")
+            con.query("DELETE FROM Customer_Group WHERE GID = '" + this.appt_GID + "';",
+                function(err) {
+                    if (err) throw err;
+                })
         }
+        con.query("DELETE FROM Appointment WHERE Appt_Key = " + this.appt_key + ";",
+            function(err) {
+                if (err) throw err;
+            })
     }
 
+    getPhoneNumbers() {
+        // Get all CID's
+        var CID_1, CID_2, CID_3, CID_4;
+        con.query("SELECT CID_1, CID_2, CID_3, CID_4 FROM Customer_Group WHERE GID = " +
+            this.appt_GID + ";",
+            function(err, result) {
+                if (err) throw err;
+                CID_1 = result[0].CID_1;
+                CID_2 = result[0].CID_2;
+                CID_3 = result[0].CID_3;
+                CID_4 = result[0].CID_4;
+            })
+
+        // Get Phone Numbers
+        var phone = [];
+        con.query("SELECT Cust_Phone_Num, Phone_Notif FROM Customer INNER JOIN Customer_Group " +
+            "ON CID = Customer_Group.CID_1 WHERE Customer_Group.GID = " + this.appt_GID + ";",
+            function(err, result) {
+                if (err) throw err;
+                if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+            })
+
+        if (CID_2 != null) {
+            con.query("SELECT Cust_Phone_Num, Phone_Notif FROM Customer INNER JOIN Customer_Group " +
+                "ON CID = Customer_Group.CID_2 WHERE Customer_Group.GID = " + this.appt_GID + ";",
+                function(err, result) {
+                    if (err) throw err;
+                    if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+                })
+        }
+
+        if (CID_3 != null) {
+            con.query("SELECT Cust_Phone_Num, Phone_Notif FROM Customer INNER JOIN Customer_Group " +
+                "ON CID = Customer_Group.CID_3 WHERE Customer_Group.GID = " + this.appt_GID + ";",
+                function(err, result) {
+                    if (err) throw err;
+                    if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+                })
+        }
+
+        if (CID_4 != null) {
+            con.query("SELECT Cust_Phone_Num, Phone_Notif FROM Customer INNER JOIN Customer_Group " +
+                "ON CID = Customer_Group.CID_4 WHERE Customer_Group.GID = " + this.appt_GID + ";",
+                function(err, result) {
+                    if (err) throw err;
+                    if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+                })
+        }
+
+        return phone;
+    }
+
+    getEmails() {
+        // Get all CID's
+        var CID_1, CID_2, CID_3, CID_4;
+        con.query("SELECT CID_1, CID_2, CID_3, CID_4 FROM Customer_Group WHERE GID = " +
+            this.appt_GID + ";",
+            function(err, result) {
+                if (err) throw err;
+                CID_1 = result[0].CID_1;
+                CID_2 = result[0].CID_2;
+                CID_3 = result[0].CID_3;
+                CID_4 = result[0].CID_4;
+            })
+
+        // Get Phone Numbers
+        var emails = [];
+        con.query("SELECT Cust_Email_Addr FROM Customer INNER JOIN Customer_Group " +
+            "ON CID = Customer_Group.CID_1 WHERE Customer_Group.GID = " + this.appt_GID + ";",
+            function(err, result) {
+                if (err) throw err;
+                emails.push(result[0].Cust_Phone_Num);
+            })
+
+        if (CID_2 != null) {
+            con.query("SELECT Cust_Email_Addr FROM Customer INNER JOIN Customer_Group " +
+                "ON CID = Customer_Group.CID_2 WHERE Customer_Group.GID = " + this.appt_GID + ";",
+                function(err, result) {
+                    if (err) throw err;
+                    emails.push(result[0].Cust_Phone_Num);
+                })
+        }
+
+        if (CID_3 != null) {
+            con.query("SELECT Cust_Email_Addr FROM Customer INNER JOIN Customer_Group " +
+                "ON CID = Customer_Group.CID_3 WHERE Customer_Group.GID = " + this.appt_GID + ";",
+                function(err, result) {
+                    if (err) throw err;
+                    emails.push(result[0].Cust_Phone_Num);
+                })
+        }
+
+        if (CID_4 != null) {
+            con.query("SELECT Cust_Email_Addr FROM Customer INNER JOIN Customer_Group " +
+                "ON CID = Customer_Group.CID_4 WHERE Customer_Group.GID = " + this.appt_GID + ";",
+                function(err, result) {
+                    if (err) throw err;
+                    emails.push(result[0].Cust_Phone_Num);
+                })
+        }
+
+        return emails;
+    }
+
+    getMicroTrainers() {
+        return this.appt_micro_trainers;
+    }
+
+    updateMicroTrainers() {
+        var trainers = [];
+        con.query("SELECT TID, Train_Name FROM Trainer;",
+            function(err, result) {
+                if (err) throw err;
+                for (var i = 0; i < result.length; i++) {
+                    trainers.push(new micro_trainer(result[i].TID, result[i].Train_Name));
+                }
+            })
+        this.appt_micro_trainers = trainers;
+    }
+
+    // TODO: SEND NOTIFICATIONS (BOOKMARK)
 }
 
 class admin {
