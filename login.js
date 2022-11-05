@@ -16,47 +16,6 @@ con.connect(function(err) {
     if (err) throw err;
 })
 
-// TODO: Change login? We need a way to return that the user is cust, trainer, or admin
-// Add getType to classes? Call user.getType() after generation to get type then load?
-
-login = (email, passwrd) => {
-    var CID = null;
-    var TID = null;
-    var admin;
-    var user;
-    con.query("SELECT * FROM Login WHERE Email = '" + email + "' " +
-        "AND Log_Password = '" + passwrd + "';",
-        function(err, result) {
-            if (err) throw err;
-
-            // If login values match
-            if (result != NULL) {
-                // If Customer
-                if (result[0].CID = !NULL) {
-                    CID = result[0].CID;
-                }
-
-                // If Trainer
-                else if (result[0].TID != NULL) {
-                    TID = result[0].TID;
-                };
-            };
-        });
-    if (CID != null) {
-        user = new customer(CID);
-    } else {
-        con.query("SELECT Admin FROM Trainer WHERE TID = " + TID + ";",
-            function(err, result) {
-                if (err) throw err;
-                admin = result[0].Admin;
-            });
-        if (admin) user = new admin(TID);
-        else user = new trainer(TID);
-    }
-
-    return user;
-}
-
 /**
  * Customer Appointment Class. Class consists of:
  * Int          Appointment Key
@@ -621,7 +580,8 @@ class trainer_appt {
             "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
             function(err, result) {
                 if (err) throw err;
-                if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+                var pNumber = result[0].Cust_Phone_Num.match(/\d/g) + "";
+                if (result[0].Phone_Notif) phone.push(pNumber);
             })
 
         if (CID_2 != null) {
@@ -630,7 +590,8 @@ class trainer_appt {
                 "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
                 function(err, result) {
                     if (err) throw err;
-                    if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+                    var pNumber = result[0].Cust_Phone_Num.match(/\d/g) + "";
+                    if (result[0].Phone_Notif) phone.push(pNumber);
                 })
         }
 
@@ -640,7 +601,8 @@ class trainer_appt {
                 "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
                 function(err, result) {
                     if (err) throw err;
-                    if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+                    var pNumber = result[0].Cust_Phone_Num.match(/\d/g) + "";
+                    if (result[0].Phone_Notif) phone.push(pNumber);
                 })
         }
 
@@ -650,7 +612,8 @@ class trainer_appt {
                 "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
                 function(err, result) {
                     if (err) throw err;
-                    if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+                    var pNumber = result[0].Cust_Phone_Num.match(/\d/g) + "";
+                    if (result[0].Phone_Notif) phone.push(pNumber);
                 })
         }
 
@@ -678,7 +641,7 @@ class trainer_appt {
             "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
             function(err, result) {
                 if (err) throw err;
-                emails.push(result[0].Cust_Phone_Num);
+                emails.push(result[0].Cust_Email_Addr);
             })
 
         if (CID_2 != null) {
@@ -687,7 +650,7 @@ class trainer_appt {
                 "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
                 function(err, result) {
                     if (err) throw err;
-                    emails.push(result[0].Cust_Phone_Num);
+                    emails.push(result[0].Cust_Email_Addr);
                 })
         }
 
@@ -697,7 +660,7 @@ class trainer_appt {
                 "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
                 function(err, result) {
                     if (err) throw err;
-                    emails.push(result[0].Cust_Phone_Num);
+                    emails.push(result[0].Cust_Email_Addr);
                 })
         }
 
@@ -707,14 +670,25 @@ class trainer_appt {
                 "= Appointment.Appt_GID WHERE Appointment.Appt_Key = " + this.appt_key + ";",
                 function(err, result) {
                     if (err) throw err;
-                    emails.push(result[0].Cust_Phone_Num);
+                    emails.push(result[0].Cust_Email_Addr);
                 })
         }
 
         return emails;
     }
 
-    // TODO: SEND NOTIFICATIONS (SEE BOOKMARK)
+    sendNotifications(title, notification) {
+        var emails = getEmails();
+        for (var i = 0; i < emails.length; i++) {
+            emailAppt(emails[i], title, notification);
+        }
+
+        // Send texts
+        var phone = getPhoneNumbers();
+        for (var i = 0; i < phone.length; i++) {
+            textAppt(phone[i], notification);
+        }
+    }
 }
 
 /** 
@@ -860,7 +834,7 @@ class trainer {
  */
 class mini_customer {
     constructor(cust_id, cust_name, cust_addr, cust_phone, cust_email,
-        cust_econ, cust_econ_phone, cust_diff) {
+        cust_econ, cust_econ_phone, cust_diff, cust_notif) {
         this.cust_id = cust_id;
         this.cust_name = cust_name;
         this.cust_addr = cust_addr;
@@ -869,6 +843,7 @@ class mini_customer {
         this.cust_econ = cust_econ;
         this.cust_econ_phone = cust_econ_phone;
         this.cust_diff = cust_diff;
+        this.cust_notif = cust_notif;
     }
 
     // Getters
@@ -917,6 +892,11 @@ class mini_customer {
         cust.delete();
     }
 
+    notify(title, notification) {
+        emailAppt(this.cust_email, title, notification);
+        var phone = this.cust_phone.match(/\d/g) + "";
+        if (this.cust_notif) textAppt(phone, notification);
+    }
 }
 
 /**
@@ -1001,6 +981,12 @@ class mini_trainer {
             function(err) {
                 if (err) throw err;
             })
+    }
+
+    notify(title, notification) {
+        emailAppt(this.tr_email, title, notification);
+        var phone = this.tr_phone.match(/\d/g) + "";
+        textAppt(phone, notification);
     }
 }
 
@@ -1349,7 +1335,8 @@ class admin_appt {
             "ON CID = Customer_Group.CID_1 WHERE Customer_Group.GID = " + this.appt_GID + ";",
             function(err, result) {
                 if (err) throw err;
-                if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+                var pNumber = result[0].Cust_Phone_Num.match(/\d/g) + "";
+                if (result[0].Phone_Notif) phone.push(pNumber);
             })
 
         if (CID_2 != null) {
@@ -1357,7 +1344,8 @@ class admin_appt {
                 "ON CID = Customer_Group.CID_2 WHERE Customer_Group.GID = " + this.appt_GID + ";",
                 function(err, result) {
                     if (err) throw err;
-                    if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+                    var pNumber = result[0].Cust_Phone_Num.match(/\d/g) + "";
+                    if (result[0].Phone_Notif) phone.push(pNumber);
                 })
         }
 
@@ -1366,7 +1354,8 @@ class admin_appt {
                 "ON CID = Customer_Group.CID_3 WHERE Customer_Group.GID = " + this.appt_GID + ";",
                 function(err, result) {
                     if (err) throw err;
-                    if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+                    var pNumber = result[0].Cust_Phone_Num.match(/\d/g) + "";
+                    if (result[0].Phone_Notif) phone.push(pNumber);
                 })
         }
 
@@ -1375,7 +1364,8 @@ class admin_appt {
                 "ON CID = Customer_Group.CID_4 WHERE Customer_Group.GID = " + this.appt_GID + ";",
                 function(err, result) {
                     if (err) throw err;
-                    if (result[0].Phone_Notif) phone.push(result[0].Cust_Phone_Num);
+                    var pNumber = result[0].Cust_Phone_Num.match(/\d/g) + "";
+                    if (result[0].Phone_Notif) phone.push(pNumber);
                 })
         }
 
@@ -1450,7 +1440,18 @@ class admin_appt {
         this.appt_micro_trainers = trainers;
     }
 
-    // TODO: SEND NOTIFICATIONS (BOOKMARK)
+    sendNotifications(title, notification) {
+        var emails = getEmails();
+        for (var i = 0; i < emails.length; i++) {
+            emailAppt(emails[i], title, notification);
+        }
+
+        // Send texts
+        var phone = getPhoneNumbers();
+        for (var i = 0; i < phone.length; i++) {
+            textAppt(phone[i], notification);
+        }
+    }
 }
 
 class news {
@@ -1581,15 +1582,15 @@ class admin {
 
         // Get Mini-Customer List
         var customers = [];
-        con.query("SELECT CID, Cust_Name, Cust_Address, Cust_Phone_Num, Cust_Email_Addr, " +
-            "Cust_Emer_Name, Cust_Emer_Num, Difficulty FROM Customer;",
+        con.query("SELECT * FROM Customer;",
             function(err, result) {
                 if (err) throw err;
                 for (var i = 0; i < result.length; i++) {
                     customers.push(new mini_customer(result[i].CID, result[i].Cust_Name,
                         result[i].Cust_Address, result[i].Cust_Phone_Num,
                         result[i].Cust_Email_Addr, result[i].Cust_Emer_Name,
-                        result[i].Cust_Emer_Num, result[i].Difficulty));
+                        result[i].Cust_Emer_Num, result[i].Difficulty,
+                        result[i].Phone_Notif));
                 };
             });
 
@@ -1797,8 +1798,46 @@ class admin {
             })
         }
     }
-
-    // TODO: NOTIFY CUSTOM LIST OF PEOPLE
 }
 
+// TODO: Change login? We need a way to return that the user is cust, trainer, or admin
+// Add getType to classes? Call user.getType() after generation to get type then load?
+
+login = (email, passwrd) => {
+    var CID = null;
+    var TID = null;
+    var administrator;
+    var user;
+    con.query("SELECT * FROM Login WHERE Email = '" + email + "' " +
+        "AND Log_Password = '" + passwrd + "';",
+        function(err, result) {
+            if (err) throw err;
+
+            // If login values match
+            if (result != NULL) {
+                // If Customer
+                if (result[0].CID = !NULL) {
+                    CID = result[0].CID;
+                }
+
+                // If Trainer
+                else if (result[0].TID != NULL) {
+                    TID = result[0].TID;
+                };
+            };
+        });
+    if (CID != null) {
+        user = new customer(CID);
+    } else {
+        con.query("SELECT Admin FROM Trainer WHERE TID = " + TID + ";",
+            function(err, result) {
+                if (err) throw err;
+                administrator = result[0].Admin;
+            });
+        if (administrator) user = new admin(TID);
+        else user = new trainer(TID);
+    }
+
+    return user;
+}
 con.end();
