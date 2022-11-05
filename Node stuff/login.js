@@ -47,8 +47,30 @@ class customer_appt {
         return this.appt_name;
     }
 
+    updateName() {
+        var name;
+        con.query("SELECT Appt_Name FROM Appointment WHERE Appt_Key = '" +
+            this.appt_key + "';",
+            function(err, result) {
+                if (err) throw err;
+                name = result[0].Appt_Name;
+            })
+        this.appt_name = name;
+    }
+
     getDate() {
         return this.appt_date;
+    }
+
+    updateDate() {
+        var name;
+        con.query("SELECT Appt_Name FROM Appointment WHERE Appt_Key = " +
+            this.appt_key + ";",
+            function(err, result) {
+                if (err) throw err;
+                name = result[0].Appt_Name;
+            })
+        this.appt_name = name;
     }
 
     getTime() {
