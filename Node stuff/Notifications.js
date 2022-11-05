@@ -1,16 +1,16 @@
 var nodemailer = require('nodemailer');
 
 var transporter = nodemailer.createTransport({
-    service: '',
+    service: 'gmail',
     auth: {
-        user: '', // business email
-        pass: '' // business email password
+        user: 'razzledazzle.notifications@gmail.com', // business email
+        pass: 'RazzleDazzle1!' // business email password
     }
 });
 
 emailAppt = (email, title, notification) => {
     var emailOptions = {
-        from: '', //business email
+        from: 'razzledazzle.notifications@gmail.com', //business email
         to: email,
         subject: title,
         text: notification
