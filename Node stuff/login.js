@@ -481,20 +481,75 @@ class trainer_appt {
         return this.appt_name;
     }
 
+    updateName() {
+        var name;
+        con.query("SELECT Appt_Name FROM Appointment WHERE Appt_Key = '" +
+            this.appt_key + "';",
+            function(err, result) {
+                if (err) throw err;
+                name = result[0].Appt_Name;
+            })
+        this.appt_name = name;
+    }
+
     getDate() {
         return this.appt_date;
+    }
+
+    updateDate() {
+        var date;
+        con.query("SELECT Appt_Date FROM Appointment WHERE Appt_Key = '" +
+            this.appt_key + "';",
+            function(err, result) {
+                if (err) throw err;
+                date = result[0].Appt_Date;
+            })
+        this.appt_date = date;
     }
 
     getTime() {
         return this.appt_time;
     }
 
+    updateTime() {
+        var time;
+        con.query("SELECT Appt_Time FROM Appointment WHERE Appt_Key = '" +
+            this.appt_key + "';",
+            function(err, result) {
+                if (err) throw err;
+                time = result[0].Appt_Time;
+            })
+        this.appt_time = time;
+    }
+
     getDescription() {
         return this.appt_description;
     }
 
+    updateDescription() {
+        var description;
+        con.query("SELECT Appt_Description FROM Appointment WHERE Appt_Key = '" +
+            this.appt_key + "';",
+            function(err, result) {
+                if (err) throw err;
+                description = result[0].Appt_Description;
+            })
+        this.appt_description = description;
+    }
+
     getPublicNotes() {
         return this.appt_pub_notes;
+    }
+
+    updatePublicNotes() {
+        var publicNotes;
+        con.query("SELECT Appt_Public_Notes FROM Appointment WHERE Appt_Key = '" +
+            this.appt_key + "';",
+            function(err, result) {
+                if (err) throw err;
+                publicNotes = result[0].Appt_Public_Notes;
+            })
+        this.appt_pub_notes = publicNotes;
     }
 
     setPublicNotes(notes) {
@@ -508,6 +563,17 @@ class trainer_appt {
 
     getPrivateNotes() {
         return this.appt_priv_notes;
+    }
+
+    updatePrivateNotes() {
+        var privateNotes;
+        con.query("SELECT Appt_Private_Notes FROM Appointment WHERE Appt_Key = '" +
+            this.appt_key + "';",
+            function(err, result) {
+                if (err) throw err;
+                privateNotes = result[0].Appt_Private_Notes;
+            })
+        this.appt_priv_notes = privateNotes;
     }
 
     setPrivateNotes(notes) {
@@ -743,6 +809,17 @@ class trainer {
         return this.trainer_name;
     }
 
+    updateName() {
+        var name;
+        con.query("SELECT Train_Name FROM Trainer WHERE TID = '" +
+            this.trainer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                name = result[0].Train_Name;
+            })
+        this.trainer_name = name;
+    }
+
     setName(name) {
         this.trainer_name = name;
         con.query("UPDATE Trainer SET Train_Name = '" + name +
@@ -754,6 +831,17 @@ class trainer {
 
     getAddress() {
         return this.address;
+    }
+
+    updateAddress() {
+        var address;
+        con.query("SELECT Train_Address FROM Trainer WHERE TID = '" +
+            this.trainer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                address = result[0].Train_Address;
+            })
+        this.address = address;
     }
 
     setAddress(address) {
@@ -769,6 +857,17 @@ class trainer {
         return this.phone;
     }
 
+    updatePhone() {
+        var phone;
+        con.query("SELECT Train_Phone_Num FROM Trainer WHERE TID = '" +
+            this.trainer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                phone = result[0].Train_Phone_Num;
+            })
+        this.phone = phone;
+    }
+
     setPhone(phone) {
         this.phone = phone;
         con.query("UPDATE Trainer SET Train_Phone_Number = '" + phone +
@@ -780,6 +879,17 @@ class trainer {
 
     getEmail() {
         return this.email;
+    }
+
+    updateEmail() {
+        var email;
+        con.query("SELECT Train_Email_Addr FROM Trainer WHERE TID = '" +
+            this.trainer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                email = result[0].Train_Email_Addr;
+            })
+        this.email = email;
     }
 
     setEmail(email) {
@@ -795,6 +905,17 @@ class trainer {
         return this.emer_name;
     }
 
+    updateEmerName() {
+        var emerName;
+        con.query("SELECT Train_Emer_Name FROM Trainer WHERE TID = '" +
+            this.trainer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                emerName = result[0].Train_Emer_Name;
+            })
+        this.emer_name = emerName;
+    }
+
     setEmerName(name) {
         this.emer_name = name;
         con.query("UPDATE Trainer SET Train_Emer_Name = '" + name +
@@ -806,6 +927,17 @@ class trainer {
 
     getEmerPhone() {
         return this.emer_num;
+    }
+
+    updateEmerPhone() {
+        var emerPhone;
+        con.query("SELECT Train_Emer_Num FROM Trainer WHERE TID = '" +
+            this.trainer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                emerPhone = result[0].Train_Emer_Num;
+            })
+        this.emer_num = emerPhone;
     }
 
     setEmerPhone(phone) {
@@ -931,28 +1063,105 @@ class mini_trainer {
         return this.tr_name;
     }
 
+    updateName() {
+        var name;
+        con.query("SELECT Train_Name FROM Trainer WHERE TID = '" +
+            this.tr_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                name = result[0].Train_Name;
+            })
+        this.tr_name = name;
+    }
+
     getAddress() {
         return this.tr_addr;
+    }
+
+    updateAddress() {
+        var address;
+        con.query("SELECT Train_Address FROM Trainer WHERE TID = '" +
+            this.tr_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                address = result[0].Train_Address;
+            })
+        this.tr_addr = address;
     }
 
     getPhone() {
         return this.tr_phone;
     }
 
+    updatePhone() {
+        var phone;
+        con.query("SELECT Train_Phone_Num FROM Trainer WHERE TID = '" +
+            this.tr_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                phone = result[0].Train_Phone_Num;
+            })
+        this.tr_phone = phone;
+    }
+
     getEmail() {
         return this.tr_email;
+    }
+
+    updateEmail() {
+        var email;
+        con.query("SELECT Train_Email_Addr FROM Trainer WHERE TID = '" +
+            this.tr_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                email = result[0].Train_Email_Addr;
+            })
+        this.tr_email = email;
     }
 
     getEmerContact() {
         return this.tr_econ;
     }
 
+    updateEmerName() {
+        var emerName;
+        con.query("SELECT Train_Emer_Name FROM Trainer WHERE TID = '" +
+            this.tr_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                emerName = result[0].Train_Emer_Name;
+            })
+        this.tr_econ = emerName;
+    }
+
     getEmerContactPhone() {
         return this.tr_econ_phone;
     }
 
+    updateEmerPhone() {
+        var emerPhone;
+        con.query("SELECT Train_Emer_Num FROM Trainer WHERE TID = '" +
+            this.tr_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                emerPhone = result[0].Train_Emer_Num;
+            })
+        this.tr_econ_phone = emerPhone;
+    }
+
     getAdmin() {
         return this.tr_admin;
+    }
+
+    updateAdmin() {
+        var admin;
+        con.query("SELECT Admin FROM Trainer WHERE TID = '" +
+            this.tr_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                admin = result[0].Admin;
+            })
+        this.tr_admin = admin;
     }
 
     // Setter
@@ -1637,6 +1846,17 @@ class admin {
         return this.trainer_name;
     }
 
+    updateName() {
+        var name;
+        con.query("SELECT Train_Name FROM Trainer WHERE TID = '" +
+            this.trainer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                name = result[0].Train_Name;
+            })
+        this.trainer_name = name;
+    }
+
     setName(name) {
         this.admin_name = name;
         con.query("UPDATE Trainer SET Train_Name = '" + name +
@@ -1648,6 +1868,17 @@ class admin {
 
     getAddress() {
         return this.address;
+    }
+
+    updateAddress() {
+        var address;
+        con.query("SELECT Train_Address FROM Trainer WHERE TID = '" +
+            this.trainer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                address = result[0].Train_Address;
+            })
+        this.address = address;
     }
 
     setAddress(address) {
@@ -1663,6 +1894,17 @@ class admin {
         return this.phone;
     }
 
+    updatePhone() {
+        var phone;
+        con.query("SELECT Train_Phone_Num FROM Trainer WHERE TID = '" +
+            this.trainer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                phone = result[0].Train_Phone_Num;
+            })
+        this.phone = phone;
+    }
+
     setPhone(phone) {
         this.phone = phone;
         con.query("UPDATE Trainer SET Train_Phone_Number = '" + phone +
@@ -1674,6 +1916,17 @@ class admin {
 
     getEmail() {
         return this.email;
+    }
+
+    updateEmail() {
+        var email;
+        con.query("SELECT Train_Email_Addr FROM Trainer WHERE TID = '" +
+            this.trainer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                email = result[0].Train_Email_Addr;
+            })
+        this.email = email;
     }
 
     setEmail(email) {
@@ -1689,6 +1942,17 @@ class admin {
         return this.emer_name;
     }
 
+    updateEmerName() {
+        var emerName;
+        con.query("SELECT Train_Emer_Name FROM Trainer WHERE TID = '" +
+            this.trainer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                emerName = result[0].Train_Emer_Name;
+            })
+        this.emer_name = emerName;
+    }
+
     setEmerName(name) {
         this.emer_name = name;
         con.query("UPDATE Trainer SET Train_Emer_Name = '" + name +
@@ -1700,6 +1964,17 @@ class admin {
 
     getEmerPhone() {
         return this.emer_num;
+    }
+
+    updateEmerPhone() {
+        var emerPhone;
+        con.query("SELECT Train_Emer_Num FROM Trainer WHERE TID = '" +
+            this.trainer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                emerPhone = result[0].Train_Emer_Num;
+            })
+        this.emer_num = emerPhone;
     }
 
     setEmerPhone(phone) {
