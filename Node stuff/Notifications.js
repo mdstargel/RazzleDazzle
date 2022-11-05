@@ -25,3 +25,10 @@ emailAppt = (email, title, notification) => {
 textAppt = (phoneNumber, notification) => {
     // Code to text
 }
+
+module.exports = {
+    notifications: nodemailer,
+    transporter,
+    emailAppt,
+    textAppt
+}
