@@ -10,8 +10,6 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-//TODO: SET ALL GETTERS TO PULL FROM DB
-
 con.connect(function(err) {
     if (err) throw err;
 })
@@ -63,34 +61,95 @@ class customer_appt {
     }
 
     updateDate() {
-        var name;
-        con.query("SELECT Appt_Name FROM Appointment WHERE Appt_Key = " +
+        var date;
+        con.query("SELECT Appt_Date FROM Appointment WHERE Appt_Key = " +
             this.appt_key + ";",
             function(err, result) {
                 if (err) throw err;
-                name = result[0].Appt_Name;
+                date = result[0].Appt_Date;
             })
-        this.appt_name = name;
+        this.appt_date = date;
     }
 
     getTime() {
         return this.appt_time;
     }
 
+    updateTime() {
+        var time;
+        con.query("SELECT Appt_Time FROM Appointment WHERE Appt_Key = " +
+            this.appt_key + ";",
+            function(err, result) {
+                if (err) throw err;
+                time = result[0].Appt_Time;
+            })
+        this.appt_time = time;
+    }
+
     getDescription() {
         return this.appt_description;
+    }
+
+    updateDescription() {
+        var description;
+        con.query("SELECT Appt_Description FROM Appointment WHERE Appt_Key = '" +
+            this.appt_key + "';",
+            function(err, result) {
+                if (err) throw err;
+                description = result[0].Appt_Description;
+            })
+        this.appt_description = description;
     }
 
     getPublicNotes() {
         return this.appt_pub_notes;
     }
 
+    updatePublicNotes() {
+        var pub_notes;
+        con.query("SELECT Appt_Public_Notes FROM Appointment WHERE Appt_Key = '" +
+            this.appt_key + "';",
+            function(err, result) {
+                if (err) throw err;
+                pub_notes = result[0].Appt_Public_Notes;
+            })
+        this.appt_pub_notes = pub_notes;
+    }
+
     getGroupSize() {
         return this.appt_group_size;
     }
 
+    updateGroupSize() {
+        var group;
+        con.query("SELECT Appt_Size FROM Appointment WHERE Appt_Key = '" +
+            this.appt_key + "';",
+            function(err, result) {
+                if (err) throw err;
+                group = result[0].Appt_Size;
+            })
+        this.appt_group_size = size;
+    }
+
     getReserved() {
         return this.appt_reserved;
+    }
+
+    updateReserved() {
+        var reserved;
+        con.query("SELECT CID_1, CID_2, CID_3, CID_4 FROM Customer_Group INNER " +
+            "JOIN Appointment ON GID = Appointment.Appt_GID WHERE Appt_Key = '" +
+            this.appt_key + "';",
+            function(err, result) {
+                if (err) throw err;
+                if (result[0].CID_1 == this.cust_id ||
+                    result[0].CID_2 == this.cust_id ||
+                    result[0].CID_3 == this.cust_id ||
+                    result[0].CID_4 == this.cust_id) {
+                    reserved = true;
+                } else reserved = false;
+            })
+        this.appt_reserved = reserved;
     }
 
     // Setters
@@ -360,6 +419,17 @@ class customer {
         return this.cust_name;
     }
 
+    updateName() {
+        var name;
+        con.query("SELECT Cust_Name FROM Customer WHERE CID = '" +
+            this.customer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                name = result[0].Cust_Name;
+            })
+        this.cust_name = name;
+    }
+
     setName(name) {
         this.cust_name = name;
         con.query("UPDATE Customer SET Cust_Name = '" + name +
@@ -373,9 +443,20 @@ class customer {
         return this.address;
     }
 
-    setAddress(address) {
-        this.address = address;
-        con.query("UPDATE Customer SET Cust_Address = '" + address +
+    updateAddress() {
+        var addr;
+        con.query("SELECT Cust_Address FROM Customer WHERE CID = '" +
+            this.customer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                addr = result[0].Cust_Address;
+            })
+        this.address = addr;
+    }
+
+    setAddress(addr) {
+        this.address = addr;
+        con.query("UPDATE Customer SET Cust_Address = '" + addr +
             "' WHERE CID = " + this.customer_id + ";",
             function(err) {
                 if (err) throw err;
@@ -386,9 +467,20 @@ class customer {
         return this.phone;
     }
 
-    setPhone(phone) {
-        this.phone = phone;
-        con.query("UPDATE Customer SET Cust_Phone_Number = '" + phone +
+    updatePhone() {
+        var phone_num;
+        con.query("SELECT Cust_Phone_Num FROM Customer WHERE CID = '" +
+            this.customer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                phone_num = result[0].Cust_Phone_Num;
+            })
+        this.phone = phone_num;
+    }
+
+    setPhone(phone_num) {
+        this.phone = phone_num;
+        con.query("UPDATE Customer SET Cust_Phone_Number = '" + phone_num +
             "' WHERE CID = " + this.customer_id + ";",
             function(err) {
                 if (err) throw err;
@@ -399,17 +491,45 @@ class customer {
         return this.email;
     }
 
-    setEmail(email) {
-        this.email = email;
-        con.query("UPDATE Customer SET Cust_Email_Addr = '" + email +
+    updateEmail() {
+        var email_addr;
+        con.query("SELECT Cust_Email_Addr FROM Customer WHERE CID = '" +
+            this.customer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                email_addr = result[0].Cust_Email_Addr;
+            })
+        this.email = email_addr;
+    }
+
+    setEmail(email_addr) {
+        this.email = email_addr;
+        con.query("UPDATE Customer SET Cust_Email_Addr = '" + email_addr +
             "' WHERE CID = " + this.customer_id + ";",
             function(err) {
                 if (err) throw err;
             });
+
+        con.query("UPDATE Login SET Email = '" + email_addr + "' WHERE Email = '" +
+            this.email + "';",
+            function(err) {
+                if (err) throw err;
+            })
     }
 
     getEmerName() {
         return this.emer_name;
+    }
+
+    updateEmerName() {
+        var name;
+        con.query("SELECT Cust_Emer_Name FROM Customer WHERE CID = '" +
+            this.customer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                name = result[0].Cust_Emer_Name;
+            })
+        this.emer_name = name;
     }
 
     setEmerName(name) {
@@ -425,9 +545,20 @@ class customer {
         return this.emer_num;
     }
 
-    setEmerPhone(phone) {
-        this.emer_num = phone;
-        con.query("UPDATE Customer SET Cust_Emer_Num = '" + phone +
+    updateEmerPhone() {
+        var phone_num;
+        con.query("SELECT Cust_Emer_Num FROM Customer WHERE CID = '" +
+            this.customer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                phone_num = result[0].Cust_Emer_Num;
+            })
+        this.emer_num = phone_num;
+    }
+
+    setEmerPhone(phone_num) {
+        this.emer_num = phone_num;
+        con.query("UPDATE Customer SET Cust_Emer_Num = '" + phone_num +
             "' WHERE CID = " + this.customer_id + ";",
             function(err) {
                 if (err) throw err;
@@ -436,6 +567,17 @@ class customer {
 
     getNotifications() {
         return this.phone_notif;
+    }
+
+    updateNotifications() {
+        var notif;
+        con.query("SELECT Phone_Notif FROM Customer WHERE CID = '" +
+            this.customer_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                notif = result[0].Phone_Notif;
+            })
+        this.phone_notif = notif;
     }
 
     setNotifications(notif) {
@@ -449,6 +591,69 @@ class customer {
 
     getCalendar() {
         return this.calendar;
+    }
+
+    updateCalendar() {
+        calendar = [];
+        con.query("SELECT Appt_Key, Appt_Name, Appt_Date, Appt_Time, Appt_Description, Appt_Public_Notes, " +
+            "Appt_Size FROM Appointment " +
+            "INNER JOIN Customer_Group ON Appointment.Appt_GID = Customer_Group.GID " +
+            "WHERE Customer_Group.CID_1 = " + this.customer_id + " " +
+            "OR Customer_Group.CID_2 = " + this.customer_id + " " +
+            "OR Customer_Group.CID_3 = " + this.customer_id + " " +
+            "OR Customer_Group.CID_4 = " + this.customer_id + ";",
+            function(err, result) {
+                if (err) throw err;
+                for (var i = 0; i < result.length; i++) {
+                    calendar.push(new customer_appt(this.customer_id, result[i].Appt_Key, result[i].Appt_Name,
+                        result[i].Appt_Date, result[i].Appt_Time, result[i].Appt_Description,
+                        result[i].Appt_Public_Notes, result[i].Appt_Size, true));
+                };
+            });
+
+        // Current Date String
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        var curr_date = yyyy + '-' + mm + '-' + dd;
+
+        // Add on appointments available for reservation
+        con.query("SELECT Appt_Key, Appt_Name, Appt_Date, Appt_Time, Appt_Description, Appt_Public_Notes, " +
+            "Appt_Size FROM Appointment " +
+            "INNER JOIN Customer_Group ON Appointment.Appt_GID = Customer_Group.GID " +
+            "WHERE Customer_Group.CID_1 != " + this.customer_id + " " +
+            "AND Customer_Group.CID_2 != " + this.customer_id + " " +
+            "AND Customer_Group.CID_3 != " + this.customer_id + " " +
+            "AND Customer_Group.CID_4 != " + this.customer_id + " " +
+            "AND Appt_Size > 0 " +
+            "AND Appt_Date > '" + curr_date + "';",
+            function(err, result) {
+                if (err) throw err;
+                for (var i = 0; i < result.length; i++) {
+                    calendar.push(new customer_appt(this.customer_id, result[i].Appt_Key, result[i].Appt_Name,
+                        result[i].Appt_Date, result[i].Appt_Time, result[i].Appt_Description,
+                        result[i].Appt_Public_Notes, result[i].Appt_Size, false));
+                };
+            });
+    }
+
+    changePassword(old_pw, new_pw) {
+        var db_old_pw;
+        con.query("SELECT Log_Password FROM Login WHERE Email = '" + this.email +
+            "';",
+            function(err, result) {
+                if (err) throw err;
+                db_old_pw = result[0].Log_Password;
+            })
+
+        if (db_old_pw == old_pw) {
+            con.query("UPDATE Login SET Log_Password = '" + new_pw + "' WHERE Email = '" +
+                this.email + "';",
+                function(err) {
+                    if (err) throw err;
+                })
+        }
     }
 
     delete() {
