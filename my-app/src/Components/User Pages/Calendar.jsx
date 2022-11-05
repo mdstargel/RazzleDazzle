@@ -11,7 +11,7 @@ import AdminCalendarView from './AdminCalendarView';
 import AddAppointment from './SettingsPages/AddAppointment';
 
 const Calendar = ({userPermissions}) => {
-    const [selectedTab, setSelectedTab] = useState('Calendar');
+    const [selectedTab, setSelectedTab] = useState('Available Appointments');
     const [showAddAppointment, setShowAddAppointment] = useState();
    const [events, setEvents] = useState([
       {
@@ -151,8 +151,12 @@ const Calendar = ({userPermissions}) => {
 
     const tabs = (
         <div className='subTitle1'>
-            <div className='subLeft2' onClick={() => setSelectedTab('Available Appointments')}>Available Appointments</div>
-            <div className='subRight2' onClick={() => setSelectedTab('My Calendar View')}>My Calendar View</div>
+        <div
+          className={`subLeft2 ${selectedTab === 'Available Appointments' ? 'activeSubtitle' : ''}`}
+          onClick={() => setSelectedTab('Available Appointments')}>Available Appointments</div>
+        <div
+          className={`subRight2 ${selectedTab === 'My Calendar View' ? 'activeSubtitle' : ''}`}
+          onClick={() => setSelectedTab('My Calendar View')}>My Calendar View</div>
             <hr className="titleunderline2"></hr>
         </div>
     );

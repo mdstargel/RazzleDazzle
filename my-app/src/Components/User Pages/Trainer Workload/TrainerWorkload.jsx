@@ -4,26 +4,30 @@ import AddCustomres from './AddCustomer';
 import RemoveCustomers from './RemoveCustomers';
 
 const ManageAppointment = () => {
-    const [selectedTab, setSelectedTab] = useState('Calendar');
+    const [selectedTab, setSelectedTab] = useState('Add Customers');
 
     const ChosenPopup = () => {
         let popup;
 
-        if (selectedTab === 'Add Customers') {
-            popup = <AddCustomres setSelectedTab={setSelectedTab} />
-        } else if (selectedTab === 'Remove Customers') {
+        if (selectedTab === 'Remove Customers') {
             popup = <RemoveCustomers setSelectedTab={setSelectedTab} />
         } else {
-            popup = null;
-        }
+            popup = <AddCustomres setSelectedTab={setSelectedTab} />
+        } 
 
         return (popup);
     };
 
     const tabs = (
         <div className='subTitle1'>
-            <div className='subLeft2' onClick={() => setSelectedTab('Add Customers')}>Add Customers</div>
-            <div className='subRight2' onClick={() => setSelectedTab('Remove Customers')}>Remove Customers</div>
+            <div
+                className={`subLeft2 ${selectedTab === 'Add Customers' ? 'activeSubtitle' : ''}`}
+                // className='subLeft2'
+                onClick={() => setSelectedTab('Add Customers')}>Add Customers</div>
+            <div
+                className={`subRight2 ${selectedTab === 'Remove Customers' ? 'activeSubtitle' : ''}`}
+                // className='subRight2'
+                onClick={() => setSelectedTab('Remove Customers')}>Remove Customers</div>
             <hr className="titleunderline2"></hr>
         </div>
     );
