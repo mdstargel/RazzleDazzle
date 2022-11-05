@@ -119,7 +119,7 @@ const AddAppointment = ({setShowAddAppointment}) => {
                 <br/>
                 {//this button is going to need to close add Appointment popup
                 }
-                <CancelButton onClick={setShowAddAppointment}></CancelButton>
+                <CancelButton onClick={() => setShowAddAppointment(null)}></CancelButton>
                 <ConfirmButton buttonText={'Add'} onClick={handleAddAppointment} />
             </div>
         </>
