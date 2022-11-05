@@ -1,0 +1,4 @@
+npm install -g npm;
+npm install nodemailer;
+npm install mysql;
+npm install mysql2;
