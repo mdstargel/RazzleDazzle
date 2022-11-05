@@ -1179,6 +1179,41 @@ class trainer {
     getCalendar() {
         return this.assigned_calendar;
     }
+
+    updateCalendar() {
+        this.assigned_calendar = [];
+        con.query("SELECT Appt_Key, Appt_Name, Appt_Date, Appt_Time, Appt_Difficulty, Appt_Description, " +
+            "Appt_Public_Notes, Appt_Private_Notes, Appt_Size FROM Appointment " +
+            "WHERE Appt_TID_1 = " + this.trainer_id + " " +
+            "OR Appt_TID_2 = " + this.trainer_id + ";",
+            function(err, result) {
+                if (err) throw err;
+                for (var i = 0; i < result.length; i++) {
+                    this.assigned_calendar.push(new trainer_appt(result[i].Appt_Key,
+                        result[i].Appt_Name, result[i].Appt_Date, result[i].Appt_Time,
+                        result[i].Appt_Description, result[i].Appt_Public_Notes,
+                        result[i].Appt_Private_Notes, result[i].Appt_Size));
+                };
+            });
+    }
+
+    changePassword(old_pw, new_pw) {
+        var db_old_pw;
+        con.query("SELECT Log_Password FROM Login WHERE Email = '" + this.email +
+            "';",
+            function(err, result) {
+                if (err) throw err;
+                db_old_pw = result[0].Log_Password;
+            })
+
+        if (db_old_pw == old_pw) {
+            con.query("UPDATE Login SET Log_Password = '" + new_pw + "' WHERE Email = '" +
+                this.email + "';",
+                function(err) {
+                    if (err) throw err;
+                })
+        }
+    }
 }
 
 /**
@@ -1214,28 +1249,105 @@ class mini_customer {
         return this.cust_name;
     }
 
+    updateName() {
+        var name;
+        con.query("SELECT Cust_Name FROM Customer WHERE CID = '" +
+            this.cust_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                name = result[0].Cust_Name;
+            })
+        this.cust_name = name;
+    }
+
     getAddress() {
         return this.cust_addr;
+    }
+
+    updateAddress() {
+        var addr;
+        con.query("SELECT Cust_Address FROM Customer WHERE CID = '" +
+            this.cust_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                addr = result[0].Cust_Address;
+            })
+        this.cust_addr = addr;
     }
 
     getPhone() {
         return this.cust_phone;
     }
 
+    updatePhone() {
+        var phone;
+        con.query("SELECT Cust_Phone_Num FROM Customer WHERE CID = '" +
+            this.cust_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                phone = result[0].Cust_Phone_Num;
+            })
+        this.cust_phone = phone;
+    }
+
     getEmail() {
         return this.cust_email;
+    }
+
+    updateEmail() {
+        var email;
+        con.query("SELECT Cust_Email_Addr FROM Customer WHERE CID = '" +
+            this.cust_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                email = result[0].Cust_Email_Addr;
+            })
+        this.cust_email = email;
     }
 
     getEmerContact() {
         return this.cust_econ;
     }
 
+    updateEmerContact() {
+        var name;
+        con.query("SELECT Cust_Emer_Name FROM Customer WHERE CID = '" +
+            this.cust_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                name = result[0].Cust_Emer_Name;
+            })
+        this.cust_econ = name;
+    }
+
     getEmerContactPhone() {
         return this.cust_econ_phone;
     }
 
+    updateEmerContactPhone() {
+        var phone;
+        con.query("SELECT Cust_Emer_Num FROM Customer WHERE CID = '" +
+            this.cust_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                phone = result[0].Cust_Emer_Num;
+            })
+        this.cust_econ_phone = phone;
+    }
+
     getDifficulty() {
         return this.cust_diff;
+    }
+
+    updateDifficulty() {
+        var difficulty;
+        con.query("SELECT Difficulty FROM Customer WHERE CID = '" +
+            this.cust_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                difficulty = result[0].Difficulty;
+            })
+        this.cust_diff = difficulty;
     }
 
     // Setters
@@ -1251,9 +1363,21 @@ class mini_customer {
         cust.delete();
     }
 
+    updateNotifications() {
+        var notif;
+        con.query("SELECT Phone_Notif FROM Customer WHERE CID = '" +
+            this.cust_id + "';",
+            function(err, result) {
+                if (err) throw err;
+                notif = result[0].Phone_Notif;
+            })
+        this.cust_notif = notif;
+    }
+
     notify(title, notification) {
         emailAppt(this.cust_email, title, notification);
         var phone = this.cust_phone.match(/\d/g) + "";
+        this.updateNotifications();
         if (this.cust_notif) textAppt(phone, notification);
     }
 }
@@ -2215,6 +2339,20 @@ class admin {
 
     getCalendar() {
         return this.calendar;
+    }
+
+    updateCalendar() {
+        this.calendar = [];
+        con.query("SELECT * FROM Appointment;", function(err, result) {
+            if (err) throw err;
+            for (var i = 0; i < result.length; i++) {
+                this.calendar.push(new admin_appt(result[i].Appt_Key, result[i].Appt_Name,
+                    result[i].Appt_Date, result[i].Appt_Time, result[i].Appt_Difficulty,
+                    result[i].Appt_Description, result[i].Appt_Public_Notes,
+                    result[i].Appt_Private_Notes, result[i].Appt_Size, result[i].Appt_TID_1,
+                    result[i].Appt_TID_2, result[i].Appt_GID));
+            };
+        });
     }
 
     createTrainer(tr_name, tr_addr, tr_phone, tr_email, tr_econ, tr_enum) {
