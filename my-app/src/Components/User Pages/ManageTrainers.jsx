@@ -12,20 +12,27 @@ const ManageAppointment = () => {
 
         if (selectedTab === 'Access Trainer') {
             popup = <AccessTrainer setSelectedTab={setSelectedTab} />
-        } else if (selectedTab === 'Add Trainer') {
-            popup = <AddTrainer setSelectedTab={setSelectedTab}/>
-        } else if (selectedTab === 'Remove Trainer') {
+        }  else if (selectedTab === 'Remove Trainer') {
             popup = <RemoveTrainer setSelectedTab={setSelectedTab}/>
-        } 
+        }  else  {
+            popup = <AddTrainer setSelectedTab={setSelectedTab}/>
+        }
 
         return (popup);
     };
 
     const tabs = (
         <div className='subTitle1'>
-            <div className='subLeft' onClick={() => setSelectedTab('Add Trainer')}>Add Trainer</div>
-            <div className='subCenter' onClick={() => setSelectedTab('Access Trainer')}>Access Trainer</div>
-            <div className='subRight' onClick={() => setSelectedTab('Remove Trainer')}>Remove Trainer</div>
+            <div
+                className={`subLeft ${selectedTab === 'Add Trainer' ? 'activeSubtitle' : ''}`}
+                onClick={() => setSelectedTab('Add Trainer')}>Add Trainer</div>
+            <div
+                className={`subCenter ${selectedTab === 'Access Trainer' ? 'activeSubtitle' : ''}`}
+                onClick={() => setSelectedTab('Access Trainer')}>Access Trainer</div>
+            <div
+                className={`subRight ${selectedTab === 'Remove Trainer' ? 'activeSubtitle' : ''}`}
+                // className='subRight'
+                onClick={() => setSelectedTab('Remove Trainer')}>Remove Trainer</div>
             <hr className="titleunderline2"></hr>
         </div>
     );

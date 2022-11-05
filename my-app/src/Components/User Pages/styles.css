@@ -54,6 +54,10 @@
     text-align: center;
 }
 
+.activeSubtitle {
+    font-weight: bolder !important;
+    color: darkblue !important;
+}
 .subCenter {
     position: absolute;
     width: 250px;

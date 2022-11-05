@@ -70,9 +70,9 @@ function App() {
    * We need backend to validate when the user signs in who they are
    */
   const [userPermissions, setUserPermissions] = useState({
-    isAdmin: true,
+    isAdmin: false,
     isTrainer: false,
-    isCustomer: false,
+    isCustomer: true,
   })
   
   const ChosenWebpage = () => {
