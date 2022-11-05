@@ -82,11 +82,11 @@ const AddCustomers = () => {
                 return {
                     ...object,
                     PreferredTrainer: selectedTrainer,
+                    isSelected: false,
                 }
             } else
             return {...object}
         }))
-
     }
     
     const handleSetSelectedTrainer = ({ data }) => {
@@ -159,7 +159,7 @@ const AddCustomers = () => {
     
     const handleSetAddCustomer = ({ data }) => {
         setCustomers([...Customers].map(object => {
-            if(object.FirstName === data.FirstName && object.LastName === data.LastName) {
+            if(object.id === data.id) {
               return {
                 ...object,
                 isSelected: true,
