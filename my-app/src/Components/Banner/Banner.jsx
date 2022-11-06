@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './styles.css'
-import HorseLogo from '../User Pages/Assets/FINALLOGO.jpeg'
+// import HorseLogo from '../User Pages/Assets/FINALLOGO.jpeg'
 // import HorseLogo from '../User Pages/Assets/ALTLOGO.jpeg'
 // import HorseLogo from '../User Pages/Assets/CutLogo.png'
 import SettingsDropdown from "./SettingsDropdwon";
@@ -12,7 +12,7 @@ const Banner = ({ setwpage, wpage, signedIn, userPermissions, setSignedIn }) => 
 
     const defaultbanner = (
         <div className="banner">
-            <img src={HorseLogo} className='logoPic' alt="Logo Horse" />
+            {/* <img src={HorseLogo} className='logoPic' alt="Logo Horse" /> */}
             <div className="tab" style={{ left: '0px' }}>Logo Here</div>
             <div className="tab services"
                         onClick={() => setwpage('Services')} >Services</div>
@@ -38,7 +38,7 @@ const Banner = ({ setwpage, wpage, signedIn, userPermissions, setSignedIn }) => 
 
     const signedInBanner = (
         <div className="banner">
-            <img src={HorseLogo} className='logoPic' alt="Logo Horse" />
+            {/* <img src={HorseLogo} className='logoPic' alt="Logo Horse" /> */}
             <div className="tab" style={{left: '0px'}}>Logo Here</div>
             <div className="tab services"
                 onClick={() => setwpage('Services')}>Services</div>
