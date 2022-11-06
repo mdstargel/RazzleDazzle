@@ -125,12 +125,12 @@ const AccessTrainer = () => {
             {PreferredTrainerFormHeading && trainersList}
             <br />
             <form>
-                <label className='label2'>Beginner: </label>
-                <input type="radio" name="experienceLevel" onClick={() => SetRidigingLevel('Beginner')}/>
-                <label className='label2'>Intermediate: </label>
-                <input type="radio" name="experienceLevel" onClick={() => SetRidigingLevel('Intermediate')}/>
-                <label className='label2'>Advanced: </label>
-                <input type="radio" name="experienceLevel" onClick={() => SetRidigingLevel('Advanced')}/>
+                    <label className='label2Alt1'>Beginner: </label>
+                    <input type="radio" name="experienceLevel" onClick={() => SetRidigingLevel('Beginner')}/>
+                    <label className='label2Alt2'>Intermediate: </label>
+                    <input type="radio" name="experienceLevel" onClick={() => SetRidigingLevel('Intermediate')}/>
+                    <label className='label2Alt3'>Advanced: </label>
+                    <input type="radio" name="experienceLevel" onClick={() => SetRidigingLevel('Advanced')}/>
             </form>
             <div className='buttonContainer'>
                 <br /><br />
