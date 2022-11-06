@@ -140,7 +140,16 @@ var getEmails = (appt_key) => {
 }
 
 sendNotifications = (appt_key, title, notification) => {
+    var emails = getEmails(appt_key);
+    for (var i = 0; i < emails.length; i++) {
+        emailAppt(emails[i], title, notification);
+    }
 
+    // Send texts
+    var phone = getPhoneNumbers(appt_key);
+    for (var i = 0; i < phone.length; i++) {
+        textAppt(phone[i], notification);
+    }
 }
 
 con.close();
