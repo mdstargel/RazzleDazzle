@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './styles.css'
+import HorseLogo from '../User Pages/Assets/FINALLOGO.jpeg'
+// import HorseLogo from '../User Pages/Assets/ALTLOGO.jpeg'
+// import HorseLogo from '../User Pages/Assets/CutLogo.png'
 import SettingsDropdown from "./SettingsDropdwon";
 
 const Banner = ({ setwpage, wpage, signedIn, userPermissions, setSignedIn }) => {
@@ -9,7 +12,7 @@ const Banner = ({ setwpage, wpage, signedIn, userPermissions, setSignedIn }) => 
 
     const defaultbanner = (
         <div className="banner">
-            <div className="tab" style={{left: '0px'}}>Logo Here</div>
+            <img src={HorseLogo} className='logoPic' alt="Logo Horse" />
             <div className="tab services"
                         onClick={() => setwpage('Services')} >Services</div>
                     <div className="tab aboutus" onClick={() => setwpage('About Us')}>About Us</div>
@@ -23,7 +26,7 @@ const Banner = ({ setwpage, wpage, signedIn, userPermissions, setSignedIn }) => 
     
     const signInBanner = (
         <div className="banner">
-            <div className="tab" style={{left: '0px'}}>Logo Here</div>
+            <img src={HorseLogo} className='logoPic' alt="Logo Horse" />
             <div className="tab centerTabs">{wpage}</div>
         <div className="loginTab">
             <div className="login" onClick={() => setwpage('Log In')}>Log In</div>
@@ -34,7 +37,7 @@ const Banner = ({ setwpage, wpage, signedIn, userPermissions, setSignedIn }) => 
 
     const signedInBanner = (
         <div className="banner">
-            <div className="tab" style={{left: '0px'}}>Logo Here</div>
+            <img src={HorseLogo} className='logoPic' alt="Logo Horse" />
             <div className="tab services"
                 onClick={() => setwpage('Services')}>Services</div>
             <div className="tab aboutus" onClick={() => setwpage('About Us')}>About Us</div>
