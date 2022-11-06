@@ -23,7 +23,6 @@ import ManageTrainers from './Components/User Pages/ManageTrainers';
 import ManageCustomers from './Components/User Pages/ManageCustomers/ManageCustomers';
 import TrainerWorkload from './Components/User Pages/Trainer Workload/TrainerWorkload';
 import Help from './Components/Help/Help.jsx';
-
 function App() {
   const [wpage, setwpage] = useState('About Us')
   const [signedIn, setSignedIn] = useState(false)

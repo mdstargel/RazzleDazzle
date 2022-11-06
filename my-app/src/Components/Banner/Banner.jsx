@@ -13,8 +13,9 @@ const Banner = ({ setwpage, wpage, signedIn, userPermissions, setSignedIn }) => 
     const defaultbanner = (
         <div className="banner">
             <div className="tab" style={{ left: '0px' }}>Logo Here</div>
-            <div className="tab services"
-                        onClick={() => setwpage('Services')} >Services</div>
+            <div 
+                className={`tab services ${wpage === "Services" ? 'activetab' : ''}`}
+                    onClick={() => setwpage('Services')} >Services</div>
                     <div className="tab aboutus" onClick={() => setwpage('About Us')}>About Us</div>
                     <div className="tab news" onClick={() => setwpage('News')}>News</div>
             <div className="loginTab">
