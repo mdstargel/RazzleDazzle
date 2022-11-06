@@ -22,7 +22,6 @@ import AddEditNews from './Components/User Pages/SettingsPages/AddEditNews';
 import ManageTrainers from './Components/User Pages/ManageTrainers';
 import ManageCustomers from './Components/User Pages/ManageCustomers/ManageCustomers';
 import TrainerWorkload from './Components/User Pages/Trainer Workload/TrainerWorkload';
-// import HorseWatermark from './Components/User Pages/Assets/FINALWATERMARK.jpg';
 import Help from './Components/Help/Help.jsx';
 
 function App() {
@@ -139,7 +138,6 @@ function App() {
   // document.body.classList.add('background-red');
   const webpage = (
     <div>
-      {/* <img src={HorseWatermark} className='watermarkBack' alt="Girl on Horse" /> */}
       <Banner setwpage={setwpage} wpage={wpage} signedIn={signedIn} userPermissions={userPermissions} setSignedIn={setSignedIn} />
       <Help wpage={wpage} userPermissions={userPermissions} />
       <ChosenWebpage  />

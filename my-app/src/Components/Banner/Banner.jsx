@@ -12,7 +12,6 @@ const Banner = ({ setwpage, wpage, signedIn, userPermissions, setSignedIn }) => 
 
     const defaultbanner = (
         <div className="banner">
-            {/* <img src={HorseLogo} className='logoPic' alt="Logo Horse" /> */}
             <div className="tab" style={{ left: '0px' }}>Logo Here</div>
             <div className="tab services"
                         onClick={() => setwpage('Services')} >Services</div>
