@@ -13,6 +13,7 @@ const Banner = ({ setwpage, wpage, signedIn, userPermissions, setSignedIn }) => 
     const defaultbanner = (
         <div className="banner">
             <img src={HorseLogo} className='logoPic' alt="Logo Horse" />
+            <div className="tab" style={{ left: '0px' }}>Logo Here</div>
             <div className="tab services"
                         onClick={() => setwpage('Services')} >Services</div>
                     <div className="tab aboutus" onClick={() => setwpage('About Us')}>About Us</div>
@@ -38,6 +39,7 @@ const Banner = ({ setwpage, wpage, signedIn, userPermissions, setSignedIn }) => 
     const signedInBanner = (
         <div className="banner">
             <img src={HorseLogo} className='logoPic' alt="Logo Horse" />
+            <div className="tab" style={{left: '0px'}}>Logo Here</div>
             <div className="tab services"
                 onClick={() => setwpage('Services')}>Services</div>
             <div className="tab aboutus" onClick={() => setwpage('About Us')}>About Us</div>
