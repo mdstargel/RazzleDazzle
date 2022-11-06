@@ -14,7 +14,7 @@ con.connect(function(err) {
     if (err) throw err;
 });
 
-var CreateAccount = (cust_name, cust_address, cust_phone_num, cust_email_addr, cust_password) => {
+CreateAccount = (cust_name, cust_address, cust_phone_num, cust_email_addr, cust_password) => {
     if (cust_address == "") cust_address = null;
     if (cust_phone_num == "") cust_phone_num = null;
     con.query("INSERT INTO Customer (Cust_Name, Cust_Address, Cust_Phone_Num, " +
@@ -39,10 +39,6 @@ var CreateAccount = (cust_name, cust_address, cust_phone_num, cust_email_addr, c
             if (err) throw err;
         })
 
-    // TODO: Create login and return user
-    user = login(cust_email_addr, cust_password);
-
-    return user;
 }
 
 con.end();
