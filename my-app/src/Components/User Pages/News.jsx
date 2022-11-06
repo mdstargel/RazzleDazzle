@@ -20,7 +20,7 @@ const newsImage = {
     position: 'absolute',
     width: '600px',
     height: '400px',
-    top: '40%',
+    top: 'calc(50% - 200px)',
     left: 'calc(50% - 300px)',
     borderRadius: '20px',
     // zIndex: '3',
@@ -126,12 +126,12 @@ const News = ({ newsArticles }) => {
     return (
         <div >
             <PageTitle name="News" />
-            <div className="backGround">
+            <div>
                 <SelectedFeedItem />
                 <RightFeedItem />
                 <LeftFeedItem />
-                <div onClick={handleSetArticleRight} style={{marginTop: '-190px', paddingLeft: '1400px'}}>Right Button</div>
-                <div onClick={handleSetArticleLeft}>Left Button</div>
+                <div onClick={handleSetArticleRight} style={{position: 'absolute', marginTop: '350px', paddingLeft: '95%'}}>Next</div>
+                <div onClick={handleSetArticleLeft} style={{position: 'absolute', marginTop: '350px', paddingLeft: '2%'}}>Last</div>
             </div>
         </div>
     );
