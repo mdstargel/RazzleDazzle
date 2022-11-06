@@ -1,0 +1,44 @@
+.helpIcon {
+	position:fixed;
+	width:60px;
+	height:60px;
+	top: 110px;
+	left: 30px;
+	background-color:#578aba;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+	font-size: 28px;
+}
+
+.floatingIcon {
+    position:fixed;
+	width:60px;
+	height:60px;
+	top: 110px;
+	left: 30px;
+	background-color:#578aba;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #999;
+	font-size: 28px;
+}
+
+.floatingIcon:hover + .hide{
+	display: block;
+	position: fixed;
+	top: 130px;
+	left: 90px;
+	color:white;
+	background-color: #0C1526;
+	padding: 3px;
+	border-radius: 3px;
+	font-size: 15px;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.hide {
+	display: none;
+}
