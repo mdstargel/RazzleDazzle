@@ -128,7 +128,11 @@ function App() {
   /**
    * Sets background to be a certain color
    */
-  document.body.style = 'background: #DFDFDF;';
+  document.body.style = 'background: #D0D0D0;';
+  
+  // document.body.style = 'backgroundImage: `url(${HorseWatermark})`';
+  // 'backgroundImage: url("./Components/User Pages/Assets/FINALWATERMARK.jpg")';
+  // backgroundImage:"url(/UpmostlyLogo.png)"
   // Or with CSS
   // document.body.classList.add('background-red');
   const webpage = (
@@ -139,7 +143,7 @@ function App() {
     </div>
   );
   return (
-    webpage
+  webpage
   );
 }
 
