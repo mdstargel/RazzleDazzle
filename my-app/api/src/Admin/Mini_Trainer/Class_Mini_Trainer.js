@@ -10,7 +10,7 @@
  */
 class mini_trainer {
     constructor(tr_id, tr_name, tr_addr, tr_phone, tr_email,
-        tr_econ, tr_econ_phone, tr_admin) {
+        tr_econ, tr_econ_phone) {
         this.tr_id = tr_id;
         this.tr_name = tr_name;
         this.tr_addr = tr_addr;
@@ -18,7 +18,7 @@ class mini_trainer {
         this.tr_email = tr_email;
         this.tr_econ = tr_econ;
         this.tr_econ_phone = tr_econ_phone;
-        this.tr_admin = tr_admin;
+        var tr_admin;
     }
 
     // Getters

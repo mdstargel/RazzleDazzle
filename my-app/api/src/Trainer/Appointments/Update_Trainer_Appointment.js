@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16210');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -20,7 +21,7 @@ var con = mysql.createConnection({
  * Updaters for Trainer Appointment class
  */
 
-app.get('/updateName', (req , res) => {
+app.get('/updateName', (req, res) => {
     var name;
     con.query("SELECT Appt_Name FROM Appointment WHERE Appt_Key = '" +
         req.body.appt_key + "';",
@@ -31,7 +32,7 @@ app.get('/updateName', (req , res) => {
         })
 })
 
-app.get('/updateDate', (req , res) => {
+app.get('/updateDate', (req, res) => {
     var date;
     con.query("SELECT Appt_Date FROM Appointment WHERE Appt_Key = '" +
         req.body.appt_key + "';",
@@ -42,7 +43,7 @@ app.get('/updateDate', (req , res) => {
         })
 })
 
-app.get('/updateTime', (req , res) => {
+app.get('/updateTime', (req, res) => {
     var time;
     con.query("SELECT Appt_Time FROM Appointment WHERE Appt_Key = '" +
         req.body.appt_key + "';",
@@ -53,7 +54,7 @@ app.get('/updateTime', (req , res) => {
         })
 })
 
-app.get('/updateDescription', (req , res) => {
+app.get('/updateDescription', (req, res) => {
     var description;
     con.query("SELECT Appt_Description FROM Appointment WHERE Appt_Key = '" +
         req.body.appt_key + "';",
@@ -64,7 +65,7 @@ app.get('/updateDescription', (req , res) => {
         })
 })
 
-app.get('/updatePublicNotes', (req , res) => {
+app.get('/updatePublicNotes', (req, res) => {
     var publicNotes;
     con.query("SELECT Appt_Public_Notes FROM Appointment WHERE Appt_Key = '" +
         req.body.appt_key + "';",
@@ -75,7 +76,7 @@ app.get('/updatePublicNotes', (req , res) => {
         })
 })
 
-app.get('/updatePrivateNotes', (req , res) => {
+app.get('/updatePrivateNotes', (req, res) => {
     var privateNotes;
     con.query("SELECT Appt_Private_Notes FROM Appointment WHERE Appt_Key = '" +
         req.body.appt_key + "';",
@@ -86,4 +87,4 @@ app.get('/updatePrivateNotes', (req , res) => {
         })
 })
 
-module.exports = update_Trainer_Appointment;
+module.exports = app;

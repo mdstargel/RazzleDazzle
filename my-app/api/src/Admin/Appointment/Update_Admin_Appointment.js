@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16310');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -155,4 +156,4 @@ app.get('/updateMicroTrainers', (req, res) => {
         })
 })
 
-module.exports = update_Admin_Appointment;
+module.exports = app;

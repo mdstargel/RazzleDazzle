@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16321');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -16,9 +17,9 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-app.put('/setDifficulty', (req , res) => {
+app.put('/setDifficulty', (req, res) => {
     con.query("UPDATE Customer SET Difficulty = " + req.body.diff +
         " WHERE CID = " + req.body.customer_id);
 })
 
-module.exports = set_Mini_Customer;
+module.exports = app;

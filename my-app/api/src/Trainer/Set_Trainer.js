@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16201');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -20,7 +21,7 @@ var con = mysql.createConnection({
  * Setters for Trainer class
  */
 
-app.put('/setName', (req , res) => {
+app.put('/setName', (req, res) => {
     con.query("UPDATE Trainer SET Train_Name = '" + req.body.name +
         "' WHERE TID = " + req.body.trainer_id + ";",
         function(err) {
@@ -28,7 +29,7 @@ app.put('/setName', (req , res) => {
         });
 })
 
-app.put('/setAddress', (req , res) => {
+app.put('/setAddress', (req, res) => {
     con.query("UPDATE Trainer SET Train_Address = '" + req.body.address +
         "' WHERE TID = " + req.body.trainer_id + ";",
         function(err) {
@@ -36,7 +37,7 @@ app.put('/setAddress', (req , res) => {
         });
 })
 
-app.put('/setPhone', (req , res) => {
+app.put('/setPhone', (req, res) => {
     con.query("UPDATE Trainer SET Train_Phone_Number = '" + req.body.phone +
         "' WHERE TID = " + req.body.trainer_id + ";",
         function(err) {
@@ -44,7 +45,7 @@ app.put('/setPhone', (req , res) => {
         });
 })
 
-app.put('/setEmail', (req , res) => {
+app.put('/setEmail', (req, res) => {
     con.query("UPDATE Trainer SET Train_Email_Addr = '" + req.body.email +
         "' WHERE TID = " + req.body.trainer_id + ";",
         function(err) {
@@ -52,7 +53,7 @@ app.put('/setEmail', (req , res) => {
         });
 })
 
-app.put('/setEmerName', (req , res) => {
+app.put('/setEmerName', (req, res) => {
     con.query("UPDATE Trainer SET Train_Emer_Name = '" + req.body.name +
         "' WHERE TID = " + req.body.trainer_id + ";",
         function(err) {
@@ -60,7 +61,7 @@ app.put('/setEmerName', (req , res) => {
         });
 })
 
-app.put('/setEmerPhone', (req , res) => {
+app.put('/setEmerPhone', (req, res) => {
     con.query("UPDATE Trainer SET Train_Emer_Num = '" + req.body.phone +
         "' WHERE TID = " + req.body.trainer_id + ";",
         function(err) {
@@ -68,7 +69,7 @@ app.put('/setEmerPhone', (req , res) => {
         });
 })
 
-app.put('/setPassword', (req , res) => {
+app.put('/setPassword', (req, res) => {
     var db_old_pw;
     con.query("SELECT Log_Password FROM Login WHERE Email = '" + req.body.email +
         "';",
@@ -87,4 +88,4 @@ app.put('/setPassword', (req , res) => {
     }
 })
 
-module.exports = set_Trainer;
+module.exports = app;

@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16600');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -213,14 +214,14 @@ app.get('/login/Admin/Customers', (req, res) => {
 app.get('/login/Admin/Trainers', (req, res) => {
     var trainers = [];
     con.query("SELECT TID, Train_Name, Train_Address, Train_Phone_Num, Train_Email_Addr, " +
-        "Train_Emer_Name, Train_Emer_Num, Admin FROM Trainer;",
+        "Train_Emer_Name, Train_Emer_Num FROM Trainer;",
         function(err, result) {
             if (err) throw err;
             for (var i = 0; i < result.length; i++) {
                 trainers.push(new mini_trainer(result[i].TID, result[i].Train_Name,
                     result[i].Train_Address, result[i].Train_Phone_Num,
                     result[i].Train_Email_Addr, result[i].Train_Emer_Name,
-                    result[i].Train_Emer_Num, result[i].Admin));
+                    result[i].Train_Emer_Num));
             };
             res.json(trainers);
         });

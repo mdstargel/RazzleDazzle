@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16323');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -21,7 +22,7 @@ var con = mysql.createConnection({
  */
 const { setReserved } = require("../../Customer/Appointments/Set_Customer_Appointment");
 
-app.put('/deleteUser', (req , res) => {
+app.put('/deleteUser', (req, res) => {
     con.query("UPDATE Login SET Decomission = 1 WHERE CID = " +
         req.body.customer_id + ";",
         function(err) {
@@ -59,4 +60,4 @@ app.put('/deleteUser', (req , res) => {
     }
 })
 
-module.exports = delete_Mini_Customer;
+module.exports = app;

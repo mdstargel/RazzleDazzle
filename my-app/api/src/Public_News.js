@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16400');
+app.use(express.json());
 
 
 // Variables for connection

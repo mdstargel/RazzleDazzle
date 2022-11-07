@@ -1,3 +1,8 @@
+const express = require('express');
+const app = express();
+app.listen('16341');
+app.use(express.json());
+
 /**
  * Mysql connection
  */
@@ -12,40 +17,36 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-});
-
-setImageURL = (imgName, news_key) => {
-    con.query("UPDATE News SET IMG_Name = '" + imgName + "' WHERE KEY = " +
-        news_key + ";",
+app.put('/setImgURL', (req, res) => {
+    con.query("UPDATE News SET IMG_Name = '" + req.body.imgName + "' WHERE KEY = " +
+        req.body.news_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-setTitle = (news_title, news_key) => {
-    con.query("UPDATE News SET Title = '" + news_title + "' WHERE KEY = " +
-        news_key + ";",
+app.put('/setTitle', (req, res) => {
+    con.query("UPDATE News SET Title = '" + req.body.news_title + "' WHERE KEY = " +
+        req.body.news_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-setLink = (news_link, news_key) => {
-    con.query("UPDATE News SET Link = '" + news_link + "' WHERE KEY = " +
-        news_key + ";",
+app.put('/setLink', (req, res) => {
+    con.query("UPDATE News SET Link = '" + req.body.news_link + "' WHERE KEY = " +
+        req.body.news_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-setNewsDescription = (description, news_key) => {
-    con.query("UPDATE News SET IMG_Name = '" + description + "' WHERE KEY = " +
-        news_key + ";",
+app.put('/setDescription', (req, res) => {
+    con.query("UPDATE News SET IMG_Name = '" + req.body.description + "' WHERE KEY = " +
+        req.body.news_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-con.end();
+module.exports = app;

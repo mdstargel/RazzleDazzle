@@ -1,3 +1,8 @@
+const express = require('express');
+const app = express();
+app.listen('16342');
+app.use(express.json());
+
 /**
  * Mysql connection
  */
@@ -16,11 +21,11 @@ con.connect(function(err) {
     if (err) throw err;
 });
 
-deleteNews = (news_key) => {
-    con.query("DELETE FROM News WHERE Key = " + news_key + ";",
+app.put('/deleteNews', (req, res) => {
+    con.query("DELETE FROM News WHERE Key = " + req.body.news_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-con.end();
+module.exports = app;

@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16320');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -16,7 +17,7 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-app.get('/updateName', (req , res) => {
+app.get('/updateName', (req, res) => {
     var name;
     con.query("SELECT Cust_Name FROM Customer WHERE CID = '" +
         req.body.customer_id + "';",
@@ -27,7 +28,7 @@ app.get('/updateName', (req , res) => {
         });
 })
 
-app.get('/updateAddress', (req , res) => {
+app.get('/updateAddress', (req, res) => {
     var addr;
     con.query("SELECT Cust_Address FROM Customer WHERE CID = '" +
         req.body.customer_id + "';",
@@ -38,7 +39,7 @@ app.get('/updateAddress', (req , res) => {
         })
 })
 
-app.get('/updatePhone', (req , res) => {
+app.get('/updatePhone', (req, res) => {
     var phone_num;
     con.query("SELECT Cust_Phone_Num FROM Customer WHERE CID = '" +
         req.body.customer_id + "';",
@@ -49,7 +50,7 @@ app.get('/updatePhone', (req , res) => {
         })
 })
 
-app.get('/updateEmail', (req , res) => {
+app.get('/updateEmail', (req, res) => {
     var email_addr;
     con.query("SELECT Cust_Email_Addr FROM Customer WHERE CID = '" +
         req.body.customer_id + "';",
@@ -60,7 +61,7 @@ app.get('/updateEmail', (req , res) => {
         })
 })
 
-app.get('/updateEmerName', (req , res) => {
+app.get('/updateEmerName', (req, res) => {
     var name;
     con.query("SELECT Cust_Emer_Name FROM Customer WHERE CID = '" +
         req.body.customer_id + "';",
@@ -71,7 +72,7 @@ app.get('/updateEmerName', (req , res) => {
         })
 })
 
-app.get('/updateEmerPhone', (req , res) => {
+app.get('/updateEmerPhone', (req, res) => {
     var phone_num;
     con.query("SELECT Cust_Emer_Num FROM Customer WHERE CID = '" +
         req.body.customer_id + "';",
@@ -82,7 +83,7 @@ app.get('/updateEmerPhone', (req , res) => {
         })
 })
 
-app.get('/updateDifficulty', (req , res) => {
+app.get('/updateDifficulty', (req, res) => {
     var difficulty;
     con.query("SELECT Difficulty FROM Customer WHERE CID = '" +
         req.body.customer_id + "';",
@@ -93,10 +94,10 @@ app.get('/updateDifficulty', (req , res) => {
         })
 })
 
-app.get('/updateNotifications', (req , res) => {
+app.get('/updateNotifications', (req, res) => {
     var notif;
     con.query("SELECT Phone_Notif FROM Customer WHERE CID = '" +
-    req.body.customer_id + "';",
+        req.body.customer_id + "';",
         function(err, result) {
             if (err) throw err;
             notif = result[0].Phone_Notif;
@@ -104,4 +105,4 @@ app.get('/updateNotifications', (req , res) => {
         })
 })
 
-module.exports = update_Mini_Customer;
+module.exports = app;
