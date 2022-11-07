@@ -191,7 +191,37 @@ text-align: left;
     width: 700px;
     box-shadow: 0px 25px 25px #0C1526;
 }
+.fixedForm {
+    /* top: 200px;
+    position: fixed;
+    display: block;
+     margin-top: 100px;
+    padding: 15px;
+    left: calc(50% - 366px);
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    width: 700px;
+    box-shadow: 0px 25px 25px #0c1526;
+    height: 60%;
+    width: 60%; */
+    z-index: 10;
+    top: 200px;
 
+    position: fixed;
+    display: block;
+    /* margin-top: 200px; */
+    padding: 20px;
+    /* padding-bottom: 100px; */
+    left: calc(50% - 370px);
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    height: auto;
+    width: 700px;
+    /* height: 60%;
+    width: 60%; */
+    /* border: 1px solid #0C1526; */
+    box-shadow: 0px 25px 25px #0C1526;
+}
 .input {
     background: #FFFFFF;
     border-radius: 10px;
@@ -406,6 +436,15 @@ text-align: left;
     /* margin-left: 10px; */
     /* padding-top: 7px; */
     margin-top: 28px;
+    right: 150px;
+    width: 204px;
+}
+
+.inputBoxes6 {
+    position: absolute;
+    /* margin-left: 10px; */
+    /* padding-top: 7px; */
+    margin-top: 35px;
     right: 150px;
     width: 204px;
 }
