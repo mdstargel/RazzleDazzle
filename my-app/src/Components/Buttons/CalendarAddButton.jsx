@@ -1,9 +1,8 @@
 import React from 'react';
  
-const CalendarEditButton = ({ onClick }) => {
-
+const CalendarAddButton = ({ onClick }) => {
     return (
-        <input type='button' value='Edit' onClick={onClick} style={{
+        <input type='button' value='Add' onClick={onClick} style={{
             backgroundColor: '#0C1526',
             color: 'White',
             // width: '140px',
@@ -17,4 +16,4 @@ const CalendarEditButton = ({ onClick }) => {
     );
 };
 
-export default CalendarEditButton;
+export default CalendarAddButton;

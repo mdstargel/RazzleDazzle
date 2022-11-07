@@ -843,7 +843,7 @@ text-align: left;
 }
 
 .customerAppointmentPill {
-  margin: 5px;
+  /* margin: 5px; */
   border-radius: 16px;
   padding: 10px;
   text-align: center;
