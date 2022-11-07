@@ -13,6 +13,7 @@
 
 .listText {
     font-weight: normal;
+    font-size: 16px;
     /* list-style: none; */
 }
 .title {
@@ -528,6 +529,22 @@ text-align: left;
     font-weight: 400;
     font-size: 30px;
 }
+
+/* .serviceLabel2 {
+    position: flex;
+    padding-left: 25px;
+    font-weight: bold;
+    color: #0C1526;
+    background-color: #6190BC;
+    border-radius: 12px;
+    margin: 20px;
+    height: 60px;
+    align-content: center;
+    font-family: 'IBM Plex Sans Devanagari';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+} */
 
 .servicelabelsub {
     background-color: #DFDFDF;
