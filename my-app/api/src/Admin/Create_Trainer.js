@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16302');
+
 /**
  * Mysql connection
  */
@@ -12,11 +16,14 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-});
+app.put('/createTrainer', (req, res) => {
+    var tr_addr = req.body.tr_addr;
+    var tr_econ = req.body.tr_econ;
+    var tr_enum = req.body.tr_enum;
+    var tr_name = req.body.tr_name;
+    var tr_phone = req.body.tr_phone;
+    var tr_email = req.body.tr_email;
 
-createTrainer = (tr_name, tr_addr, tr_phone, tr_email, tr_econ, tr_enum) => {
     // If any values are empty set null;
     if (tr_addr == '') tr_addr = null;
     if (tr_econ == '') tr_econ = null;
@@ -44,6 +51,6 @@ createTrainer = (tr_name, tr_addr, tr_phone, tr_email, tr_econ, tr_enum) => {
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-con.end();
+module.exports = create_Trainer;

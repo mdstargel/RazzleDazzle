@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16313');
+
 /**
  * Mysql connection
  */
@@ -12,11 +16,8 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-});
-
-deleteAppointment = (appt_key) => {
+app.put('/deleteAppointment', (req, res) => {
+    var appt_key = req.body.appt_key;
     var gid;
     con.query("SELECT Appt_GID FROM Appointment WHERE Appt_Key = " + appt_key +
         ";",
@@ -34,6 +35,6 @@ deleteAppointment = (appt_key) => {
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-con.end();
+module.exports = delete_Admin_Appointment;

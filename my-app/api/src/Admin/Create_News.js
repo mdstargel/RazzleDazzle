@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16304');
+
 /**
  * Mysql connection
  */
@@ -12,17 +16,14 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-});
-
-createNews = (news_name, news_title, news_link, description) => {
+app.put('/createNews', (req, res) => {
     con.query("INSERT INTO News (IMG_Name, Title, Link, News_Description) VALUES ('" +
-        news_name + "', '" + news_title + "', '" + news_link + "', '" + description +
+        req.body.news_name + "', '" + req.body.news_title + "', '" +
+        req.body.news_link + "', '" + req.body.description +
         "');",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-con.end();
+module.exports = create_News;

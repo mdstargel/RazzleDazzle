@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16600');
+
 /**
  * Mysql connection
  */
@@ -10,10 +14,6 @@ var con = mysql.createConnection({
     database: "Horse_Site",
     insecureAuth: true,
     connectTimeout: 30000
-});
-
-con.connect(function(err) {
-    if (err) throw err;
 });
 
 /**
@@ -43,6 +43,7 @@ class customer {
     constructor(customer_id) {
         // Get key at creation
         this.customer_id = customer_id;
+        var userType = 0;
 
         // Query simple values from Database
         con.query("SELECT Cust_Name, Cust_Address, Cust_Phone_Num, Cust_Email_Addr, Cust_Emer_Name, " +
@@ -107,6 +108,10 @@ class customer {
     }
 
     // Getters and setters
+    getUserType() {
+        return userType;
+    }
+
     getName() {
         return this.cust_name;
     }
@@ -189,6 +194,7 @@ class trainer {
     constructor(trainer_id) {
         // Get key at creation
         this.trainer_id = trainer_id;
+        var userType = 1;
 
         // Query simple values from database
         con.query("SELECT Train_Name, Train_Address, Train_Phone_Num, Train_Email_Addr, Train_Emer_Name, " +
@@ -221,6 +227,10 @@ class trainer {
     }
 
     // Getters and setters
+    getUserType() {
+        return this.userType;
+    }
+
     getName() {
         return this.trainer_name;
     }
@@ -282,6 +292,7 @@ class trainer {
 class admin {
     constructor(admin_id) {
         this.admin_id = admin_id;
+        var userType = 2;
 
         // Get simple values
         con.query("SELECT Train_Name, Train_Address, Train_Phone_Num, Train_Email_Addr, Train_Emer_Name, " +
@@ -359,6 +370,10 @@ class admin {
     }
 
     // Getters and setters
+    getUserType() {
+        return userType;
+    }
+
     getName() {
         return this.trainer_name;
     }
@@ -415,13 +430,26 @@ class admin {
 // TODO: Change login? We need a way to return that the user is cust, trainer, or admin
 // Add getType to classes? Call user.getType() after generation to get type then load?
 
-var login = (email, passwrd) => {
+app.get('/login', async(req, res) => {
+    var CID = 1;
+    con.query("SELECT CID FROM Login WHERE Email = 'testemail';", function(err, result) {
+        if (err) throw err;
+        CID = result[0].CID;
+    })
+    var user = await new customer(CID);
+    res.json(user);
+})
+
+app.get('/login/:email', (req, res) => {
     var CID = null;
     var TID = null;
     var administrator;
     var user;
+
+    var email = req.params.email;
+
     con.query("SELECT * FROM Login WHERE Email = '" + email + "' " +
-        "AND Log_Password = '" + passwrd + "';",
+        "AND Log_Password = 'testpassword';", // " + passwrd + "';",
         function(err, result) {
             if (err) throw err;
 
@@ -450,5 +478,8 @@ var login = (email, passwrd) => {
         else user = new trainer(TID);
     }
 
-    return user;
-}
+    con.connect(function(err) {
+        if (err) throw err;
+        res.json(user);
+    });
+})

@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-app.listen('3000');
+app.listen('16100');
 
 /**
  * Mysql connection
@@ -16,10 +16,6 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-})
-
 /**
  * Imports
  */
@@ -28,7 +24,7 @@ let { customer_appt } = require("./Appointments/Class_Customer_Appointment");
 /**
  * Updaters for Customer class
  */
-app.get('/updateCustomerName', (req, res) => {
+app.get('/updateName', (req, res) => {
     var name;
     con.query("SELECT Cust_Name FROM Customer WHERE CID = '" +
         req.body.customer_id + "';",
@@ -39,7 +35,7 @@ app.get('/updateCustomerName', (req, res) => {
         })
 });
 
-app.get('/updateCustomerAddress', (req, res) => {
+app.get('/updateAddress', (req, res) => {
     var addr;
     con.query("SELECT Cust_Address FROM Customer WHERE CID = '" +
         req.body.customer_id + "';",
@@ -50,7 +46,7 @@ app.get('/updateCustomerAddress', (req, res) => {
         })
 })
 
-app.get('/updateCustomerPhone', (req, res) => {
+app.get('/updatePhone', (req, res) => {
     var phone_num;
     con.query("SELECT Cust_Phone_Num FROM Customer WHERE CID = '" +
         req.body.customer_id + "';",
@@ -61,7 +57,7 @@ app.get('/updateCustomerPhone', (req, res) => {
         })
 })
 
-app.get('/updateCustomerEmail', (req, res) => {
+app.get('/updateEmail', (req, res) => {
     var email_addr;
     con.query("SELECT Cust_Email_Addr FROM Customer WHERE CID = '" +
         req.body.customer_id + "';",
@@ -72,7 +68,7 @@ app.get('/updateCustomerEmail', (req, res) => {
         })
 })
 
-app.get('/updateCustomerEmerName', (req, res) => {
+app.get('/updateEmerName', (req, res) => {
     var name;
     con.query("SELECT Cust_Emer_Name FROM Customer WHERE CID = '" +
         req.body.customer_id + "';",
@@ -83,7 +79,7 @@ app.get('/updateCustomerEmerName', (req, res) => {
         })
 })
 
-app.get('/updateCustomerEmerPhone', (req, res) => {
+app.get('/updateEmerPhone', (req, res) => {
     var phone_num;
     con.query("SELECT Cust_Emer_Num FROM Customer WHERE CID = '" +
         req.body.customer_id + "';",
@@ -94,7 +90,7 @@ app.get('/updateCustomerEmerPhone', (req, res) => {
         })
 })
 
-app.get('/updateCustomerNotifications', (req, res) => {
+app.get('/updateNotifications', (req, res) => {
     var notif;
     con.query("SELECT Phone_Notif FROM Customer WHERE CID = '" +
         req.body.customer_id + "';",
@@ -105,7 +101,7 @@ app.get('/updateCustomerNotifications', (req, res) => {
         })
 })
 
-app.get('/updateCustomerCalendar', (req, res) => {
+app.get('/updateCalendar', (req, res) => {
     var calendar = [];
     con.query("SELECT Appt_Key, Appt_Name, Appt_Date, Appt_Time, Appt_Description, Appt_Public_Notes, " +
         "Appt_Size FROM Appointment " +
@@ -150,3 +146,5 @@ app.get('/updateCustomerCalendar', (req, res) => {
             res.json(calendar);
         })
 })
+
+module.exports = update_Customer;
