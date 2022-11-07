@@ -95,48 +95,75 @@ const ForgotPassword = ({ setSignedIn, setwpage }) => {
 
     const sendCodeForm = (
         <form className='form'>
-            <label className='label'>Email Address:</label>
-            <input
+            <div className='inputTitles1'>
+                <label className='label'>Email Address:</label>
+            </div>
+             <div className='inputBoxes1'>
+                <input
+                className='input2'
                 type="text"
                 onChange={handleEmailInputChange}
-            />
-            <br />
+                />
+            </div>
+            <br /><br />
+             <div className='buttonContainer'>
+                <br /><br />
+                <div className='button1'>
             <CancelButton onClick={handleCancel} />
             <ConfirmButton buttonText='Send' onClick={handleSendCode} />
             {/* <input type="submit" value="Send" />
             <input type="button" value="Cancel" onClick={handleSendCode} /> */}
             <span className='span hyperlink' onClick={() => setwpage('Log In')}>Log In</span>
             <span className='span2 hyperlink' onClick={() => setwpage('Sign Up')}>Sign Up</span>
-        </form>
+                </div></div>
+            </form>
     )
 
     const forgotPasswordForm = (
         <form className='form'>
-            <label className='label'>Confirmation Code:</label>
-            <input
+            <div className='inputTitles1'>
+                <label className='label'>Confirmation Code:</label>
+            </div>
+            <div className='inputBoxes1'>
+                <input
+                    className='input2'
                 type="text"
                 onChange={handleConfirmationCodeInputChange}
-            />
-            <br />
-            
-            <label className='label'>New Password:</label>
-            <input
+                />
+            </div>
+            <br /><br />
+            <div className='inputTitles2'>
+                <label className='label'>New Password:</label>
+            </div>
+            <div className='inputBoxes2'>
+                <input
+                className='input2'
                 type="text"
                 onChange={handleFirstPasswordInputChange}
-            />
-            <br />
+                />
+            </div>
+            <br /><br />
 
-            <label className='label'>Re-enter Password:</label>
-            <input
+            <div className='inputTitles3'>
+                <label className='label'>Re-enter Password:</label>
+            </div>
+            <div className='inputBoxes3'>
+                <input
+                className='input2'
                 type="text"
                 onChange={handleSecondPasswordInputChange}
-            />
-            <br/>
+                />
+            </div>
+            <br /><br /><br /><br />
+
+             <div className='buttonContainer'>
+                <div className='button1'>
             <div style={{color: 'red'}}>{passwordError}</div>
             <ConfirmButton buttonText={'Change'} onClick={handleChangePassword} />
             <CancelButton onClick={handleCancel} />
             
             <div style={{ color: 'green' }}>Please Check Your Email for a Comfirmation Code</div>
+            </div></div>
         </form>
     )
 

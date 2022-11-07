@@ -12,7 +12,7 @@ const AvailableAppointments = ({ availableAppointments, userPermissions }) => {
     const pills = trainersList.map(trainerName => <div> <AppointmentPill trainerName={trainerName} availableAppointments={availableAppointments} userPermissions={userPermissions}/></div> );
 
     return (
-        <div style={{display: 'flex', marginLeft: 'calc(50% - 350px)'}}>{pills}</div>
+        <div style={{display: 'flex', marginLeft: 'calc(50% - 350px)', paddingBottom: '66px'}}>{pills}</div>
     )
 }
 
