@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16303');
+
 /**
  * Mysql connection
  */
@@ -12,12 +16,18 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-});
+app.put('/createAppointment', (req, res) => {
+    var appt_name = req.body.appt_name;
+    var appt_date = req.body.appt_date;
+    var appt_time = req.body.appt_time;
+    var appt_difficulty = req.body.appt_difficulty;
+    var appt_desc = req.body.appt_desc;
+    var appt_pub_notes = req.body.appt_pub_notes;
+    var appt_priv_notes = req.body.appt_priv_notes;
+    var appt_size = req.body.appt_size;
+    var appt_TID_1 = req.body.appt_TID_1;
+    var appt_TID_2 = req.body.appt_TID_2;
 
-createAppointment = (appt_name, appt_date, appt_time, appt_difficulty, appt_desc,
-    appt_pub_notes, appt_priv_notes, appt_size, appt_TID_1, appt_TID_2) => {
     // Reconfigure default values
     if (appt_difficulty == '') appt_difficulty = 0;
     if (appt_desc == '') appt_desc = null;
@@ -44,6 +54,6 @@ createAppointment = (appt_name, appt_date, appt_time, appt_difficulty, appt_desc
         if (err) throw err;
         appt_key = result[0].Appt_Key;
     })
-}
+})
 
-con.end();
+module.exports = create_Appointment;

@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16311');
+
 /**
  * Mysql connection
  */
@@ -12,96 +16,92 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-});
-
-setName = (name, appt_key) => {
-    con.query("UPDATE Appointment SET Appt_Name = '" + name +
-        "' WHERE Appt_Key = " + appt_key + ";",
+app.put('/setName', (req, res) => {
+    con.query("UPDATE Appointment SET Appt_Name = '" + req.body.name +
+        "' WHERE Appt_Key = " + req.body.appt_key + ";",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-setDate = (date, appt_key) => {
-    con.query("UPDATE Appointment SET Appt_Date = '" + date +
-        "' WHERE Appt_Key = " + appt_key + ";",
+app.put('/setDate', (req, res) => {
+    con.query("UPDATE Appointment SET Appt_Date = '" + req.body.date +
+        "' WHERE Appt_Key = " + req.body.appt_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-setTime = (time, appt_key) => {
-    con.query("UPDATE Appointment SET Appt_Time = '" + time +
-        "' WHERE Appt_Key = " + appt_key + ";",
+app.put('/setTime', (req, res) => {
+    con.query("UPDATE Appointment SET Appt_Time = '" + req.body.time +
+        "' WHERE Appt_Key = " + req.body.appt_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-setDifficulty = (diff, appt_key) => {
-    con.query("UPDATE Appointment SET Appt_Difficulty = '" + diff +
-        "' WHERE Appt_Key = " + appt_key + ";",
+app.put('/setDifficulty', (req, res) => {
+    con.query("UPDATE Appointment SET Appt_Difficulty = '" + req.body.diff +
+        "' WHERE Appt_Key = " + req.body.appt_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-setDescription = (desc, appt_key) => {
-    con.query("UPDATE Appointment SET Appt_Description = '" + desc +
-        "' WHERE Appt_Key = " + appt_key + ";",
+app.put('/setDescription', (req, res) => {
+    con.query("UPDATE Appointment SET Appt_Description = '" + req.body.desc +
+        "' WHERE Appt_Key = " + req.body.ppt_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-setPublicNotes = (pub_notes, appt_key) => {
-    con.query("UPDATE Appointment SET Appt_Public_Notes = '" + pub_notes +
-        "' WHERE Appt_Key = " + appt_key + ";",
+app.put('/setPublicNotes', (req, res) => {
+    con.query("UPDATE Appointment SET Appt_Public_Notes = '" + req.body.pub_notes +
+        "' WHERE Appt_Key = " + req.body.appt_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-setPrivateNotes = (priv_notes, appt_key) => {
-    con.query("UPDATE Appointment SET Appt_Private_Notes = '" + priv_notes +
-        "' WHERE Appt_Key = " + appt_key + ";",
+app.put('/setPrivateNotes', (req, res) => {
+    con.query("UPDATE Appointment SET Appt_Private_Notes = '" + req.body.priv_notes +
+        "' WHERE Appt_Key = " + req.body.appt_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-setSize = (size, appt_key) => {
-    con.query("UPDATE Appointment SET Appt_Size = '" + size +
-        "' WHERE Appt_Key = " + appt_key + ";",
+app.put('/setSize', (req, res) => {
+    con.query("UPDATE Appointment SET Appt_Size = '" + req.body.size +
+        "' WHERE Appt_Key = " + req.body.appt_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-setTID1 = (tid_1, appt_key) => {
-    con.query("UPDATE Appointment SET Appt_TID_1 = '" + tid_1 +
-        "' WHERE Appt_Key = " + appt_key + ";",
+app.put('/setTID1', (req, res) => {
+    con.query("UPDATE Appointment SET Appt_TID_1 = '" + req.body.tid_1 +
+        "' WHERE Appt_Key = " + req.body.appt_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-setTID2 = (tid_2, appt_key) => {
-    con.query("UPDATE Appointment SET Appt_TID_2 = '" + tid_2 +
-        "' WHERE Appt_Key = " + appt_key + ";",
+app.put('/setTID2', (req, res) => {
+    con.query("UPDATE Appointment SET Appt_TID_2 = '" + req.body.tid_2 +
+        "' WHERE Appt_Key = " + req.body.appt_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-setGID = (gid, appt_key) => {
-    con.query("UPDATE Appointment SET Appt_GID = '" + gid +
-        "' WHERE Appt_Key = " + appt_key + ";",
+app.put('/setGID', (req, res) => {
+    con.query("UPDATE Appointment SET Appt_GID = '" + req.body.gid +
+        "' WHERE Appt_Key = " + req.body.appt_key + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-con.end();
+module.exports = set_Admin_Appointment;

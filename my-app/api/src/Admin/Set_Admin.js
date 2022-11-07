@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16301');
+
 /**
  * Mysql connection
  */
@@ -12,56 +16,52 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-});
-
-setName = (name, admin_id) => {
-    con.query("UPDATE Trainer SET Train_Name = '" + name +
-        "' WHERE TID = " + admin_id + ";",
+app.put('/setName', (req, res) => {
+    con.query("UPDATE Trainer SET Train_Name = '" + req.body.name +
+        "' WHERE TID = " + req.body.admin_id + ";",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-setAddress = (address, admin_id) => {
-    con.query("UPDATE Trainer SET Train_Address = '" + address +
-        "' WHERE TID = " + admin_id + ";",
+app.put('/setAddress', (req, res) => {
+    con.query("UPDATE Trainer SET Train_Address = '" + req.body.address +
+        "' WHERE TID = " + req.body.admin_id + ";",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-setPhone = (phone, admin_id) => {
-    con.query("UPDATE Trainer SET Train_Phone_Number = '" + phone +
-        "' WHERE TID = " + admin_id + ";",
+app.put('/setPhone', (req, res) => {
+    con.query("UPDATE Trainer SET Train_Phone_Number = '" + req.body.phone +
+        "' WHERE TID = " + req.body.admin_id + ";",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-setEmail = (email, admin_id) => {
-    con.query("UPDATE Trainer SET Train_Email_Addr = '" + email +
-        "' WHERE TID = " + admin_id + ";",
+app.put('/setEmail', (req, res) => {
+    con.query("UPDATE Trainer SET Train_Email_Addr = '" + req.body.email +
+        "' WHERE TID = " + req.body.admin_id + ";",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-setEmerName = (name, admin_id) => {
-    con.query("UPDATE Trainer SET Train_Emer_Name = '" + name +
-        "' WHERE TID = " + admin_id + ";",
+app.put('/setEmerName', (req, res) => {
+    con.query("UPDATE Trainer SET Train_Emer_Name = '" + req.body.name +
+        "' WHERE TID = " + req.body.admin_id + ";",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-setEmerPhone = (phone, admin_id) => {
-    con.query("UPDATE Trainer SET Train_Emer_Num = '" + phone +
-        "' WHERE TID = " + admin_id + ";",
+app.put('/setEmerPhone', (req, res) => {
+    con.query("UPDATE Trainer SET Train_Emer_Num = '" + req.body.phone +
+        "' WHERE TID = " + req.body.admin_id + ";",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-con.end();
+module.exports = set_Admin;

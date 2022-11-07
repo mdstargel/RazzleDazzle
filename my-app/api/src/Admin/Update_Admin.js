@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16300');
+
 /**
  * Mysql connection
  */
@@ -12,10 +16,6 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-});
-
 /**
  * Imports
  */
@@ -25,73 +25,74 @@ let { mini_trainer } = require("./Mini_Trainer/Class_Mini_Trainer");
 let { micro_trainer } = require("./Appointment/Micro_Trainer/Class_Micro_Trainer");
 let { admin_news } = require("./News/Class_Admin_News");
 
-var updateName = (admin_id) => {
+app.get('/updateName', (req, res) => {
     var name;
     con.query("SELECT Train_Name FROM Trainer WHERE TID = '" +
-        admin_id + "';",
+        req.body.admin_id + "';",
         function(err, result) {
             if (err) throw err;
             name = result[0].Train_Name;
+            res.json(name);
         })
-    return name;
-}
+})
 
-var updateAddress = (admin_id) => {
+app.get('/updateAddress', (req, res) => {
     var address;
     con.query("SELECT Train_Address FROM Trainer WHERE TID = '" +
-        admin_id + "';",
+        req.body.admin_id + "';",
         function(err, result) {
             if (err) throw err;
             address = result[0].Train_Address;
+            res.json(address);
         })
-    return address;
-}
+})
 
-var updatePhone = (admin_id) => {
+app.get('/updatePhone', (req, res) => {
     var phone;
     con.query("SELECT Train_Phone_Num FROM Trainer WHERE TID = '" +
-        admin_id + "';",
+        req.body.admin_id + "';",
         function(err, result) {
             if (err) throw err;
             phone = result[0].Train_Phone_Num;
+            res.json(phone);
         })
-    return phone;
-}
+})
 
-var updateEmail = (admin_id) => {
+app.get('/updateEmail', (req, res) => {
     var email;
     con.query("SELECT Train_Email_Addr FROM Trainer WHERE TID = '" +
-        admin_id + "';",
+        req.body.admin_id + "';",
         function(err, result) {
             if (err) throw err;
             email = result[0].Train_Email_Addr;
+            res.json(email);
         })
-    return email;
-}
+})
 
-var updateEmerName = (admin_id) => {
+app.get('/updateEmerName', (req, res) => {
     var emerName;
     con.query("SELECT Train_Emer_Name FROM Trainer WHERE TID = '" +
-        admin_id + "';",
+        req.body.admin_id + "';",
         function(err, result) {
             if (err) throw err;
             emerName = result[0].Train_Emer_Name;
+            res.json(emerName);
         })
     return emerName;
-}
+})
 
-var updateEmerPhone = (admin_id) => {
+app.get('/updateEmerPhone', (req, res) => {
     var emerPhone;
     con.query("SELECT Train_Emer_Num FROM Trainer WHERE TID = '" +
-        admin_id + "';",
+        req.body.admin_id + "';",
         function(err, result) {
             if (err) throw err;
             emerPhone = result[0].Train_Emer_Num;
+            res.json(emerPhone);
         })
-    return emerPhone;
-}
+})
 
-var updateCustomers = () => {
+app.get('/updateCustomers', (req, res) => {
     var customers = [];
     con.query("SELECT * FROM Customer;",
         function(err, result) {
@@ -103,11 +104,11 @@ var updateCustomers = () => {
                     result[i].Cust_Emer_Num, result[i].Difficulty,
                     result[i].Phone_Notif));
             };
+            res.json(customers);
         });
-    return customers;
-}
+})
 
-var updateTrainers = () => {
+app.get('/updateTrainers', (req, res) => {
     var trainers = [];
     con.query("SELECT TID, Train_Name, Train_Address, Train_Phone_Num, Train_Email_Addr, " +
         "Train_Emer_Name, Train_Emer_Num, Admin FROM Trainer;",
@@ -118,12 +119,12 @@ var updateTrainers = () => {
                     result[i].Train_Address, result[i].Train_Phone_Num,
                     result[i].Train_Email_Addr, result[i].Train_Emer_Name,
                     result[i].Train_Emer_Num, result[i].Admin));
-            };
-        });
-    return trainers;
-}
+            }
+            res.json(trainers);
+        })
+})
 
-var updateCalendar = () => {
+app.get('/updateCalendar', (req, res) => {
     var calendar = [];
     var micro_trainers = [];
     con.query("SELECT TID, Train_Name FROM Trainer;",
@@ -141,12 +142,12 @@ var updateCalendar = () => {
                 result[i].Appt_Description, result[i].Appt_Public_Notes,
                 result[i].Appt_Private_Notes, result[i].Appt_Size, result[i].Appt_TID_1,
                 result[i].Appt_TID_2, result[i].Appt_GID, micro_trainers));
-        };
+        }
+        res.json(calendar);
     });
-    return calendar;
-}
+})
 
-var updateNews = () => {
+app.get('/updateNews', (req, res) => {
     var admin_news_array = [];
     con.query("SELECT * FROM News;", function(err, result) {
         if (err) throw err;
@@ -180,7 +181,11 @@ var updateNews = () => {
             }
         })
     }
-    return admin_news_array;
-}
 
-con.end();
+    con.connect(function(err) {
+        if (err) throw err;
+        res.json(admin_news_array);
+    });
+})
+
+module.exports = update_Admin;

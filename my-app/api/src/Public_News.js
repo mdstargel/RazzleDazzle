@@ -1,3 +1,8 @@
+const express = require('express');
+const app = express();
+app.listen('16400');
+
+
 // Variables for connection
 var mysql = require('mysql2');
 
@@ -10,16 +15,12 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-});
-
 /**
  * Imports
  */
 let { news } = require("./News/Class_News");
 
-var PublicNews = () => {
+app.get('/publicNews', (req, res) => {
     var public_news = [];
     con.query("SELECT * FROM News;", function(err, result) {
         if (err) throw err;
@@ -27,8 +28,8 @@ var PublicNews = () => {
             public_news.push(new news(result[i].Key, result[i].IMG_Name,
                 result[i].Title, result[i].Link, result[i].News_Description));
         }
+        res.json(public_news);
     })
-    return public_news;
-}
+})
 
-con.end();
+// module.exports = public_News;

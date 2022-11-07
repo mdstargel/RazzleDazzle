@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-app.listen('3001');
+app.listen('16101');
 
 /**
  * Mysql connection
@@ -16,10 +16,7 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-/** 
- * Setters for Customer class
- */
-app.put('/setCustomerName', (req, res) => {
+app.put('/setName', (req, res) => {
     con.query("UPDATE Customer SET Cust_Name = '" + req.body.name +
         "' WHERE CID = " + req.body.customer_id + ";",
         function(err) {
@@ -27,7 +24,7 @@ app.put('/setCustomerName', (req, res) => {
         });
 })
 
-app.put('/setCustomerAddress', (req, res) => {
+app.put('/setAddress', (req, res) => {
     con.query("UPDATE Customer SET Cust_Address = '" + req.body.addr +
         "' WHERE CID = " + req.body.customer_id + ";",
         function(err) {
@@ -35,70 +32,68 @@ app.put('/setCustomerAddress', (req, res) => {
         });
 })
 
-app.put('')
-
-setPhone = (phone_num, customer_id) => {
-    con.query("UPDATE Customer SET Cust_Phone_Number = '" + phone_num +
-        "' WHERE CID = " + customer_id + ";",
+app.put('/setPhone', (req, res) => {
+    con.query("UPDATE Customer SET Cust_Phone_Number = '" + req.body.phone_num +
+        "' WHERE CID = " + req.body.customer_id + ";",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-setEmail = (email_addr, customer_id, email) => {
-    con.query("UPDATE Customer SET Cust_Email_Addr = '" + email_addr +
-        "' WHERE CID = " + customer_id + ";",
+app.put('/setEmail', (req, res) => {
+    con.query("UPDATE Customer SET Cust_Email_Addr = '" + req.body.email_addr +
+        "' WHERE CID = " + req.body.customer_id + ";",
         function(err) {
             if (err) throw err;
         });
 
-    con.query("UPDATE Login SET Email = '" + email_addr + "' WHERE Email = '" +
+    con.query("UPDATE Login SET Email = '" + req.body.email_addr + "' WHERE Email = '" +
         email + "';",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-setEmerName = (name, customer_id) => {
-    con.query("UPDATE Customer SET Cust_Emer_Name = '" + name +
-        "' WHERE CID = " + customer_id + ";",
+app.put('/setEmerName', (req, res) => {
+    con.query("UPDATE Customer SET Cust_Emer_Name = '" + req.body.name +
+        "' WHERE CID = " + req.body.customer_id + ";",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-setEmerNum = (phone_num, customer_id) => {
-    con.query("UPDATE Customer SET Cust_Emer_Num = '" + phone_num +
-        "' WHERE CID = " + customer_id + ";",
+app.put('/setEmerName', (req, res) => {
+    con.query("UPDATE Customer SET Cust_Emer_Num = '" + req.body.phone_num +
+        "' WHERE CID = " + req.body.customer_id + ";",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-setNotifications = (notif, customer_id) => {
-    con.query("UPDATE Customer SET Phone_Notif = '" + notif +
-        "' WHERE CID = " + customer_id + ";",
+app.put('/setNotifications', (req, res) => {
+    con.query("UPDATE Customer SET Phone_Notif = '" + req.body.notif +
+        "' WHERE CID = " + req.body.customer_id + ";",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-setPassword = (old_pw, new_pw, email) => {
+app.put('/setPassword', (req, res) => {
     var db_old_pw;
-    con.query("SELECT Log_Password FROM Login WHERE Email = '" + email +
+    con.query("SELECT Log_Password FROM Login WHERE Email = '" + req.body.email +
         "';",
         function(err, result) {
             if (err) throw err;
             db_old_pw = result[0].Log_Password;
         })
 
-    if (db_old_pw == old_pw) {
-        con.query("UPDATE Login SET Log_Password = '" + new_pw + "' WHERE Email = '" +
-            email + "';",
+    if (db_old_pw == req.body.old_pw) {
+        con.query("UPDATE Login SET Log_Password = '" + req.body.new_pw + "' WHERE Email = '" +
+            req.body.email + "';",
             function(err) {
                 if (err) throw err;
             })
     }
-}
+})
 
-con.end();
+module.exports = set_Customer;
