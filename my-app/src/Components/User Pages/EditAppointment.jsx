@@ -76,6 +76,7 @@ const EditAppointment = ({ appointment, setModifyAppointment}) => {
             </div>
             <div className='inputBoxes1'>
                 <input
+                    className='input2'
                     type="text"
                     value={values.trainerNames}
                     onChange={handletrainerNamesChange}
@@ -86,7 +87,8 @@ const EditAppointment = ({ appointment, setModifyAppointment}) => {
                 <label>Date:</label>
             </div>
             <div className='inputBoxes2'>
-            <input
+                <input
+                className='input2'
                 type="text"
                 value={values.date}
                 onChange={handleDateChange}
@@ -97,40 +99,59 @@ const EditAppointment = ({ appointment, setModifyAppointment}) => {
             <div className='inputTitles3'>
                 <label>Start Time:</label>
             </div>
+            <div className='inputBoxes3'>
             <input
+                className='input2'
                 type="text"
                 value={values.startTime}
                 onChange={handleStartTimeChange}
-                />
-                <br />
-                
-            <label>End Time:</label>
+                />                
+            </div>
+            <br /><br />
+
+            <div className='inputTitles4'>
+                <label>End Time:</label>
+            </div>
+             <div className='inputBoxes3'>
             <input
+                className='input2'
                 type="text"
                 value={values.endTime}
                 onChange={handleEndTimeChange}
                 />
-                <br />
-                
-            <label>Lesson ridingStyle:</label>
-            <input
+            </div>
+                <br /><br />
+            
+            <div className='inputTitles5'>
+                <label>Lesson ridingStyle:</label>
+            </div>
+             <div className='inputBoxes3'>
+                <input
+                className='input2'
                 type="text"
                 value={values.ridingStyle}
                 onChange={handleridingStyleChange}
                 />
-                <br />
-                
-            <label>Lesson Type:</label>
-            <input
+            </div>
+                <br /><br />
+            
+            <div className='inputTitles6'>
+                <label>Lesson Type:</label>
+            </div>
+             <div className='inputBoxes6'>
+                <input
+                className='input2'
                 type="text"
                 value={values.lessonType}
                 onChange={handleLessonTypeChange}
                 />
-                <br/>
-
+            </div>
+            <br /><br /><br /><br />
+            <div className='buttonContainer'>
+                    <div className='button1'>
             <CancelButton onClick={() => setModifyAppointment()} />
             <ConfirmButton buttonText={'Edit'} onClick={handleEditAppointment} />
-        </div>
+        </div></div></div>
     );
 }
 
