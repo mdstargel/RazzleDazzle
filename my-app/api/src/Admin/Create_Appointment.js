@@ -56,4 +56,4 @@ app.put('/createAppointment', (req, res) => {
     })
 })
 
-module.exports = create_Appointment;
+module.exports = app;

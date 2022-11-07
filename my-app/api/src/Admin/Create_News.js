@@ -26,4 +26,4 @@ app.put('/createNews', (req, res) => {
         });
 })
 
-module.exports = create_News;
+module.exports = app;

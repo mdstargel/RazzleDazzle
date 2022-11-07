@@ -203,4 +203,4 @@ app.put('/deleteUser', (req, res) => {
     }
 })
 
-module.exports = delete_Customer;
+module.exports = app;

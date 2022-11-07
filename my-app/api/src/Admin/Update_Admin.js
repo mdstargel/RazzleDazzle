@@ -188,4 +188,4 @@ app.get('/updateNews', (req, res) => {
     });
 })
 
-module.exports = update_Admin;
+module.exports = app;

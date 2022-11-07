@@ -53,4 +53,4 @@ app.put('/createTrainer', (req, res) => {
         })
 })
 
-module.exports = create_Trainer;
+module.exports = app;
