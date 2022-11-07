@@ -9,7 +9,7 @@ import MyCalendarView from './MyCalendarView';
 import AdminCalendarView from './AdminCalendarView';
 // import DayView from './Calendar/DayView';
 import AddAppointment from './SettingsPages/AddAppointment';
-
+// Bobby's comment merge conflict
 const Calendar = ({userPermissions}) => {
     const [selectedTab, setSelectedTab] = useState('Available Appointments');
     const [showAddAppointment, setShowAddAppointment] = useState();
