@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './styles.css'
 import PageTitle from "./PageTitle";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const newsTitleCenter = {
     fontFamily: 'IBM Plex Sans Devanagari',
@@ -11,8 +12,9 @@ const newsTitleCenter = {
     textAlign: 'center',
     color: '#0C1526',
     position: 'absolute',
-    top: '700px',
-    left: '50%',
+    top: '722px',
+    width: '250px',
+    left: 'calc(50% - 125px)',
 
 }
 
@@ -21,7 +23,7 @@ const newsImage = {
     position: 'absolute',
     width: '600px',
     height: '400px',
-    top: '300px',
+    top: '37%',
     left: 'calc(50% - 300px)',
     borderRadius: '20px',
     // zIndex: '3',
@@ -50,38 +52,39 @@ const NewsArticleText = {
     textAlign: 'center',
     color: '#000000',
     position: 'absolute',
-    top: '740px',
-    left: '50%',
+    width: '500px',
+    top: '753px',
+    left: 'calc(50% - 250px)',
 }
 
 const rightsideItem = {
-    width: '200px',
+    width: '250px',
     height: '200px',
     // backgroundColor: 'green',
     top: '50%',
-    left: 'calc(85% - 100px)',
+    left: 'calc(83% - 125px)',
     position: 'absolute',
     borderRadius: '20px',
 }
 
 const rightsideTitle = {
-    top: '570px',
-    left: 'calc(85% - 25px)',
+    top: '75%',
+    left: 'calc(83% - 25px)',
     position: 'absolute',
 }
 
 const leftsideItem = {
-    width: '200px',
+    width: '250px',
     height: '200px',
     top: '50%',
-    left: 'calc(15% - 100px)',
+    left: 'calc(17% - 125px)',
     position: 'absolute',
     borderRadius: '20px',
 }
 
 const leftsideTitle = {
-    top: '570px',
-    left: 'calc(15% - 25px)',
+    top: '75%',
+    left: 'calc(17% - 25px)',
     position: 'absolute',
 }
 
@@ -146,10 +149,10 @@ const News = ({ newsArticles }) => {
                 <LeftFeedItem />
                 <div
                     onClick={handleSetArticleRight}
-                    style={{ fontSize: '70px', position: 'absolute', marginTop: '350px', paddingLeft: '95%' }}>&#10148;</div>
+                    style={{ fontSize: '70px', position: 'absolute', top: '57%', paddingLeft: '94%', opacity:'0.75'}}><IoIosArrowForward /></div>
                 <div
                     onClick={handleSetArticleLeft}
-                    style={{ transform: 'rotate(180deg)', fontSize: '70px', position: 'absolute', marginTop: '350px', paddingLeft: '2%' }}>&#10148;</div>
+                    style={{ fontSize: '70px', position: 'absolute', top: '57%', paddingLeft: '1%', opacity:'0.75' }}><IoIosArrowBack /></div>
             </div>
         </div>
     );
