@@ -168,7 +168,7 @@ const Calendar = ({userPermissions}) => {
             <ReactCalendar />
             {showAddAppointment}
         <div
-          style={{ color: 'blue', marginLeft: '50%', fontSize: '20px' }}
+          style={{ color: 'blue', marginLeft: '50%', fontSize: '20px', marginTop: '10px', marginBottom: '10px' }}
           onClick={() => setShowAddAppointment(<AddAppointment setShowAddAppointment={setShowAddAppointment}></AddAppointment>)}>
           Make Appointment
         </div>
