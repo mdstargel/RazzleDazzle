@@ -70,59 +70,66 @@ const EditAppointment = ({ appointment, setModifyAppointment}) => {
     };
 
     return(
-        <div className='backGround'>
-            <div className="form">
+        <div className="fixedForm">
+            <div className='inputTitles1'>
                 <label>Trainer Name:</label>
+            </div>
+            <div className='inputBoxes1'>
                 <input
                     type="text"
                     value={values.trainerNames}
                     onChange={handletrainerNamesChange}
-                    />
-                    <br />
-                    
+                />
+            </div>    
+            <br /><br />
+            <div className='inputTitles2'>
                 <label>Date:</label>
-                <input
-                    type="text"
-                    value={values.date}
-                    onChange={handleDateChange}
-                    />
+            </div>
+            <div className='inputBoxes2'>
+            <input
+                type="text"
+                value={values.date}
+                onChange={handleDateChange}
+                />
+            </div>
+            <br /><br />
+
+            <div className='inputTitles3'>
+                <label>Start Time:</label>
+            </div>
+            <input
+                type="text"
+                value={values.startTime}
+                onChange={handleStartTimeChange}
+                />
+                <br />
+                
+            <label>End Time:</label>
+            <input
+                type="text"
+                value={values.endTime}
+                onChange={handleEndTimeChange}
+                />
+                <br />
+                
+            <label>Lesson ridingStyle:</label>
+            <input
+                type="text"
+                value={values.ridingStyle}
+                onChange={handleridingStyleChange}
+                />
+                <br />
+                
+            <label>Lesson Type:</label>
+            <input
+                type="text"
+                value={values.lessonType}
+                onChange={handleLessonTypeChange}
+                />
                 <br/>
 
-                <label>Start Time:</label>
-                <input
-                    type="text"
-                    value={values.startTime}
-                    onChange={handleStartTimeChange}
-                    />
-                    <br />
-                    
-                <label>End Time:</label>
-                <input
-                    type="text"
-                    value={values.endTime}
-                    onChange={handleEndTimeChange}
-                    />
-                    <br />
-                    
-                <label>Lesson ridingStyle:</label>
-                <input
-                    type="text"
-                    value={values.ridingStyle}
-                    onChange={handleridingStyleChange}
-                    />
-                    <br />
-                    
-                <label>Lesson Type:</label>
-                <input
-                    type="text"
-                    value={values.lessonType}
-                    onChange={handleLessonTypeChange}
-                    />
-                    <br/>
-
-                <CancelButton onClick={() => setModifyAppointment()} />
-                <ConfirmButton buttonText={'Edit'} onClick={handleEditAppointment} />
-            </div>
+            <CancelButton onClick={() => setModifyAppointment()} />
+            <ConfirmButton buttonText={'Edit'} onClick={handleEditAppointment} />
         </div>
     );
 }

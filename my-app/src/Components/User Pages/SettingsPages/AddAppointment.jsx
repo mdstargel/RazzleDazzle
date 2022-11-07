@@ -87,6 +87,7 @@ const AddAppointment = ({setShowAddAppointment}) => {
                     />
                 </div>
                 <br /><br />
+                
                 <div className='inputTitles2'>
                     <label className='label'>Date:</label>
                 </div>
