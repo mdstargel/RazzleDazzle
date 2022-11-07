@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16213');
+
 /**
  * Mysql connection
  */
@@ -12,16 +16,12 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-})
-
-var getCustomers = (appt_key) => {
+app.get('/getCustomers', (req , res) => {
     var appt_cust_names = [];
     con.query("SELECT Name FROM Customer " +
         "INNER JOIN Customer_Group ON Customer.CID = Customer_Group.CID_1 " +
         "INNER JOIN Appointment ON Customer_Group.GID = Appointment.Appt_GID " +
-        "WHERE Appointment.Appt_Key = " + appt_key + ";",
+        "WHERE Appointment.Appt_Key = " + req.body.appt_key + ";",
         function(err, result) {
             if (err) throw err;
             appt_cust_names.push(result[0].Name);
@@ -30,7 +30,7 @@ var getCustomers = (appt_key) => {
     con.query("SELECT Name FROM Customer " +
         "INNER JOIN Customer_Group ON Customer.CID = Customer_Group.CID_2 " +
         "INNER JOIN Appointment ON Customer_Group.GID = Appointment.Appt_GID " +
-        "WHERE Appointment.Appt_Key = " + appt_key + ";",
+        "WHERE Appointment.Appt_Key = " + req.body.appt_key + ";",
         function(err, result) {
             if (err) throw err;
             appt_cust_names.push(result[0].Name);
@@ -39,7 +39,7 @@ var getCustomers = (appt_key) => {
     con.query("SELECT Name FROM Customer " +
         "INNER JOIN Customer_Group ON Customer.CID = Customer_Group.CID_3 " +
         "INNER JOIN Appointment ON Customer_Group.GID = Appointment.Appt_GID " +
-        "WHERE Appointment.Appt_Key = " + appt_key + ";",
+        "WHERE Appointment.Appt_Key = " + req.body.appt_key + ";",
         function(err, result) {
             if (err) throw err;
             appt_cust_names.push(result[0].Name);
@@ -48,12 +48,13 @@ var getCustomers = (appt_key) => {
     con.query("SELECT Name FROM Customer " +
         "INNER JOIN Customer_Group ON Customer.CID = Customer_Group.CID_4 " +
         "INNER JOIN Appointment ON Customer_Group.GID = Appointment.GID " +
-        "WHERE Appointment.key = " + appt_key + ";",
+        "WHERE Appointment.key = " + req.body.appt_key + ";",
         function(err, result) {
             if (err) throw err;
             appt_cust_names.push(result[0].Name);
+            res.json(appt_cust_names);
         });
-    return appt_cust_names;
-}
+    
+})
 
-con.end();
+module.exports = get_Trainer_Appointment_Customers;

@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16212');
+
 /**
  * Mysql connection
  */
@@ -10,10 +14,6 @@ var con = mysql.createConnection({
     database: "Horse_Site",
     insecureAuth: true,
     connectTimeout: 30000
-});
-
-con.connect(function(err) {
-    if (err) throw err;
 });
 
 /**
@@ -139,7 +139,12 @@ var getEmails = (appt_key) => {
     return emails;
 }
 
-sendNotifications = (appt_key, title, notification) => {
+
+app.put('/sendNotifications', (req , res) => {
+    var appt_key = req.body.appt_key;
+    var title = req.body.title;
+    var notification = req.body.notification;
+
     var emails = getEmails(appt_key);
     for (var i = 0; i < emails.length; i++) {
         emailAppt(emails[i], title, notification);
@@ -150,6 +155,6 @@ sendNotifications = (appt_key, title, notification) => {
     for (var i = 0; i < phone.length; i++) {
         textAppt(phone[i], notification);
     }
-}
+})
 
-con.end();
+module.exports = notify_Trainer_Appointment;
