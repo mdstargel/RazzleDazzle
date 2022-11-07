@@ -157,7 +157,7 @@
 
 .appointmentInfo {
   /* background-color: white; */
-  margin: 5px;
+  padding: 2px;
   text-align: left;
   /* font-weight: bold; */
   cursor: default;
