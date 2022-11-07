@@ -113,8 +113,8 @@ const AppointmentsByDay = () => {
     };
     
     return (
-        <div>
-            <AppointmentsByDay />
+        <div style={{marginBottom: '66px'}}>
+            <AppointmentsByDay/>
             {modifyAppointment}
         </div>)
 }

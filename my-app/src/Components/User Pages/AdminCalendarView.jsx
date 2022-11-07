@@ -117,7 +117,7 @@ const AdminCalendarView = ({ UserSchdeule, userPermissions }) => {
         return pills;
     }
     return (
-        <div>
+        <div style={{marginBottom: '66px'}}>
             {/* <AppointmentsByDay /> */}
             <MapAppointmentsByDay />
             {modifyAppointment}
