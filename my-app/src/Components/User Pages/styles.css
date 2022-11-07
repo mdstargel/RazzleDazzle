@@ -808,7 +808,7 @@ text-align: left;
   border-radius: 16px;
   padding: 10px;
   text-align: center;
-  width: 210px;
+  width: 119px;
   cursor: pointer;
   font-size: 14px;
 }
@@ -839,4 +839,20 @@ text-align: left;
 
 .sunPill {
     background-color: violet;
+}
+
+.myCalendarDay {
+    background-color: white;
+    width: 280px;
+    /* height: 20px; */
+    border-style: solid;
+}
+.myCalendarTrainerName {
+    background-color: black;
+    width: 119px;
+    text-align: center;
+    color: white;
+}
+.trainerPill {
+    width: 230px;
 }

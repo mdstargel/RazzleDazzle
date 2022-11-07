@@ -167,7 +167,7 @@ const Calendar = ({userPermissions}) => {
             {tabs}
             <ReactCalendar />
             {showAddAppointment}
-            <div style={{ color: 'blue', marginLeft: '50%' }} onClick={() => setShowAddAppointment(<AddAppointment setShowAddAppointment={setShowAddAppointment}></AddAppointment>)}>Make Appointment</div>
+            <div style={{ color: 'blue', marginLeft: '50%', fontSize: '20px' }} onClick={() => setShowAddAppointment(<AddAppointment setShowAddAppointment={setShowAddAppointment}></AddAppointment>)}>Make Appointment</div>
             <ChosenPopup />
     </div>
     );

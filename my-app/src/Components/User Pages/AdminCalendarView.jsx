@@ -91,16 +91,18 @@ const AdminCalendarView = ({ UserSchdeule, userPermissions }) => {
         const saturdayPills = saturdayAppointments.map(appointment => <CustomerAppointmentPill appointment={appointment} dayStyle='customerAppointmentPill satPill'></CustomerAppointmentPill>);
         const sundayPills = sundayAppointments.map(appointment => <CustomerAppointmentPill appointment={appointment} dayStyle='customerAppointmentPill sunPill'></CustomerAppointmentPill>);
 
-    return (
-        <div style={{ marginTop: '100px' }}>
-            <div>{trainerName}</div>
-            <div >Monday {mondayPills}</div>
-            <div >Tuesday {tuesdayPills}</div>
-            <div >Wednesday {wednesdayPills}</div>
-            <div >Thursday {thursdayPills}</div>
-            <div >Friday {fridayPills}</div>
-            <div >Saturday {saturdayPills}</div>
-            <div >Sunday {sundayPills}</div>
+        return (
+        <div>
+                <div style={{ display: 'flex' }}>
+                <div className='myCalendarTrainerName'>{trainerName}</div>
+                <div className='myCalendarDay'>Monday {mondayPills}</div>
+                <div className='myCalendarDay'>Tuesday {tuesdayPills}</div>
+                <div className='myCalendarDay'>Wednesday {wednesdayPills}</div>
+                <div className='myCalendarDay'>Thursday {thursdayPills}</div>
+                <div className='myCalendarDay'>Friday {fridayPills}</div>
+                <div className='myCalendarDay'>Saturday {saturdayPills}</div>
+                <div className='myCalendarDay'>Sunday {sundayPills}</div>
+            </div>
         </div>)
     };
     const MapAppointmentsByDay = () => {
