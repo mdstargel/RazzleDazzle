@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16213');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -16,7 +17,7 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-app.get('/getCustomers', (req , res) => {
+app.get('/getCustomers', (req, res) => {
     var appt_cust_names = [];
     con.query("SELECT Name FROM Customer " +
         "INNER JOIN Customer_Group ON Customer.CID = Customer_Group.CID_1 " +
@@ -54,7 +55,7 @@ app.get('/getCustomers', (req , res) => {
             appt_cust_names.push(result[0].Name);
             res.json(appt_cust_names);
         });
-    
+
 })
 
-module.exports = get_Trainer_Appointment_Customers;
+module.exports = app;

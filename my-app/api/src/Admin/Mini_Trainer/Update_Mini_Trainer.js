@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16330');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -16,7 +17,7 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-app.get('/updateName', (req , res) => {
+app.get('/updateName', (req, res) => {
     var name;
     con.query("SELECT Train_Name FROM Trainer WHERE TID = '" +
         req.body.trainer_id + "';",
@@ -27,10 +28,10 @@ app.get('/updateName', (req , res) => {
         })
 })
 
-app.get('/updateAddress', (req , res) => {
+app.get('/updateAddress', (req, res) => {
     var address;
     con.query("SELECT Train_Address FROM Trainer WHERE TID = '" +
-    req.body.trainer_id + "';",
+        req.body.trainer_id + "';",
         function(err, result) {
             if (err) throw err;
             address = result[0].Train_Address;
@@ -38,10 +39,10 @@ app.get('/updateAddress', (req , res) => {
         })
 })
 
-app.get('/updatePhone', (req , res) => {
+app.get('/updatePhone', (req, res) => {
     var phone;
     con.query("SELECT Train_Phone_Num FROM Trainer WHERE TID = '" +
-    req.body.trainer_id + "';",
+        req.body.trainer_id + "';",
         function(err, result) {
             if (err) throw err;
             phone = result[0].Train_Phone_Num;
@@ -49,10 +50,10 @@ app.get('/updatePhone', (req , res) => {
         })
 })
 
-app.get('/updateEmail', (req , res) => {
+app.get('/updateEmail', (req, res) => {
     var email;
     con.query("SELECT Train_Email_Addr FROM Trainer WHERE TID = '" +
-    req.body.trainer_id + "';",
+        req.body.trainer_id + "';",
         function(err, result) {
             if (err) throw err;
             email = result[0].Train_Email_Addr;
@@ -60,10 +61,10 @@ app.get('/updateEmail', (req , res) => {
         })
 })
 
-app.get('/updateEmerName', (req , res) => {
+app.get('/updateEmerName', (req, res) => {
     var emerName;
     con.query("SELECT Train_Emer_Name FROM Trainer WHERE TID = '" +
-    req.body.trainer_id + "';",
+        req.body.trainer_id + "';",
         function(err, result) {
             if (err) throw err;
             emerName = result[0].Train_Emer_Name;
@@ -71,10 +72,10 @@ app.get('/updateEmerName', (req , res) => {
         })
 })
 
-app.get('/updateEmerPhone', (req , res) => {
+app.get('/updateEmerPhone', (req, res) => {
     var emerPhone;
     con.query("SELECT Train_Emer_Num FROM Trainer WHERE TID = '" +
-    req.body.trainer_id + "';",
+        req.body.trainer_id + "';",
         function(err, result) {
             if (err) throw err;
             emerPhone = result[0].Train_Emer_Num;
@@ -82,10 +83,10 @@ app.get('/updateEmerPhone', (req , res) => {
         })
 })
 
-app.get('/updateAdmin', (req , res) => {
+app.get('/updateAdmin', (req, res) => {
     var admin;
-    con.query("SELECT Admin FROM Trainer WHERE TID = '" +
-    req.body.trainer_id + "';",
+    con.query("SELECT Admin FROM Login WHERE TID = '" +
+        req.body.trainer_id + "';",
         function(err, result) {
             if (err) throw err;
             admin = result[0].Admin;
@@ -93,4 +94,4 @@ app.get('/updateAdmin', (req , res) => {
         })
 })
 
-module.exports = update_Mini_Trainer;
+module.exports = app;

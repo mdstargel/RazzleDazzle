@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16200');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -19,12 +20,12 @@ var con = mysql.createConnection({
 /**
  * Imports
  */
-let { trainer_appt } = require("./Class_Trainer_Appt");
+let { trainer_appt } = require("./Appointments/Class_Trainer_Appointment");
 
 /**
  * Updaters for Trainer class
  */
-app.get('/updateName', (req , res) => {
+app.get('/updateName', (req, res) => {
     var name;
     con.query("SELECT Train_Name FROM Trainer WHERE TID = '" +
         req.body.trainer_id + "';",
@@ -35,7 +36,7 @@ app.get('/updateName', (req , res) => {
         })
 })
 
-app.get('/updateAddress', (req , res) => {
+app.get('/updateAddress', (req, res) => {
     var address;
     con.query("SELECT Train_Address FROM Trainer WHERE TID = '" +
         req.body.trainer_id + "';",
@@ -46,7 +47,7 @@ app.get('/updateAddress', (req , res) => {
         })
 })
 
-app.get('/updatePhone', (req , res) => {
+app.get('/updatePhone', (req, res) => {
     var phone;
     con.query("SELECT Train_Phone_Num FROM Trainer WHERE TID = '" +
         req.body.trainer_id + "';",
@@ -57,7 +58,7 @@ app.get('/updatePhone', (req , res) => {
         })
 })
 
-app.get('/updateEmail', (req , res) => {
+app.get('/updateEmail', (req, res) => {
     var email;
     con.query("SELECT Train_Email_Addr FROM Trainer WHERE TID = '" +
         req.body.trainer_id + "';",
@@ -68,7 +69,7 @@ app.get('/updateEmail', (req , res) => {
         })
 })
 
-app.get('/updateEmerName', (req , res) => {
+app.get('/updateEmerName', (req, res) => {
     var emerName;
     con.query("SELECT Train_Emer_Name FROM Trainer WHERE TID = '" +
         req.body.trainer_id + "';",
@@ -79,7 +80,7 @@ app.get('/updateEmerName', (req , res) => {
         })
 })
 
-app.get('/updateEmerPhone', (req , res) => {
+app.get('/updateEmerPhone', (req, res) => {
     var emerPhone;
     con.query("SELECT Train_Emer_Num FROM Trainer WHERE TID = '" +
         req.body.trainer_id + "';",
@@ -90,7 +91,7 @@ app.get('/updateEmerPhone', (req , res) => {
         })
 })
 
-app.get('/updateCalendar', (req , res) => {
+app.get('/updateCalendar', (req, res) => {
     var calendar = [];
     con.query("SELECT Appt_Key, Appt_Name, Appt_Date, Appt_Time, Appt_Difficulty, Appt_Description, " +
         "Appt_Public_Notes, Appt_Private_Notes, Appt_Size FROM Appointment " +
@@ -108,4 +109,4 @@ app.get('/updateCalendar', (req , res) => {
         });
 })
 
-module.exports = update_Trainer;
+module.exports = app;

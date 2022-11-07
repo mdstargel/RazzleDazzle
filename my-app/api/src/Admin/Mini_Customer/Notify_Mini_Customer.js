@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16322');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -22,7 +23,7 @@ var con = mysql.createConnection({
 const { nodemailer, transporter, emailAppt, textAppt } = require('../../Notifications');
 let { mini_customer } = require("./Class_Mini_Customer")
 
-app.put('/sendNotifications', (req , res) => {
+app.put('/sendNotifications', (req, res) => {
     var mini_customers = req.body.mini_customers;
     var title = req.body.title;
     var notification = req.body.notification;
@@ -39,4 +40,4 @@ app.put('/sendNotifications', (req , res) => {
     }
 })
 
-module.exports = notify_Mini_Customer;
+module.exports = app;

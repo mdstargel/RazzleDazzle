@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16333');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -16,7 +17,7 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-app.put('/deleteUser', (req , res) => {
+app.put('/deleteUser', (req, res) => {
     var email;
     con.query("SELECT Train_Email_Addr FROM Trainer WHERE TID = " + req.body.trainer_id +
         ";",
@@ -42,4 +43,4 @@ app.put('/deleteUser', (req , res) => {
         })
 })
 
-module.exports = delete_Mini_Trainer;
+module.exports = app;

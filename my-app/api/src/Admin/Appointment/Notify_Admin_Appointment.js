@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16312');
+app.use(express.json());
 
 
 /**
@@ -157,4 +158,4 @@ app.put('/sendNotifications', (req, res) => {
     }
 })
 
-module.exports = notify_Admin_Appointment;
+module.exports = app;

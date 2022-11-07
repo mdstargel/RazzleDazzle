@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16110');
+app.use(express.json());
 
 /**
  * Mysql connection

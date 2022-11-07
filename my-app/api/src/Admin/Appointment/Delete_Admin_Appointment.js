@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16313');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -37,4 +38,4 @@ app.put('/deleteAppointment', (req, res) => {
         })
 })
 
-module.exports = delete_Admin_Appointment;
+module.exports = app;

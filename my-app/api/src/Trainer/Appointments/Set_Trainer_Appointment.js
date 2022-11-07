@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16211');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -16,7 +17,7 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-app.put('/setPublicNotes', (req , res) => {
+app.put('/setPublicNotes', (req, res) => {
     con.query("UPDATE Appointment SET Appt_Public_Notes = '" + req.body.notes +
         "' WHERE Appt_Key = " + req.body.appt_key + ";",
         function(err) {
@@ -24,7 +25,7 @@ app.put('/setPublicNotes', (req , res) => {
         });
 })
 
-app.put('/setPrivateNotes', (req , res) => {
+app.put('/setPrivateNotes', (req, res) => {
     con.query("UPDATE Appointment SET Appt_Public_Notes = '" + req.body.notes +
         "' WHERE Appt_Key = " + req.body.appt_key + ";",
         function(err) {
@@ -32,4 +33,4 @@ app.put('/setPrivateNotes', (req , res) => {
         });
 })
 
-module.exports = set_Trainer_Appointment;
+module.exports = app;

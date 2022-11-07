@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16212');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -140,7 +141,7 @@ var getEmails = (appt_key) => {
 }
 
 
-app.put('/sendNotifications', (req , res) => {
+app.put('/sendNotifications', (req, res) => {
     var appt_key = req.body.appt_key;
     var title = req.body.title;
     var notification = req.body.notification;
@@ -157,4 +158,4 @@ app.put('/sendNotifications', (req , res) => {
     }
 })
 
-module.exports = notify_Trainer_Appointment;
+module.exports = app;

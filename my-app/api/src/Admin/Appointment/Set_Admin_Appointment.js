@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 app.listen('16311');
+app.use(express.json());
 
 /**
  * Mysql connection
@@ -104,4 +105,4 @@ app.put('/setGID', (req, res) => {
         })
 })
 
-module.exports = set_Admin_Appointment;
+module.exports = app;
