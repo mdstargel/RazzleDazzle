@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16330');
+
 /**
  * Mysql connection
  */
@@ -12,85 +16,81 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-});
-
-var updateName = (trainer_id) => {
+app.get('/updateName', (req , res) => {
     var name;
     con.query("SELECT Train_Name FROM Trainer WHERE TID = '" +
-        trainer_id + "';",
+        req.body.trainer_id + "';",
         function(err, result) {
             if (err) throw err;
             name = result[0].Train_Name;
+            res.json(name);
         })
-    return name;
-}
+})
 
-var updateAddress = (trainer_id) => {
+app.get('/updateAddress', (req , res) => {
     var address;
     con.query("SELECT Train_Address FROM Trainer WHERE TID = '" +
-        trainer_id + "';",
+    req.body.trainer_id + "';",
         function(err, result) {
             if (err) throw err;
             address = result[0].Train_Address;
+            res.json(address);
         })
-    return address;
-}
+})
 
-var updatePhone = (trainer_id) => {
+app.get('/updatePhone', (req , res) => {
     var phone;
     con.query("SELECT Train_Phone_Num FROM Trainer WHERE TID = '" +
-        trainer_id + "';",
+    req.body.trainer_id + "';",
         function(err, result) {
             if (err) throw err;
             phone = result[0].Train_Phone_Num;
+            res.json(phone);
         })
-    return phone;
-}
+})
 
-var updateEmail = (trainer_id) => {
+app.get('/updateEmail', (req , res) => {
     var email;
     con.query("SELECT Train_Email_Addr FROM Trainer WHERE TID = '" +
-        trainer_id + "';",
+    req.body.trainer_id + "';",
         function(err, result) {
             if (err) throw err;
             email = result[0].Train_Email_Addr;
+            res.json(email);
         })
-    return email;
-}
+})
 
-var updateEmerName = (trainer_id) => {
+app.get('/updateEmerName', (req , res) => {
     var emerName;
     con.query("SELECT Train_Emer_Name FROM Trainer WHERE TID = '" +
-        trainer_id + "';",
+    req.body.trainer_id + "';",
         function(err, result) {
             if (err) throw err;
             emerName = result[0].Train_Emer_Name;
+            res.json(emerName);
         })
-    return emerName;
-}
+})
 
-var updateEmerPhone = (trainer_id) => {
+app.get('/updateEmerPhone', (req , res) => {
     var emerPhone;
     con.query("SELECT Train_Emer_Num FROM Trainer WHERE TID = '" +
-        trainer_id + "';",
+    req.body.trainer_id + "';",
         function(err, result) {
             if (err) throw err;
             emerPhone = result[0].Train_Emer_Num;
+            res.json(emerPhone);
         })
-    return emerPhone;
-}
+})
 
-var updateAdmin = (trainer_id) => {
+app.get('/updateAdmin', (req , res) => {
     var admin;
     con.query("SELECT Admin FROM Trainer WHERE TID = '" +
-        trainer_id + "';",
+    req.body.trainer_id + "';",
         function(err, result) {
             if (err) throw err;
             admin = result[0].Admin;
+            res.json(admin);
         })
-    return admin;
-}
+})
 
-con.end();
+module.exports = update_Mini_Trainer;

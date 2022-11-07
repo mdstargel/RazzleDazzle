@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16333');
+
 /**
  * Mysql connection
  */
@@ -12,33 +16,30 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-});
-
-deleteUser = (trainer_id) => {
+app.put('/deleteUser', (req , res) => {
     var email;
-    con.query("SELECT Train_Email_Addr FROM Trainer WHERE TID = " + trainer_id +
+    con.query("SELECT Train_Email_Addr FROM Trainer WHERE TID = " + req.body.trainer_id +
         ";",
         function(err, result) {
             if (err) throw err;
             email = result[0].Train_Email_Addr;
+            res.json(email);
         })
     con.query("UPDATE Login SET Decomissioned = 1 WHERE Email = " +
-        email + ";",
+        req.body.email + ";",
         function(err) {
             if (err) throw err;
         })
     con.query("UPDATE Appointment SET Appt_TID_1 = NULL WHERE Appt_TID_1 = " +
-        trainer_id + ";",
+        req.body.trainer_id + ";",
         function(err) {
             if (err) throw err;
         })
     con.query("UPDATE Appointment SET Appt_TID_2 = NULL WHERE Appt_TID_2 = " +
-        trainer_id + ";",
+        req.body.trainer_id + ";",
         function(err) {
             if (err) throw err;
         })
-}
+})
 
-con.end();
+module.exports = delete_Mini_Trainer;
