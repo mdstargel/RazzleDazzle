@@ -4,7 +4,17 @@
     width: 100%;
     z-index: 0;
 } */
+.carrotCenter {
+    padding-top: 15px;
+    display: flex;
+    
+    /* text-align: center; */
+}
 
+.listText {
+    font-weight: normal;
+    /* list-style: none; */
+}
 .title {
     position: absolute;
     align-content: center;
@@ -466,6 +476,7 @@ text-align: left;
 }
 
 .serviceLabel {
+    position: flex;
     padding-left: 25px;
     font-weight: bold;
     color: #0C1526;
