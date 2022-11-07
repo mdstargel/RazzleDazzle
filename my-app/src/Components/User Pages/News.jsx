@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import './styles.css'
 import PageTitle from "./PageTitle";
-import NewsImage1 from './Assets/NewsPic2.jpg'
-import NewsImage2 from './Assets/NewsPic3.jpg'
-import NewsImage3 from './Assets/NewsPic4.jpg'
 
 const newsTitleCenter = {
     fontFamily: 'IBM Plex Sans Devanagari',
@@ -13,6 +10,10 @@ const newsTitleCenter = {
     lineHeight: '37px',
     textAlign: 'center',
     color: '#0C1526',
+    position: 'absolute',
+    top: '700px',
+    left: '50%',
+
 }
 
 const newsImage = {
@@ -20,7 +21,7 @@ const newsImage = {
     position: 'absolute',
     width: '600px',
     height: '400px',
-    top: 'calc(50% - 200px)',
+    top: '300px',
     left: 'calc(50% - 300px)',
     borderRadius: '20px',
     // zIndex: '3',
@@ -49,6 +50,8 @@ const NewsArticleText = {
     textAlign: 'center',
     color: '#000000',
     position: 'absolute',
+    top: '740px',
+    left: '50%',
 }
 
 const rightsideItem = {
@@ -61,14 +64,25 @@ const rightsideItem = {
     borderRadius: '20px',
 }
 
+const rightsideTitle = {
+    top: '570px',
+    left: 'calc(85% - 25px)',
+    position: 'absolute',
+}
+
 const leftsideItem = {
     width: '200px',
     height: '200px',
-    // backgroundColor: 'green',
     top: '50%',
     left: 'calc(15% - 100px)',
     position: 'absolute',
     borderRadius: '20px',
+}
+
+const leftsideTitle = {
+    top: '570px',
+    left: 'calc(15% - 25px)',
+    position: 'absolute',
 }
 
 // Pic urls
@@ -87,7 +101,7 @@ const News = ({ newsArticles }) => {
         return (
             <a href={newsArticles[articleID].url} style={{ newsItem }}> 
                 {/* <div style={newsImage}>Center Feed Item{newsArticles[articleID].image}</div> */}
-                <div><img src={NewsImage1} style={newsImage} alt="Female trainer1" /></div>
+                <div><img src={newsArticles[articleID].image} style={newsImage} alt="Female trainer1" /></div>
                 <div style={newsTitleCenter}>{newsArticles[articleID].title}</div>
                 <div style={NewsArticleText}>{newsArticles[articleID].description}</div>
             </a>
@@ -107,8 +121,8 @@ const News = ({ newsArticles }) => {
         return (
             <div>
                 {/* <div style={rightsideItem}>Right Feed Item{newsArticles[index].image}</div> */}
-                <div><img src={NewsImage2} style={rightsideItem} alt="Female trainer1" /></div>
-                <div>{newsArticles[index].title}</div>
+                <div><img src={newsArticles[index].image} style={rightsideItem} alt="Female trainer1" /></div>
+                <div style={rightsideTitle}>{newsArticles[index].title}</div>
             </div>
         );
     }
@@ -118,8 +132,8 @@ const News = ({ newsArticles }) => {
         return (
             <div>
                 {/* <div style={leftsideItem}>Left Feed Item{newsArticles[index].image}</div> */}
-                <div><img src={NewsImage3} style={leftsideItem} alt="Female trainer1" /></div>
-                <div>{newsArticles[index].title}</div>
+                <div><img src={newsArticles[index].image} style={leftsideItem} alt="Female trainer1" /></div>
+                <div style={leftsideTitle}>{newsArticles[index].title}</div>
             </div>
         );
     }
@@ -130,8 +144,12 @@ const News = ({ newsArticles }) => {
                 <SelectedFeedItem />
                 <RightFeedItem />
                 <LeftFeedItem />
-                <div onClick={handleSetArticleRight} style={{position: 'absolute', marginTop: '350px', paddingLeft: '95%'}}>Next</div>
-                <div onClick={handleSetArticleLeft} style={{position: 'absolute', marginTop: '350px', paddingLeft: '2%'}}>Last</div>
+                <div
+                    onClick={handleSetArticleRight}
+                    style={{ fontSize: '70px', position: 'absolute', marginTop: '350px', paddingLeft: '95%' }}>&#10148;</div>
+                <div
+                    onClick={handleSetArticleLeft}
+                    style={{ transform: 'rotate(180deg)', fontSize: '70px', position: 'absolute', marginTop: '350px', paddingLeft: '2%' }}>&#10148;</div>
             </div>
         </div>
     );
