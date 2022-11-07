@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16211');
+
 /**
  * Mysql connection
  */
@@ -12,24 +16,20 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-});
-
-setPublicNotes = (notes, appt_key) => {
-    con.query("UPDATE Appointment SET Appt_Public_Notes = '" + notes +
-        "' WHERE Appt_Key = " + appt_key + ";",
+app.put('/setPublicNotes', (req , res) => {
+    con.query("UPDATE Appointment SET Appt_Public_Notes = '" + req.body.notes +
+        "' WHERE Appt_Key = " + req.body.appt_key + ";",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-setPrivateNotes = (notes, appt_key) => {
-    con.query("UPDATE Appointment SET Appt_Private_Notes = '" + notes +
-        "' WHERE Appt_Key = " + appt_key + ";",
+app.put('/setPrivateNotes', (req , res) => {
+    con.query("UPDATE Appointment SET Appt_Public_Notes = '" + req.body.notes +
+        "' WHERE Appt_Key = " + req.body.appt_key + ";",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-con.end();
+module.exports = set_Trainer_Appointment;
