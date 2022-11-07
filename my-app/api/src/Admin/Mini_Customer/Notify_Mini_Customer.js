@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16322');
+
 /**
  * Mysql connection
  */
@@ -12,17 +16,17 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-});
-
 /**
  * Imports
  */
 const { nodemailer, transporter, emailAppt, textAppt } = require('../../Notifications');
 let { mini_customer } = require("./Class_Mini_Customer")
 
-sendNotifications = (mini_customers, title, notification) => {
+app.put('/sendNotifications', (req , res) => {
+    var mini_customers = req.body.mini_customers;
+    var title = req.body.title;
+    var notification = req.body.notification;
+
     for (var i = 0; i < mini_customers.length; i++) {
         emailAppt(mini_customers[i].getEmail(), title, notification);
     }
@@ -33,6 +37,6 @@ sendNotifications = (mini_customers, title, notification) => {
             textAppt(mini_customers[i].getPhone(), notification);
         }
     }
-}
+})
 
-con.end();
+module.exports = notify_Mini_Customer;

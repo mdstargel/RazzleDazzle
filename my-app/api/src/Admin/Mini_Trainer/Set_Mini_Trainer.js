@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16331');
+
 /**
  * Mysql connection
  */
@@ -12,16 +16,12 @@ var con = mysql.createConnection({
     connectTimeout: 30000
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-});
-
-setAdmin = (admin, trainer_id) => {
-    con.query("UPDATE Trainer SET Admin = " + admin + " " +
-        "WHERE TID = " + trainer_id + ";",
+app.put('/getCustomers', (req , res) => {
+    con.query("UPDATE Trainer SET Admin = " + req.body.admin + " " +
+        "WHERE TID = " + req.body.trainer_id + ";",
         function(err) {
             if (err) throw err;
         });
-}
+})
 
-con.end();
+module.exports = set_Mini_Trainer;

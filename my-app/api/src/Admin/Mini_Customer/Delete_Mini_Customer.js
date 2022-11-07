@@ -1,3 +1,7 @@
+const express = require('express');
+const app = express();
+app.listen('16323');
+
 /**
  * Mysql connection
  */
@@ -17,9 +21,9 @@ var con = mysql.createConnection({
  */
 const { setReserved } = require("../../Customer/Appointments/Set_Customer_Appointment");
 
-deleteUser = (customer_id) => {
+app.put('/deleteUser', (req , res) => {
     con.query("UPDATE Login SET Decomission = 1 WHERE CID = " +
-        customer_id + ";",
+        req.body.customer_id + ";",
         function(err) {
             if (err) throw err;
         });
@@ -36,10 +40,10 @@ deleteUser = (customer_id) => {
     con.query("SELECT Appt_Key FROM Appointment INNER JOIN Customer_Group ON " +
         "Appointment.Appt_GID = Customer_Group.GID " +
         "WHERE Appt_Date > '" + curr_date +
-        "AND (Customer_Group.CID_1 = " + customer_id + " " +
-        "OR Customer_Group.CID_2 = " + customer_id + " " +
-        "OR Customer_Group.CID_3 = " + customer_id + " " +
-        "OR Customer_Group.CID_4 = " + customer_id + ");",
+        "AND (Customer_Group.CID_1 = " + req.body.customer_id + " " +
+        "OR Customer_Group.CID_2 = " + req.body.customer_id + " " +
+        "OR Customer_Group.CID_3 = " + req.body.customer_id + " " +
+        "OR Customer_Group.CID_4 = " + req.body.customer_id + ");",
         function(err, result) {
             if (err) throw err;
             for (var i = 0; i < result.length; i++) {
@@ -53,6 +57,6 @@ deleteUser = (customer_id) => {
             setReserved(false, calendar_appt_keys[i], customer_id);
         }
     }
-}
+})
 
-con.end();
+module.exports = delete_Mini_Customer;
