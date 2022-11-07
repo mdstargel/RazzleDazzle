@@ -96,4 +96,4 @@ app.put('/setPassword', (req, res) => {
     }
 })
 
-module.exports = set_Customer;
+module.exports = app;

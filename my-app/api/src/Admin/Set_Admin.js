@@ -64,4 +64,4 @@ app.put('/setEmerPhone', (req, res) => {
         });
 })
 
-module.exports = set_Admin;
+module.exports = app;

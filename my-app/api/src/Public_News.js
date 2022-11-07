@@ -32,4 +32,4 @@ app.get('/publicNews', (req, res) => {
     })
 })
 
-// module.exports = public_News;
+module.exports = app;

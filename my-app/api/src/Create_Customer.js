@@ -45,4 +45,4 @@ app.put('/createAccount', (req, res) => {
         })
 })
 
-module.exports = create_Customer;
+module.exports = app;
