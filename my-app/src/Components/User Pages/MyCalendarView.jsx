@@ -13,19 +13,38 @@ const MyCalendarView = ({ UserSchdeule, userPermissions }) => {
          */
         console.log(appointment.appointmentId);
     }
-    const CustomerAppointmentPill = ({ appointment, dayStyle }) => {        
+    const CustomerAppointmentPill = ({ appointment, dayStyle }) => {    
+        const [showIndividualAppointment, setShowIndividualAppointment] = useState(false);
+        // const [hidePill, setHidePill] = useState(false);
+
         return (
-            <div className={dayStyle}>
-                <div>{appointment.date}</div>
-                <hr></hr>
-                <div>Time: {appointment.startTime}-{appointment.endTime}</div>
-                <div>Style: {appointment.ridingStyle}</div>
-                <div>{appointment.isGroup ? 'Group' : 'Individual'}</div>
-                <div>{appointment.isGroup && appointment.remainingSpots}</div>
-                {(userPermissions.isAdmin || userPermissions.isTrainer) && <CalendarEditButton onClick={() => setModifyAppointment(<EditAppointment appointment={appointment} setModifyAppointment={setModifyAppointment}/>)}/>}
-                <CalendarCancelButton setModifyAppointment={setModifyAppointment} onClick={() => handleRemoveAppointment({appointment})} />
-            </div>);
+            <div className='appointmentPill'>
+                <div onClick={() => setShowIndividualAppointment(!showIndividualAppointment)} className={showIndividualAppointment ? 'selectedAppointmentTitle' : 'appointmentTitle'}>
+                    {appointment.isGroup ? 'Group' : 'Individual'} {appointment.ridingStyle} {appointment.startTime}-{appointment.endTime}
+                </div>
+                {/* Show appointment information here */}
+                {showIndividualAppointment && < div className='appointmentInfo'>
+                    <div>Date: {appointment.date}</div>
+                    <div>Spots Left: {appointment.remainingSpots}</div>
+                    {(userPermissions.isAdmin || userPermissions.isTrainer) && <CalendarEditButton onClick={() => setModifyAppointment(<EditAppointment appointment={appointment} setModifyAppointment={setModifyAppointment} />)} />}
+                    <CalendarCancelButton setModifyAppointment={setModifyAppointment} onClick={() => console.log('this should add appointment', appointment.appointmentId)} />
+                </div>}
+            </div>
+        );
     };
+    // const CustomerAppointmentPill = ({ appointment, dayStyle }) => {        
+    //     return (
+    //         <div className={dayStyle}>
+    //             <div>{appointment.date}</div>
+    //             <hr></hr>
+    //             <div>Time: {appointment.startTime}-{appointment.endTime}</div>
+    //             <div>Style: {appointment.ridingStyle}</div>
+    //             <div>{appointment.isGroup ? 'Group' : 'Individual'}</div>
+    //             <div>{appointment.isGroup && appointment.remainingSpots}</div>
+    //             {(userPermissions.isAdmin || userPermissions.isTrainer) && <CalendarEditButton onClick={() => setModifyAppointment(<EditAppointment appointment={appointment} setModifyAppointment={setModifyAppointment}/>)}/>}
+    //             <CalendarCancelButton setModifyAppointment={setModifyAppointment} onClick={() => handleRemoveAppointment({appointment})} />
+    //         </div>);
+    // };
 const AppointmentsByDay = () => {
     let sundayAppointments = [];
     let mondayAppointments = [];
@@ -81,14 +100,15 @@ const AppointmentsByDay = () => {
     const sundayPills = sundayAppointments.map(appointment => <CustomerAppointmentPill appointment={appointment} dayStyle='customerAppointmentPill sunPill'></CustomerAppointmentPill>);
 
     return (
-        <div style={{marginTop: '100px'}}>
-            <div style={{ marginLeft: '10px', position: 'absolute' }}>Monday {mondayPills}</div>
-            <div style={{ marginLeft: '250px', position: 'absolute'}}>Tuesday {tuesdayPills}</div>
-            <div style={{ marginLeft: '500px', position: 'absolute' }}>Wednesday {wednesdayPills}</div>
-            <div style={{ marginLeft: '750px', position: 'absolute' }}>Thursday {thursdayPills}</div>
-            <div style={{ marginLeft: '900px', position: 'absolute'}}>Friday {fridayPills}</div>
-            <div style={{ marginLeft: '1150px', position: 'absolute' }}>Saturday {saturdayPills}</div>
-            <div style={{ marginLeft: '1400px', position: 'absolute' }}>Sunday {sundayPills}</div>
+        <div style={{ display: 'flex' }}>
+            <div className='myCalendarTrainerName'>My Appointments</div>
+            <div className='myCalendarDay'>Monday {mondayPills}</div>
+            <div className='myCalendarDay'>Tuesday {tuesdayPills}</div>
+            <div className='myCalendarDay'>Wednesday {wednesdayPills}</div>
+            <div className='myCalendarDay'>Thursday {thursdayPills}</div>
+            <div className='myCalendarDay'>Friday {fridayPills}</div>
+            <div className='myCalendarDay'>Saturday {saturdayPills}</div>
+            <div className='myCalendarDay'>Sunday {sundayPills}</div>
         </div>)
     };
     
