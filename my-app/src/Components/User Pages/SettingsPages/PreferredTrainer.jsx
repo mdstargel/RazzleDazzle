@@ -100,7 +100,8 @@ const PreferredTrainer = () => {
             <>
                 <PageTitle name="Preferred Trainer" />
                 <div className='form2'>
-                    {PreferredTrainerFormHeading}                    
+                    {PreferredTrainerFormHeading}
+                    <br />                
                     {trainersList}
                     <div className='buttonContainer'>
                         <br /><br />
