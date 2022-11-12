@@ -3,18 +3,7 @@ const app = express();
 app.listen('16400');
 app.use(express.json());
 
-
-// Variables for connection
-var mysql = require('mysql2');
-
-var con = mysql.createConnection({
-    host: "108.213.201.29",
-    user: "root",
-    password: "RazzleDazzle1!",
-    database: "Horse_Site",
-    insecureAuth: true,
-    connectTimeout: 30000
-});
+const con = require('./mysql');
 
 /**
  * Imports

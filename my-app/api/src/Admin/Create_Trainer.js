@@ -1,46 +1,14 @@
 const express = require('express');
 const app = express();
-app.listen('16302');
 app.use(express.json());
 
-/**
- * Mysql connection
- */
-var mysql = require('mysql2');
+let con = require('../mysql.js');
 
-var con = mysql.createConnection({
-    host: "108.213.201.29",
-    user: "root",
-    password: "RazzleDazzle1!",
-    database: "Horse_Site",
-    insecureAuth: true,
-    connectTimeout: 30000
-});
-
-app.put('/createTrainer', (req, res) => {
-    var tr_addr = req.body.tr_addr;
-    var tr_econ = req.body.tr_econ;
-    var tr_enum = req.body.tr_enum;
-    var tr_name = req.body.tr_name;
-    var tr_phone = req.body.tr_phone;
-    var tr_email = req.body.tr_email;
-
-    // If any values are empty set null;
-    if (tr_addr == '') tr_addr = null;
-    if (tr_econ == '') tr_econ = null;
-    if (tr_enum == '') tr_enum = null;
-
-    // Insert into Trainer table
-    con.query("INSERT INTO Trainer (Train_Name, Train_Address, Train_Phone_Num, Train_Email_Addr, Train_Emer_Name, Train_Emer_Num) VALUES ('" +
-        tr_name + "', '" + tr_addr + "', '" + tr_phone + "', " + tr_email + "', '" + tr_econ + "', '" + tr_enum + "');",
-        function(err) {
-            if (err) throw err;
-        })
-
+create_trainer = (trainer_name, email) => {
     // Get TID
     var TID;
     con.query("SELECT TID FROM Trainer WHERE Train_Name = " +
-        tr_name + ";",
+        trainer_name + ";",
         function(err, result) {
             if (err) throw err;
             TID = result[0].TID;
@@ -48,9 +16,33 @@ app.put('/createTrainer', (req, res) => {
 
     // Update Login
     con.query("INSERT INTO Login (Email, Log_Password, TID) VALUES ('" +
-        tr_email + "', 'P@ssw0rd', " + TID + ");",
+        email + "', 'P@ssw0rd', " + TID + ");",
         function(err) {
             if (err) throw err;
+        })
+}
+
+app.put('/Admin/Create_Trainer', (req, res) => {
+    var address = req.body.address;
+    var emerName = req.body.emerName;
+    var emerPhone = req.body.emerPhone;
+    var trainer_name = req.body.user_name;
+    var phone = req.body.phone;
+    var email = req.body.email;
+
+    // If any values are empty set null;
+    if (address == "") address = null;
+    if (emerName == "") emerName = null;
+    if (emerPhone == "") emerPhone = null;
+
+    // Insert into Trainer table
+    con.query("INSERT INTO Trainer (Train_Name, Train_Address, " +
+        "Train_Phone_Num, Train_Email_Addr, Train_Emer_Name, Train_Emer_Num) " +
+        "VALUES ('" + trainer_name + "', '" + address + "', '" + phone + "', " +
+        email + "', '" + emerName + "', '" + emerPhone + "');",
+        function(err) {
+            if (err) throw err;
+            create_trainer(trainer_name, email);
         })
 })
 

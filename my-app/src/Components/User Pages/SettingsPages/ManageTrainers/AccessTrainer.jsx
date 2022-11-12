@@ -241,6 +241,7 @@ const AccessTrainer = () => {
                     type="text"
                     onChange={handleEmailInputChange}
                     value={data.Email}
+
                     />
                 </div>
                 <br/><br />
@@ -278,6 +279,7 @@ const AccessTrainer = () => {
                 </div>
                 <br /><br />
                     {/* <div
+
                         onClick={() => handleSetIsTrainer({data})}
                     >
                         Trainer: {data.isTrainer ? 'True' : 'False'}
@@ -286,7 +288,9 @@ const AccessTrainer = () => {
                         onClick={() => handleSetIsAdmin({ data })}
                     >
                         Admin: {data.isAdmin ? 'True' : 'False'}
+
                     </div> } */}
+
             </div>
         ))
             

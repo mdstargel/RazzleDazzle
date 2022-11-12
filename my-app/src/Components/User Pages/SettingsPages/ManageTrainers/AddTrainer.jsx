@@ -132,6 +132,7 @@ const AddTrainer = () => {
             <br/><br />
 
             <div className='inputTitles5'>
+            
             <label className='label'>Trainer Style:</label>
             </div>
             <div className='inputBoxes5'>
@@ -140,6 +141,7 @@ const AddTrainer = () => {
                     onChange={handleAddressInputChange}
                     // value={data.Address}    
                 />
+
             </div>
             <br /><br />
 

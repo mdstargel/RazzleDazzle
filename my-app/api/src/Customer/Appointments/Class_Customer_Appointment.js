@@ -11,12 +11,15 @@
  */
 class customer_appt {
     // Constructor
-    constructor(appt_key, appt_name, appt_date, appt_time,
-        appt_description, appt_pub_notes, appt_group_size, appt_reserved) {
+    constructor(appt_key, appt_name, appt_date, appt_time, appt_end_time,
+        appt_type, appt_description, appt_pub_notes, appt_group_size,
+        appt_reserved) {
         this.appt_key = appt_key;
         this.appt_name = appt_name;
         this.appt_date = appt_date;
         this.appt_time = appt_time;
+        this.appt_end_time = appt_end_time;
+        this.appt_type = appt_type;
         this.appt_description = appt_description;
         this.appt_pub_notes = appt_pub_notes;
         this.appt_group_size = appt_group_size;
@@ -50,6 +53,22 @@ class customer_appt {
 
     setTime(time) {
         this.appt_time = time;
+    }
+
+    getEndTime() {
+        return this.appt_end_time;
+    }
+
+    setEndTime(end_time) {
+        this.appt_end_time = end_time;
+    }
+
+    getType() {
+        return this.appt_type;
+    }
+
+    setType(ap_type) {
+        this.appt_type = ap_type;
     }
 
     getDescription() {
