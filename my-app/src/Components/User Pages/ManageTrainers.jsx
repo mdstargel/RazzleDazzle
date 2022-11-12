@@ -5,7 +5,7 @@ import AddTrainer from './SettingsPages/ManageTrainers/AddTrainer';
 import RemoveTrainer from './SettingsPages/ManageTrainers/RemoveTrainer';
 
 const ManageAppointment = () => {
-    const [selectedTab, setSelectedTab] = useState('Calendar');
+    const [selectedTab, setSelectedTab] = useState('Add Trainer');
 
     const ChosenPopup = () => {
         let popup;

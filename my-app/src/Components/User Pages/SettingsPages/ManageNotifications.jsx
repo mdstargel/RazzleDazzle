@@ -23,7 +23,7 @@ const ManageNotifications = ({setwpage}) => {
             <>
         <PageTitle name="Manage Notifications" />
             <div className='form2'>
-                    <div className='labelCentered'>Please select your notification preferences below:</div><br />
+                    <div className='labelCentered'>Please confirm or deny text notifications below:</div><br />
                     <div>
                         <div style={{marginTop: '30px', marginLeft: 'calc(50% - 35px)', fontWeight: 'bold'}}>Text: </div>
                         <div

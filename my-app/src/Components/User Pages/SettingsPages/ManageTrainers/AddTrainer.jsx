@@ -130,18 +130,32 @@ const AddTrainer = () => {
                 />
             </div>
             <br/><br />
-            
+
             <div className='inputTitles5'>
-                <label className='label'>Training style:</label>
+            
+            <label className='label'>Trainer Style:</label>
+            </div>
+            <div className='inputBoxes5'>
+                <input className='input2'
+                    type="text"
+                    onChange={handleAddressInputChange}
+                    // value={data.Address}    
+                />
+
             </div>
             <br /><br />
+
+            {/* <div className='inputTitles5'>
+                <label className='label'>Trainer Permissions:</label>
+            </div>
+            <br /><br /> */}
             
             
             {/* <div onClick={() => setTrainerOn(!trainerOn)}>Trainer: {trainerOn ? 'True' : 'False'}</div> */}
             <div className='inputTitles6'>
                 <div className='label' onClick={() => setAdminOn(!adminOn)}>Admin: {adminOn ? 'True' : 'False'}</div>
             </div>
-            <br/><br />
+            <br/><br/>
 
             <div>{trainerAddedUpdateMessage}</div>
             <br /><br />

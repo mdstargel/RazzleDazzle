@@ -168,9 +168,9 @@ const Calendar = ({ userPermissions }) => {
       <ReactCalendar />
       {showAddAppointment}
       {!userPermissions.isCustomer &&  < div
-          style={{ color: 'blue', marginLeft: '50%', fontSize: '20px', marginTop: '10px', marginBottom: '10px' }}
-      onClick={() => setShowAddAppointment(<AddAppointment setShowAddAppointment={setShowAddAppointment}></AddAppointment>)}>
-      Make Appointment
+          className='makeAppointment'
+          onClick={() => setShowAddAppointment(<AddAppointment setShowAddAppointment={setShowAddAppointment}></AddAppointment>)}>
+          Make Appointment
     </div>}
             <ChosenPopup />
     </div>

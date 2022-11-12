@@ -209,44 +209,77 @@ const AccessTrainer = () => {
         AvailableTrainers.map((data) => (
             data.isPreffered === true &&
             <div>
-                <label>First Name:</label>
-                <input
-                    type="text"
-                    onChange={handleFirstNameInputChange}
-                        value={data.FirstName}
-                        className='input2'
-                />
-                <br/>   
+                <div className='inputTitles1'>
+                    <label className='label'>First Name:</label>
+                </div>
+                <div className='inputBoxes1'>
+                    <input className='input2'
+                        type="text"
+                        onChange={handleFirstNameInputChange}
+                            value={data.FirstName}
+                    />
+                </div>
+                <br/><br />  
                 
-                <label>Last Name:</label>
-                <input
+                <div div className='inputTitles2'>
+                    <label className='label'>Last Name:</label>
+                </div>
+                <div className='inputBoxes2'>
+                <input className='input2'
                     type="text"
                     onChange={handleLastNameInputChange}
                     value={data.LastName}
-                    className='input2'
-                />
-                <br />
-                    
-                <label>Email Address:</label>
-                <input
+                    />
+                </div>
+                <br /><br />
+                
+                <div className='inputTitles3'>
+                    <label className='label'>Email Address:</label>
+                </div>
+                <div className='inputBoxes3'>
+                <input className='input2'
                     type="text"
                     onChange={handleEmailInputChange}
                     value={data.Email}
-                    className='input2'
-                />
-                <br />
-                    
-                <label>Address:</label>
-                <input
-                    type="text"
-                    onChange={handleAddressInputChange}
-                    value={data.Address}
-                    className='input2'
-                />
-                    <br />
-                    
-                <label>Training Style:</label>
-                    <div
+
+                    />
+                </div>
+                <br/><br />
+                
+                <div className='inputTitles4'>
+                    <label className='label'>Address:</label>
+                </div>
+                <div className='inputBoxes4'>
+                    <input className='input2'
+                        type="text"
+                        onChange={handleAddressInputChange}
+                        value={data.Address}    
+                    />
+                </div>
+                <br/><br/>
+                
+                <div className='inputTitles5'>
+                <label className='label'>Trainer Style:</label>
+                </div>
+                <div className='inputBoxes5'>
+                    <input className='input2'
+                            type="text"
+                            onChange={handleAddressInputChange}
+                            // value={data.Address}    
+                        />
+                </div>
+                <br /><br />
+
+                <div className='inputTitles6'>
+                    <div className='label'
+                        onClick={() => handleSetIsAdmin({ data })}
+                    >
+                        Admin: {data.isAdmin ? 'True' : 'False'}
+                    </div>
+                </div>
+                <br /><br />
+                    {/* <div
+
                         onClick={() => handleSetIsTrainer({data})}
                     >
                         Trainer: {data.isTrainer ? 'True' : 'False'}
@@ -255,7 +288,9 @@ const AccessTrainer = () => {
                         onClick={() => handleSetIsAdmin({ data })}
                     >
                         Admin: {data.isAdmin ? 'True' : 'False'}
-                    </div>}
+
+                    </div> } */}
+
             </div>
         ))
             
