@@ -264,7 +264,9 @@ const AccessTrainer = () => {
                     <input className='input2'
                             type="text"
                             onChange={handleAddressInputChange}
-                            // value={data.Address}    
+                            // value={data.Address} 
+                            // Need to create a data.Style for the line above in AddTrainer and AccessTrainer.
+                            // Also need to add a boolean circle, similar to manage texts, but for the Admin permissions below   
                         />
                 </div>
                 <br /><br />
