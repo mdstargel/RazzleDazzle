@@ -20,6 +20,16 @@ app.use('/', require('../src/Admin/News/Update_Admin_News'))
 app.use('/', require('../src/Admin/Create_Appointment'))
 app.use('/', require('../src/Admin/Create_Trainer'))
 app.use('/', require('../src/Admin/Create_News'))
+
+app.use('/', require('../src/Customer/Appointments/Set_Customer_Appointment'))
+app.use('/', require('../src/Customer/Appointments/Update_Customer_Appointment'))
+app.use('/', require('../src/Customer/Delete_Customer'))
+app.use('/', require('../src/Customer/Set_Customer'))
+app.use('/', require('../src/Customer/Update_Customer'))
+
+app.use('/', require('../src/News/Update_News'))
+app.use('/', require('../src/Public_News'))
+
 app.listen(9001);
 
 module.exports = app;

@@ -10,9 +10,9 @@ var usersRouter = require('./routes/users');
 
 // Horse Site Routers
 var adminRouter = require('./routes/admin');
-var customerRouter = require('./routes/customer')
+// var customerRouter = require('./routes/customer')
 
-var newsRouter = require('./routes/news');
+// var newsRouter = require('./routes/news');
 
 var app = express();
 
@@ -29,9 +29,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Horse Site Routers
 app.use('/Admin', adminRouter);
-app.use('/Customer', customerRouter);
+// app.use('/Customer', customerRouter);
 
-app.use('/News', newsRouter);
+// app.use('/News', newsRouter);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
