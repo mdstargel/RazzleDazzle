@@ -132,7 +132,7 @@ const AddTrainer = () => {
             <br/><br />
             
             <div className='inputTitles5'>
-                <label className='label'>Trainer Permissions:</label>
+                <label className='label'>Training style:</label>
             </div>
             <br /><br />
             

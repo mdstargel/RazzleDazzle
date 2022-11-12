@@ -245,7 +245,7 @@ const AccessTrainer = () => {
                 />
                     <br />
                     
-                <label>Trainer Permissions:</label>
+                <label>Training Style:</label>
                     <div
                         onClick={() => handleSetIsTrainer({data})}
                     >
@@ -255,7 +255,7 @@ const AccessTrainer = () => {
                         onClick={() => handleSetIsAdmin({ data })}
                     >
                         Admin: {data.isAdmin ? 'True' : 'False'}
-                    </div> }
+                    </div>}
             </div>
         ))
             
