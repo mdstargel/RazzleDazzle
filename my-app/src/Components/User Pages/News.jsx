@@ -50,10 +50,11 @@ const NewsArticleText = {
     fontSize: '15px',
     lineHeight: '23px',
     textAlign: 'center',
-    color: '#000000',
+    color: '#0C1526',
     position: 'absolute',
     width: '500px',
     top: '753px',
+    paddingBottom: '5%',
     left: 'calc(50% - 250px)',
 }
 
@@ -71,6 +72,8 @@ const rightsideTitle = {
     top: '75%',
     left: 'calc(83% - 25px)',
     position: 'absolute',
+    color: '#0C1526',
+    fontWeight: 'bold',
 }
 
 const leftsideItem = {
@@ -86,6 +89,8 @@ const leftsideTitle = {
     top: '75%',
     left: 'calc(17% - 25px)',
     position: 'absolute',
+    color: '#0C1526',
+    fontWeight: 'bold',
 }
 
 // Pic urls

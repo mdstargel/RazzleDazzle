@@ -90,8 +90,8 @@ const SignUp = ({setSignedIn, setwpage}) => {
     return (
         <div className='backGround'>
             <form className='form'>
-                <div className='inputTitles1'>
-                    <label className='label'>{!values.firstName && error}First Name:</label>
+                <div className='inputTitles1SUp'>
+                    <div className='asterictCenter'>{!values.firstName && error} <div className='fixList'>First Name:</div></div>    
                 </div>
                 <div className='inputBoxes1'>
                     <input
@@ -103,8 +103,8 @@ const SignUp = ({setSignedIn, setwpage}) => {
                 <br /><br />
 
 
-                <div className='inputTitles2'>
-                    <label className='label'>{!values.lastName && error}Last Name:</label>
+                <div className='inputTitles2SUp'>
+                    <div className='asterictCenter'>{!values.lastName && error} <div className='fixList'>Last Name:</div></div>
                 </div>
                 <div className='inputBoxes2'>
                     <input
@@ -116,8 +116,8 @@ const SignUp = ({setSignedIn, setwpage}) => {
                 <br /><br />
 
 
-                <div className='inputTitles3'>
-                    <label className='label'>{!values.email && error}Email Address:</label>
+                <div className='inputTitles3SUp'>
+                    <div className='asterictCenter'>{!values.email && error} <div className='fixList'>Email Address:</div></div>
                 </div>
                 <div className='inputBoxes3'>
                     <input
@@ -128,8 +128,8 @@ const SignUp = ({setSignedIn, setwpage}) => {
                 </div>
                 <br /><br />
             
-                <div className='inputTitles4'>
-                    <label className='label'>{!values.phone && error}Phone Number:</label>
+                <div className='inputTitles4SUp'>
+                <div className='asterictCenter'>{!values.phone && error} <div className='fixList'>Phone Number:</div></div>
                 </div>
                 <div className='inputBoxes4'>
                     <input
@@ -140,8 +140,8 @@ const SignUp = ({setSignedIn, setwpage}) => {
                 </div>
                 <br/><br />
              
-                <div className='inputTitles5'>
-                    <label className='label'>{!values.password && error}Password:</label>
+                <div className='inputTitles5SUp'>
+                <div className='asterictCenter'>{!values.password && error} <div className='fixList'>Password:</div></div>
                 </div>
                 <dir className='inputBoxes5'>
                     <input
