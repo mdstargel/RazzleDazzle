@@ -1,27 +1,19 @@
 const express = require('express');
 const app = express();
-app.listen('16304');
 app.use(express.json());
 
-/**
- * Mysql connection
- */
-var mysql = require('mysql2');
+let con = require('../mysql.js');
 
-var con = mysql.createConnection({
-    host: "108.213.201.29",
-    user: "root",
-    password: "RazzleDazzle1!",
-    database: "Horse_Site",
-    insecureAuth: true,
-    connectTimeout: 30000
-});
+app.put('/Admin/Create_News', (req, res) => {
+    var imgURL = req.body.imgURL;
+    var news_title = req.body.news_title;
+    var news_link = req.body.news_link;
+    var description = req.body.news_description;
 
-app.put('/createNews', (req, res) => {
-    con.query("INSERT INTO News (IMG_Name, Title, Link, News_Description) VALUES ('" +
-        req.body.news_name + "', '" + req.body.news_title + "', '" +
-        req.body.news_link + "', '" + req.body.description +
-        "');",
+    if (description == "") description = null;
+    con.query("INSERT INTO News (IMG_Name, Title, Link, News_Description) " +
+        "VALUES ('" + imgURL + "', '" + news_title + "', '" + news_link +
+        "', '" + description + "');",
         function(err) {
             if (err) throw err;
         });

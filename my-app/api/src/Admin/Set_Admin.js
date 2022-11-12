@@ -1,65 +1,64 @@
 const express = require('express');
 const app = express();
-app.listen('16301');
 app.use(express.json());
 
-/**
- * Mysql connection
- */
-var mysql = require('mysql2');
+let con = require('../mysql.js');
 
-var con = mysql.createConnection({
-    host: "108.213.201.29",
-    user: "root",
-    password: "RazzleDazzle1!",
-    database: "Horse_Site",
-    insecureAuth: true,
-    connectTimeout: 30000
-});
-
-app.put('/setName', (req, res) => {
-    con.query("UPDATE Trainer SET Train_Name = '" + req.body.name +
-        "' WHERE TID = " + req.body.admin_id + ";",
+app.put('/Admin/Set_Name', (req, res) => {
+    var user_name = req.body.user_name;
+    var admin_id = req.body.user_id;
+    con.query("UPDATE Trainer SET Train_Name = '" + user_name +
+        "' WHERE TID = " + admin_id + ";",
         function(err) {
             if (err) throw err;
         });
 })
 
-app.put('/setAddress', (req, res) => {
-    con.query("UPDATE Trainer SET Train_Address = '" + req.body.address +
-        "' WHERE TID = " + req.body.admin_id + ";",
+app.put('/Admin/Set_Address', (req, res) => {
+    var address = req.body.address;
+    var admin_id = req.body.user_id;
+    con.query("UPDATE Trainer SET Train_Address = '" + address +
+        "' WHERE TID = " + admin_id + ";",
         function(err) {
             if (err) throw err;
         });
 })
 
-app.put('/setPhone', (req, res) => {
-    con.query("UPDATE Trainer SET Train_Phone_Number = '" + req.body.phone +
-        "' WHERE TID = " + req.body.admin_id + ";",
+app.put('/Admin/Set_Phone', (req, res) => {
+    var phone = req.body.phone;
+    var admin_id = req.body.user_id;
+    con.query("UPDATE Trainer SET Train_Phone_Number = '" + phone +
+        "' WHERE TID = " + admin_id + ";",
         function(err) {
             if (err) throw err;
         });
 })
 
-app.put('/setEmail', (req, res) => {
-    con.query("UPDATE Trainer SET Train_Email_Addr = '" + req.body.email +
-        "' WHERE TID = " + req.body.admin_id + ";",
+app.put('/Admin/Set_Email', (req, res) => {
+    var email = req.body.email;
+    var admin_id = req.body.user_id;
+    con.query("UPDATE Trainer SET Train_Email_Addr = '" + email +
+        "' WHERE TID = " + admin_id + ";",
         function(err) {
             if (err) throw err;
         });
 })
 
-app.put('/setEmerName', (req, res) => {
-    con.query("UPDATE Trainer SET Train_Emer_Name = '" + req.body.name +
-        "' WHERE TID = " + req.body.admin_id + ";",
+app.put('/Admin/Set_EmerName', (req, res) => {
+    var emer_name = req.body.emer_name;
+    var admin_id = req.body.user_id;
+    con.query("UPDATE Trainer SET Train_Emer_Name = '" + emer_name +
+        "' WHERE TID = " + admin_id + ";",
         function(err) {
             if (err) throw err;
         });
 })
 
-app.put('/setEmerPhone', (req, res) => {
-    con.query("UPDATE Trainer SET Train_Emer_Num = '" + req.body.phone +
-        "' WHERE TID = " + req.body.admin_id + ";",
+app.put('/Admin/Set_EmerPhone', (req, res) => {
+    var emer_phone = req.body.emer_phone;
+    var admin_id = req.body.user_id;
+    con.query("UPDATE Trainer SET Train_Emer_Num = '" + emer_phone +
+        "' WHERE TID = " + admin_id + ";",
         function(err) {
             if (err) throw err;
         });

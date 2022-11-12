@@ -1,26 +1,15 @@
 const express = require('express');
 const app = express();
-app.listen('16303');
 app.use(express.json());
 
-/**
- * Mysql connection
- */
-var mysql = require('mysql2');
+let con = require('../mysql.js');
 
-var con = mysql.createConnection({
-    host: "108.213.201.29",
-    user: "root",
-    password: "RazzleDazzle1!",
-    database: "Horse_Site",
-    insecureAuth: true,
-    connectTimeout: 30000
-});
-
-app.put('/createAppointment', (req, res) => {
+app.put('/Admin/Create_Appointment', (req, res) => {
     var appt_name = req.body.appt_name;
     var appt_date = req.body.appt_date;
     var appt_time = req.body.appt_time;
+    var appt_end_time = req.body.appt_end_time;
+    var appt_type = req.body.appt_type;
     var appt_difficulty = req.body.appt_difficulty;
     var appt_desc = req.body.appt_desc;
     var appt_pub_notes = req.body.appt_pub_notes;
@@ -30,31 +19,26 @@ app.put('/createAppointment', (req, res) => {
     var appt_TID_2 = req.body.appt_TID_2;
 
     // Reconfigure default values
-    if (appt_difficulty == '') appt_difficulty = 0;
-    if (appt_desc == '') appt_desc = null;
-    if (appt_pub_notes == '') appt_pub_notes = null;
-    if (appt_priv_notes == '') appt_priv_notes = null;
-    if (appt_size == '') appt_size = 1;
-    if (appt_TID_1 == '') appt_TID_1 = null;
-    if (appt_TID_2 == '') appt_TID_2 = null;
+    if (appt_desc == "") appt_desc = null;
+    if (appt_pub_notes == "") appt_pub_notes = null;
+    if (appt_priv_notes == "") appt_priv_notes = null;
+    if (appt_size == "") appt_size = 1;
+    if (appt_TID_1 == "") appt_TID_1 = null;
+    if (appt_TID_2 == "") appt_TID_2 = null;
 
     // Insert appointment
-    con.query("INSERT INTO Appointment (Appt_Name, Appt_Date, Appt_Time, Appt_Difficulty, " +
-        "Appt_Description, Appt_Public_Notes, Appt_Private_Notes, Appt_Size, Appt_TID_1, Appt_TID_2, Appt_GID) " +
-        "VALUES ('" + appt_name + "', '" + appt_date + "', '" + appt_time + "', '" +
-        appt_difficulty + "', '" + appt_desc + "', '" + appt_pub_notes + "', '" +
+    con.query("INSERT INTO Appointment (Appt_Name, Appt_Date, Appt_Time, " +
+        "Appt_End_Time, Appt_Type, Appt_Difficulty, Appt_Description, " +
+        "Appt_Public_Notes, Appt_Private_Notes, Appt_Size, Appt_TID_1, " +
+        "Appt_TID_2) " +
+        "VALUES ('" + appt_name + "', '" + appt_date + "', '" + appt_time +
+        "', '" + appt_end_time + "', '" + appt_type + "', '" + appt_difficulty +
+        "', '" + appt_desc + "', '" + appt_pub_notes + "', '" +
         appt_priv_notes + "', '" + appt_size + "', '" + appt_TID_1 + "', '" +
-        appt_TID_2 + "', null);",
+        appt_TID_2 + "');",
         function(err) {
             if (err) throw err;
         })
-
-    // Get appt key
-    var appt_key;
-    con.query("SELECT Appt_Key FROM Appointment ORDER BY Appt_Key DESC LIMIT 1;", function(err, result) {
-        if (err) throw err;
-        appt_key = result[0].Appt_Key;
-    })
 })
 
 module.exports = app;
