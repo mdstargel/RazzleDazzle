@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
+import axios from 'axios';
 
 import Banner from './Components/Banner/Banner'
 import AboutUs from './Components/User Pages/AboutUs';
@@ -25,6 +26,7 @@ import TrainerWorkload from './Components/User Pages/Trainer Workload/TrainerWor
 import HorseWatermark from './Components/User Pages/Assets/FINALWATERMARK.jpg';
 import Help from './Components/Help/Help.jsx';
 function App() {
+  const [isMounted, setIsMounted] = useState(false);
   const [wpage, setwpage] = useState('About Us')
   const [signedIn, setSignedIn] = useState(false)
   /**
@@ -76,6 +78,15 @@ function App() {
     isTrainer: false,
     isCustomer: false,
   })
+
+  if (!isMounted) {
+        axios.get('http://localhost:9005/Public_News').then(resp => {
+
+            console.log('news teset: ', resp.data);
+
+        })
+        setIsMounted(true);
+    }
   
   const ChosenWebpage = () => {
     let chosenpage;
