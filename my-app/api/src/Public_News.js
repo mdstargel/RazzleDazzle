@@ -10,7 +10,7 @@ const con = require('./mysql');
  */
 let { news } = require("./News/Class_News");
 
-app.get('/publicNews', (req, res) => {
+app.get('/Public_News', (req, res) => {
     var public_news = [];
     con.query("SELECT * FROM News;", function(err, result) {
         if (err) throw err;
