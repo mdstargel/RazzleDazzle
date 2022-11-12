@@ -80,7 +80,7 @@ function App() {
   })
 
   if (!isMounted) {
-        axios.get('http://localhost:9005/Public_News').then(resp => {
+        axios.get('/Public_News').then(resp => {
 
             console.log('news teset: ', resp.data);
 
