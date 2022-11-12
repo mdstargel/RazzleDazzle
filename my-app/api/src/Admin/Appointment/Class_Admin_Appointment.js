@@ -1,11 +1,12 @@
 class admin_appt {
-    constructor(appt_key, appt_name, appt_date, appt_time, appt_difficulty,
+    constructor(appt_key, appt_name, appt_date, appt_time, appt_end_time, appt_difficulty,
         appt_desc, appt_pub_notes, appt_priv_notes, appt_size,
         appt_TID_1, appt_TID_2, appt_GID, appt_micro_trainers) {
         this.appt_key = appt_key;
         this.appt_name = appt_name;
         this.appt_date = appt_date;
         this.appt_time = appt_time;
+        this.appt_end_time = appt_end_time;
         this.appt_difficulty = appt_difficulty;
         this.appt_desc = appt_desc;
         this.appt_pub_notes = appt_pub_notes;
@@ -40,6 +41,22 @@ class admin_appt {
 
     setTime(time) {
         this.appt_time = time;
+    }
+
+    getEndTime() {
+        return this.appt_end_time;
+    }
+
+    setEndTime(end_time) {
+        this.appt_end_time = end_time;
+    }
+
+    getType() {
+        return this.appt_type;
+    }
+
+    setType(ap_type) {
+        this.appt_type = ap_type;
     }
 
     getDifficulty() {

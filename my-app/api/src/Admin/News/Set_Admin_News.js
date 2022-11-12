@@ -1,49 +1,44 @@
 const express = require('express');
 const app = express();
-app.listen('16341');
 app.use(express.json());
 
-/**
- * Mysql connection
- */
-var mysql = require('mysql2');
+let con = require('../../mysql.js');
 
-var con = mysql.createConnection({
-    host: "108.213.201.29",
-    user: "root",
-    password: "RazzleDazzle1!",
-    database: "Horse_Site",
-    insecureAuth: true,
-    connectTimeout: 30000
-});
-
-app.put('/setImgURL', (req, res) => {
-    con.query("UPDATE News SET IMG_Name = '" + req.body.imgName + "' WHERE KEY = " +
-        req.body.news_key + ";",
+app.put('/Admin/News/Set_ImgURL', (req, res) => {
+    var imgURL = req.body.imgURL;
+    var news_key = req.body.news_key;
+    con.query("UPDATE News SET IMG_Name = '" + imgURL + "' WHERE KEY = " +
+        news_key + ";",
         function(err) {
             if (err) throw err;
         })
 })
 
-app.put('/setTitle', (req, res) => {
-    con.query("UPDATE News SET Title = '" + req.body.news_title + "' WHERE KEY = " +
-        req.body.news_key + ";",
+app.put('/Admin/News/Set_Title', (req, res) => {
+    var news_title = req.body.news_title;
+    var news_key = req.body.news_key;
+    con.query("UPDATE News SET Title = '" + news_title + "' WHERE KEY = " +
+        news_key + ";",
         function(err) {
             if (err) throw err;
         })
 })
 
-app.put('/setLink', (req, res) => {
-    con.query("UPDATE News SET Link = '" + req.body.news_link + "' WHERE KEY = " +
-        req.body.news_key + ";",
+app.put('/Admin/News/Set_Link', (req, res) => {
+    var news_link = req.body.news_link;
+    var news_key = req.body.news_key;
+    con.query("UPDATE News SET Link = '" + news_link + "' WHERE KEY = " +
+        news_key + ";",
         function(err) {
             if (err) throw err;
         })
 })
 
-app.put('/setDescription', (req, res) => {
-    con.query("UPDATE News SET IMG_Name = '" + req.body.description + "' WHERE KEY = " +
-        req.body.news_key + ";",
+app.put('/Admin/News/Set_Description', (req, res) => {
+    var description = req.body.description;
+    var news_key = req.body.news_key;
+    con.query("UPDATE News SET IMG_Name = '" + description + "' WHERE KEY = " +
+        news_key + ";",
         function(err) {
             if (err) throw err;
         })

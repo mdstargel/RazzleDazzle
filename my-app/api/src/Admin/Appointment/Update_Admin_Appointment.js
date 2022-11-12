@@ -1,150 +1,172 @@
 const express = require('express');
 const app = express();
-app.listen('16310');
 app.use(express.json());
 
-/**
- * Mysql connection
- */
-var mysql = require('mysql2');
-
-var con = mysql.createConnection({
-    host: "108.213.201.29",
-    user: "root",
-    password: "RazzleDazzle1!",
-    database: "Horse_Site",
-    insecureAuth: true,
-    connectTimeout: 30000
-});
+const con = require('../../mysql.js');
 
 /**
  * Imports
  */
 let { micro_trainer } = require("./Micro_Trainer/Class_Micro_Trainer");
 
-app.get('/updateName', (req, res) => {
+app.get('/Admin/Calendar/Update_Name', (req, res) => {
     var name;
+    var appt_key = req.body.appt_key;
     con.query("SELECT Appt_Name FROM Appointment WHERE Appt_Key = " +
-        req.body.appt_key + ";",
+        appt_key + ";",
         function(err, result) {
             if (err) throw err;
             name = result[0].Appt_Name;
-            res.json(name);
+            res.send(name);
         })
 })
 
-app.get('/updateDate', (req, res) => {
+app.get('/Admin/Calendar/Update_Date', (req, res) => {
     var date;
+    var appt_key = req.body.appt_key;
     con.query("SELECT Appt_Date FROM Appointment WHERE Appt_Key = " +
-        req.body.appt_key + ";",
+        appt_key + ";",
         function(err, result) {
             if (err) throw err;
-            date = result[0].Appt_Date;
-            res.json(date);
+            date = result[0].Appt_Date + "";
+            res.send(date);
         })
 })
 
-app.get('/updateTime', (req, res) => {
+app.get('/Admin/Calendar/Update_Start_Time', (req, res) => {
     var time;
+    var appt_key = req.body.appt_key;
     con.query("SELECT Appt_Time FROM Appointment WHERE Appt_Key = " +
-        req.body.appt_key + ";",
+        appt_key + ";",
         function(err, result) {
             if (err) throw err;
-            time = result[0].Appt_Date;
-            res.json(time);
+            time = result[0].Appt_Time + "";
+            res.send(time);
         })
 })
 
-app.get('/updateDifficulty', (req, res) => {
+app.get('/Admin/Calendar/Update_End_Time', (req, res) => {
+    var time;
+    var appt_key = req.body.appt_key;
+    con.query("SELECT Appt_End_Time FROM Appointment WHERE Appt_Key = " +
+        appt_key + ";",
+        function(err, result) {
+            if (err) throw err;
+            time = result[0].Appt_Time + "";
+            res.send(time);
+        })
+})
+
+app.get('/Admin/Calendar/Update_Type', (req, res) => {
+    var type;
+    var appt_key = req.body.appt_key;
+    con.query("SELECT Appt_Type FROM Appointment WHERE Appt_Key = " +
+        appt_key + ";",
+        function(err, result) {
+            if (err) throw err;
+            type = result[0].Appt_Type;
+            res.send(type);
+        })
+})
+
+app.get('/Admin/Calendar/Update_Difficulty', (req, res) => {
     var diff;
+    var appt_key = req.body.appt_key;
     con.query("SELECT Appt_Difficulty FROM Appointment WHERE Appt_Key = " +
-        req.body.appt_key + ";",
+        appt_key + ";",
         function(err, result) {
             if (err) throw err;
             diff = result[0].Appt_Difficulty;
-            res.json(diff);
+            res.send(diff);
         })
     return diff;
 })
 
-app.get('/updateDescription', (req, res) => {
+app.get('/Admin/Calendar/Update_Description', (req, res) => {
     var desc;
+    var appt_key = req.body.appt_key;
     con.query("SELECT Appt_Description FROM Appointment WHERE Appt_Key = " +
-        req.body.appt_key + ";",
+        appt_key + ";",
         function(err, result) {
             if (err) throw err;
             desc = result[0].Appt_Description;
-            res.json(desc);
+            res.send(desc);
         })
 })
 
-app.get('/updatePublicNotes', (req, res) => {
+app.get('/Admin/Calendar/Update_Public_Notes', (req, res) => {
     var pub_notes;
+    var appt_key = req.body.appt_key;
     con.query("SELECT Appt_Public_Notes FROM Appointment WHERE Appt_Key = " +
-        req.body.appt_key + ";",
+        appt_key + ";",
         function(err, result) {
             if (err) throw err;
             pub_notes = result[0].Appt_Public_Notes;
-            res.json(pub_notes);
+            res.send(pub_notes);
         })
 })
 
-app.get('/updatePrivateNotes', (req, res) => {
+app.get('/Admin/Calendar/Update_Private_Notes', (req, res) => {
     var priv_notes;
+    var appt_key = req.body.appt_key;
     con.query("SELECT Appt_Private_Notes FROM Appointment WHERE Appt_Key = " +
-        req.body.appt_key + ";",
+        appt_key + ";",
         function(err, result) {
             if (err) throw err;
             priv_notes = result[0].Appt_Private_Notes;
-            res.json(priv_notes);
+            res.send(priv_notes);
         })
 })
 
-app.get('/updateSize', (req, res) => {
+app.get('/Admin/Calendar/Update_Size', (req, res) => {
     var size;
+    var appt_key = req.body.appt_key;
     con.query("SELECT Appt_Size FROM Appointment WHERE Appt_Key = " +
-        req.body.appt_key + ";",
+        appt_key + ";",
         function(err, result) {
             if (err) throw err;
             size = result[0].Appt_Size;
-            res.json(size);
+            res.send(size);
         })
 })
 
-app.get('/updateTID1', (req, res) => {
+app.get('//Admin/Calendar/Update_Trainer1', (req, res) => {
     var tid_1;
+    var appt_key = req.body.appt_key;
     con.query("SELECT Appt_TID_1 FROM Appointment WHERE Appt_Key = " +
-        req.body.appt_key + ";",
+        appt_key + ";",
         function(err, result) {
             if (err) throw err;
             tid_1 = result[0].Appt_TID_1;
-            res.json(tid_1);
+            res.send(tid_1);
         })
 })
 
-app.get('/updateTID2', (req, res) => {
+app.get('/Admin/Calendar/Update_Trainer2', (req, res) => {
     var tid_2;
+    var appt_key = req.body.appt_key;
     con.query("SELECT Appt_TID_2 FROM Appointment WHERE Appt_Key = " +
-        req.body.appt_key + ";",
+        appt_key + ";",
         function(err, result) {
             if (err) throw err;
             tid_2 = result[0].Appt_TID_2;
-            res.json(tid_2);
+            res.send(tid_2);
         })
 })
 
-app.get('/updateGID', (req, res) => {
+app.get('/Admin/Calendar/Update_Group', (req, res) => {
     var gid;
+    var appt_key = req.body.appt_key;
     con.query("SELECT Appt_GID FROM Appointment WHERE Appt_Key = '" +
-        req.body.appt_key + "';",
+        appt_key + "';",
         function(err, result) {
             if (err) throw err;
             gid = result[0].Appt_GID;
-            res.json(gid);
+            res.send(gid);
         })
 })
 
-app.get('/updateMicroTrainers', (req, res) => {
+app.get('/Admin/Calendar/Update_Trainers', (req, res) => {
     var micro_trainers = [];
     con.query("SELECT TID, Train_Name FROM Trainer;",
         function(err, result) {
@@ -152,7 +174,7 @@ app.get('/updateMicroTrainers', (req, res) => {
             for (var i = 0; i < result.length; i++) {
                 micro_trainers.push(new micro_trainer(result[i].TID, result[i].Train_Name));
             }
-            res.json(micro_trainers);
+            res.send(micro_trainers);
         })
 })
 

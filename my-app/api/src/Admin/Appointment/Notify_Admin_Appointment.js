@@ -1,22 +1,8 @@
 const express = require('express');
 const app = express();
-app.listen('16312');
 app.use(express.json());
 
-
-/**
- * Mysql connection
- */
-var mysql = require('mysql2');
-
-var con = mysql.createConnection({
-    host: "108.213.201.29",
-    user: "root",
-    password: "RazzleDazzle1!",
-    database: "Horse_Site",
-    insecureAuth: true,
-    connectTimeout: 30000
-});
+const con = require('../../mysql.js');
 
 var getPhoneNumbers = (appt_key) => {
     var gid;
@@ -141,10 +127,10 @@ var getEmails = (appt_key) => {
     return emails;
 }
 
-app.put('/sendNotifications', (req, res) => {
+app.put('/Admin/Calendar/Send_Notifications', (req, res) => {
     var appt_key = req.body.appt_key;
-    var title = req.body.title;
-    var notification = req.body.notification;
+    var title = req.body.title.replaceAll('"', '');
+    var notification = req.body.notification.replaceAll('"', '');
 
     var emails = getEmails(appt_key);
     for (var i = 0; i < emails.length; i++) {

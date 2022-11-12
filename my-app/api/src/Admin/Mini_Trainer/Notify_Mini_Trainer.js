@@ -1,21 +1,6 @@
 const express = require('express');
 const app = express();
-app.listen('16332');
 app.use(express.json());
-
-/**
- * Mysql connection
- */
-var mysql = require('mysql2');
-
-var con = mysql.createConnection({
-    host: "108.213.201.29",
-    user: "root",
-    password: "RazzleDazzle1!",
-    database: "Horse_Site",
-    insecureAuth: true,
-    connectTimeout: 30000
-});
 
 /**
  * Imports
@@ -23,7 +8,7 @@ var con = mysql.createConnection({
 const { nodemailer, transporter, emailAppt, textAppt } = require('../../Notifications');
 let { mini_trainer } = require("./Class_Mini_Trainer")
 
-app.put('/sendNotifications', (req, res) => {
+app.put('/Admin/Trainer/Send_Notifications', (req, res) => {
     var mini_trainers = req.body.mini_trainers;
     var title = req.body.title;
     var notification = req.body.notification;
@@ -33,6 +18,5 @@ app.put('/sendNotifications', (req, res) => {
         textAppt(mini_trainers[i].getPhone(), notification);
     }
 })
-
 
 module.exports = app;

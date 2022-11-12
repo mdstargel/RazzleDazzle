@@ -1,26 +1,16 @@
 const express = require('express');
 const app = express();
-app.listen('16111');
 app.use(express.json());
 
-/**
- * Mysql connection
- */
-var mysql = require('mysql2');
+let con = require('../../mysql.js');
 
-var con = mysql.createConnection({
-    host: "108.213.201.29",
-    user: "root",
-    password: "RazzleDazzle1!",
-    database: "Horse_Site",
-    insecureAuth: true,
-    connectTimeout: 30000
-});
-
-app.put('/setReserved', (req, res) => {
-    if (req.body.reserve) {
-        con.query("UPDATE Appointment SET Appt_Size = Appt_Size - 1 WHERE Appt_Key = " +
-            req.body.appt_key + ";",
+app.put('/Customer/Calendar/Set_Reserved', (req, res) => {
+    var reserve = req.body.reserved;
+    var appt_key = req.body.appt_key;
+    var customer_id = req.body.customer_id;
+    if (reserve) {
+        con.query("UPDATE Appointment SET Appt_Size = Appt_Size - 1 WHERE " +
+            "Appt_Key = " + appt_key + ";",
             function(err) {
                 if (err) throw err;
             });
@@ -28,7 +18,7 @@ app.put('/setReserved', (req, res) => {
         // Get GID of appointment reserved
         var appt_gid;
         con.query("SELECT Appt_GID FROM Appointment WHERE Appt_Key = " +
-            req.body.appt_key + ";",
+            appt_key + ";",
             function(err, result) {
                 if (err) throw err;
                 appt_gid = result[0].Appt_GID;
@@ -37,7 +27,7 @@ app.put('/setReserved', (req, res) => {
         // If no group exists
         if (appt_gid == null) {
             con.query("INSERT INTO Customer_Group (CID_1) VALUES (" +
-                req.body.customer_id + ");",
+                customer_id + ");",
                 function(err) {
                     if (err) throw err;
                 });
@@ -48,15 +38,15 @@ app.put('/setReserved', (req, res) => {
             // Get GID and all CID's
             var gid;
             con.query("SELECT Appt_GID FROM Appointment WHERE Appt_Key = " +
-                req.body.appt_key + ";",
+                appt_key + ";",
                 function(err, result) {
                     if (err) throw err;
                     gid = result[0].Appt_GID;
                 });
 
             var CID_2, CID_3, CID_4;
-            con.query("SELECT CID_2, CID_3, CID_4 FROM Customer_Group WHERE GID = " +
-                gid + ";",
+            con.query("SELECT CID_2, CID_3, CID_4 FROM Customer_Group WHERE " +
+                "GID = " + gid + ";",
                 function(err, result) {
                     if (err) throw err;
                     CID_2 = result[0].CID_2;
@@ -66,7 +56,7 @@ app.put('/setReserved', (req, res) => {
 
             // If CID_2 is empty
             if (CID_2 == null) {
-                con.query("UPDATE Customer_Group SET CID_2 = " + req.body.customer_id +
+                con.query("UPDATE Customer_Group SET CID_2 = " + customer_id +
                     " WHERE GID = " + gid + ";",
                     function(err) {
                         if (err) throw err;
@@ -75,7 +65,7 @@ app.put('/setReserved', (req, res) => {
 
             // Else if CID_3 is empty
             else if (CID_3 == null) {
-                con.query("UPDATE Customer_Group SET CID_3 = " + req.body.customer_id +
+                con.query("UPDATE Customer_Group SET CID_3 = " + customer_id +
                     " WHERE GID = " + gid + ";",
                     function(err) {
                         if (err) throw err;
@@ -84,7 +74,7 @@ app.put('/setReserved', (req, res) => {
 
             // Else if CID_4 is empty
             else if (CID_4 == null) {
-                con.query("UPDATE Customer_Group SET CID_4 = " + req.body.customer_id +
+                con.query("UPDATE Customer_Group SET CID_4 = " + customer_id +
                     " WHERE GID = " + gid + ";",
                     function(err) {
                         if (err) throw err;
@@ -94,9 +84,9 @@ app.put('/setReserved', (req, res) => {
     }
 
     // If set reserved to false, reduce available group size (also in DB)
-    else if (!req.body.reserve) {
+    else if (!reserve) {
         con.query("UPDATE Appointment SET Size = Size + 1 WHERE Appt_Key = " +
-            req.body.appt_key + ";",
+            appt_key + ";",
             function(err) {
                 if (err) throw err;
             })
@@ -106,7 +96,7 @@ app.put('/setReserved', (req, res) => {
         var gid, CID_1, CID_2, CID_3, CID_4;
         con.query("SELECT * FROM Customer_Group " +
             "INNER JOIN Appointment ON GID = Appointment.Appt_GID " +
-            " WHERE Appointment.Appt_Key = " + req.body.appt_key + ";",
+            " WHERE Appointment.Appt_Key = " + appt_key + ";",
             function(err, result) {
                 if (err) throw err;
                 gid = result[0].GID;
@@ -117,25 +107,26 @@ app.put('/setReserved', (req, res) => {
             })
 
         // Check values
-        if (CID_2 == req.body.customer_id) {
+        if (CID_2 == customer_id) {
             con.query("UPDATE Customer_Group SET CID_2 = NULL WHERE GID = " +
                 gid + ";",
                 function(err) {
                     if (err) throw err;
                 })
-        } else if (CID_3 == req.body.customer_id) {
+        } else if (CID_3 == customer_id) {
             con.query("UPDATE Customer_Group SET CID_3 = NULL WHERE GID = " +
                 gid + ";",
                 function(err) {
                     if (err) throw err;
                 })
-        } else if (CID_4 == req.body.customer_id) {
+        } else if (CID_4 == customer_id) {
             con.query("UPDATE Customer_Group SET CID_4 = NULL WHERE GID = " +
                 gid + ";",
                 function(err) {
                     if (err) throw err;
                 })
-        } else if (CID_1 == req.body.customer_id && CID_2 != NULL && CID_3 != NULL && CID_4 != NULL) {
+        } else if (CID_1 == customer_id && CID_2 != NULL && CID_3 != NULL &&
+            CID_4 != NULL) {
             con.query("UPDATE Customer_Group SET CID_1 = CID_4 WHERE GID = " +
                 gid + ";",
                 function(err) {
@@ -146,7 +137,7 @@ app.put('/setReserved', (req, res) => {
                 function(err) {
                     if (err) throw err;
                 })
-        } else if (CID_1 == req.body.customer_id && CID_2 != NULL && CID_3 != NULL) {
+        } else if (CID_1 == customer_id && CID_2 != NULL && CID_3 != NULL) {
             con.query("UPDATE Customer_Group SET CID_1 = CID_3 WHERE GID = " +
                 gid + ";",
                 function(err) {
@@ -157,7 +148,7 @@ app.put('/setReserved', (req, res) => {
                 function(err) {
                     if (err) throw err;
                 })
-        } else if (CID_1 == req.body.customer_id && CID_2 != NULL) {
+        } else if (CID_1 == customer_id && CID_2 != NULL) {
             con.query("UPDATE Customer_Group SET CID_1 = CID_2 WHERE GID = " +
                 gid + ";",
                 function(err) {
@@ -169,8 +160,8 @@ app.put('/setReserved', (req, res) => {
                     if (err) throw err;
                 })
         } else {
-            con.query("UPDATE Appointment SET Appt_GID = NULL WHERE Appt_Key = " +
-                req.body.appt_key + ";",
+            con.query("UPDATE Appointment SET Appt_GID = NULL WHERE " +
+                "Appt_Key = " + appt_key + ";",
                 function(err) {
                     if (err) throw err;
                 })

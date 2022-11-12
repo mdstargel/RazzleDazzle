@@ -1,21 +1,8 @@
 const express = require('express');
 const app = express();
-app.listen('16101');
 app.use(express.json());
 
-/**
- * Mysql connection
- */
-var mysql = require('mysql2');
-
-var con = mysql.createConnection({
-    host: "108.213.201.29",
-    user: "root",
-    password: "RazzleDazzle1!",
-    database: "Horse_Site",
-    insecureAuth: true,
-    connectTimeout: 30000
-});
+let con = require('../mysql.js');
 
 app.put('/setName', (req, res) => {
     con.query("UPDATE Customer SET Cust_Name = '" + req.body.name +
