@@ -129,7 +129,7 @@ const AddTrainer = () => {
                     value={values.address}
                 />
             </div>
-            <br/><br />
+            <br/><br/>
 
             <div className='inputTitles5'>
             
@@ -140,10 +140,12 @@ const AddTrainer = () => {
                     type="text"
                     onChange={handleAddressInputChange}
                     // value={data.Address}    
+                    // Need to create a data.Style for the line above in AddTrainer and AccessTrainer.
+                    // Also need to add a boolean circle, similar to manage texts, but for the Admin permissions below
                 />
 
             </div>
-            <br /><br />
+            <br/><br/>
 
             {/* <div className='inputTitles5'>
                 <label className='label'>Trainer Permissions:</label>
@@ -158,7 +160,8 @@ const AddTrainer = () => {
             <br/><br/>
 
             <div>{trainerAddedUpdateMessage}</div>
-            <br /><br />
+            <br/><br/>
+            
             <div className='buttonContainer'>
                 <div className='button1'>
                     <CancelButton onClick={handleCancelAddTrainer}/>
