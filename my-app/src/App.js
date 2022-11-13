@@ -77,8 +77,8 @@ function App() {
    */
   const [userPermissions, setUserPermissions] = useState({
     isAdmin: false,
-    isTrainer: false,
-    isCustomer: true,
+    isTrainer: true,
+    isCustomer: false,
   })
 
   if (!isMounted) {
