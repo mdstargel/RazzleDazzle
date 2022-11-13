@@ -25,6 +25,8 @@ import ManageCustomers from './Components/User Pages/ManageCustomers/ManageCusto
 import TrainerWorkload from './Components/User Pages/Trainer Workload/TrainerWorkload';
 import HorseWatermark from './Components/User Pages/Assets/FINALWATERMARK.jpg';
 import Help from './Components/Help/Help.jsx';
+import Footer from './Components/Banner/Footer';
+
 function App() {
   const [isMounted, setIsMounted] = useState(false);
   const [wpage, setwpage] = useState('About Us')
@@ -74,9 +76,9 @@ function App() {
    * We need backend to validate when the user signs in who they are
    */
   const [userPermissions, setUserPermissions] = useState({
-    isAdmin: true,
+    isAdmin: false,
     isTrainer: false,
-    isCustomer: false,
+    isCustomer: true,
   })
 
   if (!isMounted) {
@@ -152,7 +154,8 @@ function App() {
       <img src={HorseWatermark} className='watermarkBack' alt="Horse Watermark" />
       <Banner setwpage={setwpage} wpage={wpage} signedIn={signedIn} userPermissions={userPermissions} setSignedIn={setSignedIn} />
       <Help wpage={wpage} userPermissions={userPermissions} />
-      <ChosenWebpage  />
+      <ChosenWebpage />
+      <Footer />
     </div>
   );
   return (

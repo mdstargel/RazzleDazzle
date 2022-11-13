@@ -4,6 +4,8 @@ import EditAppointment from './EditAppointment';
 import CalendarEditButton from '../Buttons/CalendarEditButton';
 import CalendarCancelButton from '../Buttons/CalendarCancelButton';
 import CalendarAddButton from '../Buttons/CalendarAddButton';
+import CalendarNotesButton from '../Buttons/CalendarNotesButton';
+import CalendarNotes from './CalendarNotes';
 
 
 const AppointmentPill = ({ trainerName, availableAppointments, userPermissions }) => {
@@ -25,7 +27,8 @@ const AppointmentPill = ({ trainerName, availableAppointments, userPermissions }
                     {/* <div onClick={() => console.log('this should add appointment', appointment.appointmentId)} className='addAppointmentButton'>Add Appointment</div> */}
                     {(userPermissions.isCustomer) && <CalendarAddButton />}
                    {(userPermissions.isAdmin || userPermissions.isTrainer) && <CalendarEditButton onClick={() => setModifyAppointment(<EditAppointment appointment={appointment} setModifyAppointment={setModifyAppointment}/>)}/>}
-                 {(userPermissions.isAdmin || userPermissions.isTrainer) && <CalendarCancelButton setModifyAppointment={setModifyAppointment} onClick={() => console.log('this should add appointment', appointment.appointmentId)} />}
+                    {(userPermissions.isAdmin || userPermissions.isTrainer) && <CalendarCancelButton setModifyAppointment={setModifyAppointment} onClick={() => console.log('this should add appointment', appointment.appointmentId)} />}
+                    <CalendarNotesButton onClick={() => setModifyAppointment(<CalendarNotes appointment={appointment} setModifyAppointment={setModifyAppointment} userPermissions={userPermissions} />)}/>
                 </div>}
             </div>
         );
