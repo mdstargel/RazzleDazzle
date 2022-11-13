@@ -26,7 +26,9 @@ const Calendar = ({ userPermissions }) => {
       signedUp: false,
       remainingSpots: 8,
       hasTrainee: true,
-      lessonType: 'Group'
+      lessonType: 'Group',
+      PublicNotes: 'Great job Today',
+      PrivateNotes: 'Jeremy stop hitting on me!',
     },
     {
       trainerNames: 'Jane Doe',
@@ -40,7 +42,9 @@ const Calendar = ({ userPermissions }) => {
       signedUp: false,
       remainingSpots: 8,
       hasTrainee: true,
-      lessonType: 'Group'
+      lessonType: 'Group',
+      PublicNotes: 'Great job Today',
+      PrivateNotes: 'Jeremy stop hitting on me!',
     },
     {
       trainerNames: 'James Doe',
@@ -54,7 +58,9 @@ const Calendar = ({ userPermissions }) => {
       signedUp: false,
       remainingSpots: 8,
       hasTrainee: true,
-      lessonType: 'Group'
+      lessonType: 'Group',
+      PublicNotes: 'Great job Today',
+      PrivateNotes: 'Jeremy stop hitting on me!',
     },
     {
       trainerNames: 'John Doe',
@@ -68,7 +74,9 @@ const Calendar = ({ userPermissions }) => {
       signedUp: true,
       remainingSpots: 8,
       hasTrainee: true,
-      lessonType: 'Group'
+      lessonType: 'Group',
+      PublicNotes: 'Great job Today',
+      PrivateNotes: 'Jeremy stop hitting on me!',
     },
     {
       trainerNames: 'John Doe',
@@ -82,8 +90,9 @@ const Calendar = ({ userPermissions }) => {
       signedUp: true,
       remainingSpots: 8,
       hasTrainee: true,
-      lessonType: 'Group'
-
+      lessonType: 'Group',
+      PublicNotes: 'Great job Today',
+      PrivateNotes: 'Jeremy stop hitting on me!', 
     },
     {
       trainerNames: 'John Doe',
@@ -97,7 +106,9 @@ const Calendar = ({ userPermissions }) => {
       signedUp: true,
       remainingSpots: 8,
       hasTrainee: true,
-      lessonType: 'Group'
+      lessonType: 'Group',
+      PublicNotes: 'Great job Today',
+      PrivateNotes: 'Jeremy stop hitting on me!',
     },
     {
       trainerNames: 'John Doe',
@@ -111,7 +122,9 @@ const Calendar = ({ userPermissions }) => {
       signedUp: false,
       remainingSpots: 8,
       hasTrainee: true,
-      lessonType: 'Group'
+      lessonType: 'Group',
+      PublicNotes: 'Great job Today',
+      PrivateNotes: 'Jeremy stop hitting on me!',
     }
   ])
 
@@ -167,7 +180,7 @@ const Calendar = ({ userPermissions }) => {
       {tabs}
       <ReactCalendar />
       {showAddAppointment}
-      {!userPermissions.isCustomer &&  < div
+      {!userPermissions.isCustomer &&  <div
           className='makeAppointment'
           onClick={() => setShowAddAppointment(<AddAppointment setShowAddAppointment={setShowAddAppointment}></AddAppointment>)}>
           Make Appointment
