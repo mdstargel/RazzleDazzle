@@ -207,15 +207,29 @@ text-align: left;
 .form2 {
     position: absolute;
     display: block;
-    margin-top: 200px;
+    margin-top: 175px;
     padding: 20px;
-    /* padding-bottom: 100px; */
     left: calc(50% - 370px);
     background-color: #FFFFFF;
     border-radius: 25px;
     height: auto;
     width: 700px;
     /* border: 1px solid #0C1526; */
+    box-shadow: 0px 25px 25px #0C1526;
+}
+
+.form2Alt {
+    position: absolute;
+    display: block;
+    margin-top: 225px;
+    padding: 20px;
+    left: calc(50% - 370px);
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    height: auto;
+    width: 700px;
+    /* border: 1px solid #0C1526; */
+    /* margin-bottom: 100px; */
     box-shadow: 0px 25px 25px #0C1526;
 }
 
@@ -292,6 +306,42 @@ text-align: left;
     border: 1px solid #0C1526;
     /* box-shadow: 0px 4px 4px #0C1526; */
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.inputAddress {
+    position: absolute;
+    
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial;
+    
+    background: #D9D9D9;
+   
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border: 1px;
+    Width: 200px;
+    Height: 70px;
+    padding-top: 10px;
+    resize: none;
+}
+
+.inputSessionNote {
+    position: absolute;
+    
+    font-size: 16px;
+    font-weight: bold;
+    font-family: Arial;
+    
+    background: #D9D9D9;
+   
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    border: 1px;
+    Width: 200px;
+    Height: 120px;
+    padding-top: 12px;
+    resize: none;
 }
 
 .span {
@@ -456,6 +506,16 @@ text-align: left;
     margin-bottom: 10px;
 }
 
+.inputTitlesTrainers {
+    position: absolute;
+    align-content: center;
+    height: 32px;
+    width: 200px;
+    margin-top: 115px;
+    padding-left: 175px;
+    margin-bottom: 10px;
+}
+
 .inputBoxes1 {
     position: absolute;
     /* margin-left: 10px; */
@@ -511,6 +571,16 @@ text-align: left;
     margin-top: 14px;
     right: 100px;
     height: 42px;
+    width: 204px;
+}
+
+.inputBoxSessionNotes {
+    position: absolute;
+    /* margin-left: 10px; */
+    /* padding-top: 7px; */
+    margin-top: 14px;
+    right: 150px;
+    height: 126px;
     width: 204px;
 }
 
@@ -641,6 +711,53 @@ text-align: left;
     width: 400px;
     height: 80px;
     padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: calc(50% - 140px);
+    /* padding-right: 20px; */
+    /* left: calc(50vw - 100px); */
+}
+
+.buttonContainer2 {
+    /* position: absolute; */
+    display: block;
+    width: 400px;
+    height: 80px;
+    padding-top: 75px;
+    padding-bottom: 25px;
+    padding-left: calc(50% - 140px);
+    /* padding-right: 20px; */
+    /* left: calc(50vw - 100px); */
+}
+
+.buttonContainer3 {
+    /* position: absolute; */
+    display: block;
+    width: 400px;
+    height: 80px;
+    padding-top: 110px;
+    padding-bottom: 25px;
+    padding-left: calc(50% - 140px);
+    /* padding-right: 20px; */
+    /* left: calc(50vw - 100px); */
+}
+
+/* .buttonContainer4 {
+    position: absolute;
+    display: block;
+    width: 400px;
+    height: 80px;
+    padding-top: 700px;
+    padding-bottom: 25px;
+    padding-left: calc(50% - 140px);
+} */
+
+.buttonSignUpContainer {
+    /* position: absolute; */
+    display: block;
+    width: 400px;
+    height: 80px;
+    padding-top: 40px;
+    padding-bottom: 25px;
     padding-left: calc(50% - 140px);
     /* padding-right: 20px; */
     /* left: calc(50vw - 100px); */
@@ -908,14 +1025,15 @@ text-align: left;
 }
 
 .sessionNote {
-    width: 302px;
-    height: 509px;
+    width: 300px;
+    height: 500px;
     float: left;
     background-color: #FFFFFF;
     border-radius: 25px;
     padding: 20px;
-    margin-top: 192px;
-    margin-left: 30px;
+    margin-top: 225px;
+    /* margin-left: 30px; */
+    margin-left: calc(18% - 150px);
     box-shadow: 0px 10px 10px #0C1526;
 }
 
@@ -938,8 +1056,11 @@ text-align: left;
 }
 
 .sessionHR {
-    width: 340px;
-    margin-left: -20px;
+    width: 300px;
+    height: 0px;
+    border-color: #0C1526;
+    background-color: 4px solid #0C1526;
+    
 }
 
 .addAppointmentButton {

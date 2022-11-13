@@ -44,7 +44,6 @@ const ManageAppointment = () => {
             <div className='form2'>
                 <ChosenPopup/>
             </div>
-            
         </div>
     );
 }

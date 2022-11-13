@@ -61,7 +61,7 @@ const AddEditSessionNotes = ({setwpage}) => {
         <div className='backGround'>
             <>
             <PageTitle name="Add/Edit Session Notes" />
-            <form className="form2">
+            <form className="form2Alt">
                 <div className='inputTitles1'>
                     <label className='label'>Customer Name:</label>
                 </div>
@@ -85,19 +85,18 @@ const AddEditSessionNotes = ({setwpage}) => {
                 <br /><br />
                 
                 <div className='inputTitles3'>
-                    <label style={{ marginTop: '100px'}} className='label'>Session Notes:</label>
+                    <label className='label'>Session Notes:</label>
                 </div>
-                <div className='inputBoxes3'>
-                    <input
-                        style={{height: '375px'}}
-                        className='input2'
+                <div className='inputBoxSessionNotes'>
+                    <textarea maxLength="500"
+                        className='inputSessionNote'
                         type="text"
                         onChange={handleSessionNotesChange}
                     />
                 </div>
-                <br /><br />
+                <br/><br/>
                     
-                <div className='buttonContainer'>
+                <div className='buttonContainer3'>
                     <br /><br />
                     <div className='button1'>
                         <CancelButton onClick={handleCancel} />

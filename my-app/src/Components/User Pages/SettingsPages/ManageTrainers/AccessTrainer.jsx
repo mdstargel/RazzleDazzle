@@ -247,32 +247,34 @@ const AccessTrainer = () => {
                 <br/><br />
                 
                 <div className='inputTitles4'>
-                    <label className='label'>Address:</label>
+                    <label className='label'>Trainer Style:</label>
                 </div>
                 <div className='inputBoxes4'>
                     <input className='input2'
                         type="text"
                         onChange={handleAddressInputChange}
-                        value={data.Address}    
+                        // value={data.Address} 
+                        // Need to create a data.Style for the line above in AddTrainer and AccessTrainer.
+                        // Also need to add a boolean circle, similar to manage texts, but for the Admin permissions below 
+                         
                     />
                 </div>
                 <br/><br/>
                 
                 <div className='inputTitles5'>
-                <label className='label'>Trainer Style:</label>
+                <label className='label'>Address:</label>
                 </div>
                 <div className='inputBoxes5'>
-                    <input className='input2'
-                            type="text"
-                            onChange={handleAddressInputChange}
-                            // value={data.Address} 
-                            // Need to create a data.Style for the line above in AddTrainer and AccessTrainer.
-                            // Also need to add a boolean circle, similar to manage texts, but for the Admin permissions below   
-                        />
+                    <textarea rows={4} maxLength="75"
+                        className='inputAddress'
+                        type="text"
+                        onChange={handleAddressInputChange}
+                        value={data.Address}   
+                    />
                 </div>
                 <br /><br />
 
-                <div className='inputTitles6'>
+                <div className='inputTitlesTrainers'>
                     <div className='label'
                         onClick={() => handleSetIsAdmin({ data })}
                     >
@@ -318,7 +320,7 @@ const AccessTrainer = () => {
                 PreferredTrainerFormHeading && trainersList
                 : editChosenTrainer}
             <div style={{color: 'green'}}>{trainerInfoUpdateMessage}</div>
-            <div className='buttonContainer'>
+            <div className='buttonContainer3'>
                 <br /><br />
                 <div className='button1'>
                     <CancelButton onClick={() => setShowEditTrainer(false)}/>

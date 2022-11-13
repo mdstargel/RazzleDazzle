@@ -104,7 +104,7 @@ const AccessTrainer = () => {
 
         ))
             
-    const PreferredTrainerFormHeading = (
+    const PreferredCustomerFormHeading = (
         <div style={{display: 'grid',
             gridTemplateColumns: '1fr 1fr 1fr',
             alignContent: 'center',
@@ -112,18 +112,19 @@ const AccessTrainer = () => {
             fontWeight: 'bold',
             marginLeft: '40px',
             marginRight: '40px', 
-            
         }}>
-            <div>Trainer</div>
+            <div>Customer</div>
             <div>Style</div>
-            <div>Experience</div>
+            <div>Level</div>
         </div>
-    )  
-
+    )
+    
     return (
         <div>
-            {PreferredTrainerFormHeading && trainersList}
+            {PreferredCustomerFormHeading}
             <br />
+            {trainersList}
+            <br /><br />
             <form>
                     <label className='label2Alt1'>Beginner: </label>
                     <input type="radio" name="experienceLevel" onClick={() => SetRidigingLevel('Beginner')}/>

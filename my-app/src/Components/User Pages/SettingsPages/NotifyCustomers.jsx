@@ -53,7 +53,7 @@ const NotifyCustomers = ({setwpage}) => {
         <div className='backGround'>
             <>
             <PageTitle name="Notify Customers" />
-            <form className="form2">
+            <form className="form2Alt">
                 <div className='inputTitles1Alt'>
                     <label className='label2'>Customer Name/ID:</label>
                 </div>

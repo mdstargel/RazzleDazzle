@@ -20,7 +20,7 @@ const Services = () => {
         <div className='backGround'>
             <PageTitle name="Services" />
             
-            <div className='form2'> 
+            <div className='form2Alt'> 
                 <div className='serviceLabel' onClick={() => setIndividualLessonPackages(!individualLessonPackages)}>
                     {individualLessonPackages ? 
                     <div className='carrotCenter'>{downCaret} <div style={{marginTop: '-2px', marginLeft: '2px'}}>Individual Lesson Packages</div></div>  
