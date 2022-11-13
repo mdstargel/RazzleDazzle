@@ -1,9 +1,9 @@
 /**
  * Mysql connection
  */
-var mysql = require('mysql2');
+const mysql = require('mysql2');
 
-var con = mysql.createConnection({
+const con = mysql.createConnection({
     host: "localhost",
     user: "root",
     password: "B311ao2l2",
