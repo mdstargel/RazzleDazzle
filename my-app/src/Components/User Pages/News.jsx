@@ -26,7 +26,7 @@ const newsImage = {
     top: '37%',
     left: 'calc(50% - 300px)',
     borderRadius: '20px',
-    // zIndex: '3',
+    zIndex: '3',
     
     
     // position: absolute;

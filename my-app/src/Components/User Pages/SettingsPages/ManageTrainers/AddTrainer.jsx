@@ -120,28 +120,29 @@ const AddTrainer = () => {
             <br/><br />   
             
             <div className='inputTitles4'>
-                <label className='label'>Address:</label>
+                <label className='label'>Trainer Style:</label>
             </div>
             <div className='inputBoxes4'>
-                <input className='input2'
-                    type="text"
-                    onChange={handleAddressInputChange}
-                    value={values.address}
-                />
-            </div>
-            <br/><br/>
-
-            <div className='inputTitles5'>
-            
-            <label className='label'>Trainer Style:</label>
-            </div>
-            <div className='inputBoxes5'>
                 <input className='input2'
                     type="text"
                     onChange={handleAddressInputChange}
                     // value={data.Address}    
                     // Need to create a data.Style for the line above in AddTrainer and AccessTrainer.
                     // Also need to add a boolean circle, similar to manage texts, but for the Admin permissions below
+                />
+            </div>
+            <br/><br/>
+
+            <div className='inputTitles5'>
+            
+            <label className='label'>Address:</label>
+            </div>
+            <div className='inputBoxes5'>
+                <textarea rows={4} maxLength="75"
+                        className='inputAddress'
+                    type="text"
+                    onChange={handleAddressInputChange}
+                    value={values.address}
                 />
 
             </div>
@@ -154,7 +155,7 @@ const AddTrainer = () => {
             
             
             {/* <div onClick={() => setTrainerOn(!trainerOn)}>Trainer: {trainerOn ? 'True' : 'False'}</div> */}
-            <div className='inputTitles6'>
+            <div className='inputTitlesTrainers'>
                 <div className='label' onClick={() => setAdminOn(!adminOn)}>Admin: {adminOn ? 'True' : 'False'}</div>
             </div>
             <br/><br/>
@@ -162,7 +163,7 @@ const AddTrainer = () => {
             <div>{trainerAddedUpdateMessage}</div>
             <br/><br/>
             
-            <div className='buttonContainer'>
+            <div className='buttonContainer3'>
                 <div className='button1'>
                     <CancelButton onClick={handleCancelAddTrainer}/>
                     <ConfirmButton style={{paddingLeft: '20px'}} onClick={handleAddTrainer} buttonText="Add" />

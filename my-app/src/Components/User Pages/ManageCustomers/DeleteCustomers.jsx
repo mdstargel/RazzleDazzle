@@ -111,10 +111,11 @@ const DeleteCustomer = () => {
     return (
         <div>
             {PreferredCustomerFormHeading}
-            <br />
+            <br/>
             {CustomersList}
             <div className='buttonContainer'>
-                <br /><br />
+                <br/><br/>
+                
                 <div className='button1'>
                     <CancelButton onClick={handleCancelDeleteCustomer} />
                     <ConfirmButton buttonText={'Delete'} onClick={handleDeleteCustomer} />

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import CancelButton from '../../Buttons/CancelButton';
 import ConfirmButton from '../../Buttons/ConfirmButton';
-import '../styles.css'
+import '../styles.css';
+import PageTitle from "../PageTitle";
 
 const ChangePassword = ({setSignedIn, setwpage}) => {
     /**
@@ -70,7 +71,8 @@ const ChangePassword = ({setSignedIn, setwpage}) => {
 
     return (
         <div className='backGround'>
-            <form onSubmit={handleSubmit} className='form'>
+            <PageTitle name="Change Password" />
+            <form onSubmit={handleSubmit} className='form2Alt'>
                 <div className='inputTitles1Alt'>
                     <label className='label2'>Please enter current password:</label>
                 </div>

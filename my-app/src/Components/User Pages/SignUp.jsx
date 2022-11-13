@@ -157,7 +157,7 @@ const SignUp = ({setSignedIn, setwpage}) => {
                     Please fill in all fields with a {error}
                 </div>
             }
-            <div className='buttonContainer'>
+            <div className='buttonSignUpContainer'>
                 <br /><br />
                 <div className='button1'>
                     <ConfirmButton buttonText='Sign Up' type="button" value="Sign Up" onClick={handleSubmit}/>
