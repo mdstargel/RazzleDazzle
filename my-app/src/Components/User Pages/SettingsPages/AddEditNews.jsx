@@ -70,7 +70,7 @@ const AddEditNews = ({setwpage}) => {
         <div className='backGround'>
             <>
             <PageTitle name="Add/Edit News" />
-            <div className='form2'>
+            <div className='form2Alt'>
                 <div className='inputTitles1'>
                     <label className='label'>News Title: </label>
                 </div>
@@ -90,7 +90,7 @@ const AddEditNews = ({setwpage}) => {
                 <br/><br />
 
                 <div className='inputTitles3'>
-                    <label className='label'>News Image: </label>
+                    <label className='label'>News Image URL: </label>
                 </div>
                 <div className='inputBoxes3'>
                     <input className='input2' type="text" value={values.image}

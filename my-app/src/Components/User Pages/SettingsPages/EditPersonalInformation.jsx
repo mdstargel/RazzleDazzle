@@ -92,7 +92,7 @@ const EditPersonalInformation = ({setwpage}) => {
     return (
         <div>
             <PageTitle name="Edit Personal Information" />
-            <form className='form2'>
+            <form className='form2Alt'>
                 <div className='inputTitles1'>
                     <label className='label'>First Name:</label>
                 </div>
@@ -103,7 +103,7 @@ const EditPersonalInformation = ({setwpage}) => {
                     onChange={handleFirstNameInputChange}
                     />
                 </div>
-                <br/><br />
+                <br/><br/>
 
                 <div className='inputTitles2'>
                     <label className='label'>Last Name:</label>
@@ -115,7 +115,7 @@ const EditPersonalInformation = ({setwpage}) => {
                     onChange={handleLastNameInputChange}
                     />
                 </div>
-                <br/><br />
+                <br/><br/>
 
                 <div className='inputTitles3'>
                     <label className='label'>Email Address:</label>
@@ -127,7 +127,7 @@ const EditPersonalInformation = ({setwpage}) => {
                         onChange={handleEmailInputChange}
                     />
                 </div>
-                <br/><br />
+                <br/><br/>
 
                 <div className='inputTitles4'>
                     <label className='label'>Phone Number:</label>
@@ -139,22 +139,23 @@ const EditPersonalInformation = ({setwpage}) => {
                         onChange={handlePhoneInputChange}
                     />
                 </div>
-                <br /><br />
+                <br/><br/>
 
                 <div className='inputTitles5'>
                     <label className='label'>Address:</label>
                 </div>
                 <div className='inputBoxes5'>
-                    <input className='input2'
+                    <textarea rows={4} maxLength="75"
+                        className='inputAddress'
                         type="text"
                         value={values.address}
                         onChange={handleAddressInputChange}
                     />
                 </div>
-                <br /><br />
+                <br/><br/>
 
                 <div style={message !== 'Information changed successfully!' ? {color: 'green'}: {color: 'green'}}>{message}</div>
-                    <div className='buttonContainer'>
+                    <div className='buttonContainer2'>
                         <br /><br />
                         <div className='button1'>
                             <CancelButton type="button" value="Cancel" onClick={handleCancel}/>
