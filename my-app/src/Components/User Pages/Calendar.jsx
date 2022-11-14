@@ -180,11 +180,11 @@ const Calendar = ({ userPermissions }) => {
       {tabs}
       <ReactCalendar />
       {showAddAppointment}
-      {!userPermissions.isCustomer &&  <div
+      {!userPermissions.isCustomer ? <div
           className='makeAppointment'
           onClick={() => setShowAddAppointment(<AddAppointment setShowAddAppointment={setShowAddAppointment}></AddAppointment>)}>
           Make Appointment
-    </div>}
+    </div> : <div><br/><br/><br/><br/><br/></div>}
             <ChosenPopup />
     </div>
     );
