@@ -149,4 +149,10 @@ async function Get_News_Description(NID) {
     return news_description;
 }
 
-module.exports = Get_News;
+module.exports = {
+    Get_All_News,
+    Get_News_Image_URL,
+    Get_News_Title,
+    Get_News_Link,
+    Get_News_Description
+};

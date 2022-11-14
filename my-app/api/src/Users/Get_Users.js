@@ -108,7 +108,7 @@ async function Get_Trainer(TID) {
  * 
  * @returns array of customers
  */
-async function Get_All_Customer() {
+async function Get_All_Customers() {
     // Open connection
     const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
@@ -125,17 +125,21 @@ async function Get_All_Customer() {
 
     // Create user
     var customers = [];
-    customers.push(
-        new customer(
-            customer_values.CID,
-            customer_values.Customer_Name,
-            customer_values.Customer_Address,
-            customer_values.Customer_Phone_Number,
-            customer_values.Customer_Email_Address,
-            customer_values.Customer_Emergency_Name,
-            customer_values.Customer_Emergency_Phone_Number,
-            customer_values.Customer_Difficulty,
-            customer_values.Customer_Phone_Notifications));
+
+    for (var i = 0; i < customer_values.length; i++) {
+        customers.push(
+            new customer(
+                customer_values[i].CID,
+                customer_values[i].Customer_Name,
+                customer_values[i].Customer_Address,
+                customer_values[i].Customer_Phone_Number,
+                customer_values[i].Customer_Email_Address,
+                customer_values[i].Customer_Emergency_Name,
+                customer_values[i].Customer_Emergency_Phone_Number,
+                customer_values[i].Customer_Difficulty,
+                customer_values[i].Customer_Phone_Notifications));
+
+    }
 
     return customers;
 }
@@ -161,16 +165,18 @@ async function Get_All_Trainers() {
 
     // Create trainers
     var trainers = [];
-    trainers.push(
-        new trainer(
-            trainer_values.TID,
-            trainer_values.Trainer_Name,
-            trainer_values.Trainer_Address,
-            trainer_values.Trainer_Phone_Number,
-            trainer_values.Trainer_Email_Address,
-            trainer_values.Trainer_Emergency_Name,
-            trainer_values.Trainer_Emergency_Phone_Number,
-            trainer_values.Trainer_Riding_Style));
+    for (var i = 0; i < trainer_values.length; i++) {
+        trainers.push(
+            new trainer(
+                trainer_values[i].TID,
+                trainer_values[i].Trainer_Name,
+                trainer_values[i].Trainer_Address,
+                trainer_values[i].Trainer_Phone_Number,
+                trainer_values[i].Trainer_Email_Address,
+                trainer_values[i].Trainer_Emergency_Name,
+                trainer_values[i].Trainer_Emergency_Phone_Number,
+                trainer_values[i].Trainer_Riding_Style));
+        }
 
     return trainers;
 }
@@ -197,10 +203,13 @@ async function Get_Mini_Customers() {
 
     // create customers
     var customers = [];
-    customers.push(
-        new mini_customer(
-            customer_values.CID,
-            customer_values.Customer_Name));
+
+    for (var i = 0; i < customer_values.length; i++) {
+        customers.push(
+            new mini_customer(
+                customer_values[i].CID,
+                customer_values[i].Customer_Name));
+        }
 
     return customers;
 }
@@ -227,17 +236,20 @@ async function Get_Mini_Trainers() {
 
     // create trainers
     var trainers = [];
-    trainers.push(
-        new mini_trainer(
-            trainer_values.TID,
-            trainer_values.Trainer_Name));
+
+    for (var i = 0; i < trainer_values.length; i++) {
+        trainers.push(
+            new mini_trainer(
+                trainer_values.TID,
+                trainer_values.Trainer_Name));
+        }
 
     return trainers;
 }
 
 module.exports = {
     Get_Customer,
-    Get_All_Customer,
+    Get_All_Customers,
     Get_Mini_Customers,
     Get_Trainer,
     Get_All_Trainers,
