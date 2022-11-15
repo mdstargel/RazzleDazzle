@@ -1,15 +1,18 @@
 const express = require('express');
 const app = express();
-app.use(express.json());
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 
 const async = require('async');
 const Get_Users = require('../src/Users/Get_Users');
 const Set_Users = require('../src/Users/Set_Users');
 const { Get_Customer_Calendar } = require('../src/Calendar/Get_Calendar');
 
-app.post('/Customer', async function(req, res) {
-    var CID = req.body.user_id;
-    var user = Get_Users.Get_Customer(CID);
+app.post('/Customer:user_id', async function(req, res) {
+    var CID = req.params.user_id;
+    var user = await Get_Users.Get_Customer(CID);
     res.send(user);
 })
 

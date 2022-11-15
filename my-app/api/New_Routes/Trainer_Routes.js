@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
-app.use(express.json());
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+    extended: true
+  }));
 
 const async = require('async');
 const Get_Users = require('../src/Users/Get_Users');

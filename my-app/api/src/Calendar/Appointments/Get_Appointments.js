@@ -39,7 +39,7 @@ async function Get_Reservation(GID, CID) {
     );
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     customers = customers[0];
@@ -47,10 +47,10 @@ async function Get_Reservation(GID, CID) {
     // Check reservation
     var reservation;
 
-    if (customers.CID_1 == CID ||
-        customers.CID_2 == CID ||
-        customers.CID_3 == CID ||
-        customers.CID_4 == CID) {
+    if (customers[0].CID_1 == CID ||
+        customers[0].CID_2 == CID ||
+        customers[0].CID_3 == CID ||
+        customers[0].CID_4 == CID) {
         reservation = true;
     } else {
         reservation = false;
@@ -86,14 +86,14 @@ async function Get_Customer_Appointment(AID, CID) {
         "WHERE AID = " + AID + ";");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     appointment_values = appointment_values[0];
 
     // Check if appointment is reserved
     var reserved;
-    var GID = appointment_values.Appointment_GID;
+    var GID = appointment_values[0].Appointment_GID;
 
     if (GID != null) {
         reserved = await Get_Reservation(GID, CID);
@@ -103,17 +103,17 @@ async function Get_Customer_Appointment(AID, CID) {
 
     // Create appointment
     var appointment = new dereferenced_customer_appointment(
-        appointment_values.Appointment_Name,
-        appointment_values.Appointment_Date,
-        appointment_values.Appointment_Start_Time,
-        appointment_values.Appointment_End_Time,
-        appointment_values.Appointment_Riding_Style,
-        appointment_values.Appointment_Description,
-        appointment_values.Appointment_Public_Notes,
-        appointment_values.Appointment_Group,
-        appointment_values.Appointment_Group_Size,
-        appointment_values.Appointment_TID_1,
-        appointment_values.Appointment_TID_2,
+        appointment_values[0].Appointment_Name,
+        appointment_values[0].Appointment_Date,
+        appointment_values[0].Appointment_Start_Time,
+        appointment_values[0].Appointment_End_Time,
+        appointment_values[0].Appointment_Riding_Style,
+        appointment_values[0].Appointment_Description,
+        appointment_values[0].Appointment_Public_Notes,
+        appointment_values[0].Appointment_Group,
+        appointment_values[0].Appointment_Group_Size,
+        appointment_values[0].Appointment_TID_1,
+        appointment_values[0].Appointment_TID_2,
         reserved);
 
     return appointment;
@@ -145,24 +145,24 @@ async function Get_Trainer_Appointment(AID) {
         "WHERE AID = " + AID + ";");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     appointment_values = appointment_values[0];
 
     // Create appointment
     var appointment = new dereferenced_trainer_appointment(
-        appointment_values.Appointment_Name,
-        appointment_values.Appointment_Date,
-        appointment_values.Appointment_Start_Time,
-        appointment_values.Appointment_End_Time,
-        appointment_values.Appointment_Riding_Style,
-        appointment_values.Appointment_Description,
-        appointment_values.Appointment_Public_Notes,
-        appointment_values.Appointment_Private_Notes,
-        appointment_values.Appointment_Group,
-        appointment_values.Appointment_Group_Size,
-        appointment_values.Appointment_GID);
+        appointment_values[0].Appointment_Name,
+        appointment_values[0].Appointment_Date,
+        appointment_values[0].Appointment_Start_Time,
+        appointment_values[0].Appointment_End_Time,
+        appointment_values[0].Appointment_Riding_Style,
+        appointment_values[0].Appointment_Description,
+        appointment_values[0].Appointment_Public_Notes,
+        appointment_values[0].Appointment_Private_Notes,
+        appointment_values[0].Appointment_Group,
+        appointment_values[0].Appointment_Group_Size,
+        appointment_values[0].Appointment_GID);
 
     return appointment;
 }
@@ -196,27 +196,27 @@ async function Get_Administrator_Appointment(AID) {
         "WHERE AID = " + AID + ";");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     appointment_values = appointment_values[0];
 
     // Create appointment
     var appointment = new dereferenced_administrator_appointment(
-        appointment_values.Appointment_Name,
-        appointment_values.Appointment_Date,
-        appointment_values.Appointment_Start_Time,
-        appointment_values.Appointment_End_Time,
-        appointment_values.Appointment_Riding_Style,
-        appointment_values.Appointment_Difficulty,
-        appointment_values.Appointment_Description,
-        appointment_values.Appointment_Public_Notes,
-        appointment_values.Appointment_Private_Notes,
-        appointment_values.Appointment_Group,
-        appointment_values.Appointment_Group_Size,
-        appointment_values.Appointment_TID_1,
-        appointment_values.Appointment_TID_2,
-        appointment_values.Appointment_GID);
+        appointment_values[0].Appointment_Name,
+        appointment_values[0].Appointment_Date,
+        appointment_values[0].Appointment_Start_Time,
+        appointment_values[0].Appointment_End_Time,
+        appointment_values[0].Appointment_Riding_Style,
+        appointment_values[0].Appointment_Difficulty,
+        appointment_values[0].Appointment_Description,
+        appointment_values[0].Appointment_Public_Notes,
+        appointment_values[0].Appointment_Private_Notes,
+        appointment_values[0].Appointment_Group,
+        appointment_values[0].Appointment_Group_Size,
+        appointment_values[0].Appointment_TID_1,
+        appointment_values[0].Appointment_TID_2,
+        appointment_values[0].Appointment_GID);
 
     return appointment;
 }

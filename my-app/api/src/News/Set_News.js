@@ -27,7 +27,7 @@ function Set_News_Image_URL(news_image_url, NID) {
         "WHERE NID = " + NID + ";");
 
     // Close connection
-    CON.close();
+    CON.end();
 }
 
 /**
@@ -46,7 +46,7 @@ function Set_News_Title(news_title, NID) {
         "WHERE NID = " + NID + ";");
 
     // Close connection
-    CON.close();
+    CON.end();
 }
 
 /**
@@ -65,7 +65,7 @@ function Set_News_Link(news_link, NID) {
         "WHERE NID = " + NID + ";");
 
     // Close connection
-    CON.close();
+    CON.end();
 }
 
 /**
@@ -84,7 +84,7 @@ function Set_News_Description(news_description, NID) {
         "WHERE NID = " + NID + ";");
 
     // Close connection
-    CON.close();
+    CON.end();
 }
 
 module.exports = Set_News;

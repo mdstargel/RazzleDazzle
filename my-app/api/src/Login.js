@@ -29,7 +29,7 @@ async function Validate_User(login_email, login_password) {
         "AND Decommissioned = 0;");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull data
     check = check[0];

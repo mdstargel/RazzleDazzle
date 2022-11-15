@@ -43,7 +43,7 @@ async function Get_Customer(CID) {
         "WHERE CID = " + CID + ";");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     customer_values = customer_values[0];
@@ -51,14 +51,14 @@ async function Get_Customer(CID) {
     // Create user
     var user = new customer(
         CID,
-        customer_values.Customer_Name,
-        customer_values.Customer_Address,
-        customer_values.Customer_Phone_Number,
-        customer_values.Customer_Email_Address,
-        customer_values.Customer_Emergency_Name,
-        customer_values.Customer_Emergency_Phone_Number,
-        customer_values.Customer_Difficulty,
-        customer_values.Customer_Phone_Notifications);
+        customer_values[0].Customer_Name,
+        customer_values[0].Customer_Address,
+        customer_values[0].Customer_Phone_Number,
+        customer_values[0].Customer_Email_Address,
+        customer_values[0].Customer_Emergency_Name,
+        customer_values[0].Customer_Emergency_Phone_Number,
+        customer_values[0].Customer_Difficulty,
+        customer_values[0].Customer_Phone_Notifications);
 
     return user;
 }
@@ -85,21 +85,21 @@ async function Get_Trainer(TID) {
         "WHERE TID = " + TID + ";");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     trainer_values = trainer_values[0];
 
     // Create user
     var user = new trainer(
-        CID,
-        trainer_values.Trainer_Name,
-        trainer_values.Trainer_Address,
-        trainer_values.Trainer_Phone_Number,
-        trainer_values.Trainer_Email_Address,
-        trainer_values.Trainer_Emergency_Name,
-        trainer_values.Trainer_Emergency_Phone_Number,
-        trainer_values.Trainer_Riding_Style);
+        TID,
+        trainer_values[0].Trainer_Name,
+        trainer_values[0].Trainer_Address,
+        trainer_values[0].Trainer_Phone_Number,
+        trainer_values[0].Trainer_Email_Address,
+        trainer_values[0].Trainer_Emergency_Name,
+        trainer_values[0].Trainer_Emergency_Phone_Number,
+        trainer_values[0].Trainer_Riding_Style);
 
     return user;
 }
@@ -118,7 +118,7 @@ async function Get_All_Customers() {
         "FROM Customer;");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     customer_values = customer_values[0];
@@ -158,7 +158,7 @@ async function Get_All_Trainers() {
         "FROM Trainer;");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     trainer_values = trainer_values[0];
@@ -196,7 +196,7 @@ async function Get_Mini_Customers() {
         "FROM Customer;");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     customer_values = customer_values[0];
@@ -229,7 +229,7 @@ async function Get_Mini_Trainers() {
         "FROM Trainer;");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     trainer_values = trainer_values[0];
@@ -240,8 +240,8 @@ async function Get_Mini_Trainers() {
     for (var i = 0; i < trainer_values.length; i++) {
         trainers.push(
             new mini_trainer(
-                trainer_values.TID,
-                trainer_values.Trainer_Name));
+                trainer_values[0].TID,
+                trainer_values[0].Trainer_Name));
         }
 
     return trainers;
