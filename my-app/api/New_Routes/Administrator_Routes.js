@@ -49,8 +49,7 @@ const { Get_Administrator_Calendar } = require('../src/Calendar/Get_Calendar');
 /**************************************************************************/
 
 app.post('/Admin', async function(req, res) {
-    var TID = req.body.user_id;
-    var user = await Get_Trainer(TID);
+    var user = await Get_Trainer();
     res.send(user);
 })
 
@@ -103,6 +102,16 @@ app.put('/Admin/Set_Riding_Style', function(req, res) {
 app.get('/Admin/Calendar', async function(req, res) {
     var calendar = await Get_Administrator_Calendar();
     res.send(calendar);
+})
+
+app.get('/Admin/Calendar/Get_Customers', async function(req, res) {
+    var customers = await Get_Mini_Customers;
+    res.send(customers);
+})
+
+app.get('/Admin/Calendar/Get_Trainers', async function(req, res) {
+    var trainers = await Get_Mini_Trainers;
+    res.send(trainers);
 })
 
 app.put('/Admin/Calendar/Set_Name', function(req, res) {
@@ -159,28 +168,33 @@ app.put('/Admin/Calendar/Set_Private_Notes', function(req, res) {
     Set_Appointment_Private_Notes(AID, appointment_private_notes);
 })
 
-app.put('/Admin/Calendar/Set_Name', function(req, res) {
+app.put('/Admin/Calendar/Set_Group', function(req, res) {
     var AID = req.body.appointment_id;
-    var appointment_name = req.body.appointment_name;
-    Set_Appointment_Name(AID, appointment_name);
+    var appointment_group = req.body.appointment_group;
+    Set_Appointment_Group(AID, appointment_group);
 })
 
-app.put('/Admin/Calendar/Set_Name', function(req, res) {
+app.put('/Admin/Calendar/Set_Group_Size', function(req, res) {
     var AID = req.body.appointment_id;
-    var appointment_name = req.body.appointment_name;
-    Set_Appointment_Name(AID, appointment_name);
+    var appointment_group_size = req.body.appointment_name;
+    Set_Appointment_Group_Size(AID, appointment_group_size);
 })
 
-app.put('/Admin/Calendar/Set_Name', function(req, res) {
+app.put('/Admin/Calendar/Set_TID_1', function(req, res) {
     var AID = req.body.appointment_id;
-    var appointment_name = req.body.appointment_name;
-    Set_Appointment_Name(AID, appointment_name);
+    var appointment_TID_1 = req.body.appointment_name;
+    Set_Appointment_TID_1(AID, appointment_TID_1);
 })
 
-app.put('/Admin/Calendar/Set_Name', function(req, res) {
+app.put('/Admin/Calendar/Set_TID_2', function(req, res) {
     var AID = req.body.appointment_id;
-    var appointment_name = req.body.appointment_name;
-    Set_Appointment_Name(AID, appointment_name);
+    var appointment_TID_2 = req.body.appointment_TID_2;
+    Set_Appointment_TID_2(AID, appointment_TID_2);
+})
+
+app.put('/Admin/Calendar/Delete_Appointment', function(req, res) {
+    var AID = req.body.appointment_id;
+    Delete_Appointment(AID);
 })
 
 /**************************************************************************/

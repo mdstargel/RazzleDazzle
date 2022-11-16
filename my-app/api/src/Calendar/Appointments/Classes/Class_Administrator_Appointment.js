@@ -14,8 +14,7 @@
  * appointment_group_size,
  * appointment_TID_1,
  * appointment_TID_2,
- * appointment_GID,
- * appointment_micro_trainers
+ * appointment_GID
  */
 class administrator_appointment {
     // Constructor

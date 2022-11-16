@@ -486,6 +486,9 @@ async function Delete_Appointment(AID) {
     CON.query(
         "DELETE FROM Appointment " +
         "WHERE AID = " + AID + ";");
+
+    // Close connection
+    CON.end();
 }
 
 module.exports = {
