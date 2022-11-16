@@ -224,28 +224,28 @@ async function Get_Administrator_Calendar() {
     appointments = appointments[0];
 
     // Add all appointments to calendar
-    for (var i = 0; i < appointments.length; i++) {
-        calendar.push(
-            new administrator_appointment(
-                appointments[i].AID,
-                appointments[i].Appointment_Name,
-                appointments[i].Appointment_Date,
-                appointments[i].Appointment_Start_Time,
-                appointments[i].Appointment_End_Time,
-                appointments[i].Appointment_Riding_Style,
-                appointments[i].Appointment_Difficulty,
-                appointments[i].Appointment_Description,
-                appointments[i].Appointment_Public_Notes,
-                appointments[i].Appointment_Private_Notes,
-                appointments[i].Appointment_Group,
-                appointments[i].Appointment_Group_Size,
-                appointments[i].Appointment_TID_1,
-                appointments[i].Appointment_TID_2,
-                appointments[i].Appointment_GID)
-        );
-    };
+    // for (var i = 0; i < appointments.length; i++) {
+    //     calendar.push(
+    //         new administrator_appointment(
+    //             appointments[i].AID,
+    //             appointments[i].Appointment_Name,
+    //             appointments[i].Appointment_Date,
+    //             appointments[i].Appointment_Start_Time,
+    //             appointments[i].Appointment_End_Time,
+    //             appointments[i].Appointment_Riding_Style,
+    //             appointments[i].Appointment_Difficulty,
+    //             appointments[i].Appointment_Description,
+    //             appointments[i].Appointment_Public_Notes,
+    //             appointments[i].Appointment_Private_Notes,
+    //             appointments[i].Appointment_Group,
+    //             appointments[i].Appointment_Group_Size,
+    //             appointments[i].Appointment_TID_1,
+    //             appointments[i].Appointment_TID_2,
+    //             appointments[i].Appointment_GID)
+    //     );
+    // };
 
-    return calendar;
+    return appointments;
 }
 
 module.exports = {

@@ -49,8 +49,7 @@ const { Get_Administrator_Calendar } = require('../src/Calendar/Get_Calendar');
 /**************************************************************************/
 
 app.post('/Admin', async function(req, res) {
-    var TID = req.body.user_id;
-    var user = await Get_Trainer(TID);
+    var user = await Get_Trainer();
     res.send(user);
 })
 
