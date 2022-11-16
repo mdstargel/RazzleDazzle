@@ -123,25 +123,25 @@ async function Get_All_Customers() {
     // Pull values
     customer_values = customer_values[0];
 
-    // Create user
-    var customers = [];
+    // // Create user
+    // var customers = [];
 
-    for (var i = 0; i < customer_values.length; i++) {
-        customers.push(
-            new customer(
-                customer_values[i].CID,
-                customer_values[i].Customer_Name,
-                customer_values[i].Customer_Address,
-                customer_values[i].Customer_Phone_Number,
-                customer_values[i].Customer_Email_Address,
-                customer_values[i].Customer_Emergency_Name,
-                customer_values[i].Customer_Emergency_Phone_Number,
-                customer_values[i].Customer_Difficulty,
-                customer_values[i].Customer_Phone_Notifications));
+    // for (var i = 0; i < customer_values.length; i++) {
+    //     customers.push(
+    //         new customer(
+    //             customer_values[i].CID,
+    //             customer_values[i].Customer_Name,
+    //             customer_values[i].Customer_Address,
+    //             customer_values[i].Customer_Phone_Number,
+    //             customer_values[i].Customer_Email_Address,
+    //             customer_values[i].Customer_Emergency_Name,
+    //             customer_values[i].Customer_Emergency_Phone_Number,
+    //             customer_values[i].Customer_Difficulty,
+    //             customer_values[i].Customer_Phone_Notifications));
 
-    }
+    // }
 
-    return customers;
+    return customer_values;
 }
 
 /**
@@ -176,7 +176,7 @@ async function Get_All_Trainers() {
                 trainer_values[i].Trainer_Emergency_Name,
                 trainer_values[i].Trainer_Emergency_Phone_Number,
                 trainer_values[i].Trainer_Riding_Style));
-        }
+    }
 
     return trainers;
 }
@@ -209,7 +209,7 @@ async function Get_Mini_Customers() {
             new mini_customer(
                 customer_values[i].CID,
                 customer_values[i].Customer_Name));
-        }
+    }
 
     return customers;
 }
@@ -242,7 +242,7 @@ async function Get_Mini_Trainers() {
             new mini_trainer(
                 trainer_values[0].TID,
                 trainer_values[0].Trainer_Name));
-        }
+    }
 
     return trainers;
 }
