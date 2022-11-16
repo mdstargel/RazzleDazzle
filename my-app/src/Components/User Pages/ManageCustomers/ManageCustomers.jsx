@@ -10,7 +10,7 @@ const ManageCustomers = () => {
     const [isMounted, setIsMounted] = useState(false);
 
     if (!isMounted) {
-        axios.get('/Admin/Get_Customers').then(resp => {
+        axios.get('/Admin/Customer').then(resp => {
             console.log('Customers List: ', resp.data)
         })
         setIsMounted(true);
