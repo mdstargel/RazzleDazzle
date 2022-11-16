@@ -102,14 +102,14 @@ async function Create_Appointment(
     );
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     new_AID = new_AID[0];
 
     // Create new administrator appointment
     var appointment = new administrator_appointment(
-        new_AID.AID,
+        new_AID[0].AID,
         appointment_name,
         appointment_date,
         appointment_start_time,

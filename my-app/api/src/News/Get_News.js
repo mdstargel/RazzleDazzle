@@ -31,7 +31,7 @@ async function Get_All_News() {
         "FROM News;");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     result = result[0];
@@ -69,7 +69,7 @@ async function Get_News_Image_URL(NID) {
         "WHERE NID = " + NID + ";");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     var news_image_url = RESULT[0];
@@ -93,7 +93,7 @@ async function Get_News_Title(NID) {
         "WHERE NID = " + NID + ";");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     var news_title = RESULT[0];
@@ -117,7 +117,7 @@ async function Get_News_Link(NID) {
         "WHERE NID = " + NID + ";");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     var news_link = RESULT[0];
@@ -141,7 +141,7 @@ async function Get_News_Description(NID) {
         "WHERE NID = " + NID + ";");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     var news_description = RESULT[0];

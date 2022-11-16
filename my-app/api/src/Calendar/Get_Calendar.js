@@ -94,7 +94,7 @@ async function Get_Customer_Calendar(CID) {
         "AND Appointment.Appointment_Date > '" + CURRENT_DATE + "';");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     registered_appointments = registered_appointments[0];
@@ -174,7 +174,7 @@ async function Get_Trainer_Calendar(TID) {
         "OR Appointment_TID_2 = " + TID + ";");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     assigned_appointments = assigned_appointments[0];
@@ -218,7 +218,7 @@ async function Get_Administrator_Calendar() {
         "FROM Appointment;");
 
     // Close connection
-    CON.close();
+    CON.end();
 
     // Pull values
     appointments = appointments[0];
@@ -241,8 +241,7 @@ async function Get_Administrator_Calendar() {
                 appointments[i].Appointment_Group_Size,
                 appointments[i].Appointment_TID_1,
                 appointments[i].Appointment_TID_2,
-                appointments[i].Appointment_GID,
-                hash_trainers)
+                appointments[i].Appointment_GID)
         );
     };
 
