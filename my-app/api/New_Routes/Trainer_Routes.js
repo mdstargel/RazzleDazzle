@@ -3,12 +3,18 @@ const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
     extended: true
-  }));
+}));
 
 const async = require('async');
 const Get_Users = require('../src/Users/Get_Users');
 const Set_Users = require('../src/Users/Set_Users');
 const { Get_Trainer_Calendar } = require('../src/Calendar/Get_Calendar');
+
+
+/**************************************************************************/
+// Trainer
+/**************************************************************************/
+
 
 app.post('/Trainer', async function(req, res) {
     var TID = req.body.user_id;

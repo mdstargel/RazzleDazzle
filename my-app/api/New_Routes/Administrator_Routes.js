@@ -3,7 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
     extended: true
-  }));
+}));
 
 const async = require('async');
 const {
@@ -100,9 +100,8 @@ app.put('/Admin/Set_Riding_Style', function(req, res) {
 // Calendar management
 /**************************************************************************/
 
-app.post('/Admin/Calendar', async function(req, res) {
-    var TID = req.body.user_id;
-    var calendar = await Get_Administrator_Calendar(TID);
+app.get('/Admin/Calendar', async function(req, res) {
+    var calendar = await Get_Administrator_Calendar();
     res.send(calendar);
 })
 
