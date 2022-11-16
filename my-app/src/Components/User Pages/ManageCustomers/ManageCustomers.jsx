@@ -1,10 +1,22 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import PageTitle from '../PageTitle';
 import DeleteCustomers from './DeleteCustomers';
 import SetRidingLevel from './SetRidigingLevel';
 import '../../User Pages/styles.css'
 
 const ManageCustomers = () => {
+    const [isMounted, setIsMounted] = useState(false);
+
+    if (!isMounted) {
+        axios.get('/Admin/Customer').then(resp => {
+            console.log('Customers List: ', resp.data)
+        })
+        setIsMounted(true);
+    }
+
+
     const [selectedTab, setSelectedTab] = useState('Set Riding Level');
 
     const ChosenPopup = () => {

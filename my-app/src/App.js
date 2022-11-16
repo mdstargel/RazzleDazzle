@@ -76,14 +76,14 @@ function App() {
    * We need backend to validate when the user signs in who they are
    */
   const [userPermissions, setUserPermissions] = useState({
-    isAdmin: false,
-    isTrainer: true,
+    isAdmin: true,
+    isTrainer: false,
     isCustomer: false,
   })
 
   if (!isMounted) {
         axios.get('/Public_News').then(resp => {
-
+          setNewsArticles(resp.data);
             console.log('news teset: ', resp.data);
 
         })
