@@ -172,6 +172,40 @@ function Set_Customer_Phone_Notifications(CID, customer_phone_notifications) {
 
 /**
  * 
+ * @param {*} CID 
+ * @param {*} new_password 
+ */
+async function Set_Customer_Password(CID, old_password, new_password) {
+    // Open connection
+    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+
+    var query = await CON.promise().query(
+        "SELECT Customer_Email " +
+        "FROM Customer " +
+        "WHERE CID = " + CID + ";");
+
+    var email = query[0][0].Trainer_Email;
+
+    query = await CON.promise().query(
+        "SELECT Login_Password " +
+        "FROM Login " +
+        "WHERE Login_Email = '" + email + "';");
+
+    var old_login_password = query[0][0].Login_Password;
+
+    if (old_login_password == old_password) {
+        CON.query(
+            "UPDATE Login " +
+            "SET Login_Password = '" + new_password + "' " +
+            "WHERE Email = '" + email + "';");
+    }
+
+    // Close connection
+    CON.end();
+}
+
+/**
+ * 
  * @param {*} TID 
  * @param {*} trainer_name 
  */
@@ -330,6 +364,40 @@ async function Set_Trainer_Administrator(TID, administrator) {
 
 /**
  * 
+ * @param {*} TID 
+ * @param {*} new_password 
+ */
+async function Set_Trainer_Password(TID, old_password, new_password) {
+    // Open connection
+    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+
+    var query = await CON.promise().query(
+        "SELECT Trainer_Email " +
+        "FROM Trainer " +
+        "WHERE TID = " + TID + ";");
+
+    var email = query[0][0].Trainer_Email;
+
+    query = await CON.promise().query(
+        "SELECT Login_Password " +
+        "FROM Login " +
+        "WHERE Login_Email = '" + email + "';");
+
+    var old_login_password = query[0][0].Login_Password;
+
+    if (old_login_password == old_password) {
+        CON.query(
+            "UPDATE Login " +
+            "SET Login_Password = '" + new_password + "' " +
+            "WHERE Email = '" + email + "';");
+    }
+
+    // Close connection
+    CON.end();
+}
+
+/**
+ * 
  * @param {*} CID 
  */
 async function Delete_Customer(CID) {
@@ -419,6 +487,7 @@ module.exports = {
     Set_Customer_Emergency_Phone_Number,
     Set_Customer_Difficulty,
     Set_Customer_Phone_Notifications,
+    Set_Customer_Password,
     Set_Trainer_Name,
     Set_Trainer_Address,
     Set_Trainer_Phone_Number,
@@ -427,6 +496,7 @@ module.exports = {
     Set_Trainer_Emergency_Phone_Number,
     Set_Trainer_Riding_Style,
     Set_Trainer_Administrator,
+    Set_Trainer_Password,
     Delete_Customer,
     Delete_Trainer
 };

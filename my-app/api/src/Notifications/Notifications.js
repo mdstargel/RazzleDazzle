@@ -8,7 +8,7 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-emailAppt = (email, title, notification) => {
+function Email_Appointment(email, title, notification) {
     var emailOptions = {
         from: 'razzledazzle.notifications@gmail.com', //business email
         to: email,
@@ -22,13 +22,11 @@ emailAppt = (email, title, notification) => {
 };
 
 
-textAppt = (phoneNumber, notification) => {
+function Text_Appointment(phoneNumber, notification) {
     // Code to text
 }
 
 module.exports = {
-    notifications: nodemailer,
-    transporter,
-    emailAppt,
-    textAppt
+    Email_Appointment,
+    Text_Appointment
 }
