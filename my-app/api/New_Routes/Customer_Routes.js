@@ -8,7 +8,8 @@ app.use(bodyParser.urlencoded({
 const async = require('async');
 const Get_Users = require('../src/Users/Get_Users');
 const Set_Users = require('../src/Users/Set_Users');
-const { Get_Customer_Calendar } = require('../src/Calendar/Get_Calendar');
+const Get_Calendar = require('../src/Calendar/Get_Calendar');
+const Set_Appointments = require('../src/Calendar/Appointments/Set_Appointments');
 
 app.post('/Customer', async function(req, res) {
     var CID = req.body.user_id;
@@ -58,10 +59,29 @@ app.put('/Customer/Set_Phone_Notifications', function(req, res) {
     Set_Users.Set_Customer_Phone_Notifications(CID, customer_phone_notifications);
 })
 
+app.put('/Customer/Change_Password', function(req, res) {
+    var CID = req.body.user_id;
+    var old_password = req.body.old_password;
+    var new_password = req.body.new_password;
+    Set_Users.Set_Customer_Password(CID, old_password, new_password);
+})
+
+app.put('/Customer/Delete_Customer', function(req, res) {
+    var CID = req.body.user_id;
+    Set_Users.Delete_Customer(CID);
+})
+
 app.post('/Customer/Calendar', async function(req, res) {
     var CID = req.body.user_id;
-    var calendar = await Get_Customer_Calendar(CID);
+    var calendar = await Get_Calendar.Get_Customer_Calendar(CID);
     res.send(calendar);
+})
+
+app.put('/Customer/Calendar/Reservation', function(req, res) {
+    var AID = req.body.AID;
+    var CID = req.body.CID;
+    var reserve = req.body.reserve;
+    Set_Appointments.Set_Appointment_Reservation(AID, CID, reserve);
 })
 
 module.exports = app;

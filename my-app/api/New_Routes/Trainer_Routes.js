@@ -58,10 +58,20 @@ app.put('/Trainer/Set_Emergency_Phone_Number', function(req, res) {
     Set_Users.Set_Trainer_Emergency_Phone_Number(TID, trainer_emergency_phone_number);
 })
 
+app.put('/Trainer/Change_Password', function(req, res) {
+    var TID = req.body.user_id;
+    var old_password = req.body.old_password;
+    var new_password = req.body.new_password;
+    Set_Users.Set_Trainer_Password(TID, old_password, new_password);
+})
+
 app.post('/Trainer/Calendar', async function(req, res) {
     var TID = req.body.user_id;
     var calendar = await Get_Trainer_Calendar(TID);
     res.send(calendar);
 })
+
+// Send notifications from calendar
+// Send notifications to specific customer
 
 module.exports = app;

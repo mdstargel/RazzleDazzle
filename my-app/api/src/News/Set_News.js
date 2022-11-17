@@ -87,4 +87,24 @@ function Set_News_Description(news_description, NID) {
     CON.end();
 }
 
-module.exports = Set_News;
+
+function Delete_News(NID) {
+    // Open connection
+    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+
+    // Query
+    CON.query(
+        "DELETE News " +
+        "WHERE NID = " + NID + ";");
+
+    // Close connection
+    CON.end();
+}
+
+module.exports = {
+    Set_News_Image_URL,
+    Set_News_Title,
+    Set_News_Link,
+    Set_News_Description,
+    Delete_News
+};

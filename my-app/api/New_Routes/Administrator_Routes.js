@@ -23,7 +23,9 @@ const {
     Set_Trainer_Emergency_Name,
     Set_Trainer_Emergency_Phone_Number,
     Set_Trainer_Riding_Style,
-    Set_Trainer_Administrator
+    Set_Trainer_Administrator,
+    Delete_Customer,
+    Delete_Trainer
 } = require('../src/Users/Set_Users');
 
 const {
@@ -41,8 +43,10 @@ const {
     Set_Appointment_TID_1,
     Set_Appointment_TID_2,
     Delete_Appointment
-} = require('../src/Calendar/Appointments/Set_Appointments')
+} = require('../src/Calendar/Appointments/Set_Appointments');
+const Set_News = require('../src/News/Set_News');
 const { Get_Administrator_Calendar } = require('../src/Calendar/Get_Calendar');
+const { Set_News_Image_URL } = require('../src/News/Set_News');
 
 /**************************************************************************/
 // Admin
@@ -197,6 +201,9 @@ app.put('/Admin/Calendar/Delete_Appointment', function(req, res) {
     Delete_Appointment(AID);
 })
 
+// create appointment
+// notify customers from appointment
+
 /**************************************************************************/
 // Customer management
 /**************************************************************************/
@@ -204,6 +211,7 @@ app.put('/Admin/Calendar/Delete_Appointment', function(req, res) {
 app.get('/Admin/Customer', async function(req, res) {
     var customers = await Get_All_Customers();
     res.send(customers);
+    console.log(newJsonArray);
 })
 
 app.put('/Admin/Customer/Set_Difficulty', function(req, res) {
@@ -211,6 +219,12 @@ app.put('/Admin/Customer/Set_Difficulty', function(req, res) {
     var customer_difficulty = req.body.user_difficulty;
     Set_Customer_Difficulty(CID, customer_difficulty);
 })
+
+app.put('/Admin/Customer/Delete', function(req, res) {
+        var CID = req.body.user_id;
+        Delete_Customer(CID);
+    })
+    // notify customers
 
 /**************************************************************************/
 // Trainer management
@@ -231,6 +245,58 @@ app.put('/Admin/Trainer/Set_Trainer_Administrator', function(req, res) {
     var TID = req.body.user_id;
     var administrator = req.body.user_administrator;
     Set_Trainer_Administrator(TID, administrator);
+})
+
+// TODO:
+app.put('/Admin/Trainer/Create', function(req, res) {
+
+})
+
+app.put('/Admin/Trainer/Delete', function(req, res) {
+    var TID = req.body.user_id;
+    Delete_Trainer(TID);
+})
+
+/**************************************************************************/
+// News
+/**************************************************************************/
+
+app.get('/Admin/News', async function(req, res) {
+    var admin_news = await Get_All_News();
+    res.send(admin_news);
+})
+
+app.put('/Admin/News/Create', function(req, res) {
+    // TODO - create function (News/Create_News)
+})
+
+app.put('/Admin/News/Set_Image_URL', function(req, res) {
+    var news_image_url = req.body.news_image_url;
+    var NID = req.body.NID;
+    Set_News.Set_News_Image_URL(news_image_url, NID);
+})
+
+app.put('/Admin/News/Set_News_Title', function(req, res) {
+    var news_title = req.body.news_title;
+    var NID = req.body.NID;
+    Set_News.Set_News_Title(news_title, NID);
+})
+
+app.put('/Admin/News/Set_News_Link', function(req, res) {
+    var news_link = req.body.news_link;
+    var NID = req.body.NID;
+    Set_News.Set_News_Link(news_link, NID);
+})
+
+app.put('/Admin/News/Set_News_Description', function(req, res) {
+    var news_description = req.body.news_description;
+    var NID = req.body.NID;
+    Set_News.Set_News_Description(news_description, NID);
+})
+
+app.put('/Admin/News/Delete', function(req, res) {
+    var NID = req.body.NID;
+    Set_News.Delete_News(NID);
 })
 
 module.exports = app;
