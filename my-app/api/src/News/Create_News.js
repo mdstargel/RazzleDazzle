@@ -80,3 +80,5 @@ async function Create_News(
     // Trim news down to 5
     Trim_News();
 }
+
+module.exports = { Create_News };
