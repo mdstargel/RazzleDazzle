@@ -25,23 +25,26 @@ async function Validate_User(login_email, login_password) {
         "SELECT * " +
         "FROM Login " +
         "WHERE Login_Email = '" + login_email + "' " +
-        "AND Login_Password = '" + login_password + "' " +
-        "AND Decommissioned = 0;");
+        "AND Login_Password = '" + login_password + "';");
 
     // Close connection
     CON.end();
 
     // Pull data
     check = check[0];
-    var CID = check.CID;
-    var TID = check.TID;
-    var administrator = check.Administrator;
+    var CID = check[0].CID;
+    var TID = check[0].TID;
+    var administrator = check[0].Administrator;
+    var decomissioned = check[0].decomissioned;
 
     // Create return json
     var ID;
     var type;
 
-    if (CID != null) {
+    if (decomissioned != null) {
+        ID = 0;
+        type = 0;
+    } else if (CID != null) {
         ID = CID;
         type = 1;
     } else if (TID != null) {
@@ -52,11 +55,13 @@ async function Validate_User(login_email, login_password) {
             type = 2;
         }
     } else {
+        ID = 0;
         type = 0;
     }
 
     user = [{ ID, type }];
 
+    console.log(user);
     return user;
 }
 

@@ -7,7 +7,6 @@ app.use(bodyParser.urlencoded({
 
 const async = require('async');
 const {
-    Get_Customer,
     Get_All_Customers,
     Get_Mini_Customers,
     Get_Trainer,
@@ -44,9 +43,23 @@ const {
     Set_Appointment_TID_2,
     Delete_Appointment
 } = require('../src/Calendar/Appointments/Set_Appointments');
-const Set_News = require('../src/News/Set_News');
+const { Create_News } = require('../src/News/Create_News');
 const { Get_Administrator_Calendar } = require('../src/Calendar/Get_Calendar');
-const { Set_News_Image_URL } = require('../src/News/Set_News');
+const {
+    Set_News_Image_URL,
+    Set_News_Title,
+    Set_News_Link,
+    Set_News_Description,
+    Delete_News
+} = require('../src/News/Set_News');
+const { Get_All_News } = require('../src/News/Get_News');
+const { Create_Appointment } = require('../src/Calendar/Appointments/Create_Appointment');
+const { Create_Trainer } = require('../src/Users/Create_Users');
+const {
+    Notify_Appointment,
+    Notify_Customers,
+    Notify_Trainers
+} = require('../src/Notifications/Send_Notifications');
 
 /**************************************************************************/
 // Admin
@@ -116,6 +129,47 @@ app.get('/Admin/Calendar/Get_Customers', async function(req, res) {
 app.get('/Admin/Calendar/Get_Trainers', async function(req, res) {
     var trainers = await Get_Mini_Trainers;
     res.send(trainers);
+})
+
+app.put('/Admin/Calendar/Create', function(req, res) {
+    var appointment_name = req.body.appointment_name;
+    var appointment_date = req.body.appointment_date;
+    var appointment_start_time = req.body.appointment_start_time;
+    var appointment_end_time = req.body.appointment_end_time;
+    var appointment_riding_style = req.body.appointment_riding_style;
+    var appointment_difficulty = req.body.appointment_difficulty;
+    var appointment_description = req.body.appointment_description;
+    var appointment_public_notes = req.body.appointment_public_notes;
+    var appointment_private_notes = req.body.appointment_private_notes;
+    var appointment_group = req.body.appointment_group;
+    var appointment_group_size = req.body.appointment_group_size;
+    var appointment_TID_1 = req.body.appointment_TID_1;
+    var appointment_TID_2 = req.body.appointment_TID_2;
+
+    if (appointment_difficulty == undefined) appointment_difficulty = 0;
+    if (appointment_description == undefined) appointment_description = "";
+    if (appointment_public_notes == undefined) appointment_public_notes = "";
+    if (appointment_private_notes == undefined) appointment_private_notes = "";
+    if (appointment_group == undefined) appointment_group = 0;
+    if (appointment_group_size == undefined) appointment_group_size = 1;
+    if (appointment_TID_1 == undefined) appointment_TID_1 = 5;
+    if (appointment_TID_2 == undefined) appointment_TID_2 = 5;
+
+    Create_Appointment(
+        appointment_name,
+        appointment_date,
+        appointment_start_time,
+        appointment_end_time,
+        appointment_riding_style,
+        appointment_difficulty,
+        appointment_description,
+        appointment_public_notes,
+        appointment_private_notes,
+        appointment_group,
+        appointment_group_size,
+        appointment_TID_1,
+        appointment_TID_2
+    );
 })
 
 app.put('/Admin/Calendar/Set_Name', function(req, res) {
@@ -201,8 +255,12 @@ app.put('/Admin/Calendar/Delete_Appointment', function(req, res) {
     Delete_Appointment(AID);
 })
 
-// create appointment
-// notify customers from appointment
+app.put('/Admin/Calendar/Notify_Customers', function(req, res) {
+    var AID = req.body.appointment_id;
+    var title = req.body.title;
+    var notification = req.body.notification;
+    Notify_Appointment(AID, title, notification);
+})
 
 /**************************************************************************/
 // Customer management
@@ -221,10 +279,16 @@ app.put('/Admin/Customer/Set_Difficulty', function(req, res) {
 })
 
 app.put('/Admin/Customer/Delete', function(req, res) {
-        var CID = req.body.user_id;
-        Delete_Customer(CID);
-    })
-    // notify customers
+    var CID = req.body.user_id;
+    Delete_Customer(CID);
+})
+
+app.put('/Admin/Customer/Notify', function(req, res) {
+    var CIDs = req.body.CIDs;
+    var title = req.body.title;
+    var notification = req.body.notification;
+    Notify_Customers(CIDs, title, notification);
+})
 
 /**************************************************************************/
 // Trainer management
@@ -247,9 +311,35 @@ app.put('/Admin/Trainer/Set_Trainer_Administrator', function(req, res) {
     Set_Trainer_Administrator(TID, administrator);
 })
 
-// TODO:
 app.put('/Admin/Trainer/Create', function(req, res) {
+    var trainer_name = req.body.trainer_name;
+    var trainer_address = req.body.trainer_address;
+    var trainer_phone_number = req.body.trainer_phone_number;
+    var trainer_email_address = req.body.trainer_email_address;
+    var trainer_emergency_name = req.body.trainer_emergency_name;
+    var trainer_emergency_phone_number = req.body.trainer_emergency_phone_number;
+    var trainer_riding_style = req.body.trainer_riding_style;
 
+    if (trainer_address == undefined) trainer_address = "";
+    if (trainer_phone_number == undefined) trainer_phone_number = "";
+    if (trainer_emergency_name == undefined) trainer_emergency_name = "";
+    if (trainer_emergency_phone_number == undefined) trainer_emergency_phone_number = "";
+
+    Create_Trainer(
+        trainer_name,
+        trainer_address,
+        trainer_phone_number,
+        trainer_email_address,
+        trainer_emergency_name,
+        trainer_emergency_phone_number,
+        trainer_riding_style);
+})
+
+app.put('/Admin/Trainer/Notify', function(req, res) {
+    var TIDs = req.body.CIDs;
+    var title = req.body.title;
+    var notification = req.body.notification;
+    Notify_Customers(TIDs, title, notification);
 })
 
 app.put('/Admin/Trainer/Delete', function(req, res) {
@@ -267,36 +357,44 @@ app.get('/Admin/News', async function(req, res) {
 })
 
 app.put('/Admin/News/Create', function(req, res) {
-    // TODO - create function (News/Create_News)
+    var news_image_url = req.body.news_image_url;
+    var news_title = req.body.news_title;
+    var news_link = req.body.news_link;
+    var news_description = req.body.news_description;
+
+    if (news_link == undefined) news_link = "";
+    if (news_description == undefined) news_description = "";
+
+    Create_News(news_image_url, news_title, news_link, news_description);
 })
 
 app.put('/Admin/News/Set_Image_URL', function(req, res) {
     var news_image_url = req.body.news_image_url;
     var NID = req.body.NID;
-    Set_News.Set_News_Image_URL(news_image_url, NID);
+    Set_News_Image_URL(news_image_url, NID);
 })
 
 app.put('/Admin/News/Set_News_Title', function(req, res) {
     var news_title = req.body.news_title;
     var NID = req.body.NID;
-    Set_News.Set_News_Title(news_title, NID);
+    Set_News_Title(news_title, NID);
 })
 
 app.put('/Admin/News/Set_News_Link', function(req, res) {
     var news_link = req.body.news_link;
     var NID = req.body.NID;
-    Set_News.Set_News_Link(news_link, NID);
+    Set_News_Link(news_link, NID);
 })
 
 app.put('/Admin/News/Set_News_Description', function(req, res) {
     var news_description = req.body.news_description;
     var NID = req.body.NID;
-    Set_News.Set_News_Description(news_description, NID);
+    Set_News_Description(news_description, NID);
 })
 
 app.put('/Admin/News/Delete', function(req, res) {
     var NID = req.body.NID;
-    Set_News.Delete_News(NID);
+    Delete_News(NID);
 })
 
 module.exports = app;

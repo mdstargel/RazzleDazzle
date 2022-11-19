@@ -9,6 +9,10 @@ const async = require('async');
 const Get_Users = require('../src/Users/Get_Users');
 const Set_Users = require('../src/Users/Set_Users');
 const { Get_Trainer_Calendar } = require('../src/Calendar/Get_Calendar');
+const {
+    Notify_Appointment,
+    Notify_Customers
+} = require('../src/Notifications/Send_Notifications');
 
 
 /**************************************************************************/
@@ -18,7 +22,7 @@ const { Get_Trainer_Calendar } = require('../src/Calendar/Get_Calendar');
 
 app.post('/Trainer', async function(req, res) {
     var TID = req.body.user_id;
-    var user = Get_Users.Get_Trainer(TID);
+    var user = await Get_Users.Get_Trainer(TID);
     res.send(user);
 })
 
@@ -71,7 +75,18 @@ app.post('/Trainer/Calendar', async function(req, res) {
     res.send(calendar);
 })
 
-// Send notifications from calendar
-// Send notifications to specific customer
+app.put('/Trainer/Calendar/Notify_Customers', function(req, res) {
+    var AID = req.body.appointment_id;
+    var title = req.body.title;
+    var notification = req.body.notification;
+    Notify_Appointment(AID, title, notification);
+})
+
+app.put('/Trainer/Notify_Customer', function(req, res) {
+    var CIDs = req.body.CIDs;
+    var title = req.body.title;
+    var notification = req.body.notification;
+    Notify_Customers(CIDs, title, notification);
+})
 
 module.exports = app;

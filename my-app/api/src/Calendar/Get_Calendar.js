@@ -65,7 +65,7 @@ async function Get_Customer_Calendar(CID) {
         "SELECT Customer_Difficulty " +
         "FROM Customer " +
         "WHERE CID = " + CID + ";");
-    var customer_difficulty = DIFFICULTY[0].Customer_Difficulty;
+    var customer_difficulty = DIFFICULTY[0][0].Customer_Difficulty;
 
     // Get open appointments
     var open_appointments = await CON.promise().query(
@@ -81,17 +81,19 @@ async function Get_Customer_Calendar(CID) {
         "Appointment.Appointment_Group_Size, " +
         "Appointment.Appointment_TID_1, " +
         "Appointment.Appointment_TID_2, " +
-        "Appointment.Appointment_Reserved " +
+        "Appointment.Appointment_GID " +
         "FROM Appointment " +
-        "INNER JOIN Customer_Group " +
-        "ON Appointment.Appointment_GID = Customer_Group.GID " +
         "WHERE Appointment.Appointment_Difficulty = '" + customer_difficulty + "' " +
-        "AND Customer_Group.CID_1 != " + CID + " " +
-        "AND Customer_Group.CID_2 != " + CID + " " +
-        "AND Customer_Group.CID_3 != " + CID + " " +
-        "AND Customer_Group.CID_4 != " + CID + " " +
         "AND Appointment.Appointment_Group_Size > 0 " +
         "AND Appointment.Appointment_Date > '" + CURRENT_DATE + "';");
+
+    var query_results = await CON.promise().query(
+        "SELECT GID " +
+        "FROM Customer_Group " +
+        "WHERE CID_1 = " + CID + " " +
+        "OR CID_2 = " + CID + " " +
+        "OR CID_3 = " + CID + " " +
+        "OR CID_4 = " + CID + ";");
 
     // Close connection
     CON.end();
@@ -99,6 +101,7 @@ async function Get_Customer_Calendar(CID) {
     // Pull values
     registered_appointments = registered_appointments[0];
     open_appointments = open_appointments[0];
+    var registrations = query_results[0];
 
     // Add registered appointments to calendar
     for (var i = 0; i < registered_appointments.length; i++) {
@@ -121,23 +124,61 @@ async function Get_Customer_Calendar(CID) {
     };
 
     // Add open appointments to calendar
+    var registered;
     for (var i = 0; i < open_appointments.length; i++) {
-        calendar.push(
-            new customer_appointment(
-                open_appointments[i].AID,
-                open_appointments[i].Appointment_Name,
-                open_appointments[i].Appointment_Date,
-                open_appointments[i].Appointment_Start_Time,
-                open_appointments[i].Appointment_End_Time,
-                open_appointments[i].Appointment_Riding_Style,
-                open_appointments[i].Appointment_Description,
-                open_appointments[i].Appointment_Public_Notes,
-                open_appointments[i].Appointment_Group,
-                open_appointments[i].Appointment_Group_Size,
-                open_appointments[i].Appointment_TID_1,
-                open_appointments[i].Appointment_TID_2,
-                false)
-        );
+
+        // Assume open appointment isnt registered to customer
+        registered = false;
+
+        // If no group, not registered, add
+        if (open_appointments[i].Appointment_GID == null) {
+            calendar.push(
+                new customer_appointment(
+                    open_appointments[i].AID,
+                    open_appointments[i].Appointment_Name,
+                    open_appointments[i].Appointment_Date,
+                    open_appointments[i].Appointment_Start_Time,
+                    open_appointments[i].Appointment_End_Time,
+                    open_appointments[i].Appointment_Riding_Style,
+                    open_appointments[i].Appointment_Description,
+                    open_appointments[i].Appointment_Public_Notes,
+                    open_appointments[i].Appointment_Group,
+                    open_appointments[i].Appointment_Group_Size,
+                    open_appointments[i].Appointment_TID_1,
+                    open_appointments[i].Appointment_TID_2,
+                    false)
+            );
+
+            // If group, check registered
+        } else {
+            // Cycle through all groups customer in. If match then registered
+            for (var j = 0; j < registrations.length; j++) {
+                if (open_appointments[i].Appointment_GID ==
+                    registrations[j].GID) {
+                    registered = true;
+                }
+
+                // If not registered
+                if (!registered) {
+                    calendar.push(
+                        new customer_appointment(
+                            open_appointments[i].AID,
+                            open_appointments[i].Appointment_Name,
+                            open_appointments[i].Appointment_Date,
+                            open_appointments[i].Appointment_Start_Time,
+                            open_appointments[i].Appointment_End_Time,
+                            open_appointments[i].Appointment_Riding_Style,
+                            open_appointments[i].Appointment_Description,
+                            open_appointments[i].Appointment_Public_Notes,
+                            open_appointments[i].Appointment_Group,
+                            open_appointments[i].Appointment_Group_Size,
+                            open_appointments[i].Appointment_TID_1,
+                            open_appointments[i].Appointment_TID_2,
+                            false)
+                    );
+                }
+            }
+        }
     };
 
     return calendar;

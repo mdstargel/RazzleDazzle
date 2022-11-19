@@ -78,8 +78,8 @@ app.post('/Customer/Calendar', async function(req, res) {
 })
 
 app.put('/Customer/Calendar/Reservation', function(req, res) {
-    var AID = req.body.AID;
-    var CID = req.body.CID;
+    var AID = req.body.appointment_id;
+    var CID = req.body.user_id;
     var reserve = req.body.reserve;
     Set_Appointments.Set_Appointment_Reservation(AID, CID, reserve);
 })
