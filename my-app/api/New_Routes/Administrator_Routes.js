@@ -65,9 +65,9 @@ const {
 // Admin
 /**************************************************************************/
 
-app.post('/Admin', async function(req, res) {
+
+app.post('/Admin', async function (req, res) {
     var TID = req.body.user_id;
-    console.log(TID);
     var user = await Get_Trainer(TID);
     res.send(user);
 })
@@ -131,12 +131,12 @@ app.get('/Admin/Calendar', async function(req, res) {
 })
 
 app.get('/Admin/Calendar/Get_Customers', async function(req, res) {
-    var customers = await Get_Mini_Customers;
+    var customers = await Get_Mini_Customers();
     res.send(customers);
 })
 
 app.get('/Admin/Calendar/Get_Trainers', async function(req, res) {
-    var trainers = await Get_Mini_Trainers;
+    var trainers = await Get_Mini_Trainers();
     res.send(trainers);
 })
 
@@ -155,14 +155,14 @@ app.post('/Admin/Calendar/Create', function(req, res) {
     var appointment_TID_1 = req.body.appointment_TID_1;
     var appointment_TID_2 = req.body.appointment_TID_2;
 
-    if (appointment_difficulty == undefined) appointment_difficulty = 0;
-    if (appointment_description == undefined) appointment_description = "";
-    if (appointment_public_notes == undefined) appointment_public_notes = "";
-    if (appointment_private_notes == undefined) appointment_private_notes = "";
-    if (appointment_group == undefined) appointment_group = 0;
-    if (appointment_group_size == undefined) appointment_group_size = 1;
-    if (appointment_TID_1 == undefined) appointment_TID_1 = 5;
-    if (appointment_TID_2 == undefined) appointment_TID_2 = 5;
+    if (appointment_difficulty === undefined) appointment_difficulty = 0;
+    if (appointment_description === undefined) appointment_description = "";
+    if (appointment_public_notes === undefined) appointment_public_notes = "";
+    if (appointment_private_notes === undefined) appointment_private_notes = "";
+    if (appointment_group === undefined) appointment_group = 0;
+    if (appointment_group_size === undefined) appointment_group_size = 1;
+    if (appointment_TID_1 === undefined) appointment_TID_1 = 5;
+    if (appointment_TID_2 === undefined) appointment_TID_2 = 5;
 
     Create_Appointment(
         appointment_name,

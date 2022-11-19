@@ -76,14 +76,15 @@ function App() {
    * We need backend to validate when the user signs in who they are
    */
   const [userPermissions, setUserPermissions] = useState({
-    isAdmin: false,
-    isTrainer: true,
+    isAdmin: true,
+    isTrainer: false,
     isCustomer: false,
   })
-
+  
+  const [UserInfo, setUserInfo] = useState()
   if (!isMounted) {
         axios.get('/Public_News').then(resp => {
-
+          setNewsArticles(resp.data);
             console.log('news teset: ', resp.data);
 
         })
@@ -92,18 +93,20 @@ function App() {
   
   const ChosenWebpage = () => {
     let chosenpage;
-    if(wpage === 'News') {
+    if (wpage === 'News') {
       chosenpage = <News newsArticles={newsArticles} />
     } else if (wpage === 'Services') {
-      chosenpage = <Services/>
+      chosenpage = <Services />
     } else if (wpage === 'Log In') {
-      chosenpage = <LogIn setSignedIn={setSignedIn} setwpage={setwpage} />
+      chosenpage = <LogIn setSignedIn={setSignedIn} setwpage={setwpage}
+        setUserPermissions={setUserPermissions} userPermissions={userPermissions}
+        setUserInfo={setUserInfo} />
     } else if (wpage === 'Sign Up') {
       chosenpage = <SignUp setSignedIn={setSignedIn} setwpage={setwpage} />
     } else if (wpage === 'Calendar') {
       chosenpage = <Calendar userPermissions={userPermissions} />
     } else if (wpage === 'Edit Personal Information') {
-      chosenpage = <EditPersonalInformation setwpage={setwpage} />
+      chosenpage = <EditPersonalInformation setwpage={setwpage} UserInfo={UserInfo} />
     } else if (wpage === 'Change Password') {
       chosenpage = <ChangePassword setwpage={setwpage}/>
     }else if (wpage === 'Manage Notifications') {

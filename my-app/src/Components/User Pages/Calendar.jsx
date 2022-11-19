@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import './styles.css'
 import './Calendar/Styes.css'
-
 import PageTitle from "./PageTitle";
 import ReactCalendar from 'react-calendar';
 import AvailableAppointments from './AvailableAppointments';
@@ -11,6 +12,14 @@ import AdminCalendarView from './AdminCalendarView';
 import AddAppointment from './SettingsPages/AddAppointment';
 // Bobby's comment merge conflict
 const Calendar = ({ userPermissions }) => {
+  const [isMounted, setIsMounted] = useState(false);
+
+    if (!isMounted) {
+        axios.get('/Admin/Calendar').then(resp => {
+            console.log('Calendar List: ', resp.data)
+        })
+        setIsMounted(true);
+    }
   const [selectedTab, setSelectedTab] = useState('Available Appointments');
   const [showAddAppointment, setShowAddAppointment] = useState();
   const [events, setEvents] = useState([

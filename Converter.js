@@ -13,7 +13,8 @@ function Convert_Customer(customer) {
 function Convert_Trainer(trainer) {
     var name_array = customer.customer_name.split(" ");
 
-    new_trainer = [{
+    var new_trainer = [{
+
         id: trainer.TID,
         FirstName: name_array[0],
         LastName: name_array[1],
@@ -60,4 +61,10 @@ function Convert_Appointment(appointment) {
     }]
 
     return new_appointment;
+}
+
+module.exports = {
+    Convert_Trainer,
+    Convert_Customer,
+    Convert_Appointment
 }
