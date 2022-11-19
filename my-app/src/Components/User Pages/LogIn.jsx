@@ -5,7 +5,7 @@ import './styles.css'
 import CancelButton from '../Buttons/CancelButton';
 import ConfirmButton from '../Buttons/ConfirmButton';
 
-const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions }) => {
+const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions, setUserInfo }) => {
     /**
      * Reference for Forms logic
      * https://www.freecodecamp.org/news/beginner-react-project-build-basic-forms-using-react-hooks/
@@ -46,16 +46,18 @@ const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions }) =
                 login_password: values.password,
             })
             .then(function (response) {
-                console.log(response.data[0]);
+                // console.log(response.data[0]);
                 setUserPermissions({
-                    isAdmin: response.data.type === 3,
-                    isTrainer: response.data.type === 2,
-                    isCustomer: response.data.type === 1,
+                    isAdmin: response.data[0].type === 3,
+                    isTrainer: response.data[0].type === 2,
+                    isCustomer: response.data[0].type === 1,
                 })
                 console.log(userPermissions.isAdmin || userPermissions.isTrainer || userPermissions.isCustomer)
                 if (userPermissions.isAdmin || userPermissions.isTrainer || userPermissions.isCustomer) {
                     let userType;
-                    console.log('Admin: ', userPermissions.isAdmin)
+                    let userID = { "user_id": response.data[0].ID }
+                    // console.log('Admin: ', userPermissions.isAdmin)
+                    console.log(response.data[0].ID);
                     if (userPermissions.isCustomer) {
                         userType = '/Customer';
                     } else if (userPermissions.isTrainer) {
@@ -63,15 +65,39 @@ const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions }) =
                     } else if (userPermissions.isAdmin) {
                         userType = '/Admin';
                     }
-                    console.log('User Post Call', userType)
-                    axios.post(userType, {
-                        user_id: response.data.ID,
-                    }).then(function (resp) { 
-                        console.log('User Personal Info:', resp.data)
+                    // console.log('User Post Call', userType)
+                    axios.post(userType, userID).then(function (resp) { 
+                        let new_user;
+                        
+                        if (userPermissions.isCustomer) {
+                            let name_array = resp.data.customer_name.split(" ");
+
+                            new_user = {
+                                id: resp.data.CID,
+                                FirstName: name_array[0],
+                                LastName: name_array[1],
+                                Email: resp.data.customer_email_address,
+                                Address: resp.data.customer_address,
+                                phone: resp.data.customer_phone_number
+                            };
+                        } else {
+                            let name_array = resp.data.trainer_name.split(" ");
+
+                            new_user = {
+                                id: resp.data.TID,
+                                FirstName: name_array[0],
+                                LastName: name_array[1],
+                                Style: resp.data.trainer_riding_style,
+                                Email: resp.data.trainer_email_address,
+                                Address: resp.data.trainer_address,
+                                phone: resp.data.trainer_phone_number
+                            };
+                        }
+    
                         setSignedIn(true);
-                        setwpage('Calendar')
+                        setwpage('Calendar');
+                        setUserInfo(new_user);
                     })
-                    
                 }
             })
             .catch(function (error) {
