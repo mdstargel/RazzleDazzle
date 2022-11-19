@@ -7,7 +7,6 @@ const async = require('async');
  * Mysql connection
  */
 const MYSQL = require('mysql2');
-const { promise } = require('../../../src(old)/mysql');
 const MYSQL_CONFIG = {
     host: "localhost",
     user: "root",

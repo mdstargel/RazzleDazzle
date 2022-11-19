@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import './styles.css'
 import CancelButton from '../Buttons/CancelButton';
 import ConfirmButton from '../Buttons/ConfirmButton';
 
-const LogIn = ({ setSignedIn, setwpage }) => {
+const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions }) => {
     /**
      * Reference for Forms logic
      * https://www.freecodecamp.org/news/beginner-react-project-build-basic-forms-using-react-hooks/
@@ -38,11 +40,45 @@ const LogIn = ({ setSignedIn, setwpage }) => {
          * Set bool here to validate with backend that the user is signed in
          */
         if (values.password && values.email) {
-            setSignedIn(true);
-            setwpage('Calendar')
+            // Send Log in information
+            axios.post('/Login', {
+                login_email: values.email,
+                login_password: values.password,
+            })
+            .then(function (response) {
+                console.log(response.data[0]);
+                setUserPermissions({
+                    isAdmin: response.data.type === 3,
+                    isTrainer: response.data.type === 2,
+                    isCustomer: response.data.type === 1,
+                })
+                console.log(userPermissions.isAdmin || userPermissions.isTrainer || userPermissions.isCustomer)
+                if (userPermissions.isAdmin || userPermissions.isTrainer || userPermissions.isCustomer) {
+                    let userType;
+                    console.log('Admin: ', userPermissions.isAdmin)
+                    if (userPermissions.isCustomer) {
+                        userType = '/Customer';
+                    } else if (userPermissions.isTrainer) {
+                        userType = '/Trainer';
+                    } else if (userPermissions.isAdmin) {
+                        userType = '/Admin';
+                    }
+                    console.log('User Post Call', userType)
+                    axios.post(userType, {
+                        user_id: response.data.ID,
+                    }).then(function (resp) { 
+                        console.log('User Personal Info:', resp.data)
+                        setSignedIn(true);
+                        setwpage('Calendar')
+                    })
+                    
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
-            // Remove the below comment later
-            console.log('Successful Sign In!')
+        
         } else {
             setShowError(true);
         }
@@ -80,8 +116,6 @@ const LogIn = ({ setSignedIn, setwpage }) => {
                 />
             </div>
             <br /><br />
-            
-            
             
             {showError && < div style={{color: 'red'}} > Your password or email are incorrect.</div>}
             <div className='buttonContainer'>
