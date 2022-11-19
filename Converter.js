@@ -12,6 +12,7 @@ function Convert_Customer(customer) {
 
 function Convert_Trainer(trainer) {
     var name_array = customer.customer_name.split(" ");
+
     new_trainer = [{
         id: trainer.TID,
         FirstName: name_array[0],

@@ -66,7 +66,9 @@ const {
 /**************************************************************************/
 
 app.post('/Admin', async function(req, res) {
-    var user = await Get_Trainer();
+    var TID = req.body.user_id;
+    console.log(TID);
+    var user = await Get_Trainer(TID);
     res.send(user);
 })
 

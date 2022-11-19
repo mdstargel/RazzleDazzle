@@ -32,10 +32,19 @@ async function Validate_User(login_email, login_password) {
 
     // Pull data
     check = check[0];
-    var CID = check[0].CID;
-    var TID = check[0].TID;
-    var administrator = check[0].Administrator;
-    var decomissioned = check[0].decomissioned;
+
+    // try/catch to catch errors
+    try {
+        var CID = check[0].CID;
+        var TID = check[0].TID;
+        var administrator = check[0].Administrator;
+        var decomissioned = check[0].decomissioned;
+    } catch {
+        var CID = null;
+        var TID = null;
+        var administrator = null;
+        var decomissioned = null;
+    }
 
     // Create return json
     var ID;
