@@ -8,7 +8,6 @@ const { Set_Appointment_Reservation } = require('../Calendar/Appointments/Set_Ap
  * Mysql connection
  */
 const MYSQL = require('mysql2');
-const con = require('../../src(old)/mysql');
 const MYSQL_CONFIG = {
     host: "localhost",
     user: "root",
