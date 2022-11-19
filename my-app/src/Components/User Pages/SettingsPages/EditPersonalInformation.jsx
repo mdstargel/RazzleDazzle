@@ -4,17 +4,18 @@ import PageTitle from "../PageTitle";
 import CancelButton from "../../Buttons/CancelButton";
 import ConfirmButton from "../../Buttons/ConfirmButton";
 
-const EditPersonalInformation = ({setwpage}) => {
+const EditPersonalInformation = ({setwpage, UserInfo}) => {
     /**
      * Sample data, need database information to prepopulate form instead
      */
      const [values, setValues] = useState({
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'jdoe@gmail.com',
-        phone: '(800) 444-5555',
-        address: '253 Horserace Rd. Bighorse, MT 12345',
+        firstName: UserInfo.FirstName,
+        lastName: UserInfo.LastName,
+        email: UserInfo.Email,
+        phone: UserInfo.phone,
+        address: UserInfo.Address,
      });
+    
     const [message, setMessage] = useState('');
     
     const handleFirstNameInputChange = (event) => {

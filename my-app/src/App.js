@@ -80,7 +80,8 @@ function App() {
     isTrainer: false,
     isCustomer: false,
   })
-
+  
+  const [UserInfo, setUserInfo] = useState()
   if (!isMounted) {
         axios.get('/Public_News').then(resp => {
           setNewsArticles(resp.data);
@@ -98,13 +99,14 @@ function App() {
       chosenpage = <Services />
     } else if (wpage === 'Log In') {
       chosenpage = <LogIn setSignedIn={setSignedIn} setwpage={setwpage}
-        setUserPermissions={setUserPermissions} userPermissions={userPermissions} />
+        setUserPermissions={setUserPermissions} userPermissions={userPermissions}
+        setUserInfo={setUserInfo} />
     } else if (wpage === 'Sign Up') {
       chosenpage = <SignUp setSignedIn={setSignedIn} setwpage={setwpage} />
     } else if (wpage === 'Calendar') {
       chosenpage = <Calendar userPermissions={userPermissions} />
     } else if (wpage === 'Edit Personal Information') {
-      chosenpage = <EditPersonalInformation setwpage={setwpage} />
+      chosenpage = <EditPersonalInformation setwpage={setwpage} UserInfo={UserInfo} />
     } else if (wpage === 'Change Password') {
       chosenpage = <ChangePassword setwpage={setwpage}/>
     }else if (wpage === 'Manage Notifications') {
