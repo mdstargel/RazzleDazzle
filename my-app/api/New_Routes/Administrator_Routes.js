@@ -292,7 +292,6 @@ app.post('/Admin/Calendar/Notify_Customers', function(req, res) {
 app.get('/Admin/Customer', async function(req, res) {
     var customers = await Get_All_Customers();
     res.send(customers);
-    console.log(newJsonArray);
 })
 
 app.post('/Admin/Customer/Set_Difficulty', function(req, res) {
