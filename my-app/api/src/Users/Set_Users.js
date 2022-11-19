@@ -180,11 +180,11 @@ async function Set_Customer_Password(CID, old_password, new_password) {
     const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
     var query = await CON.promise().query(
-        "SELECT Customer_Email " +
+        "SELECT Customer_Email_Address " +
         "FROM Customer " +
         "WHERE CID = " + CID + ";");
 
-    var email = query[0][0].Trainer_Email;
+    var email = query[0][0].Customer_Email_Address;
 
     query = await CON.promise().query(
         "SELECT Login_Password " +
@@ -197,7 +197,7 @@ async function Set_Customer_Password(CID, old_password, new_password) {
         CON.query(
             "UPDATE Login " +
             "SET Login_Password = '" + new_password + "' " +
-            "WHERE Email = '" + email + "';");
+            "WHERE Login_Email = '" + email + "';");
     }
 
     // Close connection
@@ -372,11 +372,11 @@ async function Set_Trainer_Password(TID, old_password, new_password) {
     const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
     var query = await CON.promise().query(
-        "SELECT Trainer_Email " +
+        "SELECT Trainer_Email_Address " +
         "FROM Trainer " +
         "WHERE TID = " + TID + ";");
 
-    var email = query[0][0].Trainer_Email;
+    var email = query[0][0].Trainer_Email_Address;
 
     query = await CON.promise().query(
         "SELECT Login_Password " +
@@ -389,7 +389,7 @@ async function Set_Trainer_Password(TID, old_password, new_password) {
         CON.query(
             "UPDATE Login " +
             "SET Login_Password = '" + new_password + "' " +
-            "WHERE Email = '" + email + "';");
+            "WHERE Login_Email = '" + email + "';");
     }
 
     // Close connection
@@ -416,19 +416,24 @@ async function Delete_Customer(CID) {
         "FROM Customer " +
         "WHERE CID = " + CID + ";");
 
-    var customer_email = email[0][0];
+    var customer_email = email[0][0].Customer_Email_Address;
+    console.log(email[0][0].Customer_Email_Address);
 
-    CON.query(
+    await CON.promise().query(
         "UPDATE Login " +
         "SET Decomissioned = 1 " +
-        "WHERE Email = '" + customer_email + "';");
+        "WHERE Login_Email = '" + customer_email + "';");
+
+    console.log("UPDATE Login " +
+        "SET Decomissioned = 1 " +
+        "WHERE Login_Email = '" + customer_email + "';");
 
     var reserved_appointment_keys = await CON.promise().query(
         "SELECT AID " +
         "FROM Appointment " +
         "INNER JOIN Customer_Group " +
-        "ON Appointment.Appt_GID = Customer_Group.GID " +
-        "WHERE Appt_Date >= '" + CURRENT_DATE + "' " +
+        "ON Appointment.Appointment_GID = Customer_Group.GID " +
+        "WHERE Appointment_Date >= '" + CURRENT_DATE + "' " +
         "AND (Customer_Group.CID_1 = " + CID + " " +
         "OR Customer_Group.CID_2 = " + CID + " " +
         "OR Customer_Group.CID_3 = " + CID + " " +
@@ -437,10 +442,12 @@ async function Delete_Customer(CID) {
     // Close connection
     CON.end();
 
+    console.log(reserved_appointment_keys[0]);
+
     var appointment_keys = reserved_appointment_keys[0];
 
-    for (var i = 0; i < blahblah; i++) {
-        Set_Appointment_Reservation(appointment_keys[i], CID, false);
+    for (var i = 0; i < appointment_keys.length; i++) {
+        await Set_Appointment_Reservation(appointment_keys[i], CID, false);
     };
 }
 

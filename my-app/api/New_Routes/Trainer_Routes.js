@@ -22,7 +22,7 @@ const {
 
 app.post('/Trainer', async function(req, res) {
     var TID = req.body.user_id;
-    var user = Get_Users.Get_Trainer(TID);
+    var user = await Get_Users.Get_Trainer(TID);
     res.send(user);
 })
 

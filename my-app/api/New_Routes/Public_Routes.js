@@ -1,9 +1,10 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
+var express = require('express');
+var app = express();
+var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(bodyParser.json());
 
 const { Validate_User } = require('../src/Login');
 const { Get_All_News } = require('../src/News/Get_News');
@@ -27,6 +28,7 @@ app.post('/Create_Account', async function(req, res) {
     var customer_phone_number = req.body.customer_phone_number;
     var customer_email_address = req.body.customer_email_address;
     var customer_password = req.body.customer_password;
+
     var CID = await Create_Customer(
         customer_name,
         customer_address,
@@ -34,7 +36,19 @@ app.post('/Create_Account', async function(req, res) {
         customer_email_address,
         customer_password);
 
-    return CID;
+    res.json(CID);
+})
+
+app.post('/Testpost', function(req, res) {
+    res.send(req.body);
+})
+
+app.put('/Testput', function(req, res) {
+    res.send(req.body);
+})
+
+app.get('/Testget', function(req, res) {
+    res.send(req.body);
 })
 
 module.exports = app;

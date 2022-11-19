@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "mysql": "^2.18.1",
-    "mysql2": "^2.3.3",
-    "nodemailer": "^6.8.0"
-  }
-}

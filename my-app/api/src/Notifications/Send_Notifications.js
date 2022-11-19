@@ -151,7 +151,7 @@ async function Get_Email_Addresses(AID) {
 
     query_values = await CON.promise().query(
         "SELECT " +
-        "Customer_Email_Address, " +
+        "Customer_Email_Address " +
         "FROM Customer " +
         "INNER JOIN " +
         "Customer_Group ON CID = Customer_Group.CID_1 " +
@@ -163,7 +163,7 @@ async function Get_Email_Addresses(AID) {
     if (CID_2 != null) {
         query_values = await CON.promise().query(
             "SELECT " +
-            "Customer_Email_Address, " +
+            "Customer_Email_Address " +
             "FROM Customer " +
             "INNER JOIN " +
             "Customer_Group ON CID = Customer_Group.CID_2 " +
@@ -176,7 +176,7 @@ async function Get_Email_Addresses(AID) {
     if (CID_3 != null) {
         query_values = await CON.promise().query(
             "SELECT " +
-            "Customer_Email_Address, " +
+            "Customer_Email_Address " +
             "FROM Customer " +
             "INNER JOIN " +
             "Customer_Group ON CID = Customer_Group.CID_3 " +
@@ -189,7 +189,7 @@ async function Get_Email_Addresses(AID) {
     if (CID_4 != null) {
         query_values = await CON.promise().query(
             "SELECT " +
-            "Customer_Email_Address, " +
+            "Customer_Email_Address " +
             "FROM Customer " +
             "INNER JOIN " +
             "Customer_Group ON CID = Customer_Group.CID_4 " +

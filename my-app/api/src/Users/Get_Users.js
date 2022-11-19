@@ -101,6 +101,8 @@ async function Get_Trainer(TID) {
         trainer_values[0].Trainer_Emergency_Phone_Number,
         trainer_values[0].Trainer_Riding_Style);
 
+    console.log(user);
+
     return user;
 }
 

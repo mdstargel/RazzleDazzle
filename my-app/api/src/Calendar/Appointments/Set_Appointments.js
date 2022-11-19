@@ -269,15 +269,6 @@ function Set_Appointment_TID_2(AID, appointment_TID_2) {
  * @param {*} GID 
  */
 async function Sort_Customer_Group(GID) {
-    // Create array of query strings
-    const CUSTOMER_GROUP_VALUES = [
-        "CID_1",
-        "CID_2",
-        "CID_3",
-        "CID_4"
-    ];
-    var CID_array_counter = 0;
-
     // Open connection
     const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
@@ -292,6 +283,11 @@ async function Sort_Customer_Group(GID) {
 
     // pull values
     query_values = query_values[0];
+    var used_CID = [];
+    used_CID.push(query_values[0].CID_1);
+    used_CID.push(query_values[0].CID_2);
+    used_CID.push(query_values[0].CID_3);
+    used_CID.push(query_values[0].CID_4);
 
     // clear the row
     await CON.promise().query(
@@ -303,14 +299,39 @@ async function Sort_Customer_Group(GID) {
         "WHERE GID = " + GID + ";");
 
     // If a value is non-empty, put it back, in order
-    for (var i = 0; i < query_values.length; i++) {
-        if (query_values[i] != null) {
+    var CID_1_empty = true;
+    var CID_2_empty = true;
+    var CID_3_empty = true;
+    var CID_4_empty = true;
+    for (var i = 0; i < used_CID.length; i++) {
+        if (used_CID[i] != null &&
+            CID_1_empty) {
             await CON.promise().query(
                 "UPDATE Customer_Group " +
-                "SET " + CUSTOMER_GROUP_VALUES[CID_array_counter] +
-                " = " + query_values[i] + " " +
+                "SET CID_1 = " + used_CID[i] + " " +
                 "WHERE GID = " + GID + ";");
-            CID_array_counter++;
+            CID_1_empty = false;
+        } else if (used_CID[i] != null &&
+            CID_2_empty) {
+            await CON.promise().query(
+                "UPDATE Customer_Group " +
+                "SET CID_2 = " + used_CID[i] + " " +
+                "WHERE GID = " + GID + ";");
+            CID_2_empty = false;
+        } else if (used_CID[i] != null &&
+            CID_3_empty) {
+            await CON.promise().query(
+                "UPDATE Customer_Group " +
+                "SET CID_3 = " + used_CID[i] + " " +
+                "WHERE GID = " + GID + ";");
+            CID_3_empty = false;
+        } else if (used_CID[i] != null &&
+            CID_4_empty) {
+            await CON.promise().query(
+                "UPDATE Customer_Group " +
+                "SET CID_4 = " + used_CID[i] + " " +
+                "WHERE GID = " + GID + ";");
+            CID_4_empty = false;
         }
     }
 
@@ -322,7 +343,7 @@ async function Sort_Customer_Group(GID) {
  * 
  * @param {*} GID 
  */
-async function Check_Customer_Group_Empty(GID) {
+async function Check_Customer_Group_Empty(AID, GID) {
     // Open connection
     const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
@@ -345,7 +366,11 @@ async function Check_Customer_Group_Empty(GID) {
         CID_2 == null &&
         CID_3 == null &&
         CID_4 == null) {
-        CON.query(
+        await CON.promise().query(
+            "UPDATE Appointment " +
+            "SET Appointment_GID = null " +
+            "WHERE AID = " + AID + ";");
+        await CON.promise().query(
             "DELETE FROM Customer_Group " +
             "WHERE GID = " + GID + ";");
     }
@@ -372,16 +397,33 @@ async function Set_Appointment_Reservation(AID, CID, reserve) {
             "WHERE AID = " + AID + ";");
 
         // Log reservation in group
-        var appointment_GID = await CON.promise().query(
+        var query_results = await CON.promise().query(
             "SELECT Appointment_GID " +
             "FROM Appointment " +
-            "WHERE AID = " + AID + ";")[0][0];
+            "WHERE AID = " + AID + ";");
+        query_results = query_results[0];
+        appointment_GID = query_results[0].Appointment_GID;
 
         // If no group create group
         if (appointment_GID == null) {
-            CON.query(
+            await CON.promise().query(
                 "INSERT INTO Customer_Group (CID_1) " +
-                "VALUES (" + CID + ");")
+                "VALUES (" + CID + ");");
+
+            // Get that GID
+            var query_results = await CON.promise().query(
+                "SELECT GID " +
+                "FROM Customer_Group " +
+                "WHERE CID_1 = " + CID + ";");
+
+            query_results = query_results[0];
+            var appointment_GID = query_results[query_results.length - 1].GID;
+
+            // Set that GID to this appointment
+            CON.query(
+                "UPDATE Appointment " +
+                "SET Appointment_GID = " + appointment_GID + " " +
+                "WHERE AID = " + AID + ";")
         } else {
             // Find empty value and insert
             var query_values = await CON.promise().query(
@@ -454,7 +496,7 @@ async function Set_Appointment_Reservation(AID, CID, reserve) {
         }
 
         await Sort_Customer_Group(GID);
-        Check_Customer_Group_Empty(GID);
+        Check_Customer_Group_Empty(AID, GID);
     }
 
     // Close connection

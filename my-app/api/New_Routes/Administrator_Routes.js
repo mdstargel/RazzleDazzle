@@ -52,6 +52,7 @@ const {
     Set_News_Description,
     Delete_News
 } = require('../src/News/Set_News');
+const { Get_All_News } = require('../src/News/Get_News');
 const { Create_Appointment } = require('../src/Calendar/Appointments/Create_Appointment');
 const { Create_Trainer } = require('../src/Users/Create_Users');
 const {
@@ -144,6 +145,15 @@ app.put('/Admin/Calendar/Create', function(req, res) {
     var appointment_group_size = req.body.appointment_group_size;
     var appointment_TID_1 = req.body.appointment_TID_1;
     var appointment_TID_2 = req.body.appointment_TID_2;
+
+    if (appointment_difficulty == undefined) appointment_difficulty = 0;
+    if (appointment_description == undefined) appointment_description = "";
+    if (appointment_public_notes == undefined) appointment_public_notes = "";
+    if (appointment_private_notes == undefined) appointment_private_notes = "";
+    if (appointment_group == undefined) appointment_group = 0;
+    if (appointment_group_size == undefined) appointment_group_size = 1;
+    if (appointment_TID_1 == undefined) appointment_TID_1 = 5;
+    if (appointment_TID_2 == undefined) appointment_TID_2 = 5;
 
     Create_Appointment(
         appointment_name,
@@ -309,6 +319,12 @@ app.put('/Admin/Trainer/Create', function(req, res) {
     var trainer_emergency_name = req.body.trainer_emergency_name;
     var trainer_emergency_phone_number = req.body.trainer_emergency_phone_number;
     var trainer_riding_style = req.body.trainer_riding_style;
+
+    if (trainer_address == undefined) trainer_address = "";
+    if (trainer_phone_number == undefined) trainer_phone_number = "";
+    if (trainer_emergency_name == undefined) trainer_emergency_name = "";
+    if (trainer_emergency_phone_number == undefined) trainer_emergency_phone_number = "";
+
     Create_Trainer(
         trainer_name,
         trainer_address,
@@ -345,6 +361,10 @@ app.put('/Admin/News/Create', function(req, res) {
     var news_title = req.body.news_title;
     var news_link = req.body.news_link;
     var news_description = req.body.news_description;
+
+    if (news_link == undefined) news_link = "";
+    if (news_description == undefined) news_description = "";
+
     Create_News(news_image_url, news_title, news_link, news_description);
 })
 

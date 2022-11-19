@@ -34,8 +34,8 @@ async function Trim_News() {
 
         if (len > 5) {
             await CON.promise().query(
-                "DELETE News " +
-                "WHERE NID = " + NIDs[0] + ";");
+                "DELETE FROM News " +
+                "WHERE NID = " + NIDs[0].NID + ";");
             len--;
         }
 

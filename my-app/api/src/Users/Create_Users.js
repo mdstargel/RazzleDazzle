@@ -45,7 +45,7 @@ async function Create_Customer(
         "Customer_Name = '" + customer_name + "' AND " +
         "Customer_Address = '" + customer_address + "' AND " +
         "Customer_Phone_Number = '" + customer_phone_number + "' AND " +
-        "Customer_Email_address = '" + customer_email_address + ";");
+        "Customer_Email_address = '" + customer_email_address + "';");
 
     var CID = QUERY_VALUES[0][0].CID;
 
@@ -55,7 +55,7 @@ async function Create_Customer(
         "Login_Password, " +
         "CID) " +
         "VALUES ('" +
-        trainer_email_address + "', '" +
+        customer_email_address + "', '" +
         customer_password + "', " +
         CID + ");");
 
