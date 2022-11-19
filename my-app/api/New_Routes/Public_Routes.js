@@ -39,16 +39,12 @@ app.post('/Create_Account', async function(req, res) {
     res.json(CID);
 })
 
-app.post('/Testpost', function(req, res) {
-    res.send(req.body);
+app.post('/Forgot_Password', function(req, res) {
+
 })
 
-app.put('/Testput', function(req, res) {
-    res.send(req.body);
-})
+app.post('/Reset_Password', async function(req, res) {
 
-app.get('/Testget', function(req, res) {
-    res.send(req.body);
 })
 
 module.exports = app;
