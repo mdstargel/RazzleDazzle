@@ -17,58 +17,67 @@ app.post('/Customer', async function(req, res) {
     res.send(user);
 })
 
-app.put('/Customer/Set_Name', function(req, res) {
+app.post('/Customer/Set_Name', function(req, res) {
     var CID = req.body.user_id;
     var customer_name = req.body.user_name;
     Set_Users.Set_Customer_Name(CID, customer_name);
+    res.send("");
 })
 
-app.put('/Customer/Set_Address', function(req, res) {
+app.post('/Customer/Set_Address', function(req, res) {
     var CID = req.body.user_id;
     var customer_address = req.body.user_address;
     Set_Users.Set_Customer_Address(CID, customer_address);
+    res.send("");
 })
 
-app.put('/Customer/Set_Phone_Number', function(req, res) {
+app.post('/Customer/Set_Phone_Number', function(req, res) {
     var CID = req.body.user_id;
     var customer_phone_number = req.body.user_phone_number;
     Set_Users.Set_Customer_Phone_Number(CID, customer_phone_number);
+    res.send("");
 })
 
-app.put('/Customer/Set_Email_Address', function(req, res) {
+app.post('/Customer/Set_Email_Address', function(req, res) {
     var CID = req.body.user_id;
     var customer_email_address = req.body.user_email_address;
     Set_Users.Set_Customer_Email_Address(CID, customer_email_address);
+    res.send("");
 })
 
-app.put('/Customer/Set_Emergency_Name', function(req, res) {
+app.post('/Customer/Set_Emergency_Name', function(req, res) {
     var CID = req.body.user_id;
     var customer_emergency_name = req.body.user_emergency_name;
     Set_Users.Set_Customer_Emergency_Name(CID, customer_emergency_name);
+    res.send("");
 })
 
-app.put('/Customer/Set_Emergency_Phone_Number', function(req, res) {
+app.post('/Customer/Set_Emergency_Phone_Number', function(req, res) {
     var CID = req.body.user_id;
     var customer_emergency_phone_number = req.body.user_emergency_phone_number;
     Set_Users.Set_Customer_Emergency_Phone_Number(CID, customer_emergency_phone_number);
+    res.send("");
 })
 
-app.put('/Customer/Set_Phone_Notifications', function(req, res) {
+app.post('/Customer/Set_Phone_Notifications', function(req, res) {
     var CID = req.body.user_id;
     var customer_phone_notifications = req.body.user_phone_notifications;
     Set_Users.Set_Customer_Phone_Notifications(CID, customer_phone_notifications);
+    res.send("");
 })
 
-app.put('/Customer/Change_Password', function(req, res) {
+app.post('/Customer/Change_Password', function(req, res) {
     var CID = req.body.user_id;
     var old_password = req.body.old_password;
     var new_password = req.body.new_password;
     Set_Users.Set_Customer_Password(CID, old_password, new_password);
+    res.send("");
 })
 
-app.put('/Customer/Delete_Customer', function(req, res) {
+app.post('/Customer/Delete_Customer', function(req, res) {
     var CID = req.body.user_id;
     Set_Users.Delete_Customer(CID);
+    res.send("");
 })
 
 app.post('/Customer/Calendar', async function(req, res) {
@@ -77,11 +86,12 @@ app.post('/Customer/Calendar', async function(req, res) {
     res.send(calendar);
 })
 
-app.put('/Customer/Calendar/Reservation', function(req, res) {
+app.post('/Customer/Calendar/Reservation', function(req, res) {
     var AID = req.body.appointment_id;
     var CID = req.body.user_id;
     var reserve = req.body.reserve;
     Set_Appointments.Set_Appointment_Reservation(AID, CID, reserve);
+    res.send("");
 })
 
 module.exports = app;

@@ -70,46 +70,53 @@ app.post('/Admin', async function(req, res) {
     res.send(user);
 })
 
-app.put('/Admin/Set_Name', function(req, res) {
+app.post('/Admin/Set_Name', function(req, res) {
     var TID = req.body.user_id;
     var trainer_name = req.body.user_name;
     Set_Trainer_Name(TID, trainer_name);
+    res.send("");
 })
 
-app.put('/Admin/Set_Address', function(req, res) {
+app.post('/Admin/Set_Address', function(req, res) {
     var TID = req.body.user_id;
     var trainer_address = req.body.user_address;
     Set_Trainer_Address(TID, trainer_address);
+    res.send("");
 })
 
-app.put('/Admin/Set_Phone_Number', function(req, res) {
+app.post('/Admin/Set_Phone_Number', function(req, res) {
     var TID = req.body.user_id;
     var trainer_phone_number = req.body.user_phone_number;
     Set_Trainer_Phone_Number(TID, trainer_phone_number);
+    res.send("");
 })
 
-app.put('/Admin/Set_Email_Address', function(req, res) {
+app.post('/Admin/Set_Email_Address', function(req, res) {
     var TID = req.body.user_id;
     var trainer_email_address = req.body.user_email_address;
     Set_Trainer_Email_Address(TID, trainer_email_address);
+    res.send("");
 })
 
-app.put('/Admin/Set_Emergency_Name', function(req, res) {
+app.post('/Admin/Set_Emergency_Name', function(req, res) {
     var TID = req.body.user_id;
     var trainer_emergency_name = req.body.user_emergency_name;
     Set_Trainer_Emergency_Name(TID, trainer_emergency_name);
+    res.send("");
 })
 
-app.put('/Admin/Set_Emergency_Phone_Number', function(req, res) {
+app.post('/Admin/Set_Emergency_Phone_Number', function(req, res) {
     var TID = req.body.user_id;
     var trainer_emergency_phone_number = req.body.user_emergency_phone_number;
     Set_Trainer_Emergency_Phone_Number(TID, trainer_emergency_phone_number);
+    res.send("");
 })
 
-app.put('/Admin/Set_Riding_Style', function(req, res) {
+app.post('/Admin/Set_Riding_Style', function(req, res) {
     var TID = req.body.user_id;
     var trainer_riding_style = req.body.user_riding_style;
     Set_Trainer_Riding_Style(TID, trainer_riding_style);
+    res.send("");
 })
 
 /**************************************************************************/
@@ -131,7 +138,7 @@ app.get('/Admin/Calendar/Get_Trainers', async function(req, res) {
     res.send(trainers);
 })
 
-app.put('/Admin/Calendar/Create', function(req, res) {
+app.post('/Admin/Calendar/Create', function(req, res) {
     var appointment_name = req.body.appointment_name;
     var appointment_date = req.body.appointment_date;
     var appointment_start_time = req.body.appointment_start_time;
@@ -170,96 +177,112 @@ app.put('/Admin/Calendar/Create', function(req, res) {
         appointment_TID_1,
         appointment_TID_2
     );
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Set_Name', function(req, res) {
+app.post('/Admin/Calendar/Set_Name', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_name = req.body.appointment_name;
     Set_Appointment_Name(AID, appointment_name);
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Set_Date', function(req, res) {
+app.post('/Admin/Calendar/Set_Date', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_date = req.body.appointment_date;
     Set_Appointment_Date(AID, appointment_date);
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Set_Start_Time', function(req, res) {
+app.post('/Admin/Calendar/Set_Start_Time', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_start_time = req.body.appointment_start_time;
     Set_Appointment_Start_Time(AID, appointment_start_time);
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Set_End_Time', function(req, res) {
+app.post('/Admin/Calendar/Set_End_Time', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_end_time = req.body.appointment_end_time;
     Set_Appointment_End_Time(AID, appointment_end_time);
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Set_Riding_Style', function(req, res) {
+app.post('/Admin/Calendar/Set_Riding_Style', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_riding_style = req.body.appointment_riding_style;
     Set_Appointment_Riding_Style(AID, appointment_riding_style);
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Set_Difficulty', function(req, res) {
+app.post('/Admin/Calendar/Set_Difficulty', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_difficulty = req.body.appointment_difficulty;
     Set_Appointment_Difficulty(AID, appointment_difficulty);
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Set_Description', function(req, res) {
+app.post('/Admin/Calendar/Set_Description', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_description = req.body.appointment_description;
     Set_Appointment_Description(AID, appointment_description);
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Set_Public_Notes', function(req, res) {
+app.post('/Admin/Calendar/Set_Public_Notes', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_public_notes = req.body.appointment_public_notes;
     Set_Appointment_Public_Notes(AID, appointment_public_notes);
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Set_Private_Notes', function(req, res) {
+app.post('/Admin/Calendar/Set_Private_Notes', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_private_notes = req.body.appointment_private_notes;
     Set_Appointment_Private_Notes(AID, appointment_private_notes);
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Set_Group', function(req, res) {
+app.post('/Admin/Calendar/Set_Group', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_group = req.body.appointment_group;
     Set_Appointment_Group(AID, appointment_group);
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Set_Group_Size', function(req, res) {
+app.post('/Admin/Calendar/Set_Group_Size', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_group_size = req.body.appointment_name;
     Set_Appointment_Group_Size(AID, appointment_group_size);
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Set_TID_1', function(req, res) {
+app.post('/Admin/Calendar/Set_TID_1', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_TID_1 = req.body.appointment_name;
     Set_Appointment_TID_1(AID, appointment_TID_1);
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Set_TID_2', function(req, res) {
+app.post('/Admin/Calendar/Set_TID_2', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_TID_2 = req.body.appointment_TID_2;
     Set_Appointment_TID_2(AID, appointment_TID_2);
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Delete_Appointment', function(req, res) {
+app.post('/Admin/Calendar/Delete_Appointment', function(req, res) {
     var AID = req.body.appointment_id;
     Delete_Appointment(AID);
+    res.send("");
 })
 
-app.put('/Admin/Calendar/Notify_Customers', function(req, res) {
+app.post('/Admin/Calendar/Notify_Customers', function(req, res) {
     var AID = req.body.appointment_id;
     var title = req.body.title;
     var notification = req.body.notification;
     Notify_Appointment(AID, title, notification);
+    res.send("");
 })
 
 /**************************************************************************/
@@ -272,22 +295,25 @@ app.get('/Admin/Customer', async function(req, res) {
     console.log(newJsonArray);
 })
 
-app.put('/Admin/Customer/Set_Difficulty', function(req, res) {
+app.post('/Admin/Customer/Set_Difficulty', function(req, res) {
     var CID = req.body.user_id;
     var customer_difficulty = req.body.user_difficulty;
     Set_Customer_Difficulty(CID, customer_difficulty);
+    res.send("");
 })
 
-app.put('/Admin/Customer/Delete', function(req, res) {
+app.post('/Admin/Customer/Delete', function(req, res) {
     var CID = req.body.user_id;
     Delete_Customer(CID);
+    res.send("");
 })
 
-app.put('/Admin/Customer/Notify', function(req, res) {
+app.post('/Admin/Customer/Notify', function(req, res) {
     var CIDs = req.body.CIDs;
     var title = req.body.title;
     var notification = req.body.notification;
     Notify_Customers(CIDs, title, notification);
+    res.send("");
 })
 
 /**************************************************************************/
@@ -299,19 +325,21 @@ app.get('/Admin/Trainer', async function(req, res) {
     res.send(trainers);
 })
 
-app.put('/Admin/Trainer/Set_Riding_Style', function(req, res) {
+app.post('/Admin/Trainer/Set_Riding_Style', function(req, res) {
     var TID = req.body.user_id;
     var trainer_riding_style = req.body.user_riding_style;
     Set_Trainer_Riding_Style(TID, trainer_riding_style);
+    res.send("");
 })
 
-app.put('/Admin/Trainer/Set_Trainer_Administrator', function(req, res) {
+app.post('/Admin/Trainer/Set_Trainer_Administrator', function(req, res) {
     var TID = req.body.user_id;
     var administrator = req.body.user_administrator;
     Set_Trainer_Administrator(TID, administrator);
+    res.send("");
 })
 
-app.put('/Admin/Trainer/Create', function(req, res) {
+app.post('/Admin/Trainer/Create', function(req, res) {
     var trainer_name = req.body.trainer_name;
     var trainer_address = req.body.trainer_address;
     var trainer_phone_number = req.body.trainer_phone_number;
@@ -333,18 +361,21 @@ app.put('/Admin/Trainer/Create', function(req, res) {
         trainer_emergency_name,
         trainer_emergency_phone_number,
         trainer_riding_style);
+    res.send("");
 })
 
-app.put('/Admin/Trainer/Notify', function(req, res) {
+app.post('/Admin/Trainer/Notify', function(req, res) {
     var TIDs = req.body.CIDs;
     var title = req.body.title;
     var notification = req.body.notification;
     Notify_Customers(TIDs, title, notification);
+    res.send("");
 })
 
-app.put('/Admin/Trainer/Delete', function(req, res) {
+app.post('/Admin/Trainer/Delete', function(req, res) {
     var TID = req.body.user_id;
     Delete_Trainer(TID);
+    res.send("");
 })
 
 /**************************************************************************/
@@ -356,7 +387,7 @@ app.get('/Admin/News', async function(req, res) {
     res.send(admin_news);
 })
 
-app.put('/Admin/News/Create', function(req, res) {
+app.post('/Admin/News/Create', function(req, res) {
     var news_image_url = req.body.news_image_url;
     var news_title = req.body.news_title;
     var news_link = req.body.news_link;
@@ -366,35 +397,41 @@ app.put('/Admin/News/Create', function(req, res) {
     if (news_description == undefined) news_description = "";
 
     Create_News(news_image_url, news_title, news_link, news_description);
+    res.send("");
 })
 
-app.put('/Admin/News/Set_Image_URL', function(req, res) {
+app.post('/Admin/News/Set_Image_URL', function(req, res) {
     var news_image_url = req.body.news_image_url;
     var NID = req.body.NID;
     Set_News_Image_URL(news_image_url, NID);
+    res.send("");
 })
 
-app.put('/Admin/News/Set_News_Title', function(req, res) {
+app.post('/Admin/News/Set_News_Title', function(req, res) {
     var news_title = req.body.news_title;
     var NID = req.body.NID;
     Set_News_Title(news_title, NID);
+    res.send("");
 })
 
-app.put('/Admin/News/Set_News_Link', function(req, res) {
+app.post('/Admin/News/Set_News_Link', function(req, res) {
     var news_link = req.body.news_link;
     var NID = req.body.NID;
     Set_News_Link(news_link, NID);
+    res.send("");
 })
 
-app.put('/Admin/News/Set_News_Description', function(req, res) {
+app.post('/Admin/News/Set_News_Description', function(req, res) {
     var news_description = req.body.news_description;
     var NID = req.body.NID;
     Set_News_Description(news_description, NID);
+    res.send("");
 })
 
-app.put('/Admin/News/Delete', function(req, res) {
+app.post('/Admin/News/Delete', function(req, res) {
     var NID = req.body.NID;
     Delete_News(NID);
+    res.send("");
 })
 
 module.exports = app;
