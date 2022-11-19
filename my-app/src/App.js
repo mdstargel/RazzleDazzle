@@ -92,12 +92,13 @@ function App() {
   
   const ChosenWebpage = () => {
     let chosenpage;
-    if(wpage === 'News') {
+    if (wpage === 'News') {
       chosenpage = <News newsArticles={newsArticles} />
     } else if (wpage === 'Services') {
-      chosenpage = <Services/>
+      chosenpage = <Services />
     } else if (wpage === 'Log In') {
-      chosenpage = <LogIn setSignedIn={setSignedIn} setwpage={setwpage} />
+      chosenpage = <LogIn setSignedIn={setSignedIn} setwpage={setwpage}
+        setUserPermissions={setUserPermissions} userPermissions={userPermissions} />
     } else if (wpage === 'Sign Up') {
       chosenpage = <SignUp setSignedIn={setSignedIn} setwpage={setwpage} />
     } else if (wpage === 'Calendar') {
