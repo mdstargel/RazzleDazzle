@@ -72,6 +72,19 @@ app.post('/Admin', async function(req, res) {
     res.send(user);
 })
 
+app.post('/Admin/Set_Personal_Information', function(req, res) {
+    var TID = req.body.user_id;
+    var trainer_name = req.body.user_name;
+    var trainer_address = req.body.user_address;
+    var trainer_phone_number = req.body.user_phone_number;
+    var trainer_email_address = req.body.user_email_address;
+    Set_Trainer_Name(TID, trainer_name);
+    Set_Trainer_Address(TID, trainer_address);
+    Set_Trainer_Phone_Number(TID, trainer_phone_number);
+    Set_Trainer_Email_Address(TID, trainer_email_address);
+    res.send("");
+})
+
 app.post('/Admin/Set_Name', function(req, res) {
     var TID = req.body.user_id;
     var trainer_name = req.body.user_name;

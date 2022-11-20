@@ -17,6 +17,19 @@ app.post('/Customer', async function(req, res) {
     res.send(user);
 })
 
+app.post('/Trainer/Set_Personal_Information', function(req, res) {
+    var CID = req.body.user_id;
+    var customer_name = req.body.user_name;
+    var customer_address = req.body.user_address;
+    var customer_phone_number = req.body.user_phone_number;
+    var customer_email_address = req.body.user_email_address;
+    Set_Customer_Name(CID, customer_name);
+    Set_Customer_Address(CID, customer_address);
+    Set_Customer_Phone_Number(CID, customer_phone_number);
+    Set_Customer_Email_Address(CID, customer_email_address);
+    res.send("");
+})
+
 app.post('/Customer/Set_Name', function(req, res) {
     var CID = req.body.user_id;
     var customer_name = req.body.user_name;
