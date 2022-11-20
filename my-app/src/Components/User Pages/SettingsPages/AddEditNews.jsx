@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import '../styles.css'
 import PageTitle from "../PageTitle";
 import ConfirmButton from "../../Buttons/ConfirmButton";
 import CancelButton from "../../Buttons/CancelButton";
 
-const AddEditNews = ({setwpage}) => {
+const AddEditNews = ({setwpage, setNewsArticles}) => {
     /**
      * Needs to be completed
      */
@@ -58,7 +60,17 @@ const AddEditNews = ({setwpage}) => {
          * Upload the changes
          */
         if (values.title && values.url && values.description && values.image && values.url) {
-            console.log('Uploading news article');
+            const postData = {
+                "news_image_url": values.image,
+                "news_title": values.title,
+                "news_link": values.url,
+                "news_description": values.description,
+            }
+            console.log('post data:', postData);
+            axios.post("Admin/News/Create", postData).then(resp => 
+                {setNewsArticles( resp.data )}
+            );
+            // Remove the below comment later
             setMessage('News article uploaded!')
             setError('')
         } else {

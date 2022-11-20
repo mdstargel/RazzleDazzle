@@ -139,7 +139,7 @@ app.post('/Admin/Change_Password', function(req, res) {
     var TID = req.body.user_id;
     var old_password = req.body.old_password;
     var new_password = req.body.new_password;
-    Set_Users.Set_Trainer_Password(TID, old_password, new_password);
+    Set_Trainer_Password(TID, old_password, new_password);
     res.send("");
 })
 
@@ -410,7 +410,7 @@ app.get('/Admin/News', async function(req, res) {
     res.send(admin_news);
 })
 
-app.post('/Admin/News/Create', function(req, res) {
+app.post('/Admin/News/Create', async function(req, res) {
     var news_image_url = req.body.news_image_url;
     var news_title = req.body.news_title;
     var news_link = req.body.news_link;
@@ -419,8 +419,9 @@ app.post('/Admin/News/Create', function(req, res) {
     if (news_link == undefined) news_link = "";
     if (news_description == undefined) news_description = "";
 
-    Create_News(news_image_url, news_title, news_link, news_description);
-    res.send("");
+    await Create_News(news_image_url, news_title, news_link, news_description);
+    var admin_news = await Get_All_News();
+    res.send(admin_news);
 })
 
 app.post('/Admin/News/Set_Image_URL', function(req, res) {

@@ -6,10 +6,12 @@ import PageTitle from "../PageTitle";
 import CancelButton from "../../Buttons/CancelButton";
 import ConfirmButton from "../../Buttons/ConfirmButton";
 
-const EditPersonalInformation = ({setwpage, UserInfo}) => {
+const EditPersonalInformation = ({setwpage, UserInfo, setUserInfo}) => {
     /**
      * Sample data, need database information to prepopulate form instead
      */
+    console.log('User Info:', UserInfo);
+
     const [values, setValues] = useState({
         id: UserInfo.id,
         firstName: UserInfo.FirstName,
@@ -79,13 +81,23 @@ const EditPersonalInformation = ({setwpage, UserInfo}) => {
 
         if (values.firstName && values.lastName && values.email && values.phone && values.address) {
             // Need to validate that information is different and is valid in order to change
-            axios.post(UserInfo.userType + "/Set_Personal_Information", {
+            axios.post(UserInfo.type + "/Set_Personal_Information", {
                 "user_id": UserInfo.id,
                 "user_name": values.firstName + " " + values.lastName,
-                "user_address" : values.address,
+                "user_address": values.address,
                 "user_phone_number": values.phone,
                 "user_email_address": values.email
-            }).then(function (resp) { console.log(resp) });
+            }).then(
+                setUserInfo({
+                    id: UserInfo.id,
+                    FirstName: values.firstName,
+                    LastName: values.lastName,
+                    Email: values.email,
+                    Style: UserInfo.Style,
+                    phone: values.phone,
+                    Address: values.address
+                })
+            );
             // console.log('firstName', values.firstName);
             // console.log('lastName', values.lastName);
             // console.log('email', values.email);
