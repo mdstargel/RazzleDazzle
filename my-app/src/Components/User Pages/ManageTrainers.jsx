@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import PageTitle from './PageTitle';
 import AccessTrainer from './SettingsPages/ManageTrainers/AccessTrainer';
 import AddTrainer from './SettingsPages/ManageTrainers/AddTrainer';
 import RemoveTrainer from './SettingsPages/ManageTrainers/RemoveTrainer';
 
 const ManageAppointment = () => {
+    const [isMounted, setIsMounted] = useState(false);
+
+    if (!isMounted) {
+        axios.get('/Admin/Trainer').then(resp => {
+            console.log('Trainers List: ', resp.data)
+        })
+        setIsMounted(true);
+    }
+
     const [selectedTab, setSelectedTab] = useState('Add Trainer');
 
     const ChosenPopup = () => {
