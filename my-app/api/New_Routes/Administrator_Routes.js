@@ -139,7 +139,7 @@ app.post('/Admin/Change_Password', function(req, res) {
     var TID = req.body.user_id;
     var old_password = req.body.old_password;
     var new_password = req.body.new_password;
-    Set_Users.Set_Trainer_Password(TID, old_password, new_password);
+    Set_Trainer_Password(TID, old_password, new_password);
     res.send("");
 })
 
@@ -423,7 +423,8 @@ app.post('/Admin/News/Create', async function(req, res) {
     if (news_link == undefined) news_link = "";
     if (news_description == undefined) news_description = "";
 
-    Create_News(news_image_url, news_title, news_link, news_description);
+
+    await Create_News(news_image_url, news_title, news_link, news_description);
     var admin_news = await Get_All_News();
     res.send(admin_news);
 })

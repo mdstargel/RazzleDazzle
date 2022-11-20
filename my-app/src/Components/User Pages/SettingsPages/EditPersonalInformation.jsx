@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import '../styles.css'
 import PageTitle from "../PageTitle";
 import CancelButton from "../../Buttons/CancelButton";
 import ConfirmButton from "../../Buttons/ConfirmButton";
 
-const EditPersonalInformation = ({setwpage, UserInfo}) => {
+const EditPersonalInformation = ({setwpage, UserInfo, setUserInfo}) => {
     /**
      * Sample data, need database information to prepopulate form instead
      */
-     const [values, setValues] = useState({
+    console.log('User Info:', UserInfo);
+
+    const [values, setValues] = useState({
+        id: UserInfo.id,
         firstName: UserInfo.FirstName,
         lastName: UserInfo.LastName,
         email: UserInfo.Email,
@@ -76,17 +81,34 @@ const EditPersonalInformation = ({setwpage, UserInfo}) => {
 
         if (values.firstName && values.lastName && values.email && values.phone && values.address) {
             // Need to validate that information is different and is valid in order to change
-            console.log('firstName', values.firstName);
-            console.log('lastName', values.lastName);
-            console.log('email', values.email);
-            console.log('phone', values.phone);
-            console.log('address', values.address);
-            setMessage('Information changed successfully!')
+            axios.post(UserInfo.type + "/Set_Personal_Information", {
+                "user_id": UserInfo.id,
+                "user_name": values.firstName + " " + values.lastName,
+                "user_address": values.address,
+                "user_phone_number": values.phone,
+                "user_email_address": values.email
+            }).then(
+                setUserInfo({
+                    id: UserInfo.id,
+                    FirstName: values.firstName,
+                    LastName: values.lastName,
+                    Email: values.email,
+                    Style: UserInfo.Style,
+                    phone: values.phone,
+                    Address: values.address
+                })
+            );
+            // console.log('firstName', values.firstName);
+            // console.log('lastName', values.lastName);
+            // console.log('email', values.email);
+            // console.log('phone', values.phone);
+            // console.log('address', values.address);
+            // setMessage('Information changed successfully!')
             // Remove the below comment later
-            console.log('Successful personal info change!')
+            // console.log('Successful personal info change!')
         } else {
-            setMessage('Information changed unsuccessfully!')
-            console.log('Unsuccessful personal info Change!')
+            // setMessage('Information changed unsuccessfully!')
+            // console.log('Unsuccessful personal info Change!')
         }
     };
 
