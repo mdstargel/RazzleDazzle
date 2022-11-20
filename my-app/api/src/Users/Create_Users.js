@@ -121,6 +121,8 @@ async function Create_Trainer(
 
     // Close connection
     CON.end();
+
+    return TID;
 }
 
 module.exports = {
