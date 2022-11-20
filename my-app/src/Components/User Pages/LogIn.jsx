@@ -73,6 +73,7 @@ const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions, set
                             let name_array = resp.data.customer_name.split(" ");
 
                             new_user = {
+                                type: userType,
                                 id: resp.data.CID,
                                 FirstName: name_array[0],
                                 LastName: name_array[1],

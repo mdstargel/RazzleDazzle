@@ -158,7 +158,7 @@ function App() {
       <Banner setwpage={setwpage} wpage={wpage} signedIn={signedIn} userPermissions={userPermissions} setSignedIn={setSignedIn} />
       <Help wpage={wpage} userPermissions={userPermissions} />
       <ChosenWebpage />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
   return (
