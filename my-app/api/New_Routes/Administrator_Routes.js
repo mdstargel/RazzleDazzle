@@ -23,6 +23,7 @@ const {
     Set_Trainer_Emergency_Phone_Number,
     Set_Trainer_Riding_Style,
     Set_Trainer_Administrator,
+    Set_Trainer_Password,
     Delete_Customer,
     Delete_Trainer
 } = require('../src/Users/Set_Users');
@@ -66,7 +67,7 @@ const {
 /**************************************************************************/
 
 
-app.post('/Admin', async function (req, res) {
+app.post('/Admin', async function(req, res) {
     var TID = req.body.user_id;
     var user = await Get_Trainer(TID);
     res.send(user);
@@ -131,6 +132,14 @@ app.post('/Admin/Set_Riding_Style', function(req, res) {
     var TID = req.body.user_id;
     var trainer_riding_style = req.body.user_riding_style;
     Set_Trainer_Riding_Style(TID, trainer_riding_style);
+    res.send("");
+})
+
+app.post('/Admin/Change_Password', function(req, res) {
+    var TID = req.body.user_id;
+    var old_password = req.body.old_password;
+    var new_password = req.body.new_password;
+    Set_Users.Set_Trainer_Password(TID, old_password, new_password);
     res.send("");
 })
 
