@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import CancelButton from '../../Buttons/CancelButton';
 import ConfirmButton from '../../Buttons/ConfirmButton';
 import '../styles.css';
 import PageTitle from "../PageTitle";
 
-const ChangePassword = ({setSignedIn, setwpage}) => {
+const ChangePassword = ({setwpage, UserInfo}) => {
     /**
      * Reference for Forms logic
      * https://www.freecodecamp.org/news/beginner-react-project-build-basic-forms-using-react-hooks/
-     * */ 
+     * */
+    
     const [values, setValues] = useState({
         firstPassword: '',
         secondPassword: '',
@@ -52,9 +55,17 @@ const ChangePassword = ({setSignedIn, setwpage}) => {
         if (values.firstPassword && (values.secondPassword === values.thirdPassword)) {
             // Need to validate that change password actually changes the password with backend
             // setwpage('Calendar')
-
+            
+            const postData = {
+                "user_id": UserInfo.id,
+                "old_password": values.firstPassword,
+                "new_password": values.thirdPassword,
+            }
+            console.log('post data:', postData);
+            console.log('Link', UserInfo.type + "/Change_Password");
+            axios.post(UserInfo.type + "/Change_Password", postData).then(function (resp) { });
             // Remove the below comment later
-            console.log('Successful Password Change!')
+            // console.log('Successful Password Change!')
             setPasswordChangeMessage('Your password has been changed!')
         } else {
             console.log('Unsuccessful Password Change!')

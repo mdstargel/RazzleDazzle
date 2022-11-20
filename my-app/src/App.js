@@ -106,15 +106,15 @@ function App() {
     } else if (wpage === 'Calendar') {
       chosenpage = <Calendar userPermissions={userPermissions} />
     } else if (wpage === 'Edit Personal Information') {
-      chosenpage = <EditPersonalInformation setwpage={setwpage} UserInfo={UserInfo} />
+      chosenpage = <EditPersonalInformation setwpage={setwpage} UserInfo={UserInfo} setUserInfo={setUserInfo} />
     } else if (wpage === 'Change Password') {
-      chosenpage = <ChangePassword setwpage={setwpage}/>
+      chosenpage = <ChangePassword setwpage={setwpage} UserInfo={UserInfo} />
     }else if (wpage === 'Manage Notifications') {
       chosenpage = <ManageNotifications setwpage={setwpage} />
     }else if (wpage === 'View Session Notes') {
       chosenpage = <ViewSessionNotes />
     }else if (wpage === 'Add/Edit News') {
-      chosenpage = <AddEditNews setSignedIn={setSignedIn} setwpage={setwpage} />
+      chosenpage = <AddEditNews setSignedIn={setSignedIn} setwpage={setwpage} setNewsArticles={setNewsArticles}/>
     }else if (wpage === 'Notify Customers') {
       chosenpage = <NotifyCustomers setwpage={setwpage} />
     } else if (wpage === 'Manage Appointments') {
