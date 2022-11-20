@@ -362,7 +362,7 @@ app.post('/Admin/Trainer/Set_Trainer_Administrator', function(req, res) {
     res.send("");
 })
 
-app.post('/Admin/Trainer/Create', function(req, res) {
+app.post('/Admin/Trainer/Create', async function(req, res) {
     var trainer_name = req.body.trainer_name;
     var trainer_address = req.body.trainer_address;
     var trainer_phone_number = req.body.trainer_phone_number;
@@ -370,13 +370,15 @@ app.post('/Admin/Trainer/Create', function(req, res) {
     var trainer_emergency_name = req.body.trainer_emergency_name;
     var trainer_emergency_phone_number = req.body.trainer_emergency_phone_number;
     var trainer_riding_style = req.body.trainer_riding_style;
+    var trainer_administrator = req.body.trainer_administrator;
 
+    if (trainer_phone_number == undefined) trainer_phone_number = "";
     if (trainer_address == undefined) trainer_address = "";
     if (trainer_phone_number == undefined) trainer_phone_number = "";
     if (trainer_emergency_name == undefined) trainer_emergency_name = "";
     if (trainer_emergency_phone_number == undefined) trainer_emergency_phone_number = "";
 
-    Create_Trainer(
+    var TID = await Create_Trainer(
         trainer_name,
         trainer_address,
         trainer_phone_number,
@@ -384,6 +386,8 @@ app.post('/Admin/Trainer/Create', function(req, res) {
         trainer_emergency_name,
         trainer_emergency_phone_number,
         trainer_riding_style);
+
+    await Set_Trainer_Administrator(TID, trainer_administrator);
     res.send("");
 })
 
@@ -410,7 +414,7 @@ app.get('/Admin/News', async function(req, res) {
     res.send(admin_news);
 })
 
-app.post('/Admin/News/Create', function(req, res) {
+app.post('/Admin/News/Create', async function(req, res) {
     var news_image_url = req.body.news_image_url;
     var news_title = req.body.news_title;
     var news_link = req.body.news_link;
@@ -420,7 +424,8 @@ app.post('/Admin/News/Create', function(req, res) {
     if (news_description == undefined) news_description = "";
 
     Create_News(news_image_url, news_title, news_link, news_description);
-    res.send("");
+    var admin_news = await Get_All_News();
+    res.send(admin_news);
 })
 
 app.post('/Admin/News/Set_Image_URL', function(req, res) {
