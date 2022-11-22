@@ -3,14 +3,14 @@ import axios from 'axios';
 
 import ConfirmButton from '../../../Buttons/ConfirmButton';
 import CancelButton from '../../../Buttons/CancelButton';
-const AccessTrainer = () => {
+const AccessTrainer = ({AvailableTrainers, setAvailableTrainers}) => {
     /**
      * Need API to get Trainer names, styles, and personal information
      */
     /**
      * Replace following object with information from the backend
      */
-    const [AvailableTrainers, setAvailableTrainers] = useState([]
+    // const [AvailableTrainers, setAvailableTrainers] = useState([]
     //     [{
     //     id: '1',
     //     FirstName: 'John',
@@ -43,7 +43,7 @@ const AccessTrainer = () => {
     //     isAdmin: false,
     //     isTrainer: true,
     //         },]
-    );
+    // );
     const [isMounted, setIsMounted] = useState(false);
 
     if (!isMounted) {

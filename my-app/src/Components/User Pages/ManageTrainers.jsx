@@ -8,10 +8,25 @@ import RemoveTrainer from './SettingsPages/ManageTrainers/RemoveTrainer';
 
 const ManageAppointment = () => {
     const [isMounted, setIsMounted] = useState(false);
+    const [AvailableTrainers, setAvailableTrainers] = useState([])
 
     if (!isMounted) {
         axios.get('/Admin/Trainer').then(resp => {
-            console.log('Trainers List: ', resp.data)
+            let trainers = [];
+            for (var i = 0; i < resp.data.length; i++) {
+                let name_array = resp.data[i].trainer_name.split(" ");
+                trainers.push({
+                id: resp.data[i].TID,
+                FirstName: name_array[0],
+                LastName: name_array[1],
+                Style: resp.data[i].trainer_riding_style,
+                Email: resp.data[i].trainer_email_address,
+                Address: resp.data[i].trainer_address,
+                isAdmin: resp.data[i].trainer_administrator
+            })
+            }
+            console.log(trainers);
+            setAvailableTrainers(trainers);
         })
         setIsMounted(true);
     }
@@ -22,7 +37,8 @@ const ManageAppointment = () => {
         let popup;
 
         if (selectedTab === 'Access Trainer') {
-            popup = <AccessTrainer setSelectedTab={setSelectedTab} />
+            popup = <AccessTrainer setSelectedTab={setSelectedTab}
+                setAvailableTrainers={setAvailableTrainers} AvailableTrainers={AvailableTrainers} />
         }  else if (selectedTab === 'Remove Trainer') {
             popup = <RemoveTrainer setSelectedTab={setSelectedTab}/>
         }  else  {
