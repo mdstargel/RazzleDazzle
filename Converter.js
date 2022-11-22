@@ -1,3 +1,5 @@
+const { response } = require("./my-app/api/New_Routes/Administrator_Routes");
+
 function Convert_Customer(customer) {
     var name_array = customer.customer_name.split(" ");
     new_customer = [{
@@ -25,6 +27,20 @@ function Convert_Trainer(trainer) {
     };
 
     return new_trainer;
+}
+
+let trainers = [];
+let new_trainer;
+for (var i = 0; i < response.data.length; i++) {
+    trainers.push({
+        id: trainer.TID,
+        FirstName: name_array[0],
+        LastName: name_array[1],
+        Style: trainer.trainer_riding_style,
+        Email: trainer.trainer_email_address,
+        Address: trainer.trainer_address,
+        isAdmin: trainer.trainer_administrator
+    })
 }
 
 function Convert_Appointment(appointment) {
