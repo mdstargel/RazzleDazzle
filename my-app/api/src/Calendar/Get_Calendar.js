@@ -35,151 +35,155 @@ async function Get_Customer_Calendar(CID) {
     const YYYY = TODAY.getFullYear();
     const CURRENT_DATE = YYYY + '-' + MM + '-' + DD;
 
-    // Open connection
-    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+    try {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
-    // Get registered appointments
-    var registered_appointments = await CON.promise().query(
-        "SELECT Appointment.AID, " +
-        "Appointment.Appointment_Name, " +
-        "Appointment.Appointment_Date, " +
-        "Appointment.Appointment_Start_Time, " +
-        "Appointment.Appointment_End_Time, " +
-        "Appointment.Appointment_Riding_Style, " +
-        "Appointment.Appointment_Description, " +
-        "Appointment.Appointment_Public_Notes, " +
-        "Appointment.Appointment_Group, " +
-        "Appointment.Appointment_Group_Size, " +
-        "Appointment.Appointment_TID_1, " +
-        "Appointment.Appointment_TID_2 " +
-        "FROM Appointment " +
-        "INNER JOIN Customer_Group " +
-        "ON Appointment.Appointment_GID = Customer_Group.GID " +
-        "WHERE Customer_Group.CID_1 = " + CID + " " +
-        "OR Customer_Group.CID_2 = " + CID + " " +
-        "OR Customer_Group.CID_3 = " + CID + " " +
-        "OR Customer_Group.CID_4 = " + CID + ";");
+        // Get registered appointments
+        var registered_appointments = await CON.promise().query(
+            "SELECT Appointment.AID, " +
+            "Appointment.Appointment_Name, " +
+            "Appointment.Appointment_Date, " +
+            "Appointment.Appointment_Start_Time, " +
+            "Appointment.Appointment_End_Time, " +
+            "Appointment.Appointment_Riding_Style, " +
+            "Appointment.Appointment_Description, " +
+            "Appointment.Appointment_Public_Notes, " +
+            "Appointment.Appointment_Group, " +
+            "Appointment.Appointment_Group_Size, " +
+            "Appointment.Appointment_TID_1, " +
+            "Appointment.Appointment_TID_2 " +
+            "FROM Appointment " +
+            "INNER JOIN Customer_Group " +
+            "ON Appointment.Appointment_GID = Customer_Group.GID " +
+            "WHERE Customer_Group.CID_1 = " + CID + " " +
+            "OR Customer_Group.CID_2 = " + CID + " " +
+            "OR Customer_Group.CID_3 = " + CID + " " +
+            "OR Customer_Group.CID_4 = " + CID + ";");
 
-    // Get customer difficulty
-    const DIFFICULTY = await CON.promise().query(
-        "SELECT Customer_Difficulty " +
-        "FROM Customer " +
-        "WHERE CID = " + CID + ";");
-    var customer_difficulty = DIFFICULTY[0][0].Customer_Difficulty;
+        // Get customer difficulty
+        const DIFFICULTY = await CON.promise().query(
+            "SELECT Customer_Difficulty " +
+            "FROM Customer " +
+            "WHERE CID = " + CID + ";");
+        var customer_difficulty = DIFFICULTY[0][0].Customer_Difficulty;
 
-    // Get open appointments
-    var open_appointments = await CON.promise().query(
-        "SELECT Appointment.AID, " +
-        "Appointment.Appointment_Name, " +
-        "Appointment.Appointment_Date, " +
-        "Appointment.Appointment_Start_Time, " +
-        "Appointment.Appointment_End_Time, " +
-        "Appointment.Appointment_Riding_Style, " +
-        "Appointment.Appointment_Description, " +
-        "Appointment.Appointment_Public_Notes, " +
-        "Appointment.Appointment_Group, " +
-        "Appointment.Appointment_Group_Size, " +
-        "Appointment.Appointment_TID_1, " +
-        "Appointment.Appointment_TID_2, " +
-        "Appointment.Appointment_GID " +
-        "FROM Appointment " +
-        "WHERE Appointment.Appointment_Difficulty = '" + customer_difficulty + "' " +
-        "AND Appointment.Appointment_Group_Size > 0 " +
-        "AND Appointment.Appointment_Date > '" + CURRENT_DATE + "';");
+        // Get open appointments
+        var open_appointments = await CON.promise().query(
+            "SELECT Appointment.AID, " +
+            "Appointment.Appointment_Name, " +
+            "Appointment.Appointment_Date, " +
+            "Appointment.Appointment_Start_Time, " +
+            "Appointment.Appointment_End_Time, " +
+            "Appointment.Appointment_Riding_Style, " +
+            "Appointment.Appointment_Description, " +
+            "Appointment.Appointment_Public_Notes, " +
+            "Appointment.Appointment_Group, " +
+            "Appointment.Appointment_Group_Size, " +
+            "Appointment.Appointment_TID_1, " +
+            "Appointment.Appointment_TID_2, " +
+            "Appointment.Appointment_GID " +
+            "FROM Appointment " +
+            "WHERE Appointment.Appointment_Difficulty = '" + customer_difficulty + "' " +
+            "AND Appointment.Appointment_Group_Size > 0 " +
+            "AND Appointment.Appointment_Date > '" + CURRENT_DATE + "';");
 
-    var query_results = await CON.promise().query(
-        "SELECT GID " +
-        "FROM Customer_Group " +
-        "WHERE CID_1 = " + CID + " " +
-        "OR CID_2 = " + CID + " " +
-        "OR CID_3 = " + CID + " " +
-        "OR CID_4 = " + CID + ";");
+        var query_results = await CON.promise().query(
+            "SELECT GID " +
+            "FROM Customer_Group " +
+            "WHERE CID_1 = " + CID + " " +
+            "OR CID_2 = " + CID + " " +
+            "OR CID_3 = " + CID + " " +
+            "OR CID_4 = " + CID + ";");
 
-    // Close connection
-    CON.end();
+        // Close connection
+        CON.end();
 
-    // Pull values
-    registered_appointments = registered_appointments[0];
-    open_appointments = open_appointments[0];
-    var registrations = query_results[0];
+        // Pull values
+        registered_appointments = registered_appointments[0];
+        open_appointments = open_appointments[0];
+        var registrations = query_results[0];
 
-    // Add registered appointments to calendar
-    for (var i = 0; i < registered_appointments.length; i++) {
-        calendar.push(
-            new customer_appointment(
-                registered_appointments[i].AID,
-                registered_appointments[i].Appointment_Name,
-                registered_appointments[i].Appointment_Date,
-                registered_appointments[i].Appointment_Start_Time,
-                registered_appointments[i].Appointment_End_Time,
-                registered_appointments[i].Appointment_Riding_Style,
-                registered_appointments[i].Appointment_Description,
-                registered_appointments[i].Appointment_Public_Notes,
-                registered_appointments[i].Appointment_Group,
-                registered_appointments[i].Appointment_Group_Size,
-                registered_appointments[i].Appointment_TID_1,
-                registered_appointments[i].Appointment_TID_2,
-                true)
-        );
-    };
-
-    // Add open appointments to calendar
-    var registered;
-    for (var i = 0; i < open_appointments.length; i++) {
-
-        // Assume open appointment isnt registered to customer
-        registered = false;
-
-        // If no group, not registered, add
-        if (open_appointments[i].Appointment_GID == null) {
+        // Add registered appointments to calendar
+        for (var i = 0; i < registered_appointments.length; i++) {
             calendar.push(
                 new customer_appointment(
-                    open_appointments[i].AID,
-                    open_appointments[i].Appointment_Name,
-                    open_appointments[i].Appointment_Date,
-                    open_appointments[i].Appointment_Start_Time,
-                    open_appointments[i].Appointment_End_Time,
-                    open_appointments[i].Appointment_Riding_Style,
-                    open_appointments[i].Appointment_Description,
-                    open_appointments[i].Appointment_Public_Notes,
-                    open_appointments[i].Appointment_Group,
-                    open_appointments[i].Appointment_Group_Size,
-                    open_appointments[i].Appointment_TID_1,
-                    open_appointments[i].Appointment_TID_2,
-                    false)
+                    registered_appointments[i].AID,
+                    registered_appointments[i].Appointment_Name,
+                    registered_appointments[i].Appointment_Date,
+                    registered_appointments[i].Appointment_Start_Time,
+                    registered_appointments[i].Appointment_End_Time,
+                    registered_appointments[i].Appointment_Riding_Style,
+                    registered_appointments[i].Appointment_Description,
+                    registered_appointments[i].Appointment_Public_Notes,
+                    registered_appointments[i].Appointment_Group,
+                    registered_appointments[i].Appointment_Group_Size,
+                    registered_appointments[i].Appointment_TID_1,
+                    registered_appointments[i].Appointment_TID_2,
+                    true)
             );
+        };
 
-            // If group, check registered
-        } else {
-            // Cycle through all groups customer in. If match then registered
-            for (var j = 0; j < registrations.length; j++) {
-                if (open_appointments[i].Appointment_GID ==
-                    registrations[j].GID) {
-                    registered = true;
-                }
+        // Add open appointments to calendar
+        var registered;
+        for (var i = 0; i < open_appointments.length; i++) {
 
-                // If not registered
-                if (!registered) {
-                    calendar.push(
-                        new customer_appointment(
-                            open_appointments[i].AID,
-                            open_appointments[i].Appointment_Name,
-                            open_appointments[i].Appointment_Date,
-                            open_appointments[i].Appointment_Start_Time,
-                            open_appointments[i].Appointment_End_Time,
-                            open_appointments[i].Appointment_Riding_Style,
-                            open_appointments[i].Appointment_Description,
-                            open_appointments[i].Appointment_Public_Notes,
-                            open_appointments[i].Appointment_Group,
-                            open_appointments[i].Appointment_Group_Size,
-                            open_appointments[i].Appointment_TID_1,
-                            open_appointments[i].Appointment_TID_2,
-                            false)
-                    );
+            // Assume open appointment isnt registered to customer
+            registered = false;
+
+            // If no group, not registered, add
+            if (open_appointments[i].Appointment_GID == null) {
+                calendar.push(
+                    new customer_appointment(
+                        open_appointments[i].AID,
+                        open_appointments[i].Appointment_Name,
+                        open_appointments[i].Appointment_Date,
+                        open_appointments[i].Appointment_Start_Time,
+                        open_appointments[i].Appointment_End_Time,
+                        open_appointments[i].Appointment_Riding_Style,
+                        open_appointments[i].Appointment_Description,
+                        open_appointments[i].Appointment_Public_Notes,
+                        open_appointments[i].Appointment_Group,
+                        open_appointments[i].Appointment_Group_Size,
+                        open_appointments[i].Appointment_TID_1,
+                        open_appointments[i].Appointment_TID_2,
+                        false)
+                );
+
+                // If group, check registered
+            } else {
+                // Cycle through all groups customer in. If match then registered
+                for (var j = 0; j < registrations.length; j++) {
+                    if (open_appointments[i].Appointment_GID ==
+                        registrations[j].GID) {
+                        registered = true;
+                    }
+
+                    // If not registered
+                    if (!registered) {
+                        calendar.push(
+                            new customer_appointment(
+                                open_appointments[i].AID,
+                                open_appointments[i].Appointment_Name,
+                                open_appointments[i].Appointment_Date,
+                                open_appointments[i].Appointment_Start_Time,
+                                open_appointments[i].Appointment_End_Time,
+                                open_appointments[i].Appointment_Riding_Style,
+                                open_appointments[i].Appointment_Description,
+                                open_appointments[i].Appointment_Public_Notes,
+                                open_appointments[i].Appointment_Group,
+                                open_appointments[i].Appointment_Group_Size,
+                                open_appointments[i].Appointment_TID_1,
+                                open_appointments[i].Appointment_TID_2,
+                                false)
+                        );
+                    }
                 }
             }
-        }
-    };
+        };
+    } catch (err) {
+        console.log(err)
+    }
 
     return calendar;
 }
@@ -193,51 +197,55 @@ async function Get_Trainer_Calendar(TID) {
     // Create calendar
     var calendar = [];
 
-    // Open connection
-    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+    try {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
-    // Get assigned appointments
-    var assigned_appointments = await CON.promise().query(
-        "SELECT AID, " +
-        "Appointment_Name, " +
-        "Appointment_Date, " +
-        "Appointment_Start_Time, " +
-        "Appointment_End_Time, " +
-        "Appointment_Riding_Style, " +
-        "Appointment_Description, " +
-        "Appointment_Public_Notes, " +
-        "Appointment_Private_Notes, " +
-        "Appointment_Group, " +
-        "Appointment_Group_Size " +
-        "Appointment_GID " +
-        "FROM Appointment " +
-        "WHERE Appointment_TID_1 = " + TID + " " +
-        "OR Appointment_TID_2 = " + TID + ";");
+        // Get assigned appointments
+        var assigned_appointments = await CON.promise().query(
+            "SELECT AID, " +
+            "Appointment_Name, " +
+            "Appointment_Date, " +
+            "Appointment_Start_Time, " +
+            "Appointment_End_Time, " +
+            "Appointment_Riding_Style, " +
+            "Appointment_Description, " +
+            "Appointment_Public_Notes, " +
+            "Appointment_Private_Notes, " +
+            "Appointment_Group, " +
+            "Appointment_Group_Size " +
+            "Appointment_GID " +
+            "FROM Appointment " +
+            "WHERE Appointment_TID_1 = " + TID + " " +
+            "OR Appointment_TID_2 = " + TID + ";");
 
-    // Close connection
-    CON.end();
+        // Close connection
+        CON.end();
 
-    // Pull values
-    assigned_appointments = assigned_appointments[0];
+        // Pull values
+        assigned_appointments = assigned_appointments[0];
 
-    // Add assigned appointments to calendar
-    for (var i = 0; i < assigned_appointments.length; i++) {
-        calendar.push(
-            new trainer_appointment(
-                assigned_appointments[i].AID,
-                assigned_appointments[i].Appointment_Name,
-                assigned_appointments[i].Appointment_Date,
-                assigned_appointments[i].Appointment_Start_Time,
-                assigned_appointments[i].Appointment_End_Time,
-                assigned_appointments[i].Appointment_Riding_Style,
-                assigned_appointments[i].Appointment_Description,
-                assigned_appointments[i].Appointment_Public_Notes,
-                assigned_appointments[i].Appointment_Private_Notes,
-                assigned_appointments[i].Appointment_Group,
-                assigned_appointments[i].Appointment_Group_Size,
-                assigned_appointments[i].Appointment_GID)
-        );
-    };
+        // Add assigned appointments to calendar
+        for (var i = 0; i < assigned_appointments.length; i++) {
+            calendar.push(
+                new trainer_appointment(
+                    assigned_appointments[i].AID,
+                    assigned_appointments[i].Appointment_Name,
+                    assigned_appointments[i].Appointment_Date,
+                    assigned_appointments[i].Appointment_Start_Time,
+                    assigned_appointments[i].Appointment_End_Time,
+                    assigned_appointments[i].Appointment_Riding_Style,
+                    assigned_appointments[i].Appointment_Description,
+                    assigned_appointments[i].Appointment_Public_Notes,
+                    assigned_appointments[i].Appointment_Private_Notes,
+                    assigned_appointments[i].Appointment_Group,
+                    assigned_appointments[i].Appointment_Group_Size,
+                    assigned_appointments[i].Appointment_GID)
+            );
+        };
+    } catch (err) {
+        console.log(err);
+    }
 
     return calendar;
 }
@@ -250,41 +258,45 @@ async function Get_Administrator_Calendar() {
     // Create calendar
     var calendar = [];
 
-    // Open connection
-    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+    try {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
-    // Get all appointments
-    var appointments = await CON.promise().query(
-        "SELECT * " +
-        "FROM Appointment;");
+        // Get all appointments
+        var appointments = await CON.promise().query(
+            "SELECT * " +
+            "FROM Appointment;");
 
-    // Close connection
-    CON.end();
+        // Close connection
+        CON.end();
 
-    // Pull values
-    appointments = appointments[0];
+        // Pull values
+        appointments = appointments[0];
 
-    // Add all appointments to calendar
-    for (var i = 0; i < appointments.length; i++) {
-        calendar.push(
-            new administrator_appointment(
-                appointments[i].AID,
-                appointments[i].Appointment_Name,
-                appointments[i].Appointment_Date,
-                appointments[i].Appointment_Start_Time,
-                appointments[i].Appointment_End_Time,
-                appointments[i].Appointment_Riding_Style,
-                appointments[i].Appointment_Difficulty,
-                appointments[i].Appointment_Description,
-                appointments[i].Appointment_Public_Notes,
-                appointments[i].Appointment_Private_Notes,
-                appointments[i].Appointment_Group,
-                appointments[i].Appointment_Group_Size,
-                appointments[i].Appointment_TID_1,
-                appointments[i].Appointment_TID_2,
-                appointments[i].Appointment_GID)
-        );
-    };
+        // Add all appointments to calendar
+        for (var i = 0; i < appointments.length; i++) {
+            calendar.push(
+                new administrator_appointment(
+                    appointments[i].AID,
+                    appointments[i].Appointment_Name,
+                    appointments[i].Appointment_Date,
+                    appointments[i].Appointment_Start_Time,
+                    appointments[i].Appointment_End_Time,
+                    appointments[i].Appointment_Riding_Style,
+                    appointments[i].Appointment_Difficulty,
+                    appointments[i].Appointment_Description,
+                    appointments[i].Appointment_Public_Notes,
+                    appointments[i].Appointment_Private_Notes,
+                    appointments[i].Appointment_Group,
+                    appointments[i].Appointment_Group_Size,
+                    appointments[i].Appointment_TID_1,
+                    appointments[i].Appointment_TID_2,
+                    appointments[i].Appointment_GID)
+            );
+        };
+    } catch (err) {
+        console.log(err);
+    }
 
     return calendar;
 }
