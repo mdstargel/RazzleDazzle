@@ -542,7 +542,7 @@ async function Delete_Trainer(TID) {
         CON.query(
             "UPDATE Login " +
             "SET Decomissioned = 1 " +
-            "WHERE Email = '" + trainer_email + "';");
+            "WHERE Login_Email = '" + trainer_email + "';");
 
         CON.query(
             "UPDATE Appointment " +
