@@ -38,7 +38,7 @@ app.post('/Create_Account', async function(req, res) {
         customer_email_address,
         customer_password);
 
-    res.send(CID);
+    res.json(CID);
 })
 
 app.post('/Forgot_Password', function(req, res) {
