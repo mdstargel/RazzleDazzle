@@ -53,8 +53,6 @@ async function Create_Customer(
 
         CID = QUERY_VALUES[0][0].CID;
 
-        console.log(CID);
-
         await CON.promise().query(
             "INSERT INTO Login (" +
             "Login_Email, " +
@@ -70,7 +68,7 @@ async function Create_Customer(
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 
     return CID;
@@ -139,7 +137,7 @@ async function Create_Trainer(
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 
     return TID;

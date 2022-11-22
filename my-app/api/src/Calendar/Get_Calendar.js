@@ -182,7 +182,7 @@ async function Get_Customer_Calendar(CID) {
             }
         };
     } catch (err) {
-        console.log(err)
+        console.error(err)
     }
 
     return calendar;
@@ -244,7 +244,7 @@ async function Get_Trainer_Calendar(TID) {
             );
         };
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 
     return calendar;
@@ -295,7 +295,7 @@ async function Get_Administrator_Calendar() {
             );
         };
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 
     return calendar;

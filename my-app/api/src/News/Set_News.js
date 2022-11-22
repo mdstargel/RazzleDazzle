@@ -68,7 +68,7 @@ function Set_News_Link(news_link, NID) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -91,7 +91,7 @@ function Set_News_Description(news_description, NID) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -109,7 +109,7 @@ function Delete_News(NID) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 

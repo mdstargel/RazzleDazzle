@@ -61,7 +61,7 @@ async function Get_Customer(CID) {
             customer_values[0].Customer_Phone_Notifications);
 
     } catch (err) {
-        console.log(err);
+        console.error(err);
         var user = new customer(
             0,
             "EMPTY",
@@ -120,7 +120,7 @@ async function Get_Trainer(TID) {
 
         return user;
     } catch (err) {
-        console.log(err);
+        console.error(err);
         var user = new trainer(
             0,
             "EMPTY",
@@ -149,7 +149,10 @@ async function Get_All_Customers() {
         // Get values
         var customer_values = await CON.promise().query(
             "SELECT * " +
-            "FROM Customer;");
+            "FROM Customer " +
+            "INNER JOIN Login " +
+            "ON Customer.Customer_Email_Address = Login.Login_Email " +
+            "WHERE Login.Decomissioned != 1;");
 
         // Close connection
         CON.end();
@@ -173,7 +176,7 @@ async function Get_All_Customers() {
                     customer_values[i].Customer_Phone_Notifications));
         }
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
     return customers;
 }
@@ -219,7 +222,7 @@ async function Get_All_Trainers(TID) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
     return trainers;
 }
@@ -255,7 +258,7 @@ async function Get_Mini_Customers() {
                     customer_values[i].Customer_Name));
         }
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 
     return customers;
@@ -292,7 +295,7 @@ async function Get_Mini_Trainers() {
                     trainer_values[0].Trainer_Name));
         }
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 
     return trainers;

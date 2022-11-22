@@ -42,7 +42,7 @@ async function Trim_News() {
 
         } while (len > 5);
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -82,7 +82,7 @@ async function Create_News(
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 

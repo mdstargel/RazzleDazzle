@@ -36,7 +36,7 @@ function Set_Customer_Name(CID, customer_name) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -59,7 +59,7 @@ function Set_Customer_Address(CID, customer_address) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -82,7 +82,7 @@ function Set_Customer_Phone_Number(CID, customer_phone_number) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -105,7 +105,7 @@ function Set_Customer_Email_Address(CID, customer_email_address) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -128,7 +128,7 @@ function Set_Customer_Emergency_Name(CID, customer_emergency_name) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -151,7 +151,7 @@ function Set_Customer_Emergency_Phone_Number(CID, customer_emergency_phone_numbe
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -174,7 +174,7 @@ function Set_Customer_Difficulty(CID, customer_difficulty) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -196,7 +196,7 @@ function Set_Customer_Phone_Notifications(CID, customer_phone_notifications) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -234,7 +234,7 @@ async function Set_Customer_Password(CID, old_password, new_password) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -257,7 +257,7 @@ function Set_Trainer_Name(TID, trainer_name) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -280,7 +280,7 @@ function Set_Trainer_Address(TID, trainer_address) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -303,7 +303,7 @@ function Set_Trainer_Phone_Number(TID, trainer_phone_number) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -326,7 +326,7 @@ function Set_Trainer_Email_Address(TID, trainer_email_address) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -349,7 +349,7 @@ function Set_Trainer_Emergency_Name(TID, trainer_emergency_name) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -372,7 +372,7 @@ function Set_Trainer_Emergency_Phone_Number(TID, trainer_emergency_phone_number)
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -395,7 +395,7 @@ function Set_Trainer_Riding_Style(TID, trainer_riding_style) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -424,7 +424,7 @@ async function Set_Trainer_Administrator(TID, administrator) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -462,7 +462,7 @@ async function Set_Trainer_Password(TID, old_password, new_password) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -488,14 +488,9 @@ async function Delete_Customer(CID) {
             "WHERE CID = " + CID + ";");
 
         var customer_email = email[0][0].Customer_Email_Address;
-        console.log(email[0][0].Customer_Email_Address);
 
         await CON.promise().query(
             "UPDATE Login " +
-            "SET Decomissioned = 1 " +
-            "WHERE Login_Email = '" + customer_email + "';");
-
-        console.log("UPDATE Login " +
             "SET Decomissioned = 1 " +
             "WHERE Login_Email = '" + customer_email + "';");
 
@@ -519,7 +514,7 @@ async function Delete_Customer(CID) {
             await Set_Appointment_Reservation(appointment_keys[i].AID, CID, false);
         };
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 
@@ -557,7 +552,7 @@ async function Delete_Trainer(TID) {
         // Close connection
         CON.end();
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 }
 

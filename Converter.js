@@ -48,10 +48,20 @@ function Convert_Appointment(appointment) {
     var new_date = date_array[1] + "/" + date_array[2] + "/" + date_array[0];
 
     var start_time_array = appointment.appointment_start_time.split(":");
-    var start_time = start_time_array[0] + ":" + start_time_array[1];
+    if (start_time_array[0] > 0 &&
+        start_time_array < 12) {
+        var start_time = start_time_array[0] + "am";
+    } else {
+        var start_time = start_time_array[0] + "pm";
+    }
 
     var end_time_array = appointment.appointment_end_time.split(":");
-    var end_time = end_time_array[0] + ":" + end_time_array[1];
+    if (end_time_array[0] > 0 &&
+        end_time_array < 12) {
+        var end_time = end_time_array[0] + "am";
+    } else {
+        var end_time = end_time_array[0] + "pm";
+    }
 
     var group = true;
     var trainee = true;

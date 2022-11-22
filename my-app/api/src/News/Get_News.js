@@ -51,7 +51,7 @@ async function Get_All_News() {
                     result[i].News_Description));
         }
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 
     return public_news;
@@ -82,7 +82,7 @@ async function Get_News_Image_URL(NID) {
         // Pull values
         news_image_url = RESULT[0];
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 
     return news_image_url;
@@ -113,7 +113,7 @@ async function Get_News_Title(NID) {
         // Pull values
         var news_title = RESULT[0];
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 
     return news_title;
@@ -144,7 +144,7 @@ async function Get_News_Link(NID) {
         // Pull values
         news_link = RESULT[0];
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 
     return news_link;
@@ -174,7 +174,7 @@ async function Get_News_Description(NID) {
         // Pull values
         var news_description = RESULT[0];
     } catch (err) {
-        console.log(err);
+        console.error(err);
     }
 
     return news_description;
