@@ -20,51 +20,55 @@ const MYSQL_CONFIG = {
 async function Validate_User(login_email, login_password) {
     var user = [];
 
-    // Open connection
-    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+    try {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
-    var check = await CON.promise().query(
-        "SELECT * " +
-        "FROM Login " +
-        "WHERE Login_Email = '" + login_email + "' " +
-        "AND Login_Password = '" + login_password + "';");
+        var check = await CON.promise().query(
+            "SELECT * " +
+            "FROM Login " +
+            "WHERE Login_Email = '" + login_email + "' " +
+            "AND Login_Password = '" + login_password + "';");
 
-    // Close connection
-    CON.end();
+        // Close connection
+        CON.end();
 
-    // Pull data
-    check = check[0];
+        // Pull data
+        check = check[0];
 
+        var CID = check[0].CID;
+        var TID = check[0].TID;
+        var administrator = check[0].Administrator;
+        var decomissioned = check[0].Decomissioned;
 
-    var CID = check[0].CID;
-    var TID = check[0].TID;
-    var administrator = check[0].Administrator;
-    var decomissioned = check[0].Decomissioned;
+        // Create return json
+        var ID;
+        var type;
 
-    // Create return json
-    var ID;
-    var type;
-
-    if (decomissioned != 0) {
-        ID = 0;
-        type = 0;
-    } else if (CID != null) {
-        ID = CID;
-        type = 1;
-    } else if (TID != null) {
-        ID = TID;
-        if (administrator) {
-            type = 3;
+        if (decomissioned == 1) {
+            ID = 0;
+            type = 0;
+        } else if (CID != null) {
+            ID = CID;
+            type = 1;
+        } else if (TID != null) {
+            ID = TID;
+            if (administrator) {
+                type = 3;
+            } else {
+                type = 2;
+            }
         } else {
-            type = 2;
+            ID = 0;
+            type = 0;
         }
-    } else {
-        ID = 0;
-        type = 0;
-    }
 
-    user.push({ ID, type });
-    return user;
+        user.push({ ID, type });
+        return user;
+
+    } catch (err) {
+        console.error(err);
+    }
 }
 
 module.exports = { Validate_User }
