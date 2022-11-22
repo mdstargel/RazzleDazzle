@@ -348,6 +348,21 @@ app.get('/Admin/Trainer', async function(req, res) {
     res.send(trainers);
 })
 
+app.post('/Admin/Trainer/Set_Values', function(req, res) {
+    var TID = req.body.user_id;
+    var trainer_name = req.body.user_name;
+    var trainer_address = req.body.user_address;
+    var trainer_riding_style = req.body.user_riding_style;
+    var trainer_email_address = req.body.user_email_address;
+    var trainer_administrator = req.body.user_admin;
+    Set_Trainer_Name(TID, trainer_name);
+    Set_Trainer_Address(TID, trainer_address);
+    Set_Trainer_Riding_Style(TID, trainer_riding_style);
+    Set_Trainer_Email_Address(TID, trainer_email_address);
+    Set_Trainer_Administrator(TID, trainer_administrator);
+    res.send("");
+})
+
 app.post('/Admin/Trainer/Set_Riding_Style', function(req, res) {
     var TID = req.body.user_id;
     var trainer_riding_style = req.body.user_riding_style;

@@ -187,6 +187,7 @@ async function Get_All_Trainers() {
         "ON Trainer.Trainer_Email_Address = Login.Login_Email " +
         "WHERE Login.Administrator = 1;");
 
+
     // Close connection
     CON.end();
 
