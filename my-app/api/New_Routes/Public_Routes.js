@@ -29,6 +29,8 @@ app.post('/Create_Account', async function(req, res) {
     var customer_email_address = req.body.customer_email_address;
     var customer_password = req.body.customer_password;
 
+    if (customer_address == undefined) customer_address = "";
+
     var CID = await Create_Customer(
         customer_name,
         customer_address,
@@ -36,7 +38,7 @@ app.post('/Create_Account', async function(req, res) {
         customer_email_address,
         customer_password);
 
-    res.json(CID);
+    res.send(CID);
 })
 
 app.post('/Forgot_Password', function(req, res) {
