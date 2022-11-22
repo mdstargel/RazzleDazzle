@@ -402,7 +402,10 @@ app.post('/Admin/Trainer/Create', async function(req, res) {
         trainer_emergency_phone_number,
         trainer_riding_style);
 
-    await Set_Trainer_Administrator(TID, trainer_administrator);
+    if (TID != 0) {
+        await Set_Trainer_Administrator(TID, trainer_adminisitrator);
+    }
+
     res.send("");
 })
 
@@ -415,8 +418,12 @@ app.post('/Admin/Trainer/Notify', function(req, res) {
 })
 
 app.post('/Admin/Trainer/Delete', function(req, res) {
-    var TID = req.body.user_id;
-    Delete_Trainer(TID);
+    var TIDs_to_be_deleted = req.body.user_id;
+
+    for (var i = 0; i < TIDs_to_be_deleted.length; i++) {
+        Delete_Trainer(TIDs_to_be_deleted[i]);
+    }
+
     res.send("");
 })
 

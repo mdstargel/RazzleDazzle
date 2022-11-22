@@ -22,32 +22,36 @@ const MYSQL_CONFIG = {
  * @returns JSON of all news items
  */
 async function Get_All_News() {
-    // Open connection
-    const CON = MYSQL.createConnection(MYSQL_CONFIG);
-
-    // Query
-    var result = await CON.promise().query(
-        "SELECT * " +
-        "FROM News;");
-
-    // Close connection
-    CON.end();
-
-    // Pull values
-    result = result[0];
-
     // Create empty array
     var public_news = [];
 
-    // Add news objects
-    for (var i = 0; i < result.length; i++) {
-        public_news.push(
-            new news(
-                result[i].NID,
-                result[i].News_Image_URL,
-                result[i].News_Title,
-                result[i].News_Link,
-                result[i].News_Description));
+    try {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
+
+        // Query
+        var result = await CON.promise().query(
+            "SELECT * " +
+            "FROM News;");
+
+        // Close connection
+        CON.end();
+
+        // Pull values
+        result = result[0];
+
+        // Add news objects
+        for (var i = 0; i < result.length; i++) {
+            public_news.push(
+                new news(
+                    result[i].NID,
+                    result[i].News_Image_URL,
+                    result[i].News_Title,
+                    result[i].News_Link,
+                    result[i].News_Description));
+        }
+    } catch (err) {
+        console.log(err);
     }
 
     return public_news;
@@ -59,20 +63,27 @@ async function Get_All_News() {
  * @returns news image url
  */
 async function Get_News_Image_URL(NID) {
-    // Open connection
-    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+    //Default values
+    var news_image_url = "";
 
-    // Query
-    const RESULT = await CON.promise().query(
-        "SELECT News_Image_URL " +
-        "FROM News " +
-        "WHERE NID = " + NID + ";");
+    try {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
-    // Close connection
-    CON.end();
+        // Query
+        const RESULT = await CON.promise().query(
+            "SELECT News_Image_URL " +
+            "FROM News " +
+            "WHERE NID = " + NID + ";");
 
-    // Pull values
-    var news_image_url = RESULT[0];
+        // Close connection
+        CON.end();
+
+        // Pull values
+        news_image_url = RESULT[0];
+    } catch (err) {
+        console.log(err);
+    }
 
     return news_image_url;
 }
@@ -83,20 +94,27 @@ async function Get_News_Image_URL(NID) {
  * @returns news title
  */
 async function Get_News_Title(NID) {
-    // Open connection
-    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+    // Default value
+    var news_title = "";
 
-    // Query
-    const RESULT = await CON.promise().query(
-        "SELECT News_Title " +
-        "FROM News " +
-        "WHERE NID = " + NID + ";");
+    try {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
-    // Close connection
-    CON.end();
+        // Query
+        const RESULT = await CON.promise().query(
+            "SELECT News_Title " +
+            "FROM News " +
+            "WHERE NID = " + NID + ";");
 
-    // Pull values
-    var news_title = RESULT[0];
+        // Close connection
+        CON.end();
+
+        // Pull values
+        var news_title = RESULT[0];
+    } catch (err) {
+        console.log(err);
+    }
 
     return news_title;
 }
@@ -107,20 +125,27 @@ async function Get_News_Title(NID) {
  * @returns news link
  */
 async function Get_News_Link(NID) {
-    // Open connection
-    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+    // Default value
+    var news_link = "";
 
-    // Query
-    const RESULT = await CON.promise().query(
-        "SELECT News_Link " +
-        "FROM News " +
-        "WHERE NID = " + NID + ";");
+    try {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
-    // Close connection
-    CON.end();
+        // Query
+        const RESULT = await CON.promise().query(
+            "SELECT News_Link " +
+            "FROM News " +
+            "WHERE NID = " + NID + ";");
 
-    // Pull values
-    var news_link = RESULT[0];
+        // Close connection
+        CON.end();
+
+        // Pull values
+        news_link = RESULT[0];
+    } catch (err) {
+        console.log(err);
+    }
 
     return news_link;
 }
@@ -131,20 +156,26 @@ async function Get_News_Link(NID) {
  * @returns news description
  */
 async function Get_News_Description(NID) {
-    // Open connection
-    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+    // Default value
+    var news_description = "";
 
-    // Query
-    const RESULT = await CON.promise().query(
-        "SELECT News_Description " +
-        "FROM News " +
-        "WHERE NID = " + NID + ";");
+    try { // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
-    // Close connection
-    CON.end();
+        // Query
+        const RESULT = await CON.promise().query(
+            "SELECT News_Description " +
+            "FROM News " +
+            "WHERE NID = " + NID + ";");
 
-    // Pull values
-    var news_description = RESULT[0];
+        // Close connection
+        CON.end();
+
+        // Pull values
+        var news_description = RESULT[0];
+    } catch (err) {
+        console.log(err);
+    }
 
     return news_description;
 }

@@ -55,17 +55,21 @@ function Set_News_Title(news_title, NID) {
  * @param {*} NID 
  */
 function Set_News_Link(news_link, NID) {
-    // Open connection
-    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+    try {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
-    // Query
-    CON.query(
-        "UPDATE News " +
-        "SET News_Link = '" + news_link + "' " +
-        "WHERE NID = " + NID + ";");
+        // Query
+        CON.query(
+            "UPDATE News " +
+            "SET News_Link = '" + news_link + "' " +
+            "WHERE NID = " + NID + ";");
 
-    // Close connection
-    CON.end();
+        // Close connection
+        CON.end();
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 /**
@@ -74,31 +78,39 @@ function Set_News_Link(news_link, NID) {
  * @param {*} NID 
  */
 function Set_News_Description(news_description, NID) {
-    // Open connection
-    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+    try {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
-    // Query
-    CON.query(
-        "UPDATE News " +
-        "SET News_Description = '" + news_description + "' " +
-        "WHERE NID = " + NID + ";");
+        // Query
+        CON.query(
+            "UPDATE News " +
+            "SET News_Description = '" + news_description + "' " +
+            "WHERE NID = " + NID + ";");
 
-    // Close connection
-    CON.end();
+        // Close connection
+        CON.end();
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 
 function Delete_News(NID) {
-    // Open connection
-    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+    try {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
-    // Query
-    CON.query(
-        "DELETE News " +
-        "WHERE NID = " + NID + ";");
+        // Query
+        CON.query(
+            "DELETE News " +
+            "WHERE NID = " + NID + ";");
 
-    // Close connection
-    CON.end();
+        // Close connection
+        CON.end();
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 module.exports = {

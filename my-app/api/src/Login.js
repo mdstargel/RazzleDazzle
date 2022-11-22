@@ -18,59 +18,55 @@ const MYSQL_CONFIG = {
 
 
 async function Validate_User(login_email, login_password) {
-    // Open connection
-    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+    // Default values
+    ID = 0;
+    type = 0;
 
-    var check = await CON.promise().query(
-        "SELECT * " +
-        "FROM Login " +
-        "WHERE Login_Email = '" + login_email + "' " +
-        "AND Login_Password = '" + login_password + "';");
-
-    // Close connection
-    CON.end();
-
-    // Pull data
-    check = check[0];
-
-    // try/catch to catch errors
     try {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
+
+        var check = await CON.promise().query(
+            "SELECT * " +
+            "FROM Login " +
+            "WHERE Login_Email = '" + login_email + "' " +
+            "AND Login_Password = '" + login_password + "';");
+
+        // Close connection
+        CON.end();
+
+        // Pull data
+        check = check[0];
+
+
         var CID = check[0].CID;
         var TID = check[0].TID;
         var administrator = check[0].Administrator;
-        var decomissioned = check[0].decomissioned;
-    } catch {
-        var CID = null;
-        var TID = null;
-        var administrator = null;
-        var decomissioned = null;
-    }
+        var decomissioned = check[0].Decomissioned;
 
-    // Create return json
-    var ID;
-    var type;
+        // Create return json
+        var ID;
+        var type;
 
-    if (decomissioned != null) {
-        ID = 0;
-        type = 0;
-    } else if (CID != null) {
-        ID = CID;
-        type = 1;
-    } else if (TID != null) {
-        ID = TID;
-        if (administrator) {
-            type = 3;
-        } else {
-            type = 2;
+        if (decomissioned != null) {
+            ID = 0;
+            type = 0;
+        } else if (CID != null) {
+            ID = CID;
+            type = 1;
+        } else if (TID != null) {
+            ID = TID;
+            if (administrator) {
+                type = 3;
+            } else {
+                type = 2;
+            }
         }
-    } else {
-        ID = 0;
-        type = 0;
+    } catch (err) {
+        console.log(err);
     }
 
-    user = [{ ID, type }];
-
-    console.log(user);
+    var user = [{ ID, type }];
     return user;
 }
 
