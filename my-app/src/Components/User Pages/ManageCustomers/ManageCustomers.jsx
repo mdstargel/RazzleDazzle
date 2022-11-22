@@ -8,13 +8,25 @@ import '../../User Pages/styles.css'
 
 const ManageCustomers = () => {
     const [isMounted, setIsMounted] = useState(false);
-
+    const [AvailableCustomers, setAvailableCustomers] = useState([]);
     if (!isMounted) {
         axios.get('/Admin/Customer').then(resp => {
-            console.log('Customers List: ', resp.data)
+            let customers = [];
+            for (var i = 0; i < resp.data.length; i++) {
+                let name_array = resp.data[i].customer_name.split(" ");
+                customers.push({
+                    id: resp.data[i].CID,
+                    FirstName: name_array[0],
+                    LastName: name_array[1],
+                    Level: resp.data[i].customer_difficulty
+                })
+                console.log('Customers List: ', customers);
+            }
+            setIsMounted(true);
+            setAvailableCustomers(customers);
         })
-        setIsMounted(true);
     }
+
 
 
     const [selectedTab, setSelectedTab] = useState('Set Riding Level');
@@ -23,9 +35,11 @@ const ManageCustomers = () => {
         let popup;
 
         if (selectedTab === 'Delete Customers') {
-            popup = <DeleteCustomers setSelectedTab={setSelectedTab} />
+            popup = <DeleteCustomers setSelectedTab={setSelectedTab} AvailableCustomers={AvailableCustomers}
+                setAvailableCustomers={setAvailableCustomers} />
         } else {
-            popup = <SetRidingLevel setSelectedTab={setSelectedTab}/>
+            popup = <SetRidingLevel setSelectedTab={setSelectedTab} AvailableCustomers={AvailableCustomers}
+                setAvailableCustomers={setAvailableCustomers}/>
         } 
 
         return (popup);

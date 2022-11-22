@@ -2,34 +2,34 @@ import React, { useState } from 'react';
 import ConfirmButton from '../../Buttons/ConfirmButton';
 import CancelButton from '../../Buttons/CancelButton';
 
-const DeleteCustomer = () => {
+const DeleteCustomer = ({AvailableCustomers, setAvailableCustomers}) => {
     /**
      * Replace following object with information from the backend
      */
-    const [AvailableCustomers, setAvailableCustomers] = useState([{
-        Customer: 'John Doe',
-        Style: 'Western',
-        Level: 'Beginner',
-        isPreffered: false
-    },
-    {
-        Customer: 'Jane Doe',
-        Style: 'English',
-        Level: 'Intermediate',
-        isPreffered: true
+    // const [AvailableCustomers, setAvailableCustomers] = useState([{
+    //     Customer: 'John Doe',
+    //     Style: 'Western',
+    //     Level: 'Beginner',
+    //     isPreffered: false
+    // },
+    // {
+    //     Customer: 'Jane Doe',
+    //     Style: 'English',
+    //     Level: 'Intermediate',
+    //     isPreffered: true
 
-    },
-    {
-        Customer: 'James Doe',
-        Style: 'Show',
-        Level: 'Expert',
-        isPreffered: false
+    // },
+    // {
+    //     Customer: 'James Doe',
+    //     Style: 'Show',
+    //     Level: 'Expert',
+    //     isPreffered: false
 
-    },]);
+    // },]);
     
     const handleSetDeleteCustomer = ({ data }) => {
         setAvailableCustomers([...AvailableCustomers].map(object => {
-            if(object.Customer === data.Customer) {
+            if(object.id === data.id) {
               return {
                 ...object,
                 isPreffered: true,
@@ -50,6 +50,13 @@ const DeleteCustomer = () => {
 
     const handleDeleteCustomer = (event) => {
         event.preventDefault();
+        let removedUserIds = [];
+        for (let i = 0; i < AvailableCustomers.length; i++) {
+            if (AvailableCustomers[i].isPreffered) {
+                removedUserIds.push(AvailableCustomers[i].id);
+            }
+        }
+        console.log('Ids to remove', removedUserIds);
 
         setAvailableCustomers([...AvailableCustomers].filter(object =>
             object.isPreffered !== true))       
@@ -70,7 +77,7 @@ const DeleteCustomer = () => {
                     marginLeft: '40px',
                     marginRight: '40px',                   
                 }}>
-                    <span style={{ backgroundColor: '#727070' }}>{data.Customer}</span>
+                    <span style={{ backgroundColor: '#727070' }}>{data.FirstName + " " + data.LastName}</span>
                     <span style={{ backgroundColor: '#727070' }}>{data.Style}</span>
                     <span style={{ backgroundColor: '#727070' }}>{data.Level}</span>
                 
@@ -85,7 +92,7 @@ const DeleteCustomer = () => {
                     marginRight: '40px',
                 }}
                     onClick={() => handleSetDeleteCustomer({ data })}>
-                    <span style={{ backgroundColor: '#D9D9D9' }}>{data.Customer}</span>
+                    <span style={{ backgroundColor: '#D9D9D9' }}>{data.FirstName + " " + data.LastName}</span>
                     <span style={{ backgroundColor: '#D9D9D9' }}>{data.Style}</span>
                     <span style={{ backgroundColor: '#D9D9D9' }}>{data.Level}</span>
                 

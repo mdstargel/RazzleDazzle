@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import ConfirmButton from '../../Buttons/ConfirmButton';
 import CancelButton from '../../Buttons/CancelButton';
-const AccessTrainer = () => {
+const AccessTrainer = ({AvailableCustomers, setAvailableCustomers}) => {
     /**
      * Need API to get Trainer names, styles, and personal information
      */
@@ -9,37 +11,13 @@ const AccessTrainer = () => {
      * Replace following object with information from the backend
      */
     const [ridingLevel, SetRidigingLevel] = useState('');
-    const [AvailableCustomers, setAvailableCustomers] = useState([{
-        id: '1',
-        FirstName: 'John',
-        LastName: 'Doe',
-        Style: 'Western',
-        Level: 'Beginner',
-        isPreffered: false,
-    },
-    {
-        id: '2',
-        FirstName: 'Jane',
-        LastName: 'Doe',
-        Style: 'English',
-        Level: 'Expert',
-        isPreffered: true,
-    },
-    {
-        id: '3',
-        FirstName: 'James',
-        LastName: 'Doe',
-        Email: 'jamesDoe@gmail.com',
-        Address: '1234 Address',
-        Style: 'Show',
-        Level: 'Intermediate',
-        isPreffered: false,
-    },]);
+    
     
     const handleSetPrefferedTrainer = ({ data }) => {
         setAvailableCustomers([...AvailableCustomers].map(object => {
             // Need a Trainer ID for these
             if (object.id === data.id) {
+                
                 return {
                     ...object,
                     isPreffered: true,
@@ -58,7 +36,13 @@ const AccessTrainer = () => {
          */
         setAvailableCustomers([...AvailableCustomers].map(object => {
             // Need a Trainer ID for these
-            if (object.isPreffered) {
+            if (object.isPreffered && ridingLevel !== '') {
+    
+                const difficult = {
+                    "user_id": object.id,
+                    "user_difficulty": ridingLevel,
+                }
+                axios.post('/Admin/Customer/Set_Difficulty', difficult).then(resp => { });
                 return {
                     ...object,
                     Level: ridingLevel,
@@ -127,7 +111,7 @@ const AccessTrainer = () => {
             <br /><br />
             <form>
                     <label className='label2Alt1'>Beginner: </label>
-                    <input type="radio" name="experienceLevel" onClick={() => SetRidigingLevel('Beginner')}/>
+                    <input type="radio" name="experienceLevel" onClick={() => SetRidigingLevel('Beginner') }/>
                     <label className='label2Alt2'>Intermediate: </label>
                     <input type="radio" name="experienceLevel" onClick={() => SetRidigingLevel('Intermediate')}/>
                     <label className='label2Alt3'>Advanced: </label>
