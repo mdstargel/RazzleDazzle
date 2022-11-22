@@ -418,7 +418,7 @@ app.post('/Admin/Trainer/Notify', function(req, res) {
 })
 
 app.post('/Admin/Trainer/Delete', function(req, res) {
-    var TIDs_to_be_deleted = req.body.user_id;
+    var TIDs_to_be_deleted = req.body.user_ids;
 
     for (var i = 0; i < TIDs_to_be_deleted.length; i++) {
         Delete_Trainer(TIDs_to_be_deleted[i]);
