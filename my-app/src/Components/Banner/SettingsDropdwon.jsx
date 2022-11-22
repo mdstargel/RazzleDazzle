@@ -15,8 +15,8 @@ const SettingsDropdown = ({ userPermissions, setwpage, setSignedIn, setShowDropd
             <hr/>
             <div className="pad" onClick={() => {setwpage('Manage Notifications'); setShowDropdown(false)}}>Manage Notifications</div>
             <hr/>
-            <div className="pad" onClick={() => {setwpage('View Session Notes'); setShowDropdown(false)}}>View Session Notes</div>
-            <hr/>
+            {/* <div className="pad" onClick={() => {setwpage('View Session Notes'); setShowDropdown(false)}}>View Session Notes</div>
+            <hr/> */}
             <div className="pad" onClick={() => {setwpage('Delete Account'); setShowDropdown(false)}}>Delete Account</div>
             <hr/>
             <div className="pad" onClick={() => { setwpage('Preferred Trainer'); setShowDropdown(false) }}>Preferred Trainer</div>
