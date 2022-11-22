@@ -14,7 +14,7 @@ const MYSQL = require('mysql2');
 const MYSQL_CONFIG = {
     host: "localhost",
     user: "root",
-    password: "password",
+    password: "B311ao2l2",
     database: "Horse_Site",
     insecureAuth: true,
     connectTimeout: 30000
@@ -157,15 +157,14 @@ async function Get_All_Trainers() {
     // Get values
     var trainer_values = await CON.promise().query(
         "SELECT * " +
-        "FROM Trainer;");
+        "FROM Trainer " +
+        "INNER JOIN Login " +
+        "ON Trainer.Trainer_Email_Address = Login.Login_Email " +
+        "WHERE Login.Administrator = 0;");
 
-    // Close connection
-    CON.end();
-
-    // Pull values
+    // Pull data
     trainer_values = trainer_values[0];
 
-    // Create trainers
     var trainers = [];
     for (var i = 0; i < trainer_values.length; i++) {
         trainers.push(
@@ -177,7 +176,36 @@ async function Get_All_Trainers() {
                 trainer_values[i].Trainer_Email_Address,
                 trainer_values[i].Trainer_Emergency_Name,
                 trainer_values[i].Trainer_Emergency_Phone_Number,
-                trainer_values[i].Trainer_Riding_Style));
+                trainer_values[i].Trainer_Riding_Style,
+                false));
+    }
+
+    trainer_values = await CON.promise().query(
+        "SELECT * " +
+        "FROM Trainer " +
+        "INNER JOIN Login " +
+        "ON Trainer.Trainer_Email_Address = Login.Login_Email " +
+        "WHERE Login.Administrator = 1;");
+
+    // Close connection
+    CON.end();
+
+    // Pull values
+    trainer_values = trainer_values[0];
+
+    // Create trainers
+    for (var i = 0; i < trainer_values.length; i++) {
+        trainers.push(
+            new trainer(
+                trainer_values[i].TID,
+                trainer_values[i].Trainer_Name,
+                trainer_values[i].Trainer_Address,
+                trainer_values[i].Trainer_Phone_Number,
+                trainer_values[i].Trainer_Email_Address,
+                trainer_values[i].Trainer_Emergency_Name,
+                trainer_values[i].Trainer_Emergency_Phone_Number,
+                trainer_values[i].Trainer_Riding_Style,
+                true));
     }
 
     return trainers;

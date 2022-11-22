@@ -13,7 +13,7 @@ function Convert_Customer(customer) {
 function Convert_Trainer(trainer) {
     var name_array = customer.customer_name.split(" ");
 
-    var new_trainer = [{
+    var new_trainer = {
 
         id: trainer.TID,
         FirstName: name_array[0],
@@ -21,7 +21,8 @@ function Convert_Trainer(trainer) {
         Style: trainer.trainer_riding_style,
         Email: trainer.trainer_email_address,
         Address: trainer.trainer_address,
-    }];
+        isAdmin: trainer.trainer_administrator
+    };
 
     return new_trainer;
 }
