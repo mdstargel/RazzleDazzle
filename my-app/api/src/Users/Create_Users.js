@@ -10,7 +10,7 @@ const MYSQL = require('mysql2');
 const MYSQL_CONFIG = {
     host: "localhost",
     user: "root",
-    password: "password",
+    password: "B311ao2l2",
     database: "Horse_Site",
     insecureAuth: true,
     connectTimeout: 30000
@@ -52,6 +52,8 @@ async function Create_Customer(
             "Customer_Email_address = '" + customer_email_address + "';");
 
         CID = QUERY_VALUES[0][0].CID;
+
+        console.log(CID);
 
         await CON.promise().query(
             "INSERT INTO Login (" +
