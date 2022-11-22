@@ -18,7 +18,8 @@ class trainer {
         trainer_email_address,
         trainer_emergency_name,
         trainer_emergency_phone_number,
-        trainer_riding_style
+        trainer_riding_style,
+        trainer_administrator
     )
 
     {
@@ -30,6 +31,7 @@ class trainer {
         this.trainer_emergency_name = trainer_emergency_name;
         this.trainer_emergency_phone_number = trainer_emergency_phone_number;
         this.trainer_riding_style = trainer_riding_style;
+        this.trainer_administrator = trainer_administrator;
     }
 
     // Getters and Setters
@@ -91,6 +93,14 @@ class trainer {
 
     Set_Trainer_Riding_Style(trainer_riding_style) {
         this.trainer_riding_style = trainer_riding_style;
+    }
+
+    Get_Trainer_Administrator() {
+        return this.trainer_administrator;
+    }
+
+    Set_Trainer_Administrator(trainer_administrator) {
+        this.trainer_administrator = trainer_administrator;
     }
 }
 
