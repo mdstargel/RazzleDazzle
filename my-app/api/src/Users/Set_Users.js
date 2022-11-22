@@ -418,7 +418,7 @@ async function Set_Trainer_Administrator(TID, administrator) {
 
         CON.query(
             "UPDATE Login " +
-            "SET Administrator = '" + administrator + " " +
+            "SET Administrator = " + administrator + " " +
             "WHERE Login_Email = '" + TRAINER_EMAIL + "';");
 
         // Close connection
