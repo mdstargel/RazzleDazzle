@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import CancelButton from "../../../Buttons/CancelButton";
 import ConfirmButton from "../../../Buttons/ConfirmButton";
 
@@ -12,6 +14,7 @@ const AddTrainer = () => {
         lastName: '',
         email: '',
         address: '',
+        style: ''
     });
     
     const handleFirstNameInputChange = (event) => {
@@ -48,21 +51,39 @@ const AddTrainer = () => {
             address: event.target.value,
         }));
         console.log('address', values.address);
-    };  
+    };
+    
+    const handleStyleInputChange = (event) => {
+        event.persist();
+        setValues((values) => ({
+            ...values,
+            style: event.target.value,
+        }));
+        console.log('style', values.style);
+    };
 
     const handleAddTrainer = () => {
         /**
          * Configure database to recieve trainer information
         */
         if (values.firstName && values.lastName && values.email && values.address) {
-            console.log('Successful Addition of Trainer!')
-            setValues((values) => ({
-                ...values,
-                firstName: '',
-                lastName: '',
-                email: '',
-                address: '',
-            }));
+            // console.log('Successful Addition of Trainer!')
+            var trainerName = values.firstName + " " + values.lastName;
+            const postData = {
+                "trainer_name": trainerName,
+                "trainer_email_address": values.email,
+                "trainer_address": values.address,
+                "trainer_riding_style": values.style,
+                "trainer_administrator": adminOn ? 1 : 0
+            }
+            axios.post("Admin/Trainer/Create", postData);
+            // setValues((values) => ({
+            //     ...values,
+            //     firstName: '',
+            //     lastName: '',
+            //     email: '',
+            //     address: '',
+            // }));
             setTrainerAddedUpdateMessage('Trainer has been added!');
         } else {
             console.log('Unsuccessful Addition of Trainer!')
@@ -125,8 +146,8 @@ const AddTrainer = () => {
             <div className='inputBoxes4'>
                 <input className='input2'
                     type="text"
-                    onChange={handleAddressInputChange}
-                    // value={data.Address}    
+                    onChange={handleStyleInputChange}
+                    value={values.style}    
                     // Need to create a data.Style for the line above in AddTrainer and AccessTrainer.
                     // Also need to add a boolean circle, similar to manage texts, but for the Admin permissions below
                 />
