@@ -537,12 +537,12 @@ async function Delete_Trainer(TID) {
             "FROM Trainer " +
             "WHERE TID = " + TID + ";");
 
-    var trainer_email = email[0][0].Trainer_Email_Address;
+        var trainer_email = email[0][0].Trainer_Email_Address;
 
         CON.query(
             "UPDATE Login " +
             "SET Decomissioned = 1 " +
-            "WHERE Email = '" + trainer_email + "';");
+            "WHERE Login_Email = '" + trainer_email + "';");
 
         CON.query(
             "UPDATE Appointment " +
