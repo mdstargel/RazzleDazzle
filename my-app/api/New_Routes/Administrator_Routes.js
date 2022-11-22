@@ -343,8 +343,9 @@ app.post('/Admin/Customer/Notify', function(req, res) {
 // Trainer management
 /**************************************************************************/
 
-app.get('/Admin/Trainer', async function(req, res) {
-    var trainers = await Get_All_Trainers();
+app.post('/Admin/Trainer', async function(req, res) {
+    var TID = req.body.user_id;
+    var trainers = await Get_All_Trainers(TID);
     res.send(trainers);
 })
 

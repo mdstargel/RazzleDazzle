@@ -180,7 +180,7 @@ async function Get_All_Customers() {
  * 
  * @returns array of trainers
  */
-async function Get_All_Trainers() {
+async function Get_All_Trainers(TID) {
     var trainers = [];
 
     try {
@@ -193,7 +193,8 @@ async function Get_All_Trainers() {
             "FROM Trainer " +
             "INNER JOIN Login " +
             "ON Trainer.Trainer_Email_Address = Login.Login_Email " +
-            "WHERE Login.Administrator = 0;");
+            "WHERE Trainer.TID != " + TID + " " +
+            "AND Login.Decomissioned != 1;");
 
         // Pull data
         trainer_values = trainer_values[0];
