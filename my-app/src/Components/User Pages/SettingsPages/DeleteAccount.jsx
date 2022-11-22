@@ -1,14 +1,21 @@
 import React from "react";
+import axios from 'axios';
+
 import '../styles.css'
 import PageTitle from "../PageTitle";
 import CancelButton from "../../Buttons/CancelButton";
 import ConfirmButton from "../../Buttons/ConfirmButton";
 
-const DeleteAccount = ({ setwpage, setSignedIn }) => {
+const DeleteAccount = ({ setwpage, setSignedIn, UserInfo }) => {
     const handleDeleteAccount = () => {
         /**
          * Send information to Backend to delete account information
          */
+        const post = {
+            "user_id": UserInfo.id
+        }
+        axios.post('/Customer/Delete_Customer', post).then(resp => {
+            })
         setwpage('About Us')
         setSignedIn(false)
         

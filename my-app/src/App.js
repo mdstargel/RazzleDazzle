@@ -76,7 +76,7 @@ function App() {
    * We need backend to validate when the user signs in who they are
    */
   const [userPermissions, setUserPermissions] = useState({
-    isAdmin: true,
+    isAdmin: false,
     isTrainer: false,
     isCustomer: false,
   })
@@ -102,7 +102,9 @@ function App() {
         setUserPermissions={setUserPermissions} userPermissions={userPermissions}
         setUserInfo={setUserInfo} />
     } else if (wpage === 'Sign Up') {
-      chosenpage = <SignUp setSignedIn={setSignedIn} setwpage={setwpage} />
+      chosenpage = <SignUp setSignedIn={setSignedIn} setwpage={setwpage}
+        setUserPermissions={setUserPermissions}
+        setUserInfo={setUserInfo} />
     } else if (wpage === 'Calendar') {
       chosenpage = <Calendar userPermissions={userPermissions} />
     } else if (wpage === 'Edit Personal Information') {
@@ -120,7 +122,7 @@ function App() {
     } else if (wpage === 'Manage Appointments') {
       chosenpage = <ManageAppointment setwpage={setwpage}/>
     } else if (wpage === 'Delete Account') {
-      chosenpage = <DeleteAccount setSignedIn={setSignedIn} setwpage={setwpage} />
+      chosenpage = <DeleteAccount setSignedIn={setSignedIn} setwpage={setwpage} UserInfo={UserInfo} />
     }  else if (wpage === 'Preferred Trainer') {
       chosenpage = <PreferredTrainer setwpage={setwpage} />
     } else if (wpage === 'Add/Edit Session Notes') {

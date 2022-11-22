@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import CancelButton from '../Buttons/CancelButton';
 import ConfirmButton from '../Buttons/ConfirmButton';
 import './styles.css'
 
-const SignUp = ({setSignedIn, setwpage}) => {
+const SignUp = ({setSignedIn, setwpage, setUserInfo, setUserPermissions}) => {
     /**
      * Reference for Forms logic
      * https://www.freecodecamp.org/news/beginner-react-project-build-basic-forms-using-react-hooks/
@@ -66,13 +68,38 @@ const SignUp = ({setSignedIn, setwpage}) => {
         if (values.password && values.email &&
             values.phone && values.password && values.firstName && values.lastName) {
             
-            setSignedIn(true);
-            setwpage('Calendar')
+            
 
             // Send Information to backend here
-
+            const post = {
+                "customer_name": values.firstName + " " + values.lastName,
+                "customer_phone_number": values.phone,
+                "customer_email_address": values.email,
+                "customer_password": values.password,
+            }
+            axios.post('/Create_Account', post).then(resp => {
+                const new_user = {
+                    type: '/Customer',
+                    id: resp.data,
+                    FirstName: values.firstName,
+                    LastName: values.lastName,
+                    Style: '',
+                    Email: values.email,
+                    Address: '',
+                    phone: values.phone
+                };
+                setUserInfo(new_user);
+                setUserPermissions({
+                    isAdmin: false,
+                    isTrainer: false,
+                    isCustomer: true,
+                })
+                setSignedIn(true);
+                setwpage('Calendar')
+            })
+            
             // Remove the below comment later
-            console.log('Successful Sign Up!')
+            // console.log('Successful Sign Up!')
         } else {
             setSignUpError(true);
         }
