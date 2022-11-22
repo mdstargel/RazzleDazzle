@@ -402,7 +402,10 @@ app.post('/Admin/Trainer/Create', async function(req, res) {
         trainer_emergency_phone_number,
         trainer_riding_style);
 
-    await Set_Trainer_Administrator(TID, trainer_administrator);
+    if (TID != 0) {
+        await Set_Trainer_Administrator(TID, trainer_adminisitrator);
+    }
+
     res.send("");
 })
 
