@@ -10,44 +10,64 @@ const AccessTrainer = () => {
     /**
      * Replace following object with information from the backend
      */
-    const [AvailableTrainers, setAvailableTrainers] = useState([{
-        id: '1',
-        FirstName: 'John',
-        LastName: 'Doe',
-        Style: 'Western',
-        Email: 'johnDoe@gmail.com',
-        Address: '1234 Address',
-        Experience: '1',
-        isAdmin: false,
-    },
-    {
-        id: '2',
-        FirstName: 'Jane',
-        LastName: 'Doe',
-        Style: 'English',
-        Email: 'janeDoe@gmail.com',
-        Address: '1234 Address',
-        Experience: '2',
-        isAdmin: true,
-    },
-    {
-        id: '3',
-        FirstName: 'James',
-        LastName: 'Doe',
-        Email: 'jamesDoe@gmail.com',
-        Address: '1234 Address',
-        Style: 'Show',
-        Experience: '3',
-        isPreffered: false,
-        isAdmin: false,
-        isTrainer: true,
-    },]);
-    axios.get('/Admin/Trainer').then(resp => {
-        
-        setNewsArticles(resp.data);
-        console.log('news teset: ', resp.data);
+    const [AvailableTrainers, setAvailableTrainers] = useState([]
+    //     [{
+    //     id: '1',
+    //     FirstName: 'John',
+    //     LastName: 'Doe',
+    //     Style: 'Western',
+    //     Email: 'johnDoe@gmail.com',
+    //     Address: '1234 Address',
+    //     Experience: '1',
+    //     isAdmin: false,
+    // },
+    // {
+    //     id: '2',
+    //     FirstName: 'Jane',
+    //     LastName: 'Doe',
+    //     Style: 'English',
+    //     Email: 'janeDoe@gmail.com',
+    //     Address: '1234 Address',
+    //     Experience: '2',
+    //     isAdmin: true,
+    // },
+    // {
+    //     id: '3',
+    //     FirstName: 'James',
+    //     LastName: 'Doe',
+    //     Email: 'jamesDoe@gmail.com',
+    //     Address: '1234 Address',
+    //     Style: 'Show',
+    //     Experience: '3',
+    //     isPreffered: false,
+    //     isAdmin: false,
+    //     isTrainer: true,
+    //         },]
+    );
+    const [isMounted, setIsMounted] = useState(false);
 
-    })
+    if (!isMounted) {
+        
+        axios.get('/Admin/Trainer').then(resp => {
+            let trainers = [];
+            for (var i = 0; i < resp.data.length; i++) {
+                let name_array = resp.data[i].trainer_name.split(" ");
+                trainers.push({
+                    id: resp.data[i].TID,
+                    FirstName: name_array[0],
+                    LastName: name_array[1],
+                    Style: resp.data[i].trainer_riding_style,
+                    Email: resp.data[i].trainer_email_address,
+                    Address: resp.data[i].trainer_address,
+                    isAdmin: resp.data[i].trainer_administrator
+                })
+            }
+            console.log(trainers);
+            setAvailableTrainers(trainers);
+
+        })
+        setIsMounted(true);
+    }
     const [trainerInfoUpdateMessage, setTrainerInfoUpdateMessage] = useState('');
     const [showEditTrainer, setShowEditTrainer] = useState(false);
 
@@ -80,6 +100,14 @@ const AccessTrainer = () => {
         });
         console.log(updatedTrainerInfo);
         setTrainerInfoUpdateMessage('Trainer Information has been updated!');
+        axios.post('/Admin/Trainer/Set_Values', {
+            "user_id": updatedTrainerInfo.id,
+            "user_name": updatedTrainerInfo.FirstName + " " + updatedTrainerInfo.LastName,
+            "user_address": updatedTrainerInfo.Address,
+            "user_riding_style": updatedTrainerInfo.Style,
+            "user_email_address": updatedTrainerInfo.Email,
+            "user_admin": updatedTrainerInfo.isAdmin ? 1 : 0
+        })
     };
 
     const handleSetIsTrainer = ({data}) => {
@@ -175,6 +203,22 @@ const AccessTrainer = () => {
         }))
     }
 
+    const handleTrainerStyleChange = (event) => {
+        event.persist();
+        setAvailableTrainers([...AvailableTrainers].map(object => {
+            // Need a Trainer ID for these
+            if (object.isPreffered) {
+                return {
+                    ...object,
+                    Style: event.target.value,
+                }
+            }
+            else return {
+                ...object,
+        };
+        }))
+    }
+
     const trainersList =
         AvailableTrainers.map((data) => (
             data.isPreffered === true ?
@@ -255,8 +299,8 @@ const AccessTrainer = () => {
                 <div className='inputBoxes4'>
                     <input className='input2'
                         type="text"
-                        onChange={handleAddressInputChange}
-                        // value={data.Address} 
+                        onChange={handleTrainerStyleChange}
+                        value={data.Style} 
                         // Need to create a data.Style for the line above in AddTrainer and AccessTrainer.
                         // Also need to add a boolean circle, similar to manage texts, but for the Admin permissions below 
                          
