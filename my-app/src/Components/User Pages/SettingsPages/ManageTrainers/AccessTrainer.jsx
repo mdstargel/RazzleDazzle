@@ -18,9 +18,7 @@ const AccessTrainer = () => {
         Email: 'johnDoe@gmail.com',
         Address: '1234 Address',
         Experience: '1',
-        isPreffered: false,
         isAdmin: false,
-        isTrainer: true,
     },
     {
         id: '2',
@@ -30,9 +28,7 @@ const AccessTrainer = () => {
         Email: 'janeDoe@gmail.com',
         Address: '1234 Address',
         Experience: '2',
-        isPreffered: true,
         isAdmin: true,
-        isTrainer: true,
     },
     {
         id: '3',
@@ -46,7 +42,12 @@ const AccessTrainer = () => {
         isAdmin: false,
         isTrainer: true,
     },]);
-    
+    axios.get('/Admin/Trainer').then(resp => {
+        
+        setNewsArticles(resp.data);
+        console.log('news teset: ', resp.data);
+
+    })
     const [trainerInfoUpdateMessage, setTrainerInfoUpdateMessage] = useState('');
     const [showEditTrainer, setShowEditTrainer] = useState(false);
 
