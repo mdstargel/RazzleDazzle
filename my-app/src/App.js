@@ -126,7 +126,7 @@ function App() {
     } else if (wpage === 'Add/Edit Session Notes') {
       chosenpage = <AddEditSessionNotes setwpage={setwpage} />
     } else if (wpage === 'Manage Trainers') {
-      chosenpage = <ManageTrainers setwpage={setwpage} />
+      chosenpage = <ManageTrainers setwpage={setwpage} UserInfo={UserInfo} />
     } else if (wpage === 'Manage Customers') {
       chosenpage = <ManageCustomers setwpage={setwpage} />
     } else if (wpage === 'Edit Trainer Workload') {

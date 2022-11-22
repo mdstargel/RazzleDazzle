@@ -347,6 +347,8 @@ app.post('/Admin/Trainer', async function(req, res) {
     var TID = req.body.user_id;
     var trainers = await Get_All_Trainers(TID);
     res.send(trainers);
+
+    console.log(TID);
 })
 
 app.post('/Admin/Trainer/Set_Values', function(req, res) {

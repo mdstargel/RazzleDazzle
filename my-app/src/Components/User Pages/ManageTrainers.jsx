@@ -6,12 +6,15 @@ import AccessTrainer from './SettingsPages/ManageTrainers/AccessTrainer';
 import AddTrainer from './SettingsPages/ManageTrainers/AddTrainer';
 import RemoveTrainer from './SettingsPages/ManageTrainers/RemoveTrainer';
 
-const ManageAppointment = () => {
+const ManageAppointment = ({UserInfo}) => {
     const [isMounted, setIsMounted] = useState(false);
     const [AvailableTrainers, setAvailableTrainers] = useState([])
 
     if (!isMounted) {
-        axios.get('/Admin/Trainer').then(resp => {
+        let user_id = {
+            "user_id": UserInfo.id
+        }
+        axios.post('/Admin/Trainer', user_id).then(resp => {
             let trainers = [];
             for (var i = 0; i < resp.data.length; i++) {
                 let name_array = resp.data[i].trainer_name.split(" ");

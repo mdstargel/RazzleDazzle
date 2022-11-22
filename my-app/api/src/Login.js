@@ -18,11 +18,8 @@ const MYSQL_CONFIG = {
 
 
 async function Validate_User(login_email, login_password) {
-    // Default values
-    ID = 0;
-    type = 0;
-
-    try {
+    var user = [];
+    
         // Open connection
         const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
@@ -48,7 +45,7 @@ async function Validate_User(login_email, login_password) {
         var ID;
         var type;
 
-        if (decomissioned != null) {
+        if (decomissioned != 0) {
             ID = 0;
             type = 0;
         } else if (CID != null) {
@@ -61,13 +58,13 @@ async function Validate_User(login_email, login_password) {
             } else {
                 type = 2;
             }
+        } else {
+            ID = 0;
+            type = 0;
         }
-    } catch (err) {
-        console.log(err);
-    }
 
-    var user = [{ ID, type }];
-    return user;
+        user.push({ ID, type });
+        return user;
 }
 
 module.exports = { Validate_User }

@@ -57,11 +57,13 @@ async function Create_Customer(
             "INSERT INTO Login (" +
             "Login_Email, " +
             "Login_Password, " +
-            "CID) " +
+            "CID, " +
+            "Decomissioned) " +
             "VALUES ('" +
             customer_email_address + "', '" +
             customer_password + "', " +
-            CID + ");");
+            CID + ", " +
+            "0); ");
 
         // Close connection
         CON.end();
@@ -96,7 +98,7 @@ async function Create_Trainer(
             "Trainer_Email_Address, " +
             "Trainer_Emergency_Name, " +
             "Trainer_Emergency_Phone_Number, " +
-            "Trainer_Riding_Style) " +
+            "Trainer_Riding_Style,) " +
             "VALUES ('" +
             trainer_name + "', '" +
             trainer_address + "', '" +
@@ -124,11 +126,13 @@ async function Create_Trainer(
             "INSERT INTO Login (" +
             "Login_Email, " +
             "Login_Password, " +
-            "TID) " +
+            "TID, " +
+            "Decomissioned) " +
             "VALUES ('" +
             trainer_email_address + "', " +
             "'P@ssw0rd', " +
-            TID + ");");
+            TID + ", " +
+            "0);");
 
         // Close connection
         CON.end();
