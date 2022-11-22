@@ -90,24 +90,23 @@ const AccessTrainer = () => {
         /**
          * Send Information to Database
          */
-        const updatedTrainerInfo = [...AvailableTrainers].map(object => {
-            // Need a Trainer ID for these
-            if (object.isPreffered) {
-                return {
-                    ...object,
-                }
+        for (let i = 0; i < AvailableTrainers.length; i++) {
+            if (AvailableTrainers[i].isPreffered) {
+                // console.log('Our Trainer Here:', AvailableTrainers[i]);
+                axios.post('/Admin/Trainer/Set_Values', {
+                    "user_id": AvailableTrainers[i].id,
+                    "user_name": AvailableTrainers[i].FirstName + " " + AvailableTrainers[i].LastName,
+                    "user_address": AvailableTrainers[i].Address,
+                    "user_riding_style": AvailableTrainers[i].Style,
+                    "user_email_address": AvailableTrainers[i].Email,
+                    "user_admin": AvailableTrainers[i].isAdmin ? 1 : 0
+                })
             }
-        });
-        console.log(updatedTrainerInfo);
+        }
+
+
+        // console.log('Is this is my updated trainer info',updatedTrainerInfo);
         setTrainerInfoUpdateMessage('Trainer Information has been updated!');
-        axios.post('/Admin/Trainer/Set_Values', {
-            "user_id": updatedTrainerInfo.id,
-            "user_name": updatedTrainerInfo.FirstName + " " + updatedTrainerInfo.LastName,
-            "user_address": updatedTrainerInfo.Address,
-            "user_riding_style": updatedTrainerInfo.Style,
-            "user_email_address": updatedTrainerInfo.Email,
-            "user_admin": updatedTrainerInfo.isAdmin ? 1 : 0
-        })
     };
 
     const handleSetIsTrainer = ({data}) => {
