@@ -64,7 +64,7 @@ const AddEditNews = ({setwpage, setNewsArticles}) => {
                 "news_image_url": values.image,
                 "news_title": values.title,
                 "news_link": values.url,
-                "news_description": values.description,
+                "news_description": values.description
             }
             console.log('post data:', postData);
             axios.post("Admin/News/Create", postData).then(resp => 

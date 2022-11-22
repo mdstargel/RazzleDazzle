@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import ConfirmButton from '../../../Buttons/ConfirmButton';
 import CancelButton from '../../../Buttons/CancelButton';
 const AccessTrainer = () => {
