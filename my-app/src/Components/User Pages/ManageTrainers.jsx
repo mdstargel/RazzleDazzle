@@ -25,7 +25,7 @@ const ManageAppointment = () => {
                 isAdmin: resp.data[i].trainer_administrator
             })
             }
-            console.log(trainers);
+            // console.log(trainers);
             setAvailableTrainers(trainers);
         })
         setIsMounted(true);
@@ -40,7 +40,7 @@ const ManageAppointment = () => {
             popup = <AccessTrainer setSelectedTab={setSelectedTab}
                 setAvailableTrainers={setAvailableTrainers} AvailableTrainers={AvailableTrainers} />
         }  else if (selectedTab === 'Remove Trainer') {
-            popup = <RemoveTrainer setSelectedTab={setSelectedTab}/>
+            popup = <RemoveTrainer setSelectedTab={setSelectedTab} setAvailableTrainers={setAvailableTrainers} AvailableTrainers={AvailableTrainers}/>
         }  else  {
             popup = <AddTrainer setSelectedTab={setSelectedTab}/>
         }

@@ -350,7 +350,7 @@ async function Set_Trainer_Administrator(TID, administrator) {
         "FROM Trainer " +
         "WHERE TID = " + TID + ";");
 
-    const TRAINER_EMAIL = TRAINER_VALUES[0].Trainer_Email_Address;
+    const TRAINER_EMAIL = TRAINER_VALUES[0][0].Trainer_Email_Address;
 
     CON.query(
         "UPDATE Login " +
@@ -416,7 +416,6 @@ async function Delete_Customer(CID) {
         "WHERE CID = " + CID + ";");
 
     var customer_email = email[0][0].Customer_Email_Address;
-    console.log(email[0][0].Customer_Email_Address);
 
     await CON.promise().query(
         "UPDATE Login " +
@@ -446,7 +445,7 @@ async function Delete_Customer(CID) {
     var appointment_keys = reserved_appointment_keys[0];
 
     for (var i = 0; i < appointment_keys.length; i++) {
-        await Set_Appointment_Reservation(appointment_keys[i], CID, false);
+        await Set_Appointment_Reservation(appointment_keys[i].AID, CID, false);
     };
 }
 
@@ -463,7 +462,7 @@ async function Delete_Trainer(TID) {
         "FROM Trainer " +
         "WHERE TID = " + TID + ";");
 
-    var trainer_email = email[0][0];
+    var trainer_email = email[0][0].Trainer_Email_Address;
 
     CON.query(
         "UPDATE Login " +
