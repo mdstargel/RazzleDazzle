@@ -414,7 +414,7 @@ async function Set_Trainer_Administrator(TID, administrator) {
             "FROM Trainer " +
             "WHERE TID = " + TID + ";");
 
-        const TRAINER_EMAIL = TRAINER_VALUES[0].Trainer_Email_Address;
+        const TRAINER_EMAIL = TRAINER_VALUES[0][0].Trainer_Email_Address;
 
         CON.query(
             "UPDATE Login " +
