@@ -326,8 +326,12 @@ app.post('/Admin/Customer/Set_Difficulty', function(req, res) {
 })
 
 app.post('/Admin/Customer/Delete', function(req, res) {
-    var CID = req.body.user_id;
-    Delete_Customer(CID);
+    var CIDs_to_be_deleted = req.body.user_ids;
+
+    for (var i = 0; i < CIDs_to_be_deleted.length; i++) {
+        Delete_Customer(CIDs_to_be_deleted[i]);
+    }
+
     res.send("");
 })
 
