@@ -44,30 +44,30 @@ const AccessTrainer = ({AvailableTrainers, setAvailableTrainers}) => {
     //     isTrainer: true,
     //         },]
     // );
-    const [isMounted, setIsMounted] = useState(false);
+    // const [isMounted, setIsMounted] = useState(false);
 
-    if (!isMounted) {
+    // if (!isMounted) {
         
-        axios.get('/Admin/Trainer').then(resp => {
-            let trainers = [];
-            for (var i = 0; i < resp.data.length; i++) {
-                let name_array = resp.data[i].trainer_name.split(" ");
-                trainers.push({
-                    id: resp.data[i].TID,
-                    FirstName: name_array[0],
-                    LastName: name_array[1],
-                    Style: resp.data[i].trainer_riding_style,
-                    Email: resp.data[i].trainer_email_address,
-                    Address: resp.data[i].trainer_address,
-                    isAdmin: resp.data[i].trainer_administrator
-                })
-            }
-            console.log(trainers);
-            setAvailableTrainers(trainers);
+    //     axios.get('/Admin/Trainer').then(resp => {
+    //         let trainers = [];
+    //         for (var i = 0; i < resp.data.length; i++) {
+    //             let name_array = resp.data[i].trainer_name.split(" ");
+    //             trainers.push({
+    //                 id: resp.data[i].TID,
+    //                 FirstName: name_array[0],
+    //                 LastName: name_array[1],
+    //                 Style: resp.data[i].trainer_riding_style,
+    //                 Email: resp.data[i].trainer_email_address,
+    //                 Address: resp.data[i].trainer_address,
+    //                 isAdmin: resp.data[i].trainer_administrator
+    //             })
+    //         }
+    //         console.log(trainers);
+    //         setAvailableTrainers(trainers);
 
-        })
-        setIsMounted(true);
-    }
+    //     })
+    //     setIsMounted(true);
+    // }
     const [trainerInfoUpdateMessage, setTrainerInfoUpdateMessage] = useState('');
     const [showEditTrainer, setShowEditTrainer] = useState(false);
 

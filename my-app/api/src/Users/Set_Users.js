@@ -516,7 +516,7 @@ async function Delete_Customer(CID) {
         var appointment_keys = reserved_appointment_keys[0];
 
         for (var i = 0; i < appointment_keys.length; i++) {
-            await Set_Appointment_Reservation(appointment_keys[i], CID, false);
+            await Set_Appointment_Reservation(appointment_keys[i].AID, CID, false);
         };
     } catch (err) {
         console.log(err);
@@ -537,7 +537,7 @@ async function Delete_Trainer(TID) {
             "FROM Trainer " +
             "WHERE TID = " + TID + ";");
 
-        var trainer_email = email[0][0];
+    var trainer_email = email[0][0].Trainer_Email_Address;
 
         CON.query(
             "UPDATE Login " +

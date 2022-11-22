@@ -1,35 +1,16 @@
 import React, { useState } from 'react';
 import ConfirmButton from '../../../Buttons/ConfirmButton';
 import CancelButton from '../../../Buttons/CancelButton';
+import axios from 'axios';
 
-const RemoveTrainer = () => {
+const RemoveTrainer = ({setAvailableTrainers, AvailableTrainers}) => {
     /**
      * Replace following object with information from the backend
      */
-    const [AvailableTrainers, setAvailableTrainers] = useState([{
-        Trainer: 'John Doe',
-        Style: 'Western',
-        Experience: '1',
-        isPreffered: false
-    },
-    {
-        Trainer: 'Jane Doe',
-        Style: 'English',
-        Experience: '2',
-        isPreffered: true
-
-    },
-    {
-        Trainer: 'James Doe',
-        Style: 'Show',
-        Experience: '3',
-        isPreffered: false
-
-    },]);
     
     const handleSetRemoveTrainer = ({ data }) => {
         setAvailableTrainers([...AvailableTrainers].map(object => {
-            if(object.Trainer === data.Trainer) {
+            if(object.id === data.id) {
               return {
                 ...object,
                 isPreffered: true,
@@ -50,6 +31,18 @@ const RemoveTrainer = () => {
 
     const handleRemoveTrainer = (event) => {
         event.preventDefault();
+        let removedUserIds = [];
+        for (let i = 0; i < AvailableTrainers.length; i++) {
+            if (AvailableTrainers[i].isPreffered) {
+                removedUserIds.push(AvailableTrainers[i].id);
+            }
+        }
+        console.log('Ids to remove', removedUserIds);
+
+        let user_ids = {
+            "user_ids": removedUserIds
+        }
+        axios.post('/Admin/Trainer/Delete', user_ids);
 
         setAvailableTrainers([...AvailableTrainers].filter(object =>
             object.isPreffered !== true))       
