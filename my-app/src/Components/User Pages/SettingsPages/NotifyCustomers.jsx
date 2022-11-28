@@ -59,8 +59,9 @@ const NotifyCustomers = ({ setwpage }) => {
              */
             
             let customerId = [...AvailableCustomers].filter(object => object.isPreffered);
-            console.log('Customer Id to change', customerId);
-            // axios.post("Admin/Trainer/Create", postData);
+        console.log({"CIDs": [customerId[0].id], "Notification": values.messageToCustomer});
+        
+            axios.post("/Admin/Customer/Notify", {"CIDs": [customerId[0].id], "notification": values.messageToCustomer});
 
             // Remove the below comment later
             console.log('Customer has been notified!')
@@ -80,17 +81,7 @@ const NotifyCustomers = ({ setwpage }) => {
             <>
             <PageTitle name="Notify Customers" />
             <form className="form2Alt">
-                <div className='inputTitles1Alt'>
-                    <label className='label2'>Customer Name/ID:</label>
-                </div>
-                <div className='inputBoxes1Alt'>
-                    <input className='input2'
-                        type="text"
-                        onChange={handleCustomerNameIdChange}
-                    />
-                </div>
-                    <br /><br />
-                    <CustomerDrop AvailableCustomers={AvailableCustomers} setAvailableCustomers={setAvailableCustomers} />
+                <CustomerDrop AvailableCustomers={AvailableCustomers} setAvailableCustomers={setAvailableCustomers} />
 
                 <br /><br />
                 <div className='inputTitles2Alt'>
