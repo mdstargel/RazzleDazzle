@@ -45,7 +45,7 @@ const ManageAppointment = ({UserInfo}) => {
         }  else if (selectedTab === 'Remove Trainer') {
             popup = <RemoveTrainer setSelectedTab={setSelectedTab} setAvailableTrainers={setAvailableTrainers} AvailableTrainers={AvailableTrainers}/>
         }  else  {
-            popup = <AddTrainer setSelectedTab={setSelectedTab}/>
+            popup = <AddTrainer setSelectedTab={setSelectedTab} setAvailableTrainers={setAvailableTrainers} />
         }
 
         return (popup);

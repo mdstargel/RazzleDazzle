@@ -4,7 +4,7 @@ import axios from 'axios';
 import CancelButton from "../../../Buttons/CancelButton";
 import ConfirmButton from "../../../Buttons/ConfirmButton";
 
-const AddTrainer = () => {
+const AddTrainer = ({setAvailableTrainers}) => {
     const [adminOn, setAdminOn] = useState(false);
     const [trainerOn, setTrainerOn] = useState(false);
     const [trainerAddedUpdateMessage, setTrainerAddedUpdateMessage] = useState('');
@@ -77,13 +77,7 @@ const AddTrainer = () => {
                 "trainer_administrator": adminOn ? 1 : 0
             }
             axios.post("Admin/Trainer/Create", postData);
-            // setValues((values) => ({
-            //     ...values,
-            //     firstName: '',
-            //     lastName: '',
-            //     email: '',
-            //     address: '',
-            // }));
+
             setTrainerAddedUpdateMessage('Trainer has been added!');
         } else {
             console.log('Unsuccessful Addition of Trainer!')

@@ -33,8 +33,8 @@ const SettingsDropdown = ({ userPermissions, setwpage, setSignedIn, setShowDropd
             <hr/>
             <div className="pad" onClick={() => { setwpage('Manage Notifications'); setShowDropdown(false) }}>Manage Notifications</div>
             <hr/>
-            <div className="pad" onClick={() => { setwpage('View Session Notes'); setShowDropdown(false) }}>View Session Notes</div>
-            <hr/>
+            {/* <div className="pad" onClick={() => { setwpage('View Session Notes'); setShowDropdown(false) }}>View Session Notes</div>
+            <hr/> */}
             {/* <div className="pad" onClick={() => { setwpage('Add/Edit Session Notes'); setShowDropdown(false) }}>Add/Edit Session Notes</div>
             <hr/> */}
             <div className="pad" onClick={() => { setwpage('Notify Customers'); setShowDropdown(false) }}>Notify Customers</div>
@@ -51,8 +51,8 @@ const SettingsDropdown = ({ userPermissions, setwpage, setSignedIn, setShowDropd
             <hr/>
             <div className="pad" onClick={() => { setwpage('Manage Notifications'); setShowDropdown(false) }}>Manage Notifications</div>
             <hr/>
-            <div className="pad" onClick={() => { setwpage('View Session Notes'); setShowDropdown(false) }}>View Session Notes</div>
-            <hr/>
+            {/* <div className="pad" onClick={() => { setwpage('View Session Notes'); setShowDropdown(false) }}>View Session Notes</div>
+            <hr/> */}
             <div className="pad" onClick={() => { setwpage('Add/Edit News'); setShowDropdown(false) }}>Add/Edit News</div>
             <hr/>
             <div className="pad" onClick={() => { setwpage('Notify Customers'); setShowDropdown(false) }}>Notify Customers</div>

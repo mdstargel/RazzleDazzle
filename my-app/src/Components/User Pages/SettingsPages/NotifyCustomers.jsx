@@ -1,9 +1,31 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
+import CustomerDrop from './CustoemerDrop';
 import '../styles.css'
 import PageTitle from "../PageTitle";
 import CancelButton from "../../Buttons/CancelButton";
 import ConfirmButton from "../../Buttons/ConfirmButton";
-const NotifyCustomers = ({setwpage}) => {
+const NotifyCustomers = ({ setwpage }) => {
+    const [isMounted, setIsMounted] = useState(false);
+    const [AvailableCustomers, setAvailableCustomers] = useState([]);
+    if (!isMounted) {
+        axios.get('/Admin/Customer').then(resp => {
+            let customers = [];
+            for (var i = 0; i < resp.data.length; i++) {
+                let name_array = resp.data[i].customer_name.split(" ");
+                customers.push({
+                    id: resp.data[i].CID,
+                    FirstName: name_array[0],
+                    LastName: name_array[1],
+                    Level: resp.data[i].customer_difficulty
+                })
+                console.log('Customers List: ', customers);
+            }
+            setIsMounted(true);
+            setAvailableCustomers(customers);
+        })
+    }
     const [values, setValues] = useState({
         customerNameId: '',
         messageToCustomer: '',
@@ -30,15 +52,19 @@ const NotifyCustomers = ({setwpage}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         
-        if (values.customerNameId && values.messageToCustomer) {
+        // if (values.customerNameId && values.messageToCustomer) {
             /**
              * Validate data with backend and that customer is found
              * Send message to customer
              */
+            
+            let customerId = [...AvailableCustomers].filter(object => object.isPreffered);
+            console.log('Customer Id to change', customerId);
+            // axios.post("Admin/Trainer/Create", postData);
 
             // Remove the below comment later
             console.log('Customer has been notified!')
-        }
+        // }
     };
 
     const handleCancel = (event) => {
@@ -63,8 +89,10 @@ const NotifyCustomers = ({setwpage}) => {
                         onChange={handleCustomerNameIdChange}
                     />
                 </div>
-                <br/><br />
+                    <br /><br />
+                    <CustomerDrop AvailableCustomers={AvailableCustomers} setAvailableCustomers={setAvailableCustomers} />
 
+                <br /><br />
                 <div className='inputTitles2Alt'>
                     <label className='label2'>Message to Customer:</label>
                 </div>
