@@ -52,7 +52,7 @@ function Convert_Appointment(appointment) {
         start_time_array < 12) {
         var start_time = start_time_array[0] + "am";
     } else {
-        var start_time = start_time_array[0] + "pm";
+        var start_time = (start_time_array[0] - 12) + "pm";
     }
 
     var end_time_array = appointment.appointment_end_time.split(":");
@@ -60,7 +60,7 @@ function Convert_Appointment(appointment) {
         end_time_array < 12) {
         var end_time = end_time_array[0] + "am";
     } else {
-        var end_time = end_time_array[0] + "pm";
+        var end_time = (end_time_array[0] - 12) + "pm";
     }
 
     var group = true;
@@ -72,7 +72,7 @@ function Convert_Appointment(appointment) {
     if (appointment.appointment_reserved == false ||
         appointment.appointment_reserved == undefined) reserved = false;
 
-    new_appointment = [{
+    new_appointment = {
         appointmentId: appointment.AID,
         date: new_date,
         startTime: start_time,
@@ -85,7 +85,7 @@ function Convert_Appointment(appointment) {
         hasTrainee: trainee,
         PubicNotes: appointment.appointment_public_notes,
         PrivateNotes: appointment.appointment_private_notes
-    }]
+    }
 
     return new_appointment;
 }
