@@ -410,7 +410,7 @@ app.post('/Admin/Trainer/Create', async function(req, res) {
         trainer_riding_style);
 
     if (TID != 0) {
-        await Set_Trainer_Administrator(TID, trainer_adminisitrator);
+        await Set_Trainer_Administrator(TID, trainer_administrator);
     }
 
     res.send("");
