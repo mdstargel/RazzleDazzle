@@ -339,6 +339,9 @@ app.post('/Admin/Customer/Notify', function(req, res) {
     var CIDs = req.body.CIDs;
     var title = req.body.title;
     var notification = req.body.notification;
+
+    if (title == undefined) title = "";
+
     Notify_Customers(CIDs, title, notification);
     res.send("");
 })
@@ -410,7 +413,7 @@ app.post('/Admin/Trainer/Create', async function(req, res) {
         trainer_riding_style);
 
     if (TID != 0) {
-        await Set_Trainer_Administrator(TID, trainer_adminisitrator);
+        await Set_Trainer_Administrator(TID, trainer_administrator);
     }
 
     res.send("");

@@ -1,23 +1,15 @@
-var nodemailer = require('nodemailer');
-
-var transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: 'razzledazzle.notifications@gmail.com', // business email
-        pass: 'RazzleDazzle1!' // business email password
-    }
-});
+var nodemailer = require('nodejs-nodemailer-outlook');
 
 function Email_Appointment(email, title, notification) {
-    var emailOptions = {
-        from: 'razzledazzle.notifications@gmail.com', //business email
+    nodemailer.sendEmail({
+        auth: {
+            user: "REHarris@csustudent.net",
+            pass: "B311ao2l2"
+        },
+        from: 'REHarris@csustudent.net',
         to: email,
         subject: title,
         text: notification
-    };
-
-    transporter.sendMail(emailOptions, function(error) {
-        if (error) throw error;
     })
 };
 

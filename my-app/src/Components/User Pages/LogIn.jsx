@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+const async = require('async');
 
 import './styles.css'
 import CancelButton from '../Buttons/CancelButton';
@@ -41,7 +42,7 @@ const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions, set
          */
         if (values.password && values.email) {
             // Send Log in information
-            axios.post('/Login', {
+            axios.post('/Login', await {
                 login_email: values.email,
                 login_password: values.password,
             })
