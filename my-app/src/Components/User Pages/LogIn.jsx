@@ -48,24 +48,25 @@ const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions, set
                 "login_email": values.email,
                 "login_password": values.password,
             })
-            .then(function (response) {
+            .then(async function (response) {
                 // console.log(response.data[0]);
                 setUserPermissions({
                     isAdmin: response.data[0].type === 3,
                     isTrainer: response.data[0].type === 2,
-                    isCustomer: response.data[0].type === 1,
-                })
-                console.log(userPermissions.isAdmin || userPermissions.isTrainer || userPermissions.isCustomer)
-                if (userPermissions.isAdmin || userPermissions.isTrainer || userPermissions.isCustomer) {
+                    isCustomer: response.data[0].type === 1
+                });
+
+                let type = response.data[0].type;
+                if ( type <= 3 && type >= 1) {
                     let userType;
                     let userID = { "user_id": response.data[0].ID }
                     // console.log('Admin: ', userPermissions.isAdmin)
                     console.log(response.data[0].ID);
-                    if (userPermissions.isCustomer) {
+                    if (type === 1) {
                         userType = '/Customer';
-                    } else if (userPermissions.isTrainer) {
+                    } else if (type === 2) {
                         userType = '/Trainer';
-                    } else if (userPermissions.isAdmin) {
+                    } else if (type === 3) {
                         userType = '/Admin';
                     }
                     // console.log('User Post Call', userType)

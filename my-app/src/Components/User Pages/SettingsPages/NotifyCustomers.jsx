@@ -59,7 +59,7 @@ const NotifyCustomers = ({ setwpage }) => {
              */
             
             let customerId = [...AvailableCustomers].filter(object => object.isPreffered);
-        console.log({"CIDs": [customerId[0].id], "Notification": values.messageToCustomer});
+        console.log({"CIDs": [customerId[0].id], "notification": values.messageToCustomer});
         
             axios.post("/Admin/Customer/Notify", {"CIDs": [customerId[0].id], "notification": values.messageToCustomer});
 
