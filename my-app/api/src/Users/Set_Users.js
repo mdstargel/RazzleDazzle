@@ -3,6 +3,7 @@
  */
 const async = require('async');
 const { Set_Appointment_Reservation } = require('../Calendar/Appointments/Set_Appointments')
+const { Validate_User } = require('../Login');
 
 /**
  * Mysql connection
@@ -466,6 +467,35 @@ async function Set_Trainer_Password(TID, old_password, new_password) {
     }
 }
 
+
+async function Set_New_Password(forgot_code, new_password) {
+    // Open connection
+    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+    var query_values = await CON.promise().query(
+        "SELECT Forgot_Email " +
+        "FROM forgot_password " +
+        "WHERE Forgot_Key = '" + forgot_code + "';");
+
+    query_values = query_values[0];
+    var user_email = query_values[0].Forgot_Email;
+
+    CON.query(
+        "DELETE FROM forgot_password " +
+        "WHERE Forgot_Key = '" + forgot_code + "';");
+
+    await CON.promise().query(
+        "UPDATE Login " +
+        "WHERE Login_Email = '" + user_email + "' " +
+        "SET Login_Password = '" + new_password + "';");
+
+    // Close connection
+    CON.end();
+
+    var user = await Validate_User(user_email, new_password);
+
+    return user;
+}
+
 /**
  * 
  * @param {*} CID 
@@ -576,5 +606,6 @@ module.exports = {
     Set_Trainer_Administrator,
     Set_Trainer_Password,
     Delete_Customer,
-    Delete_Trainer
+    Delete_Trainer,
+    Set_New_Password
 };

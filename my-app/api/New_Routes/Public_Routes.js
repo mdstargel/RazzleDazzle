@@ -9,6 +9,8 @@ app.use(bodyParser.json());
 const { Validate_User } = require('../src/Login');
 const { Get_All_News } = require('../src/News/Get_News');
 const { Create_Customer } = require('../src/Users/Create_Users');
+const { Set_New_Password } = require('../src/Users/Set_Users');
+const { Forgot_Password } = require('../src/Forgot_Password');
 
 app.post('/Login', async function(req, res) {
     var login_email = req.body.login_email;
@@ -42,11 +44,16 @@ app.post('/Create_Account', async function(req, res) {
 })
 
 app.post('/Forgot_Password', function(req, res) {
-
+    var email = req.body.email;
+    Forgot_Password(email);
+    res.send("");
 })
 
 app.post('/Reset_Password', async function(req, res) {
-
+    var code = req.body.code;
+    var password = req.body.password;
+    var user = await Set_New_Password(code, password)
+    res.send(user);
 })
 
 module.exports = app;

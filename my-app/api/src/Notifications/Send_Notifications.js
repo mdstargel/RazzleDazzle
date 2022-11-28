@@ -291,8 +291,15 @@ async function Notify_Trainers(TIDs, title, notification) {
     CON.end();
 }
 
+async function Notify_User_Forgot_Password(email_address, code) {
+    var title = "Change Password Code";
+    var notification = "The code to change your password is : " + code;
+    Email_Appointment(email_address, title, notification);
+}
+
 module.exports = {
     Notify_Appointment,
     Notify_Customers,
-    Notify_Trainers
+    Notify_Trainers,
+    Notify_User_Forgot_Password
 }

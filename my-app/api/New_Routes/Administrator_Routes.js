@@ -420,10 +420,13 @@ app.post('/Admin/Trainer/Create', async function(req, res) {
 })
 
 app.post('/Admin/Trainer/Notify', function(req, res) {
-    var TIDs = req.body.CIDs;
+    var TIDs = req.body.TIDs;
     var title = req.body.title;
     var notification = req.body.notification;
-    Notify_Customers(TIDs, title, notification);
+
+    if (title == undefined) title = "";
+
+    Notify_Trainers(TIDs, title, notification);
     res.send("");
 })
 
