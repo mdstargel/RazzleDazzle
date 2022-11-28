@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ConfirmButton from '../../Buttons/ConfirmButton';
 import CancelButton from '../../Buttons/CancelButton';
+import axios from 'axios';
 
 const DeleteCustomer = ({AvailableCustomers, setAvailableCustomers}) => {
     /**
@@ -58,8 +59,14 @@ const DeleteCustomer = ({AvailableCustomers, setAvailableCustomers}) => {
         }
         console.log('Ids to remove', removedUserIds);
 
-        setAvailableCustomers([...AvailableCustomers].filter(object =>
-            object.isPreffered !== true))       
+        let postData = {
+            "user_ids": removedUserIds
+        };
+
+        axios.post('/Admin/Customer/Delete', postData).then(setAvailableCustomers([...AvailableCustomers].filter(object =>
+            object.isPreffered !== true)))
+
+               
         
         /**
          * Update Database here
