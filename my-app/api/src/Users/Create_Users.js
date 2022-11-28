@@ -98,7 +98,7 @@ async function Create_Trainer(
             "Trainer_Email_Address, " +
             "Trainer_Emergency_Name, " +
             "Trainer_Emergency_Phone_Number, " +
-            "Trainer_Riding_Style,) " +
+            "Trainer_Riding_Style) " +
             "VALUES ('" +
             trainer_name + "', '" +
             trainer_address + "', '" +
