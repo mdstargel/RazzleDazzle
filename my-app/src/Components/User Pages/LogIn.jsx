@@ -5,6 +5,9 @@ import './styles.css'
 import CancelButton from '../Buttons/CancelButton';
 import ConfirmButton from '../Buttons/ConfirmButton';
 
+
+const async = require('async');
+
 const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions, setUserInfo }) => {
     /**
      * Reference for Forms logic
@@ -34,14 +37,14 @@ const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions, set
         console.log('password', values.password);
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         /**
          * Set bool here to validate with backend that the user is signed in
          */
         if (values.password && values.email) {
             // Send Log in information
-            axios.post('/Login', {
+            await axios.post('/Login', {
                 "login_email": values.email,
                 "login_password": values.password,
             })
