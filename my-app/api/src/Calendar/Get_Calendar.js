@@ -5,6 +5,7 @@ const async = require('async');
 const customer_appointment = require('./Appointments/Classes/Class_Customer_Appointment');
 const trainer_appointment = require('./Appointments/Classes/Class_Trainer_Appointment');
 const administrator_appointment = require('./Appointments/Classes/Class_Administrator_Appointment');
+const administrator_trainer_appointment = require('./Appointments/Classes/Class_Administrator_Trainer_Appointment');
 
 /**
  * Mysql connection
@@ -206,7 +207,8 @@ async function Get_Customer_Week_Calendar(CID, date) {
     const CURRENT_DATE = YYYY + '-' + MM + '-' + DD;
 
     // Get Current Week
-    const FIRST = date.getDate() - date.getDay();
+    const NEW_DATE = new Date(date);
+    const FIRST = NEW_DATE.getDate() - NEW_DATE.getDay();
     const LAST = FIRST + 6;
     const FIRST_DD = String(FIRST.getDate()).padStart(2, '0');
     const FIRST_MM = String(FIRST.getMonth() + 1).padStart(2, '0');
@@ -392,9 +394,10 @@ async function Get_Customer_Day_Calendar(CID, date) {
     const CURRENT_DATE = YYYY + '-' + MM + '-' + DD;
 
     // Get Date given
-    const DATE_DD = String(date.getDate()).padStart(2, '0');
-    const DATE_MM = String(date.getMonth() + 1).padStart(2, '0');
-    const DATE_YYYY = date.getFullYear();
+    const NEW_DATE = new Date(date);
+    const DATE_DD = String(NEW_DATE.getDate()).padStart(2, '0');
+    const DATE_MM = String(NEW_DATE.getMonth() + 1).padStart(2, '0');
+    const DATE_YYYY = NEW_DATE.getFullYear();
     const DATE = DATE_YYYY + '-' + DATE_MM + '-' + DATE_DD;
 
     try {
@@ -625,7 +628,8 @@ async function Get_Trainer_Week_Calendar(TID, date) {
     var calendar = [];
 
     // Get Current Week
-    const FIRST = date.getDate() - date.getDay();
+    const NEW_DATE = new Date(date);
+    const FIRST = NEW_DATE.getDate() - NEW_DATE.getDay();
     const LAST = FIRST + 6;
     const FIRST_DD = String(FIRST.getDate()).padStart(2, '0');
     const FIRST_MM = String(FIRST.getMonth() + 1).padStart(2, '0');
@@ -691,15 +695,21 @@ async function Get_Trainer_Week_Calendar(TID, date) {
     return calendar;
 }
 
-
+/**
+ * 
+ * @param {*} TID 
+ * @param {*} date 
+ * @returns Calendar for the day selected
+ */
 async function Get_Trainer_Day_Calendar(TID, date) {
     // Create calendar
     var calendar = [];
 
     // Get Date given
-    const DATE_DD = String(date.getDate()).padStart(2, '0');
-    const DATE_MM = String(date.getMonth() + 1).padStart(2, '0');
-    const DATE_YYYY = date.getFullYear();
+    const NEW_DATE = new Date(date);
+    const DATE_DD = String(NEW_DATE.getDate()).padStart(2, '0');
+    const DATE_MM = String(NEW_DATE.getMonth() + 1).padStart(2, '0');
+    const DATE_YYYY = NEW_DATE.getFullYear();
     const DATE = DATE_YYYY + '-' + DATE_MM + '-' + DATE_DD;
 
     try {
@@ -808,14 +818,101 @@ async function Get_Administrator_Calendar() {
 }
 
 
+async function Get_Administrator_Week_Calendar(TID, date) {
+    // Create calendar
+    var calendar = [];
+
+    // Get Current Week
+    const NEW_DATE = new Date(date);
+    const FIRST = NEW_DATE.getDate() - NEW_DATE.getDay();
+    const LAST = FIRST + 6;
+    const FIRST_DD = String(FIRST.getDate()).padStart(2, '0');
+    const FIRST_MM = String(FIRST.getMonth() + 1).padStart(2, '0');
+    const FIRST_YYYY = CURR.getFullYear();
+    const FIRST_DATE = FIRST_YYYY + '-' + FIRST_MM + '-' + FIRST_DD;
+    const LAST_DD = String(LAST.getDate()).padStart(2, '0');
+    const LAST_MM = String(LAST.getMonth() + 1).padStart(2, '0');
+    const LAST_YYYY = CURR.getFullYear();
+    const LAST_DATE = LAST_YYYY + '-' + LAST_MM + '-' + LAST_DD;
+
+    try {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
+
+        // Get Name
+        var query_values = await CON.promise().query(
+            "SELECT Trainer_Name " +
+            "FROM Trainer " +
+            "WHERE TID = " + TID + ";");
+
+        // Get assigned appointments
+        var assigned_appointments = await CON.promise().query(
+            "SELECT AID, " +
+            "Appointment_Name, " +
+            "Appointment_Date, " +
+            "Appointment_Start_Time, " +
+            "Appointment_End_Time, " +
+            "Appointment_Riding_Style, " +
+            "Appointment_Description, " +
+            "Appointment_Public_Notes, " +
+            "Appointment_Private_Notes, " +
+            "Appointment_Group, " +
+            "Appointment_Group_Size " +
+            "Appointment_GID " +
+            "FROM Appointment " +
+            "WHERE Appointment.Appointment_Date >= '" + FIRST_DATE + "' " +
+            "AND Appointment.Appointment_Date <= '" + LAST_DATE + "' " +
+            "AND (Appointment_TID_1 = " + TID + " " +
+            "OR Appointment_TID_2 = " + TID + ");");
+
+        // Close connection
+        CON.end();
+
+        // Pull values
+        assigned_appointments = assigned_appointments[0];
+        query_values = query_values[0];
+        var trainer_name = query_values[0].Trainer_Name;
+
+        // Add assigned appointments to calendar
+        for (var i = 0; i < assigned_appointments.length; i++) {
+            calendar.push(
+                new administrator_trainer_appointment(
+                    trainer_name,
+                    assigned_appointments[i].AID,
+                    assigned_appointments[i].Appointment_Name,
+                    assigned_appointments[i].Appointment_Date,
+                    assigned_appointments[i].Appointment_Start_Time,
+                    assigned_appointments[i].Appointment_End_Time,
+                    assigned_appointments[i].Appointment_Riding_Style,
+                    assigned_appointments[i].Appointment_Description,
+                    assigned_appointments[i].Appointment_Public_Notes,
+                    assigned_appointments[i].Appointment_Private_Notes,
+                    assigned_appointments[i].Appointment_Group,
+                    assigned_appointments[i].Appointment_Group_Size,
+                    assigned_appointments[i].Appointment_GID)
+            );
+        };
+    } catch (err) {
+        console.error(err);
+    }
+
+    return calendar;
+}
+
+/**
+ * 
+ * @param {*} date 
+ * @returns day calendar
+ */
 async function Get_Administrator_Day_Calendar(date) {
     // Create calendar
     var calendar = [];
 
     // Get Date given
-    const DATE_DD = String(date.getDate()).padStart(2, '0');
-    const DATE_MM = String(date.getMonth() + 1).padStart(2, '0');
-    const DATE_YYYY = date.getFullYear();
+    const NEW_DATE = new Date(date);
+    const DATE_DD = String(NEW_DATE.getDate()).padStart(2, '0');
+    const DATE_MM = String(NEW_DATE.getMonth() + 1).padStart(2, '0');
+    const DATE_YYYY = NEW_DATE.getFullYear();
     const DATE = DATE_YYYY + '-' + DATE_MM + '-' + DATE_DD;
 
     try {
