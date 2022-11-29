@@ -11,12 +11,16 @@ import AdminCalendarView from './AdminCalendarView';
 // import DayView from './Calendar/DayView';
 import AddAppointment from './SettingsPages/AddAppointment';
 // Bobby's comment merge conflict
-const Calendar = ({ userPermissions }) => {
+const Calendar = ({ userPermissions, UserInfo }) => {
   const [isMounted, setIsMounted] = useState(false);
-
-    if (!isMounted) {
-        axios.get('/Admin/Calendar').then(resp => {
-            console.log('Calendar List: ', resp.data)
+  const [dayEvents, setDayEvents] = useState();
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  if (!isMounted) {
+      // Customer/Trainer userID
+    const dayPost = { "user_ID": UserInfo.id, "date": selectedDate };
+    console.log(UserInfo.type + '/Calendar/Day');
+    axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
+            console.log('Calendar Day: ', resp.data)
         })
         setIsMounted(true);
     }

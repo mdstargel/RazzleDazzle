@@ -106,7 +106,7 @@ function App() {
         setUserPermissions={setUserPermissions}
         setUserInfo={setUserInfo} />
     } else if (wpage === 'Calendar') {
-      chosenpage = <Calendar userPermissions={userPermissions} />
+      chosenpage = <Calendar userPermissions={userPermissions} UserInfo={UserInfo} />
     } else if (wpage === 'Edit Personal Information') {
       chosenpage = <EditPersonalInformation setwpage={setwpage} UserInfo={UserInfo} setUserInfo={setUserInfo} />
     } else if (wpage === 'Change Password') {

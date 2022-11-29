@@ -157,7 +157,8 @@ app.get('/Admin/Calendar', async function(req, res) {
     res.send(calendar);
 })
 
-app.post('/Admin/Calendar/Day', async function(req, res) {
+app.post('/Admin/Calendar/Day', async function (req, res) {
+    console.log(req.body.date);
     var date = req.body.date;
     var calendar = await Get_Administrator_Day_Calendar(date);
     res.send(calendar);
@@ -202,7 +203,7 @@ app.post('/Admin/Calendar/Create', function(req, res) {
     var appointment_TID_1 = req.body.appointment_TID_1;
     var appointment_TID_2 = req.body.appointment_TID_2;
 
-    if (appointment_difficulty === undefined) appointment_difficulty = 0;
+    if (appointment_difficulty === undefined) appointment_difficulty = "Beginner";
     if (appointment_description === undefined) appointment_description = "";
     if (appointment_public_notes === undefined) appointment_public_notes = "";
     if (appointment_private_notes === undefined) appointment_private_notes = "";
