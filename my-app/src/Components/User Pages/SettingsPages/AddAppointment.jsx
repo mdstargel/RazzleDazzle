@@ -78,7 +78,12 @@ const AddAppointment = ({setShowAddAppointment}) => {
     };
     const handleAddAppointment = () => {
             console.log('Adding Appointment!', values);
-   
+        if (values.trainerName && values.date &&
+            values.startTime &&
+            values.endTime &&
+            values.style &&
+            values.Difficulty &&
+            values.Spots) {
             // Send Values to backend to validate
             let jsDate = new Date(values.date);
             
@@ -90,8 +95,9 @@ const AddAppointment = ({setShowAddAppointment}) => {
                 "appointment_riding_style": values.style,
                 "appointment_difficulty": values.Difficulty,
                 "appointment_group_size": values.Spots
-                }
-            axios.post('/Admin/Calendar/Create', appointmentData).then(resp => {})
+            }
+            axios.post('/Admin/Calendar/Create', appointmentData).then(resp => { })
+        }
     };
 
     return(
@@ -128,7 +134,8 @@ const AddAppointment = ({setShowAddAppointment}) => {
                 <div className='inputBoxes3'>
                     <input
                         className='input2'
-                    type="time"
+                        type="time"
+                        onChange={handleStartTimeChange}
                     />
                 </div>
                 <br /><br />
