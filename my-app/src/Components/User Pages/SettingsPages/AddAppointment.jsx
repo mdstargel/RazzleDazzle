@@ -77,32 +77,21 @@ const AddAppointment = ({setShowAddAppointment}) => {
          }
     };
     const handleAddAppointment = () => {
-        console.log('Made it here!')
-        if (values.trainerName && values.date && values.startTime &&
-            values.endTime && values.style && values.Difficulty) {
             console.log('Adding Appointment!', values);
+   
             // Send Values to backend to validate
             let jsDate = new Date(values.date);
             
-            // let appointmentData = {
-            //     "appointment_trainer_1_name": values.trainerName,
-            //     "appointment_date": jsDate,
-            //     "a"
-                
-                
-                
-            //     : trainerName,
-            //     date: '',
-            //     startTime: '',
-            //     endTime: '',
-            //     style: '',
-            //     Difficulty: '',
-            //     Spots: '',
-            //         }
-            // axios.post('/Admin/Calendar/Create', appointmentData).then(resp => {})
-        } else {
-            console.log('Failed to add appointment!')
-        }
+            let appointmentData = {
+                "appointment_trainer_1_name": values.trainerName,
+                "appointment_date": jsDate,
+                "appointment_start_time": values.startTime,
+                "appointment_end_time": values.endTime,
+                "appointment_riding_style": values.style,
+                "appointment_difficulty": values.Difficulty,
+                "appointment_group_size": values.Spots
+                }
+            axios.post('/Admin/Calendar/Create', appointmentData).then(resp => {})
     };
 
     return(
