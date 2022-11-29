@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
+import { AutoComplete } from "@progress/kendo-react-dropdowns";
+
 import '../styles.css'
 import ConfirmButton from '../../Buttons/ConfirmButton';
 import CancelButton from '../../Buttons/CancelButton';
@@ -9,7 +13,8 @@ const AddAppointment = ({setShowAddAppointment}) => {
         startTime: '',
         endTime: '',
         style: '',
-        lessonType: '',
+        Difficulty: '',
+        Spots: '',
     });
 
     const handleTrainerNameChange = (event) => {
@@ -53,20 +58,48 @@ const AddAppointment = ({setShowAddAppointment}) => {
         }));
         console.log('style', values.style);
     };
-    const handleLessonTypeChange = (event) => {
+    const handleDifficultyChange = (event) => {
         event.persist();
         setValues((values) => ({
             ...values,
-            lessonType: event.target.value,
+            Difficulty: event.target.value,
         }));
-        console.log('lessonType', values.lessonType);
+        console.log('Difficulty', values.Difficulty);
+    };
+     const handleSpotsChange = (event) => {
+         event.persist();
+         if (values !== '') {
+             setValues((values) => ({
+                 ...values,
+                 Spots: event.target.value,
+             }));
+             console.log('Spots', values.Spots);
+         }
     };
     const handleAddAppointment = () => {
         console.log('Made it here!')
         if (values.trainerName && values.date && values.startTime &&
-            values.endTime && values.style && values.lessonType) {
+            values.endTime && values.style && values.Difficulty) {
             console.log('Adding Appointment!', values);
             // Send Values to backend to validate
+            let jsDate = new Date(values.date);
+            
+            // let appointmentData = {
+            //     "appointment_trainer_1_name": values.trainerName,
+            //     "appointment_date": jsDate,
+            //     "a"
+                
+                
+                
+            //     : trainerName,
+            //     date: '',
+            //     startTime: '',
+            //     endTime: '',
+            //     style: '',
+            //     Difficulty: '',
+            //     Spots: '',
+            //         }
+            // axios.post('/Admin/Calendar/Create', appointmentData).then(resp => {})
         } else {
             console.log('Failed to add appointment!')
         }
@@ -94,7 +127,7 @@ const AddAppointment = ({setShowAddAppointment}) => {
                 <div className='inputBoxes2'>
                     <input
                         className='input2'
-                        type="text"
+                        type="date"
                         value={values.date}
                         onChange={handleDateChange}
                         />
@@ -106,9 +139,7 @@ const AddAppointment = ({setShowAddAppointment}) => {
                 <div className='inputBoxes3'>
                     <input
                         className='input2'
-                    type="text"
-                    value={values.startTime}
-                    onChange={handleStartTimeChange}
+                    type="time"
                     />
                 </div>
                 <br /><br />
@@ -118,7 +149,7 @@ const AddAppointment = ({setShowAddAppointment}) => {
                 <div className='inputBoxes4'>
                     <input
                     className='input2'
-                    type="text"
+                    type="time"
                     value={values.endTime}
                     onChange={handleEndTimeChange}
                     />
@@ -137,17 +168,34 @@ const AddAppointment = ({setShowAddAppointment}) => {
                 </div>
                 <br /><br />
                 <div className='inputTitles6'>
-                    <label className='label'>Lesson Type:</label>
+                    <label className='label'>Difficulty:</label>
                 </div>
                 <div className='inputBoxes6'>
                     <input
                         className='input2'
                     type="text"
-                    value={values.lessonType}
-                    onChange={handleLessonTypeChange}
+                    value={values.Difficulty}
+                    onChange={handleDifficultyChange}
                     />
                 </div>
-                <br/><br/>
+                <br /><br />
+                <div className='inputTitles6'>
+                    <label className='label'>Number of Spots:</label>
+                </div>
+                <div className='inputBoxes6'>
+                    <input
+                    className='input2'
+                    type="number"
+                    min="1"
+                    max="4"
+                    oninput="validity.valid||(value='');"
+                    value={values.Spots}
+                    onChange={handleSpotsChange}
+                    onKeyDown={(event) => {
+                        event.preventDefault();
+                    }}
+                    />
+                </div>
                 {//this button is going to need to close add Appointment popup
                 }
                 <br /><br />
