@@ -88,50 +88,8 @@ async function Create_Appointment(
         appointment_TID_2 + "');"
     );
 
-    var new_AID = await CON.promise().query(
-        "SELECT AID " +
-        "FROM Appointment " +
-        "WHERE " +
-        "Appointment_Name = '" + appointment_name + "' AND " +
-        "Appointment_Date = '" + APPOINTMENT_DATE + "' AND " +
-        "Appointment_Start_Time = '" + appointment_start_time + "' AND " +
-        "Appointment_End_Time = '" + appointment_end_time + "' AND " +
-        "Appointment_Riding_Style = '" + appointment_riding_style + "' AND " +
-        "Appointment_Difficulty = '" + appointment_difficulty + "' AND " +
-        "Appointment_Description = '" + appointment_description + "' AND " +
-        "Appointment_Public_Notes = '" + appointment_public_notes + "' AND " +
-        "Appointment_Private_Notes = '" + appointment_private_notes + "' AND " +
-        "Appointment_Group = '" + appointment_group + "' AND " +
-        "Appointment_Group_Size = '" + appointment_group_size + "' AND " +
-        "Appointment_TID_1 = '" + appointment_TID_1 + "' AND " +
-        "Appointment_TID_2 = '" + appointment_TID_2 + "';"
-    );
-
     // Close connection
     CON.end();
-
-    // Pull values
-    new_AID = new_AID[0];
-
-    // Create new administrator appointment
-    var appointment = new administrator_appointment(
-        new_AID[0].AID,
-        appointment_name,
-        appointment_date,
-        appointment_start_time,
-        appointment_end_time,
-        appointment_riding_style,
-        appointment_difficulty,
-        appointment_description,
-        appointment_public_notes,
-        appointment_private_notes,
-        appointment_group,
-        appointment_group_size,
-        appointment_TID_1,
-        appointment_TID_2
-    )
-
-    return appointment;
 }
 
 module.exports = {
