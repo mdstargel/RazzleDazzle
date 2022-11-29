@@ -12,7 +12,8 @@ const {
     Get_Trainer,
     Get_All_Trainers,
     Get_Mini_Trainers,
-    Get_TIDs
+    Get_TIDs,
+    Trainer_Validator
 } = require('../src/Users/Get_Users');
 const {
     Set_Customer_Difficulty,
@@ -188,7 +189,7 @@ app.get('/Admin/Calendar/Get_Trainers', async function(req, res) {
     res.send(trainers);
 })
 
-app.post('/Admin/Calendar/Create', function(req, res) {
+app.post('/Admin/Calendar/Create', async function(req, res) {
     var appointment_name = req.body.appointment_name;
     var appointment_date = req.body.appointment_date;
     var appointment_start_time = req.body.appointment_start_time;
@@ -200,17 +201,24 @@ app.post('/Admin/Calendar/Create', function(req, res) {
     var appointment_private_notes = req.body.appointment_private_notes;
     var appointment_group = req.body.appointment_group;
     var appointment_group_size = req.body.appointment_group_size;
-    var appointment_TID_1 = req.body.appointment_TID_1;
-    var appointment_TID_2 = req.body.appointment_TID_2;
+    var appointment_trainer_1_name = req.body.appointment_trainer_1_name;
+    var appointment_trainer_2_name = req.body.appointment_trainer_2_name;
 
+    if (appointment_name === undefined) appointment_name = "";
     if (appointment_difficulty === undefined) appointment_difficulty = "Beginner";
     if (appointment_description === undefined) appointment_description = "";
     if (appointment_public_notes === undefined) appointment_public_notes = "";
     if (appointment_private_notes === undefined) appointment_private_notes = "";
-    if (appointment_group === undefined) appointment_group = 0;
-    if (appointment_group_size === undefined) appointment_group_size = 1;
-    if (appointment_TID_1 === undefined) appointment_TID_1 = 5;
-    if (appointment_TID_2 === undefined) appointment_TID_2 = 5;
+    if (appointment_group_size === 1) {
+        appointment_group = 0;
+    } else if (appointment_group_size === undefined) {
+        appointment_group_size = 1;
+        appointment_group = 0;
+    } else {
+        appointment_group = 1;
+    }
+    var appointment_TID_1 = await Trainer_Validator(appointment_trainer_1_name);
+    var appointment_TID_2 = await Trainer_Validator(appointment_trainer_2_name);
 
     Create_Appointment(
         appointment_name,

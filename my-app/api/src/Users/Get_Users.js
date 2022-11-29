@@ -301,7 +301,10 @@ async function Get_Mini_Trainers() {
     return trainers;
 }
 
-
+/**
+ * 
+ * @returns all TIDs
+ */
 async function Get_TIDs() {
     // create trainers
     var trainers = [];
@@ -332,6 +335,25 @@ async function Get_TIDs() {
     return trainers;
 }
 
+
+async function Trainer_Validator(trainer_name) {
+    // Open connection
+    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+
+    var query_results = await CON.promise().query(
+        "SELECT TID " +
+        "FROM Trainer " +
+        "WHERE Trainer_Name = '" + trainer_name + "';");
+
+    query_results = query_results[0];
+
+    var TID = query_results[0].TID;
+
+    if (TID === undefined) TID = 5;
+
+    return TID;
+}
+
 module.exports = {
     Get_Customer,
     Get_All_Customers,
@@ -339,5 +361,6 @@ module.exports = {
     Get_Trainer,
     Get_All_Trainers,
     Get_Mini_Trainers,
-    Get_TIDs
+    Get_TIDs,
+    Trainer_Validator
 };

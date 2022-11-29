@@ -3,19 +3,44 @@ function Convert_Appointment(appointment) {
     var new_date = date_array[1] + "/" + date_array[2] + "/" + date_array[0];
 
     var start_time_array = appointment.appointment_start_time.split(":");
+    var end_time_array = appointment.appointment_end_time.split(":");
+    var start_time;
+    var end_time;
+
     if (start_time_array[0] > 0 &&
-        start_time_array < 12) {
-        var start_time = start_time_array[0] + "am";
+        start_time_array[0] < 12) {
+        if (start_time_array[1] != 0) {
+            start_time = start_time_array[0] + ":" + start_time_array[1];
+        } else {
+            start_time = start_time_array[0] + "";
+        }
+        start_time += "am";
     } else {
-        var start_time = (start_time_array[0] - 12) + "pm";
+        start_hour = start_time[0] - 12;
+        if (start_time_array[1] != 0) {
+            start_time = start_hour + ":" + start_time_array[1];
+        } else {
+            start_time = start_hour + "";
+        }
+        start_time += "pm";
     }
 
-    var end_time_array = appointment.appointment_end_time.split(":");
     if (end_time_array[0] > 0 &&
-        end_time_array < 12) {
-        var end_time = end_time_array[0] + "am";
+        end_time_array[0] < 12) {
+        if (end_time_array[1] != 0) {
+            end_time = end_time_array[0] + ":" + end_time_array[1];
+        } else {
+            end_time = end_time_array[0] + "";
+        }
+        end_time += "am";
     } else {
-        var end_time = (end_time_array[0] - 12) + "pm";
+        end_hour = end_time[0] - 12;
+        if (end_time_array[1] != 0) {
+            end_time = end_hour + ":" + end_time_array[1];
+        } else {
+            end_time = end_hour + "";
+        }
+        end_time += "pm";
     }
 
     var group = true;
