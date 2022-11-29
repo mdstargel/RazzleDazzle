@@ -353,7 +353,9 @@ async function Trainer_Validator(trainer_name) {
 
         query_results = query_results[0];
 
-        TID = query_results[0].TID;
+        if (query_results[0].TID != undefined) {
+            TID = query_results[0].TID;
+        }
     }
 
     if (TID === undefined) TID = 5;
