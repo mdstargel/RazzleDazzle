@@ -17,7 +17,7 @@ app.post('/Customer', async function(req, res) {
     res.send(user);
 })
 
-app.post('/Trainer/Set_Personal_Information', function(req, res) {
+app.post('/Customer/Set_Personal_Information', function(req, res) {
     var CID = req.body.user_id;
     var customer_name = req.body.user_name;
     var customer_address = req.body.user_address;
@@ -96,6 +96,20 @@ app.post('/Customer/Delete_Customer', function(req, res) {
 app.post('/Customer/Calendar', async function(req, res) {
     var CID = req.body.user_id;
     var calendar = await Get_Calendar.Get_Customer_Calendar(CID);
+    res.send(calendar);
+})
+
+app.post('/Customer/Calendar/Week', async function(req, res) {
+    var CID = req.body.user_id;
+    var date = req.body.date;
+    var calendar = await Get_Calendar.Get_Customer_Week_Calendar(CID, date);
+    res.send(calendar);
+})
+
+app.post('/Customer/Calendar/Day', async function(req, res) {
+    var CID = req.body.user_id;
+    var date = req.body.date;
+    var calendar = await Get_Calendar.Get_Customer_Day_Calendar(CID, date);
     res.send(calendar);
 })
 

@@ -301,11 +301,43 @@ async function Get_Mini_Trainers() {
     return trainers;
 }
 
+
+async function Get_TIDs() {
+    // create trainers
+    var trainers = [];
+
+    try {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
+
+        // Get values
+        var trainer_values = await CON.promise().query(
+            "SELECT TID " +
+            "FROM Trainer;");
+
+        // Close connection
+        CON.end();
+
+        // Pull values
+        trainer_values = trainer_values[0];
+
+        for (var i = 0; i < trainer_values.length; i++) {
+            trainers.push(trainer_values[0].TID);
+        }
+
+    } catch (err) {
+        console.error(err);
+    }
+
+    return trainers;
+}
+
 module.exports = {
     Get_Customer,
     Get_All_Customers,
     Get_Mini_Customers,
     Get_Trainer,
     Get_All_Trainers,
-    Get_Mini_Trainers
+    Get_Mini_Trainers,
+    Get_TIDs
 };
