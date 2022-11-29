@@ -337,17 +337,24 @@ async function Get_TIDs() {
 
 
 async function Trainer_Validator(trainer_name) {
-    // Open connection
-    const CON = MYSQL.createConnection(MYSQL_CONFIG);
+    var TID;
 
-    var query_results = await CON.promise().query(
-        "SELECT TID " +
-        "FROM Trainer " +
-        "WHERE Trainer_Name = '" + trainer_name + "';");
+    if (trainer_name != undefined) {
+        // Open connection
+        const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
-    query_results = query_results[0];
+        var query_results = await CON.promise().query(
+            "SELECT TID " +
+            "FROM Trainer " +
+            "WHERE Trainer_Name = '" + trainer_name + "';");
 
-    var TID = query_results[0].TID;
+        // Close connection
+        CON.end();
+
+        query_results = query_results[0];
+
+        TID = query_results[0].TID;
+    }
 
     if (TID === undefined) TID = 5;
 

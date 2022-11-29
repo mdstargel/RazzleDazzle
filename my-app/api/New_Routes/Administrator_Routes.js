@@ -209,6 +209,7 @@ app.post('/Admin/Calendar/Create', async function(req, res) {
     if (appointment_description === undefined) appointment_description = "";
     if (appointment_public_notes === undefined) appointment_public_notes = "";
     if (appointment_private_notes === undefined) appointment_private_notes = "";
+
     if (appointment_group_size === 1) {
         appointment_group = 0;
     } else if (appointment_group_size === undefined) {
@@ -217,6 +218,7 @@ app.post('/Admin/Calendar/Create', async function(req, res) {
     } else {
         appointment_group = 1;
     }
+
     var appointment_TID_1 = await Trainer_Validator(appointment_trainer_1_name);
     var appointment_TID_2 = await Trainer_Validator(appointment_trainer_2_name);
 
