@@ -106,13 +106,13 @@ function App() {
         setUserPermissions={setUserPermissions}
         setUserInfo={setUserInfo} />
     } else if (wpage === 'Calendar') {
-      chosenpage = <Calendar userPermissions={userPermissions} />
+      chosenpage = <Calendar userPermissions={userPermissions} UserInfo={UserInfo} />
     } else if (wpage === 'Edit Personal Information') {
       chosenpage = <EditPersonalInformation setwpage={setwpage} UserInfo={UserInfo} setUserInfo={setUserInfo} />
     } else if (wpage === 'Change Password') {
       chosenpage = <ChangePassword setwpage={setwpage} UserInfo={UserInfo} />
     }else if (wpage === 'Manage Notifications') {
-      chosenpage = <ManageNotifications setwpage={setwpage} />
+      chosenpage = <ManageNotifications setwpage={setwpage} UserInfo={UserInfo} setUserInfo={setUserInfo} />
     }else if (wpage === 'View Session Notes') {
       chosenpage = <ViewSessionNotes />
     }else if (wpage === 'Add/Edit News') {

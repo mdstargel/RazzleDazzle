@@ -19,8 +19,8 @@ const SettingsDropdown = ({ userPermissions, setwpage, setSignedIn, setShowDropd
             <hr/> */}
             <div className="pad" onClick={() => {setwpage('Delete Account'); setShowDropdown(false)}}>Delete Account</div>
             <hr/>
-            <div className="pad" onClick={() => { setwpage('Preferred Trainer'); setShowDropdown(false) }}>Preferred Trainer</div>
-            <hr/>
+            {/* <div className="pad" onClick={() => { setwpage('Preferred Trainer'); setShowDropdown(false) }}>Preferred Trainer</div>
+            <hr/> */}
             <div className="pad" onClick={handleLogOut}>Log Out</div>
         </div>
     );
@@ -31,14 +31,14 @@ const SettingsDropdown = ({ userPermissions, setwpage, setSignedIn, setShowDropd
             <hr/>
             <div className="pad" onClick={() => { setwpage('Change Password'); setShowDropdown(false) }}>Change Password</div>
             <hr/>
-            <div className="pad" onClick={() => { setwpage('Manage Notifications'); setShowDropdown(false) }}>Manage Notifications</div>
-            <hr/>
+            {/* <div className="pad" onClick={() => { setwpage('Manage Notifications'); setShowDropdown(false) }}>Manage Notifications</div>
+            <hr/> */}
             {/* <div className="pad" onClick={() => { setwpage('View Session Notes'); setShowDropdown(false) }}>View Session Notes</div>
             <hr/> */}
             {/* <div className="pad" onClick={() => { setwpage('Add/Edit Session Notes'); setShowDropdown(false) }}>Add/Edit Session Notes</div>
             <hr/> */}
-            <div className="pad" onClick={() => { setwpage('Notify Customers'); setShowDropdown(false) }}>Notify Customers</div>
-            <hr/>
+            {/* <div className="pad" onClick={() => { setwpage('Notify Customers'); setShowDropdown(false) }}>Notify Customers</div>
+            <hr/> */}
             <div className="pad" onClick={handleLogOut}>Log Out</div>
         </div>
     );
@@ -49,8 +49,8 @@ const SettingsDropdown = ({ userPermissions, setwpage, setSignedIn, setShowDropd
             <hr/>
             <div className="pad" onClick={() => { setwpage('Change Password'); setShowDropdown(false) }}>Change Password</div>
             <hr/>
-            <div className="pad" onClick={() => { setwpage('Manage Notifications'); setShowDropdown(false) }}>Manage Notifications</div>
-            <hr/>
+            {/* <div className="pad" onClick={() => { setwpage('Manage Notifications'); setShowDropdown(false) }}>Manage Notifications</div>
+            <hr/> */}
             {/* <div className="pad" onClick={() => { setwpage('View Session Notes'); setShowDropdown(false) }}>View Session Notes</div>
             <hr/> */}
             <div className="pad" onClick={() => { setwpage('Add/Edit News'); setShowDropdown(false) }}>Add/Edit News</div>

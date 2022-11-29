@@ -1,22 +1,42 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import '../styles.css'
 import PageTitle from "../PageTitle";
 import CancelButton from '../../Buttons/CancelButton';
 import ConfirmButton from '../../Buttons/ConfirmButton';
 
-const ManageNotifications = ({setwpage}) => {
+const ManageNotifications = ({setwpage, UserInfo, setUserInfo}) => {
     /**
      * Need database to set these notification settings
      */
-    const [textOn, setTextOn] = useState(false);
+    const [textOn, setTextOn] = useState(UserInfo.TextNotifications ? true : false);
     const [successfulChangeMessage, setSuccessfulChangeMessage] = useState('');
     const handleChangeNotificationSettings = () => {
         
-        // This should update the database with the preferred notification settings
-        console.log('This should information changing Notification Settings!');
-        console.log('Text:', textOn ? 'True' : 'False')
+        const postData = {
+            "user_id": UserInfo.id,
+            "user_phone_notifications": textOn ? 1 : 0
+        }
+
+        console.log('is Text on?', textOn);
+        console.log('postData', postData);
+        axios.post('/Customer/Set_Phone_Notifications', postData).then();
+
+        let new_user = {
+            type: UserInfo.type,
+            id: UserInfo.id,
+            FirstName: UserInfo.FirstName,
+            LastName: UserInfo.LastName,
+            Email: UserInfo.Email,
+            Address: UserInfo.Address,
+            phone: UserInfo.phone,
+            TextNotifications: textOn
+        }
+        setUserInfo(new_user);
+
         setSuccessfulChangeMessage('Your preferences have been changed!')
-    };
+    }
 
     return (
         <div className='backGround'>
@@ -28,7 +48,7 @@ const ManageNotifications = ({setwpage}) => {
                         <div style={{marginTop: '30px', marginLeft: 'calc(50% - 35px)', fontWeight: 'bold'}}>Text: </div>
                         <div
                             className='radioButton'
-                            style={textOn ?
+                            style={textOn === false ?
                                 { backgroundColor: '#D9D9D9' } :
                                 { backgroundColor: '#0C1526'}}
                             onClick={() => setTextOn(!textOn)}>
