@@ -1,9 +1,12 @@
 function Convert_Appointment(appointment) {
-    var date_array = appointment.appointment_date.split(":");
+    var date_array = appointment.appointment_date.split("-");
     var new_date = date_array[1] + "/" + date_array[2] + "/" + date_array[0];
 
-    var start_time_array = appointment.appointment_start_time.split(":");
-    var end_time_array = appointment.appointment_end_time.split(":");
+    var new_start_time = appointment.appointment_start_time + "";
+    var new_end_time = appointment.appointment_end_time + "";
+
+    var start_time_array = new_start_time.split(":");
+    var end_time_array = new_end_time.split(":");
     var start_time;
     var end_time;
 
@@ -16,7 +19,7 @@ function Convert_Appointment(appointment) {
         }
         start_time += "am";
     } else {
-        start_hour = start_time[0] - 12;
+        start_hour = start_time_array[0] - 12;
         if (start_time_array[1] != 0) {
             start_time = start_hour + ":" + start_time_array[1];
         } else {
@@ -34,7 +37,7 @@ function Convert_Appointment(appointment) {
         }
         end_time += "am";
     } else {
-        end_hour = end_time[0] - 12;
+        end_hour = end_time_array[0] - 12;
         if (end_time_array[1] != 0) {
             end_time = end_hour + ":" + end_time_array[1];
         } else {
@@ -69,3 +72,24 @@ function Convert_Appointment(appointment) {
 
     return new_appointment;
 }
+
+var appointment = {
+    "AID": 10,
+    "appointment_date": "2022-11-28",
+    "appointment_start_time": "18:02:00",
+    "appointment_end_time": "18:32:00",
+    "appointment_riding_style": "Sup",
+    "appointment_difficulty": "sup",
+    "appointment_description": "",
+    "appointment_public_notes": "",
+    "appointment_private_notes": "",
+    "appointment_group": 0,
+    "appointment_group_size": 1,
+    "appointment_TID_1": 5,
+    "appointment_TID_2": 5,
+    "appointment_GID": 0,
+    "appointment_reserved": 1
+}
+
+var new_appointment = Convert_Appointment(appointment);
+console.log(new_appointment)
