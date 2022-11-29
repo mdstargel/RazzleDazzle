@@ -11,7 +11,8 @@ const {
     Get_Mini_Customers,
     Get_Trainer,
     Get_All_Trainers,
-    Get_Mini_Trainers
+    Get_Mini_Trainers,
+    Get_TIDs
 } = require('../src/Users/Get_Users');
 const {
     Set_Customer_Difficulty,
@@ -45,7 +46,11 @@ const {
     Delete_Appointment
 } = require('../src/Calendar/Appointments/Set_Appointments');
 const { Create_News } = require('../src/News/Create_News');
-const { Get_Administrator_Calendar } = require('../src/Calendar/Get_Calendar');
+const {
+    Get_Administrator_Calendar,
+    Get_Administrator_Day_Calendar,
+    Get_Trainer_Week_Calendar
+} = require('../src/Calendar/Get_Calendar');
 const {
     Set_News_Image_URL,
     Set_News_Title,
@@ -150,6 +155,26 @@ app.post('/Admin/Change_Password', function(req, res) {
 app.get('/Admin/Calendar', async function(req, res) {
     var calendar = await Get_Administrator_Calendar();
     res.send(calendar);
+})
+
+app.post('/Admin/Calendar/Day', async function(req, res) {
+    var date = req.body.date;
+    var calendar = await Get_Administrator_Day_Calendar(date);
+    res.send(calendar);
+})
+
+app.post('/Admin/Calendar/Week', async function(req, res) {
+    var date = req.body.date;
+    var trainers = await Get_TIDs();
+
+    var week_calendars = [];
+
+    for (var i = 0; i < trainers.length; i++) {
+        week_calendars.push(
+            await Get_Trainer_Week_Calendar(trainers[i], date));
+    }
+
+    res.send(week_calendars);
 })
 
 app.get('/Admin/Calendar/Get_Customers', async function(req, res) {

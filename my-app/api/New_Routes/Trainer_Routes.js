@@ -8,7 +8,11 @@ app.use(bodyParser.urlencoded({
 const async = require('async');
 const Get_Users = require('../src/Users/Get_Users');
 const Set_Users = require('../src/Users/Set_Users');
-const { Get_Trainer_Calendar } = require('../src/Calendar/Get_Calendar');
+const {
+    Get_Trainer_Calendar,
+    Get_Trainer_Week_Calendar,
+    Get_Trainer_Day_Calendar
+} = require('../src/Calendar/Get_Calendar');
 const {
     Notify_Appointment,
     Notify_Customers
@@ -92,6 +96,20 @@ app.post('/Trainer/Change_Password', function(req, res) {
 app.post('/Trainer/Calendar', async function(req, res) {
     var TID = req.body.user_id;
     var calendar = await Get_Trainer_Calendar(TID);
+    res.send(calendar);
+})
+
+app.post('/Trainer/Calendar/Week', async function(req, res) {
+    var TID = req.body.user_id;
+    var date = req.body.date;
+    var calendar = await Get_Trainer_Week_Calendar(TID, date);
+    res.send(calendar);
+})
+
+app.post('/Trainer/Calendar/Day', async function(req, res) {
+    var TID = req.body.user_id;
+    var date = req.body.date;
+    var calendar = await Get_Trainer_Day_Calendar(TID, date);
     res.send(calendar);
 })
 
