@@ -93,7 +93,7 @@ async function Create_Appointment(
         "FROM Appointment " +
         "WHERE " +
         "Appointment_Name = '" + appointment_name + "' AND " +
-        "Appointment_Date = '" + appointment_date + "' AND " +
+        "Appointment_Date = '" + APPOINTMENT_DATE + "' AND " +
         "Appointment_Start_Time = '" + appointment_start_time + "' AND " +
         "Appointment_End_Time = '" + appointment_end_time + "' AND " +
         "Appointment_Riding_Style = '" + appointment_riding_style + "' AND " +
