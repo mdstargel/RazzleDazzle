@@ -83,7 +83,8 @@ const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions, set
                                 LastName: name_array[1],
                                 Email: resp.data.customer_email_address,
                                 Address: resp.data.customer_address,
-                                phone: resp.data.customer_phone_number
+                                phone: resp.data.customer_phone_number === 1 ? true : false,
+                                TextNotifications: resp.data.Customer_Phone_Notifications
                             };
                         } else {
                             let name_array = resp.data.trainer_name.split(" ");
