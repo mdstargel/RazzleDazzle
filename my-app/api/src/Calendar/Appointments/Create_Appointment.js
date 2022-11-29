@@ -51,6 +51,12 @@ async function Create_Appointment(
     // Open connection
     const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
+    const DATE = new Date(appointment_date);
+    const DD = String(DATE.getDate()).padStart(2, '0');
+    const MM = String(DATE.getMonth() + 1).padStart(2, '0');
+    const YYYY = DATE.getFullYear();
+    const APPOINTMENT_DATE = YYYY + '-' + MM + '-' + DD;
+
     await CON.promise().query(
         "INSERT INTO Appointment (" +
         "Appointment_Name, " +
@@ -68,7 +74,7 @@ async function Create_Appointment(
         "Appointment_TID_2) " +
         "VALUES ('" +
         appointment_name + "', '" +
-        appointment_date + "', '" +
+        APPOINTMENT_DATE + "', '" +
         appointment_start_time + "', '" +
         appointment_end_time + "', '" +
         appointment_riding_style + "', '" +
