@@ -19,7 +19,7 @@ function Convert_Appointment(appointment) {
         }
         start_time += "am";
     } else {
-        start_hour = start_time_array[0] - 12;
+        var start_hour = start_time_array[0] - 12;
         if (start_time_array[1] != 0) {
             start_time = start_hour + ":" + start_time_array[1];
         } else {
@@ -37,7 +37,7 @@ function Convert_Appointment(appointment) {
         }
         end_time += "am";
     } else {
-        end_hour = end_time_array[0] - 12;
+        var end_hour = end_time_array[0] - 12;
         if (end_time_array[1] != 0) {
             end_time = end_hour + ":" + end_time_array[1];
         } else {
@@ -55,7 +55,7 @@ function Convert_Appointment(appointment) {
     if (appointment.appointment_reserved == false ||
         appointment.appointment_reserved == undefined) reserved = false;
 
-    new_appointment = {
+    var new_appointment = {
         appointmentId: appointment.AID,
         date: new_date,
         startTime: start_time,
