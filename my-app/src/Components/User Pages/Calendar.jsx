@@ -45,7 +45,8 @@ function Convert_Appointment(appointment) {
         remainingSpots: appointment.appointment_group_size,
         hasTrainee: trainee,
         PubicNotes: appointment.appointment_public_notes,
-        PrivateNotes: appointment.appointment_private_notes
+      PrivateNotes: appointment.appointment_private_notes,
+        trainerNames: appointment.appointment_trainer_name
     }
 
     return new_appointment;
