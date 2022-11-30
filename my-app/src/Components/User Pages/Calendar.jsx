@@ -8,24 +8,52 @@ import ReactCalendar from 'react-calendar';
 import AvailableAppointments from './AvailableAppointments';
 import MyCalendarView from './MyCalendarView';
 import AdminCalendarView from './AdminCalendarView';
-// import DayView from './Calendar/DayView';
 import AddAppointment from './SettingsPages/AddAppointment';
 // Bobby's comment merge conflict
+
+function Convert_Appointment(appointment) {
+    var date_array = appointment.appointment_date.split("-");
+    var new_date = date_array[1] + "/" + date_array[2].slice(0, 2) + "/" + date_array[0];
+
+    var new_start_time = appointment.appointment_start_time + "";
+    var new_end_time = appointment.appointment_end_time + "";
+
+    var start_time_array = new_start_time.split(":");
+    var end_time_array = new_end_time.split(":");
+    var start_time = start_time_array[0] + ":" + start_time_array[1];
+    var end_time = end_time_array[0] + ":" + end_time_array[1];
+
+
+    var group = true;
+    var trainee = true;
+    if (appointment.appointment_group == 0) group = false;
+    if (appointment.appointment_TID_2 == 5) trainee = false;
+
+    var reserved = true;
+    if (appointment.appointment_reserved == false ||
+        appointment.appointment_reserved == undefined) reserved = false;
+
+    var new_appointment = {
+        appointmentId: appointment.AID,
+        date: new_date,
+        startTime: start_time,
+        endTime: end_time,
+        ridingStyle: appointment.appointment_riding_style,
+        ridingLevel: appointment.appointment_difficulty,
+        isGroup: group,
+        signedUp: reserved,
+        remainingSpots: appointment.appointment_group_size,
+        hasTrainee: trainee,
+        PubicNotes: appointment.appointment_public_notes,
+        PrivateNotes: appointment.appointment_private_notes
+    }
+
+    return new_appointment;
+}
+
 const Calendar = ({ userPermissions, UserInfo }) => {
   const [isMounted, setIsMounted] = useState(false);
   const [dayEvents, setDayEvents] = useState();
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  if (!isMounted) {
-      // Customer/Trainer userID
-    const dayPost = { "user_ID": UserInfo.id, "date": selectedDate };
-    console.log(UserInfo.type + '/Calendar/Day');
-    axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
-            console.log('Calendar Day: ', resp.data)
-        })
-        setIsMounted(true);
-    }
-  const [selectedTab, setSelectedTab] = useState('Available Appointments');
-  const [showAddAppointment, setShowAddAppointment] = useState();
   const [events, setEvents] = useState([
     {
       trainerNames: 'John Doe',
@@ -140,6 +168,25 @@ const Calendar = ({ userPermissions, UserInfo }) => {
       PrivateNotes: 'Jeremy stop hitting on me!',
     }
   ])
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  if (!isMounted) {
+      // Customer/Trainer userID
+    const dayPost = { "user_ID": UserInfo.id, "date": selectedDate };
+    console.log(UserInfo.type + '/Calendar/Day');
+    axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
+      console.log('Calendar Day: ', resp.data)
+      let calendarConvertedForDay = [];
+      for (var i = 0; i < resp.data.length; i++) {
+        calendarConvertedForDay.push(Convert_Appointment(resp.data[i]));
+      }
+      console.log('calendarConvertedForDay:', calendarConvertedForDay);
+      setEvents(calendarConvertedForDay);
+    })
+      setIsMounted(true);
+    }
+  const [selectedTab, setSelectedTab] = useState('Available Appointments');
+  const [showAddAppointment, setShowAddAppointment] = useState();
+  
 
   function handleCancel() {
     setShowAddAppointment();

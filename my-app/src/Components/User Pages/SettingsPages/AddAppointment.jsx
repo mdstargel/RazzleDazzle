@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import { AutoComplete } from "@progress/kendo-react-dropdowns";
-
 import '../styles.css'
 import ConfirmButton from '../../Buttons/ConfirmButton';
 import CancelButton from '../../Buttons/CancelButton';
@@ -86,6 +84,8 @@ const AddAppointment = ({setShowAddAppointment}) => {
             values.Spots) {
             // Send Values to backend to validate
             let jsDate = new Date(values.date);
+
+            console.log("Spots type", typeof values.Spots);
             
             let appointmentData = {
                 "appointment_trainer_1_name": values.trainerName,

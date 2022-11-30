@@ -200,7 +200,7 @@ app.post('/Admin/Calendar/Create', async function(req, res) {
     var appointment_public_notes = req.body.appointment_public_notes;
     var appointment_private_notes = req.body.appointment_private_notes;
     var appointment_group = req.body.appointment_group;
-    var appointment_group_size = req.body.appointment_group_size;
+    var appointment_group_size = Number(req.body.appointment_group_size);
     var appointment_trainer_1_name = req.body.appointment_trainer_1_name;
     var appointment_trainer_2_name = req.body.appointment_trainer_2_name;
 
