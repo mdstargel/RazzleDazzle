@@ -12,7 +12,8 @@
  * appointment_group_size,
  * appointment_TID_1,
  * appointment_TID_2,
- * appointment_reserved
+ * appointment_reserved,
+ * appointment_trainer_name
  */
 class customer_appointment {
     // Constructor
@@ -29,7 +30,8 @@ class customer_appointment {
         appointment_group_size,
         appointment_TID_1,
         appointment_TID_2,
-        appointment_reserved)
+        appointment_reserved,
+        appointment_trainer_name)
 
     {
         this.AID = AID;
@@ -45,6 +47,7 @@ class customer_appointment {
         this.appointment_TID_1 = appointment_TID_1;
         this.appointment_TID_2 = appointment_TID_2;
         this.appointment_reserved = appointment_reserved;
+        this.appointment_trainer_name = appointment_trainer_name;
     }
 
     // Getters and Setters
@@ -148,6 +151,14 @@ class customer_appointment {
         this.appointment_reserved = appointment_reserved;
         if (appointment_reserved) this.appointment_group_size--;
         else this.appointment_group_size++;
+    }
+
+    Get_Trainer_Name() {
+        return this.appointment_trainer_name;
+    }
+
+    Set_Trainer_Name(appointment_trainer_name) {
+        this.appointment_trainer_name = appointment_trainer_name;
     }
 }
 

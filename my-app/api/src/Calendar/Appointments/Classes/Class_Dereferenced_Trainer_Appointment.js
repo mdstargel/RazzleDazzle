@@ -10,7 +10,8 @@
  * appointment_private_notes,
  * appointment_group,
  * appointment_group_size,
- * appointment_GID
+ * appointment_GID,
+ * appointment_trainer_name
  */
 class dereferenced_trainer_appointment {
     // Constructor
@@ -25,7 +26,8 @@ class dereferenced_trainer_appointment {
         appointment_private_notes,
         appointment_group,
         appointment_group_size,
-        appointment_GID)
+        appointment_GID,
+        appointment_trainer_name)
 
     {
         this.appointment_name = appointment_name;
@@ -39,6 +41,7 @@ class dereferenced_trainer_appointment {
         this.appointment_group = appointment_group;
         this.appointment_group_size = appointment_group_size;
         this.appointment_GID = appointment_GID;
+        this.appointment_trainer_name = appointment_trainer_date;
     }
 
     // Getters
@@ -80,6 +83,10 @@ class dereferenced_trainer_appointment {
 
     Get_GID() {
         return this.appointment_GID;
+    }
+
+    Get_Trainer_Name() {
+        return this.appointment_trainer_name;
     }
 }
 

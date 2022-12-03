@@ -158,7 +158,7 @@ app.get('/Admin/Calendar', async function(req, res) {
     res.send(calendar);
 })
 
-app.post('/Admin/Calendar/Day', async function (req, res) {
+app.post('/Admin/Calendar/Day', async function(req, res) {
     console.log(req.body.date);
     var date = req.body.date;
     var calendar = await Get_Administrator_Day_Calendar(date);
@@ -303,6 +303,14 @@ app.post('/Admin/Calendar/Set_Private_Notes', function(req, res) {
     res.send("");
 })
 
+app.post('/Admin/Calendar/Set_Notes', function(req, res) {
+    var AID = req.body.appointment_id;
+    var appointment_public_notes = req.body.appointment_public_notes;
+    var appointment_private_notes = req.body.appointment_private_notes;
+    Set_Appointment_Public_Notes(AID, appointment_public_notes);
+    Set_Appointment_Private_Notes(AID, appointment_private_notes);
+})
+
 app.post('/Admin/Calendar/Set_Group', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_group = req.body.appointment_group;
@@ -372,7 +380,6 @@ app.post('/Admin/Customer/Delete', function(req, res) {
 })
 
 app.post('/Admin/Customer/Notify', function(req, res) {
-    console.log("recieved from website", req.body);
     var CIDs = req.body.CIDs;
     var title = req.body.title;
     var notification = req.body.notification;
