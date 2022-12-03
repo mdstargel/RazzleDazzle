@@ -170,12 +170,30 @@ const Calendar = ({ userPermissions, UserInfo }) => {
     }
   ])
   const [selectedDate, setSelectedDate] = useState(new Date());
+  console.log(selectedDate);
+
+  const changeDate = (e) => {
+    setSelectedDate(e)
+  
+
+    setEvents([]);
+
+
+    const dayPost = { "user_ID": UserInfo.id, "date": e };
+    axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
+      let calendarConvertedForDay = [];
+      for (var i = 0; i < resp.data.length; i++) {
+        calendarConvertedForDay.push(Convert_Appointment(resp.data[i]));
+      }
+      console.log('calendarConvertedForDay:', calendarConvertedForDay);
+      setEvents(calendarConvertedForDay);
+    })
+  }
+  
   if (!isMounted) {
       // Customer/Trainer userID
     const dayPost = { "user_ID": UserInfo.id, "date": selectedDate };
-    console.log(UserInfo.type + '/Calendar/Day');
     axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
-      console.log('Calendar Day: ', resp.data)
       let calendarConvertedForDay = [];
       for (var i = 0; i < resp.data.length; i++) {
         calendarConvertedForDay.push(Convert_Appointment(resp.data[i]));
@@ -188,7 +206,16 @@ const Calendar = ({ userPermissions, UserInfo }) => {
   const [selectedTab, setSelectedTab] = useState('Available Appointments');
   const [showAddAppointment, setShowAddAppointment] = useState();
   
-
+  const handleDateChange = () => {
+    const dayPost = { "user_ID": UserInfo.id, "date": selectedDate };
+    axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
+      let calendarConvertedForDay = [];
+      for (var i = 0; i < resp.data.length; i++) {
+        calendarConvertedForDay.push(Convert_Appointment(resp.data[i]));
+      }
+      console.log('calendarConvertedForDay:', calendarConvertedForDay);
+      setEvents(calendarConvertedForDay);
+    })}
   function handleCancel() {
     setShowAddAppointment();
   }
@@ -239,7 +266,7 @@ const Calendar = ({ userPermissions, UserInfo }) => {
     <div className="backGround">
       <PageTitle name="Calendar" />
       {tabs}
-      <ReactCalendar />
+      <ReactCalendar value={selectedDate} onClickDay={() => setIsMounted(false)} onChange={changeDate}/>
       {showAddAppointment}
       {!userPermissions.isCustomer ? <div
           className='makeAppointment'
