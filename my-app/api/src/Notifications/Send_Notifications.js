@@ -16,7 +16,7 @@ const MYSQL = require('mysql2');
 const MYSQL_CONFIG = {
     host: "localhost",
     user: "root",
-    password: "password",
+    password: "B311ao2l2",
     database: "Horse_Site",
     insecureAuth: true,
     connectTimeout: 30000

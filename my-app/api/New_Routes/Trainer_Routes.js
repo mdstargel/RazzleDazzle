@@ -113,6 +113,28 @@ app.post('/Trainer/Calendar/Day', async function(req, res) {
     res.send(calendar);
 })
 
+app.post('/Trainer/Calendar/Set_Public_Notes', function(req, res) {
+    var AID = req.body.appointment_id;
+    var appointment_public_notes = req.body.appointment_public_notes;
+    Set_Appointment_Public_Notes(AID, appointment_public_notes);
+    res.send("");
+})
+
+app.post('/Trainer/Calendar/Set_Private_Notes', function(req, res) {
+    var AID = req.body.appointment_id;
+    var appointment_private_notes = req.body.appointment_private_notes;
+    Set_Appointment_Private_Notes(AID, appointment_private_notes);
+    res.send("");
+})
+
+app.post('/Trainer/Calendar/Set_Notes', function(req, res) {
+    var AID = req.body.appointment_id;
+    var appointment_public_notes = req.body.appointment_public_notes;
+    var appointment_private_notes = req.body.appointment_private_notes;
+    Set_Appointment_Public_Notes(AID, appointment_public_notes);
+    Set_Appointment_Private_Notes(AID, appointment_private_notes);
+})
+
 app.post('/Trainer/Calendar/Notify_Customers', function(req, res) {
     var AID = req.body.appointment_id;
     var title = req.body.title;

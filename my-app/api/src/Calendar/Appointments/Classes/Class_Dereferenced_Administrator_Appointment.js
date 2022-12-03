@@ -14,7 +14,7 @@
  * appointment_TID_1,
  * appointment_TID_2,
  * appointment_GID,
- * appointment_micro_trainers
+ * appointment_trainer_name
  */
 class dereferenced_administrator_appointment {
     // Constructor
@@ -32,9 +32,8 @@ class dereferenced_administrator_appointment {
         appointment_group_size,
         appointment_TID_1,
         appointment_TID_2,
-        appointment_GID)
-
-    {
+        appointment_GID,
+        appointment_trainer_name) {
         this.appointment_name = appointment_name;
         this.appointment_date = appointment_date;
         this.appointment_start_time = appointment_start_time;
@@ -49,6 +48,7 @@ class dereferenced_administrator_appointment {
         this.appointment_TID_1 = appointment_TID_1;
         this.appointment_TID_2 = appointment_TID_2;
         this.appointment_GID = appointment_GID;
+        this.appointment_trainer_name = appointment_trainer_name;
     }
 
     // Getters
@@ -106,6 +106,10 @@ class dereferenced_administrator_appointment {
 
     Get_GID() {
         return this.appointment_GID;
+    }
+
+    Get_Trainer_Name() {
+        return this.appointment_trainer_name;
     }
 }
 

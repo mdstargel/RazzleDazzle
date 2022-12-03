@@ -11,7 +11,8 @@
  * appointment_group_size,
  * appointment_TID_1,
  * appointment_TID_2,
- * appointment_reserved
+ * appointment_reserved,
+ * appointment_trainer_name
  */
 class dereferenced_customer_appointment {
     // Constructor
@@ -27,9 +28,8 @@ class dereferenced_customer_appointment {
         appointment_group_size,
         appointment_TID_1,
         appointment_TID_2,
-        appointment_reserved)
-
-    {
+        appointment_reserved,
+        appointment_trainer_name) {
         this.appointment_name = appointment_name;
         this.appointment_date = appointment_date;
         this.appointment_start_time = appointment_start_time;
@@ -42,6 +42,7 @@ class dereferenced_customer_appointment {
         this.appointment_TID_1 = appointment_TID_1;
         this.appointment_TID_2 = appointment_TID_2;
         this.appointment_reserved = appointment_reserved;
+        this.appointment_trainer_name = appointment_trainer_name;
     }
 
     // Getters
@@ -91,6 +92,10 @@ class dereferenced_customer_appointment {
 
     Get_Reserved() {
         return this.appointment_reserved;
+    }
+
+    Get_Trainer_Name() {
+        return this.appointment_trainer_name;
     }
 }
 

@@ -14,7 +14,8 @@
  * appointment_group_size,
  * appointment_TID_1,
  * appointment_TID_2,
- * appointment_GID
+ * appointment_GID,
+ * appointment_trainer_name
  */
 class administrator_appointment {
     // Constructor
@@ -33,7 +34,8 @@ class administrator_appointment {
         appointment_group_size,
         appointment_TID_1,
         appointment_TID_2,
-        appointment_GID)
+        appointment_GID,
+        appointment_trainer_name)
 
     {
         this.AID = AID;
@@ -51,6 +53,7 @@ class administrator_appointment {
         this.appointment_TID_1 = appointment_TID_1;
         this.appointment_TID_2 = appointment_TID_2;
         this.appointment_GID = appointment_GID;
+        this.appointment_trainer_name = appointment_trainer_name;
     }
 
     // Getters and Setters
@@ -168,6 +171,14 @@ class administrator_appointment {
 
     Set_GID(appointment_GID) {
         this.appointment_GID = appointment_GID;
+    }
+
+    Get_Trainer_Name() {
+        return this.appointment_trainer_name;
+    }
+
+    Set_Trainer_Name(appointment_trainer_name) {
+        this.appointment_trainer_name = appointment_trainer_name;
     }
 }
 
