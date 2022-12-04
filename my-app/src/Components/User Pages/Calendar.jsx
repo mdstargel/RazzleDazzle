@@ -54,7 +54,7 @@ function Convert_Appointment(appointment) {
 
 const Calendar = ({ userPermissions, UserInfo }) => {
   const [isMounted, setIsMounted] = useState(false);
-  const [dayEvents, setDayEvents] = useState();
+  const [weekEvents, setWeekEvents] = useState();
   const [events, setEvents] = useState([
     {
       trainerNames: 'John Doe',
@@ -174,11 +174,9 @@ const Calendar = ({ userPermissions, UserInfo }) => {
 
   const changeDate = (e) => {
     setSelectedDate(e)
-  
-
+    
+    // Set Day Events
     setEvents([]);
-
-
     const dayPost = { "user_ID": UserInfo.id, "date": e };
     axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
       let calendarConvertedForDay = [];
@@ -187,6 +185,18 @@ const Calendar = ({ userPermissions, UserInfo }) => {
       }
       console.log('calendarConvertedForDay:', calendarConvertedForDay);
       setEvents(calendarConvertedForDay);
+    })
+
+    // Set Week Events
+    setWeekEvents([]);
+    const weekPost = { "user_ID": UserInfo.id, "date": e };
+    axios.post(UserInfo.type + '/Calendar/Week', weekPost).then(resp => {
+      let calendarConvertedForWeek = [];
+      for (var i = 0; i < resp.data.length; i++) {
+        calendarConvertedForWeek.push(Convert_Appointment(resp.data[i]));
+      }
+      console.log('calendarConvertedForWeek:', calendarConvertedForWeek);
+      setWeekEvents(calendarConvertedForWeek);
     })
   }
   
@@ -201,6 +211,17 @@ const Calendar = ({ userPermissions, UserInfo }) => {
       console.log('calendarConvertedForDay:', calendarConvertedForDay);
       setEvents(calendarConvertedForDay);
     })
+        // Set Week Events
+        setWeekEvents([]);
+        const weekPost = { "user_ID": UserInfo.id, "date": selectedDate };
+        axios.post(UserInfo.type + '/Calendar/Week', weekPost).then(resp => {
+          let calendarConvertedForWeek = [];
+          for (var i = 0; i < resp.data.length; i++) {
+            calendarConvertedForWeek.push(Convert_Appointment(resp.data[i]));
+          }
+          console.log('calendarConvertedForWeek:', calendarConvertedForWeek);
+          setWeekEvents(calendarConvertedForWeek);
+        })
       setIsMounted(true);
     }
   const [selectedTab, setSelectedTab] = useState('Available Appointments');
@@ -244,8 +265,8 @@ const Calendar = ({ userPermissions, UserInfo }) => {
       popup = <AvailableAppointments setSelectedTab={setSelectedTab} availableAppointments={availableAppointments} userPermissions={userPermissions} />;
     } else {
       userPermissions.isAdmin ?
-        popup = <AdminCalendarView setSelectedTab={setSelectedTab} UserSchdeule={myAppointments} userPermissions={userPermissions} />
-        : popup = <MyCalendarView setSelectedTab={setSelectedTab} UserSchdeule={myAppointments} userPermissions={userPermissions} />;
+        popup = <AdminCalendarView setSelectedTab={setSelectedTab} UserSchdeule={weekEvents} userPermissions={userPermissions} />
+        : popup = <MyCalendarView setSelectedTab={setSelectedTab} UserSchdeule={weekEvents} userPermissions={userPermissions} />;
     }
     return (popup);
   };
