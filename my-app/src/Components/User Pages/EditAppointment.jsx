@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import '../User Pages/styles.css'
 import ConfirmButton from "../Buttons/ConfirmButton";
 import CancelButton from "../Buttons/CancelButton";
+import axios from 'axios';
 
-const EditAppointment = ({ appointment, setModifyAppointment}) => {
+const EditAppointment = ({ appointment, setModifyAppointment }) => {
+
     const [values, setValues] = useState(appointment);
-
+    var dateObject = new Date(values.date);
+    console.log('dateObject: ', dateObject);
     const handletrainerNamesChange = (event) => {
         event.persist();
         setValues((values) => ({
@@ -63,6 +66,16 @@ const EditAppointment = ({ appointment, setModifyAppointment}) => {
             values.endTime && values.ridingStyle) {
             console.log('Editing Appointment!', values);
             // Send Values to backend to validate
+            let appointmentData = {
+                "appointment_id": appointment.appointmentId,
+                "appointment_trainer_name": values.trainerName,
+                "appointment_date": values.date,
+                "appointment_start_time": values.startTime,
+                "appointment_end_time": values.endTime,
+                "appointment_riding_style": values.style,
+                "appointment_group_size": values.spots
+            }
+            axios.post('/Admin/Calendar/Set_Appointment', appointmentData).then(resp => { })
         } else {
             console.log('Failed to edit appointment!')
         }
@@ -90,8 +103,9 @@ const EditAppointment = ({ appointment, setModifyAppointment}) => {
             <div className='inputBoxes2'>
                 <input
                 className='input2'
-                type="text"
+                type="date"
                 value={values.date}
+                defaultValue={dateObject}
                 onChange={handleDateChange}
                 />
             </div>
@@ -103,7 +117,7 @@ const EditAppointment = ({ appointment, setModifyAppointment}) => {
             <div className='inputBoxes3'>
             <input
                 className='input2'
-                type="text"
+                type="time"
                 value={values.startTime}
                 onChange={handleStartTimeChange}
                 />                
@@ -116,7 +130,7 @@ const EditAppointment = ({ appointment, setModifyAppointment}) => {
              <div className='inputBoxes3'>
             <input
                 className='input2'
-                type="text"
+                type="time"
                 value={values.endTime}
                 onChange={handleEndTimeChange}
                 />
