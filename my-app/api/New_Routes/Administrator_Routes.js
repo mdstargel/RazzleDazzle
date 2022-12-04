@@ -50,7 +50,8 @@ const { Create_News } = require('../src/News/Create_News');
 const {
     Get_Administrator_Calendar,
     Get_Administrator_Day_Calendar,
-    Get_Trainer_Week_Calendar
+    Get_Trainer_Week_Calendar,
+    Get_Administrator_Week_Calendar
 } = require('../src/Calendar/Get_Calendar');
 const {
     Set_News_Image_URL,
@@ -167,16 +168,8 @@ app.post('/Admin/Calendar/Day', async function(req, res) {
 
 app.post('/Admin/Calendar/Week', async function(req, res) {
     var date = req.body.date;
-    var trainers = await Get_TIDs();
-
-    var week_calendars = [];
-
-    for (var i = 0; i < trainers.length; i++) {
-        week_calendars.push(
-            await Get_Trainer_Week_Calendar(trainers[i], date));
-    }
-
-    res.send(week_calendars);
+    var week_calendar = Get_Administrator_Week_Calendar(date);
+    res.send(week_calendar);
 })
 
 app.get('/Admin/Calendar/Get_Customers', async function(req, res) {

@@ -827,7 +827,7 @@ async function Get_Administrator_Calendar() {
 }
 
 
-async function Get_Administrator_Week_Calendar(TID, date) {
+async function Get_Administrator_Week_Calendar(date) {
     // Create calendar
     var calendar = [];
 
@@ -841,31 +841,26 @@ async function Get_Administrator_Week_Calendar(TID, date) {
         // Open connection
         const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
-        // Get Name
-        var query_values = await CON.promise().query(
-            "SELECT Trainer_Name " +
-            "FROM Trainer " +
-            "WHERE TID = " + TID + ";");
-
         // Get assigned appointments
         var assigned_appointments = await CON.promise().query(
-            "SELECT AID, " +
-            "Appointment_Name, " +
-            "Appointment_Date, " +
-            "Appointment_Start_Time, " +
-            "Appointment_End_Time, " +
-            "Appointment_Riding_Style, " +
-            "Appointment_Description, " +
-            "Appointment_Public_Notes, " +
-            "Appointment_Private_Notes, " +
-            "Appointment_Group, " +
-            "Appointment_Group_Size " +
-            "Appointment_GID " +
+            "SELECT Appointment.AID, " +
+            "Appointment.Appointment_Name, " +
+            "Appointment.Appointment_Date, " +
+            "Appointment.Appointment_Start_Time, " +
+            "Appointment.Appointment_End_Time, " +
+            "Appointment.Appointment_Riding_Style, " +
+            "Appointment.Appointment_Description, " +
+            "Appointment.Appointment_Public_Notes, " +
+            "Appointment.Appointment_Private_Notes, " +
+            "Appointment.Appointment_Group, " +
+            "Appointment.Appointment_Group_Size, " +
+            "Appointment.Appointment_GID, " +
+            "Appointment.Appointment_TID_1 " +
             "FROM Appointment " +
+            "INNER JOIN Trainer " +
+            "ON Trainer.TID = Appointment.TID_1 " +
             "WHERE Appointment.Appointment_Date >= '" + FIRST_DATE + "' " +
-            "AND Appointment.Appointment_Date <= '" + LAST_DATE + "' " +
-            "AND (Appointment_TID_1 = " + TID + " " +
-            "OR Appointment_TID_2 = " + TID + ");");
+            "AND Appointment.Appointment_Date <= '" + LAST_DATE + ");");
 
         // Close connection
         CON.end();
@@ -873,7 +868,6 @@ async function Get_Administrator_Week_Calendar(TID, date) {
         // Pull values
         assigned_appointments = assigned_appointments[0];
         query_values = query_values[0];
-        var trainer_name = query_values[0].Trainer_Name;
 
         // Add assigned appointments to calendar
         for (var i = 0; i < assigned_appointments.length; i++) {
@@ -891,7 +885,7 @@ async function Get_Administrator_Week_Calendar(TID, date) {
                     assigned_appointments[i].Appointment_Group,
                     assigned_appointments[i].Appointment_Group_Size,
                     assigned_appointments[i].Appointment_GID,
-                    trainer_name)
+                    assigned_appointments[i].Trainer_Name)
             );
         };
     } catch (err) {
@@ -969,5 +963,6 @@ module.exports = {
     Get_Trainer_Week_Calendar,
     Get_Trainer_Day_Calendar,
     Get_Administrator_Calendar,
-    Get_Administrator_Day_Calendar
+    Get_Administrator_Day_Calendar,
+    Get_Administrator_Week_Calendar
 }
