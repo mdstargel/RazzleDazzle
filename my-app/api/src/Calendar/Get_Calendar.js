@@ -14,7 +14,7 @@ const MYSQL = require('mysql2');
 const MYSQL_CONFIG = {
     host: "localhost",
     user: "root",
-    password: "password",
+    password: "B311ao2l2",
     database: "Horse_Site",
     insecureAuth: true,
     connectTimeout: 30000
@@ -888,11 +888,13 @@ async function Get_Administrator_Week_Calendar(date) {
                     assigned_appointments[i].Trainer_Name)
             );
         };
+
+        return calendar;
     } catch (err) {
         console.error(err);
-    }
 
-    return calendar;
+        return calendar;
+    }
 }
 
 /**
