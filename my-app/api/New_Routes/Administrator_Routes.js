@@ -261,6 +261,8 @@ app.post('/Admin/Calendar/Set_Appointment', async function(req, res) {
     Set_Appointment_TID_1(AID, appointment_TID_1);
     Set_Appointment_Group_Size(AID, appointment_group_size);
     Set_Appointment_Group(AID, appointment_group);
+
+    res.send("");
 })
 
 app.post('/Admin/Calendar/Set_Name', function(req, res) {

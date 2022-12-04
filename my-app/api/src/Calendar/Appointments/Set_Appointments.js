@@ -44,9 +44,15 @@ function Set_Appointment_Date(AID, appointment_date) {
     // Open connection
     const CON = MYSQL.createConnection(MYSQL_CONFIG);
 
+    const TODAY = new Date();
+    const DD = String(TODAY.getDate()).padStart(2, '0');
+    const MM = String(TODAY.getMonth() + 1).padStart(2, '0');
+    const YYYY = TODAY.getFullYear();
+    const CURRENT_DATE = YYYY + '-' + MM + '-' + DD;
+
     CON.query(
         "UPDATE Appointment " +
-        "SET Appointment_Date = '" + appointment_date + "' " +
+        "SET Appointment_Date = '" + CURRENT_DATE + "' " +
         "WHERE AID = " + AID + ";"
     )
 
