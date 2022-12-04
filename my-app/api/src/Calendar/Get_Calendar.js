@@ -857,7 +857,27 @@ async function Get_Administrator_Week_Calendar(date) {
             "Appointment.Appointment_GID, " +
             "Appointment.Appointment_TID_1 " +
             "FROM Appointment " +
-            "INNER JOIN Trainer " +
+            "JOIN Trainer " +
+            "ON Trainer.TID = Appointment.Appointment_TID_1 " +
+            "WHERE Appointment.Appointment_Date >= '" + FIRST_DATE + "' " +
+            "AND Appointment.Appointment_Date <= '" + LAST_DATE + "';");
+
+
+        console.log("SELECT Appointment.AID, " +
+            "Appointment.Appointment_Name, " +
+            "Appointment.Appointment_Date, " +
+            "Appointment.Appointment_Start_Time, " +
+            "Appointment.Appointment_End_Time, " +
+            "Appointment.Appointment_Riding_Style, " +
+            "Appointment.Appointment_Description, " +
+            "Appointment.Appointment_Public_Notes, " +
+            "Appointment.Appointment_Private_Notes, " +
+            "Appointment.Appointment_Group, " +
+            "Appointment.Appointment_Group_Size, " +
+            "Appointment.Appointment_GID, " +
+            "Appointment.Appointment_TID_1 " +
+            "FROM Appointment " +
+            "JOIN Trainer " +
             "ON Trainer.TID = Appointment.Appointment_TID_1 " +
             "WHERE Appointment.Appointment_Date >= '" + FIRST_DATE + "' " +
             "AND Appointment.Appointment_Date <= '" + LAST_DATE + "';");
