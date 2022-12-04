@@ -75,7 +75,6 @@ const AddAppointment = ({setShowAddAppointment}) => {
          }
     };
     const handleAddAppointment = () => {
-            console.log('Adding Appointment!', values);
         if (values.trainerName && values.date &&
             values.startTime &&
             values.endTime &&
@@ -98,6 +97,7 @@ const AddAppointment = ({setShowAddAppointment}) => {
             }
             axios.post('/Admin/Calendar/Create', appointmentData).then(resp => { })
         }
+        setShowAddAppointment(null)
     };
 
     return(

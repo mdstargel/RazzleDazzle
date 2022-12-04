@@ -45,7 +45,7 @@ function Convert_Appointment(appointment) {
         remainingSpots: appointment.appointment_group_size,
         hasTrainee: trainee,
         PubicNotes: appointment.appointment_public_notes,
-      PrivateNotes: appointment.appointment_private_notes,
+        PrivateNotes: appointment.appointment_private_notes,
         trainerNames: appointment.appointment_trainer_name
     }
 
@@ -210,6 +210,7 @@ const Calendar = ({ userPermissions, UserInfo }) => {
     axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
       let calendarConvertedForDay = [];
       if (resp.data) {
+        console.log('day post events', resp.data);
         for (var i = 0; i < resp.data.length; i++) {
           calendarConvertedForDay.push(Convert_Appointment(resp.data[i]));
         }

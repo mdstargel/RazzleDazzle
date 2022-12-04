@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import '../User Pages/styles.css'
 import ConfirmButton from "../Buttons/ConfirmButton";
 import CancelButton from "../Buttons/CancelButton";
+import axios from 'axios';
 
 const CalendarNotes = ({ appointment, setModifyAppointment, userPermissions}) => {
     const [values, setValues] = useState(appointment);
     const isStaff = userPermissions.isAdmin || userPermissions.isTrainer;
-    
-     const handlePublicNoteSChange = (event) => {
+    console.log(appointment);
+    console.log('PubicNotes:', appointment.PubicNotes);
+    console.log('PrivateNotes:', appointment.PrivateNotes);
+     const handlePubicNoteSChange = (event) => {
         event.persist();
         setValues((values) => ({
             ...values,
-            PublicNotes: event.target.value,
+            PubicNotes: event.target.value,
         }));
-        console.log('PublicNotes', values.PublicNotes);
+        console.log('PubicNotes', values.PubicNotes);
     };
     const handlePrivateNoteSChange = (event) => {
         event.persist();
@@ -24,6 +27,19 @@ const CalendarNotes = ({ appointment, setModifyAppointment, userPermissions}) =>
         console.log('PrivateNotes', values.PrivateNotes);
     };
 
+    const handleAddNote = () => {
+        if (values.PubicNotes || values.PrivateNotes) {
+            let notesData = {
+                "appointment_id": appointment.appointmentId,
+                "appointment_public_notes": values.PubicNotes,
+                "appointment_private_notes": values.PrivateNotes
+            }
+
+            axios.post('/Admin/Calendar/Set_Notes', notesData).then(resp => { })
+        }
+        setModifyAppointment(null)
+    };
+
     return(
         <div className="fixedForm">
             <div>{values.date}</div>
@@ -32,8 +48,8 @@ const CalendarNotes = ({ appointment, setModifyAppointment, userPermissions}) =>
             <input
                     // className='input2'
                     type="text"
-                    value={values.PublicNotes}
-                    onChange={isStaff && handlePublicNoteSChange}
+                    value={values.PubicNotes}
+                    onChange={isStaff && handlePubicNoteSChange}
             />
             <br/><br/><br/><br/><br/>
             {isStaff &&
@@ -47,6 +63,8 @@ const CalendarNotes = ({ appointment, setModifyAppointment, userPermissions}) =>
                         />
                 </div>
             }
+            <CancelButton onClick={() => setModifyAppointment(null)}/>
+            <ConfirmButton buttonText={'Add'} onClick={handleAddNote}/>
         </div>
     );
 }

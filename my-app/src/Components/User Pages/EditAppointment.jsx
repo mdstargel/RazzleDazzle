@@ -47,25 +47,26 @@ const EditAppointment = ({ appointment, setModifyAppointment}) => {
         }));
         console.log('ridingStyle', values.ridingStyle);
     };
-    const handleLessonTypeChange = (event) => {
+    const handlespotsChange = (event) => {
         event.persist();
         setValues((values) => ({
             ...values,
-            lessonType: event.target.value,
+            spots: event.target.value,
         }));
-        console.log('lessonType', values.lessonType);
+        console.log('spots', values.spots);
     };
     const handleEditAppointment = () => {
         /**
          * Send edited information to the backend
          */
-        if (values.trainerNames && values.date && values.startTime &&
-            values.endTime && values.ridingStyle && values.lessonType) {
+        if (values.date && values.startTime &&
+            values.endTime && values.ridingStyle) {
             console.log('Editing Appointment!', values);
             // Send Values to backend to validate
         } else {
             console.log('Failed to edit appointment!')
         }
+        setModifyAppointment()
         
     };
 
@@ -136,14 +137,14 @@ const EditAppointment = ({ appointment, setModifyAppointment}) => {
                 <br /><br />
             
             <div className='inputTitles6'>
-                <label>Lesson Type:</label>
+                <label>Spots:</label>
             </div>
              <div className='inputBoxes6'>
                 <input
                 className='input2'
                 type="text"
-                value={values.lessonType}
-                onChange={handleLessonTypeChange}
+                value={values.spots}
+                onChange={handlespotsChange}
                 />
             </div>
             <br /><br /><br /><br />
