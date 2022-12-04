@@ -233,6 +233,36 @@ app.post('/Admin/Calendar/Create', async function(req, res) {
     res.send("");
 })
 
+app.post('/Admin/Calendar/Set_Appointment', async function(req, res) {
+    var AID = req.body.appointment_id;
+    var trainer_name = req.body.trainer_name;
+    var appointment_date = req.body.appointment_date;
+    var appointment_start_time = req.body.appointment_start_time;
+    var appointment_end_time = req.body.appointment_end_time;
+    var appointment_riding_style = req.body.appointment_riding_style;
+    var appointment_group_size = req.body.appointment_group_size;
+
+    var appointment_group;
+    if (appointment_group_size === 1) {
+        appointment_group = 0;
+    } else if (appointment_group_size === undefined) {
+        appointment_group_size = 1;
+        appointment_group = 0;
+    } else {
+        appointment_group = 1;
+    }
+
+    var appointment_TID_1 = await Trainer_Validator(trainer_name);
+
+    Set_Appointment_Date(AID, appointment_date);
+    Set_Appointment_Start_Time(AID, appointment_start_time);
+    Set_Appointment_End_Time(AID, appointment_end_time);
+    Set_Appointment_Riding_Style(AID, appointment_riding_style);
+    Set_Appointment_TID_1(AID, appointment_TID_1);
+    Set_Appointment_Group_Size(AID, appointment_group_size);
+    Set_Appointment_Group(AID, appointment_group);
+})
+
 app.post('/Admin/Calendar/Set_Name', function(req, res) {
     var AID = req.body.appointment_id;
     var appointment_name = req.body.appointment_name;
