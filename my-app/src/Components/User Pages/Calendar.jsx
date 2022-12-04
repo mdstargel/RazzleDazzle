@@ -26,12 +26,12 @@ function Convert_Appointment(appointment) {
 
     var group = true;
     var trainee = true;
-    if (appointment.appointment_group == 0) group = false;
-    if (appointment.appointment_TID_2 == 5) trainee = false;
+    if (appointment.appointment_group === 0) group = false;
+    if (appointment.appointment_TID_2 === 5) trainee = false;
 
     var reserved = true;
-    if (appointment.appointment_reserved == false ||
-        appointment.appointment_reserved == undefined) reserved = false;
+    if (appointment.appointment_reserved === false ||
+        appointment.appointment_reserved === undefined) reserved = false;
 
     var new_appointment = {
         appointmentId: appointment.AID,
@@ -180,8 +180,10 @@ const Calendar = ({ userPermissions, UserInfo }) => {
     const dayPost = { "user_ID": UserInfo.id, "date": e };
     axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
       let calendarConvertedForDay = [];
-      for (var i = 0; i < resp.data.length; i++) {
-        calendarConvertedForDay.push(Convert_Appointment(resp.data[i]));
+      if (resp.data) {
+        for (var i = 0; i < resp.data.length; i++) {
+          calendarConvertedForDay.push(Convert_Appointment(resp.data[i]));
+        }
       }
       console.log('calendarConvertedForDay:', calendarConvertedForDay);
       setEvents(calendarConvertedForDay);
@@ -192,8 +194,10 @@ const Calendar = ({ userPermissions, UserInfo }) => {
     const weekPost = { "user_ID": UserInfo.id, "date": e };
     axios.post(UserInfo.type + '/Calendar/Week', weekPost).then(resp => {
       let calendarConvertedForWeek = [];
-      for (var i = 0; i < resp.data.length; i++) {
-        calendarConvertedForWeek.push(Convert_Appointment(resp.data[i]));
+      if (resp.data) {
+        for (var i = 0; i < resp.data.length; i++) {
+          calendarConvertedForWeek.push(Convert_Appointment(resp.data[i]));
+        }
       }
       console.log('calendarConvertedForWeek:', calendarConvertedForWeek);
       setWeekEvents(calendarConvertedForWeek);
@@ -205,8 +209,10 @@ const Calendar = ({ userPermissions, UserInfo }) => {
     const dayPost = { "user_ID": UserInfo.id, "date": selectedDate };
     axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
       let calendarConvertedForDay = [];
-      for (var i = 0; i < resp.data.length; i++) {
-        calendarConvertedForDay.push(Convert_Appointment(resp.data[i]));
+      if (resp.data) {
+        for (var i = 0; i < resp.data.length; i++) {
+          calendarConvertedForDay.push(Convert_Appointment(resp.data[i]));
+        }
       }
       console.log('calendarConvertedForDay:', calendarConvertedForDay);
       setEvents(calendarConvertedForDay);
@@ -214,10 +220,13 @@ const Calendar = ({ userPermissions, UserInfo }) => {
         // Set Week Events
         setWeekEvents([]);
         const weekPost = { "user_ID": UserInfo.id, "date": selectedDate };
-        axios.post(UserInfo.type + '/Calendar/Week', weekPost).then(resp => {
+    axios.post(UserInfo.type + '/Calendar/Week', weekPost).then(resp => {
+          console.log('week post events', resp.data);
           let calendarConvertedForWeek = [];
-          for (var i = 0; i < resp.data.length; i++) {
-            calendarConvertedForWeek.push(Convert_Appointment(resp.data[i]));
+          if (resp.data) {
+            for (var i = 0; i < resp.data.length; i++) {
+              calendarConvertedForWeek.push(Convert_Appointment(resp.data[i]));
+            }
           }
           console.log('calendarConvertedForWeek:', calendarConvertedForWeek);
           setWeekEvents(calendarConvertedForWeek);
