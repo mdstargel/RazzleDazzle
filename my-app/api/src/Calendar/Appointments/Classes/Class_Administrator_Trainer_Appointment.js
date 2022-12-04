@@ -17,7 +17,6 @@
 class administrator_trainer_appointment {
     // Constructor
     constructor(
-        trainer_name,
         AID,
         appointment_name,
         appointment_date,
@@ -33,7 +32,6 @@ class administrator_trainer_appointment {
         appointment_trainer_name)
 
     {
-        this.trainer_name = trainer_name;
         this.AID = AID;
         this.appointment_name = appointment_name;
         this.appointment_date = appointment_date;
@@ -50,9 +48,6 @@ class administrator_trainer_appointment {
     }
 
     // Getters and Setters
-    Get_Trainer_Name() {
-        return this.trainer_name;
-    }
 
     Get_AID() {
         return this.AID;
