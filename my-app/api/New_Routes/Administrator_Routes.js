@@ -168,7 +168,7 @@ app.post('/Admin/Calendar/Day', async function(req, res) {
 
 app.post('/Admin/Calendar/Week', async function(req, res) {
     var date = req.body.date;
-    var week_calendar = Get_Administrator_Week_Calendar(date);
+    var week_calendar = await Get_Administrator_Week_Calendar(date);
     res.send(week_calendar);
 })
 
