@@ -25,9 +25,20 @@ function Get_Monday_To_Sunday(date) {
     const DATE = new Date(date);
     const MONDAY_DATE = DATE.getDate() - DATE.getDay() + 1;
     const SUNDAY_DATE = MONDAY_DATE + 6;
+    const MONDAY = new Date(DATE.setDate(MONDAY_DATE));
+    const SUNDAY = new Date(DATE.setDate(SUNDAY_DATE));
+    const mDD = String(MONDAY.getDate()).padStart(2, '0');
+    const mMM = String(MONDAY.getMonth() + 1).padStart(2, '0');
+    const mYYYY = MONDAY.getFullYear();
+    const MONDAY_STRING = mYYYY + '-' + mMM + '-' + mDD;
+    const sDD = String(SUNDAY.getDate()).padStart(2, '0');
+    const sMM = String(SUNDAY.getMonth() + 1).padStart(2, '0');
+    const sYYYY = SUNDAY.getFullYear();
+    const SUNDAY_STRING = sYYYY + '-' + sMM + '-' + sDD;
+
     const monday_sunday = [
-        new Date(DATE.setDate(MONDAY_DATE)),
-        new Date(DATE.setDate(SUNDAY_DATE))
+        MONDAY_STRING,
+        SUNDAY_STRING
     ];
     return monday_sunday;
 }
