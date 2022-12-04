@@ -20,6 +20,18 @@ const MYSQL_CONFIG = {
     connectTimeout: 30000
 };
 
+
+function Get_Monday_To_Sunday(date) {
+    const DATE = new Date(date);
+    const MONDAY_DATE = DATE.getDate() - DATE.getDay() + 1;
+    const SUNDAY_DATE = MONDAY_DATE + 6;
+    const monday_sunday = [
+        new Date(DATE.setDate(MONDAY_DATE)),
+        new Date(DATE.setDate(SUNDAY_DATE))
+    ];
+    return monday_sunday;
+}
+
 /**
  * 
  * @param {*} CID 
@@ -208,16 +220,9 @@ async function Get_Customer_Week_Calendar(CID, date) {
 
     // Get Current Week
     const NEW_DATE = new Date(date);
-    const FIRST = NEW_DATE.getDate() - NEW_DATE.getDay();
-    const LAST = FIRST + 6;
-    const FIRST_DD = String(FIRST.getDate()).padStart(2, '0');
-    const FIRST_MM = String(FIRST.getMonth() + 1).padStart(2, '0');
-    const FIRST_YYYY = CURR.getFullYear();
-    const FIRST_DATE = FIRST_YYYY + '-' + FIRST_MM + '-' + FIRST_DD;
-    const LAST_DD = String(LAST.getDate()).padStart(2, '0');
-    const LAST_MM = String(LAST.getMonth() + 1).padStart(2, '0');
-    const LAST_YYYY = CURR.getFullYear();
-    const LAST_DATE = LAST_YYYY + '-' + LAST_MM + '-' + LAST_DD;
+    const MONDAY_SUNDAY = Get_Monday_To_Sunday(NEW_DATE);
+    const FIRST_DATE = MONDAY_SUNDAY[0];
+    const LAST_DATE = MONDAY_SUNDAY[1];
 
     try {
         // Open connection
@@ -629,16 +634,9 @@ async function Get_Trainer_Week_Calendar(TID, date) {
 
     // Get Current Week
     const NEW_DATE = new Date(date);
-    const FIRST = NEW_DATE.getDate() - NEW_DATE.getDay();
-    const LAST = FIRST + 6;
-    const FIRST_DD = String(FIRST.getDate()).padStart(2, '0');
-    const FIRST_MM = String(FIRST.getMonth() + 1).padStart(2, '0');
-    const FIRST_YYYY = CURR.getFullYear();
-    const FIRST_DATE = FIRST_YYYY + '-' + FIRST_MM + '-' + FIRST_DD;
-    const LAST_DD = String(LAST.getDate()).padStart(2, '0');
-    const LAST_MM = String(LAST.getMonth() + 1).padStart(2, '0');
-    const LAST_YYYY = CURR.getFullYear();
-    const LAST_DATE = LAST_YYYY + '-' + LAST_MM + '-' + LAST_DD;
+    const MONDAY_SUNDAY = Get_Monday_To_Sunday(NEW_DATE);
+    const FIRST_DATE = MONDAY_SUNDAY[0];
+    const LAST_DATE = MONDAY_SUNDAY[1];
 
     try {
         // Open connection
@@ -824,16 +822,9 @@ async function Get_Administrator_Week_Calendar(TID, date) {
 
     // Get Current Week
     const NEW_DATE = new Date(date);
-    const FIRST = NEW_DATE.getDate() - NEW_DATE.getDay();
-    const LAST = FIRST + 6;
-    const FIRST_DD = String(FIRST.getDate()).padStart(2, '0');
-    const FIRST_MM = String(FIRST.getMonth() + 1).padStart(2, '0');
-    const FIRST_YYYY = CURR.getFullYear();
-    const FIRST_DATE = FIRST_YYYY + '-' + FIRST_MM + '-' + FIRST_DD;
-    const LAST_DD = String(LAST.getDate()).padStart(2, '0');
-    const LAST_MM = String(LAST.getMonth() + 1).padStart(2, '0');
-    const LAST_YYYY = CURR.getFullYear();
-    const LAST_DATE = LAST_YYYY + '-' + LAST_MM + '-' + LAST_DD;
+    const MONDAY_SUNDAY = Get_Monday_To_Sunday(NEW_DATE);
+    const FIRST_DATE = MONDAY_SUNDAY[0];
+    const LAST_DATE = MONDAY_SUNDAY[1];
 
     try {
         // Open connection
@@ -958,6 +949,9 @@ async function Get_Administrator_Day_Calendar(date) {
 
     return calendar;
 }
+let today = new Date();
+let hope = Get_Monday_To_Sunday(today);
+console.log(hope);
 
 module.exports = {
     Get_Customer_Calendar,
