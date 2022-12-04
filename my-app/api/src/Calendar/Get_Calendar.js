@@ -860,7 +860,7 @@ async function Get_Administrator_Week_Calendar(date) {
             "INNER JOIN Trainer " +
             "ON Trainer.TID = Appointment.TID_1 " +
             "WHERE Appointment.Appointment_Date >= '" + FIRST_DATE + "' " +
-            "AND Appointment.Appointment_Date <= '" + LAST_DATE + "');");
+            "AND Appointment.Appointment_Date <= '" + LAST_DATE + "';");
 
         // Close connection
         CON.end();
