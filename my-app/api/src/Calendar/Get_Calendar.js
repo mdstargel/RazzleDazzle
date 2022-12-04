@@ -879,7 +879,6 @@ async function Get_Administrator_Week_Calendar(TID, date) {
         for (var i = 0; i < assigned_appointments.length; i++) {
             calendar.push(
                 new administrator_trainer_appointment(
-                    trainer_name,
                     assigned_appointments[i].AID,
                     assigned_appointments[i].Appointment_Name,
                     assigned_appointments[i].Appointment_Date,
@@ -891,7 +890,8 @@ async function Get_Administrator_Week_Calendar(TID, date) {
                     assigned_appointments[i].Appointment_Private_Notes,
                     assigned_appointments[i].Appointment_Group,
                     assigned_appointments[i].Appointment_Group_Size,
-                    assigned_appointments[i].Appointment_GID)
+                    assigned_appointments[i].Appointment_GID,
+                    trainer_name)
             );
         };
     } catch (err) {
@@ -960,9 +960,6 @@ async function Get_Administrator_Day_Calendar(date) {
 
     return calendar;
 }
-let today = new Date();
-let hope = Get_Monday_To_Sunday(today);
-console.log(hope);
 
 module.exports = {
     Get_Customer_Calendar,
