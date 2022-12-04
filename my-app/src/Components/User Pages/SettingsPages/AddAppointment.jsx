@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import { AutoComplete } from "@progress/kendo-react-dropdowns";
-
 import '../styles.css'
 import ConfirmButton from '../../Buttons/ConfirmButton';
 import CancelButton from '../../Buttons/CancelButton';

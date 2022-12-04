@@ -868,7 +868,6 @@ async function Get_Administrator_Week_Calendar(date) {
 
         // Pull values
         assigned_appointments = assigned_appointments[0];
-        query_values = query_values[0];
 
         // Add assigned appointments to calendar
         for (var i = 0; i < assigned_appointments.length; i++) {
