@@ -10,16 +10,25 @@ import CalendarNotesButton from '../Buttons/CalendarNotesButton';
 import CalendarNotes from './CalendarNotes';
 
 
-const AppointmentPill = ({ trainerName, availableAppointments, userPermissions }) => {
+const AppointmentPill = ({ trainerName, availableAppointments, userPermissions, UserInfo }) => {
     const [modifyAppointment, setModifyAppointment] = useState();
-    
+
 
     const AppointmentExpanded = ({ appointment }) => {
         const [isCancled, setCanceled] = useState(false);
+        const [added, setAdded] = useState(false);
         function handleCancelAppointment() {
             axios.post('/Admin/Calendar/Delete_Appointment', {"appointment_id": appointment.appointmentId}).then(resp => { })
             console.log(appointment.appointmentId)
             setCanceled(true);
+        };
+
+        function handleAddAppointment() {
+            console.log('add id', UserInfo.id)
+            axios.post('/Customer/Calendar/Reservation', {"appointment_id": appointment.appointmentId, "user_id": UserInfo.id, "reserve": 1 
+}).then(resp => { })
+            console.log(appointment.appointmentId)
+            setAdded(true);
         };
         const [showIndividualAppointment, setShowIndividualAppointment] = useState(false);
         // const [hidePill, setHidePill] = useState(false);
@@ -34,7 +43,7 @@ const AppointmentPill = ({ trainerName, availableAppointments, userPermissions }
                     <div>Date: {appointment.date}</div>
                     <div>Spots Left: {appointment.remainingSpots}</div>
                     {/* <div onClick={() => console.log('this should add appointment', appointment.appointmentId)} className='addAppointmentButton'>Add Appointment</div> */}
-                    {(userPermissions.isCustomer) && <CalendarAddButton />}
+                    {(userPermissions.isCustomer) && !added && <CalendarAddButton onClick={() => handleAddAppointment()} />}
                    {(userPermissions.isAdmin || userPermissions.isTrainer) && <CalendarEditButton onClick={() => setModifyAppointment(<EditAppointment appointment={appointment} setModifyAppointment={setModifyAppointment}/>)}/>}
                     {(userPermissions.isAdmin || userPermissions.isTrainer) && <CalendarCancelButton setModifyAppointment={setModifyAppointment} onClick={() => handleCancelAppointment()} />}
                     <CalendarNotesButton onClick={() => setModifyAppointment(<CalendarNotes appointment={appointment} setModifyAppointment={setModifyAppointment} userPermissions={userPermissions} />)}/>

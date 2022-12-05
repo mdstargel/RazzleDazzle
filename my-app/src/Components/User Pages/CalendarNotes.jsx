@@ -4,13 +4,13 @@ import ConfirmButton from "../Buttons/ConfirmButton";
 import CancelButton from "../Buttons/CancelButton";
 import axios from 'axios';
 
-const CalendarNotes = ({ appointment, setModifyAppointment, userPermissions}) => {
+const CalendarNotes = ({ appointment, setModifyAppointment, userPermissions }) => {
     const [values, setValues] = useState(appointment);
     const isStaff = userPermissions.isAdmin || userPermissions.isTrainer;
     console.log(appointment);
     console.log('PubicNotes:', appointment.PubicNotes);
     console.log('PrivateNotes:', appointment.PrivateNotes);
-     const handlePubicNoteSChange = (event) => {
+    const handlePubicNoteSChange = (event) => {
         event.persist();
         setValues((values) => ({
             ...values,
@@ -39,7 +39,7 @@ const CalendarNotes = ({ appointment, setModifyAppointment, userPermissions}) =>
         }
         setModifyAppointment(null)
     };
-
+    
     return(
         <div className="fixedForm">
             <div>{values.date}</div>
@@ -64,7 +64,7 @@ const CalendarNotes = ({ appointment, setModifyAppointment, userPermissions}) =>
                 </div>
             }
             <CancelButton onClick={() => setModifyAppointment(null)}/>
-            <ConfirmButton buttonText={'Add'} onClick={handleAddNote}/>
+            {isStaff && <ConfirmButton buttonText={'Add'} onClick={handleAddNote}/>}
         </div>
     );
 }
