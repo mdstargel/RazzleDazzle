@@ -102,6 +102,8 @@ app.post('/Trainer/Calendar', async function(req, res) {
 app.post('/Trainer/Calendar/Week', async function(req, res) {
     var TID = req.body.user_id;
     var date = req.body.date;
+    console.log("Week TID:", TID);
+    console.log("Week date:", date);
     var calendar = await Get_Trainer_Week_Calendar(TID, date);
     res.send(calendar);
 })
@@ -109,6 +111,8 @@ app.post('/Trainer/Calendar/Week', async function(req, res) {
 app.post('/Trainer/Calendar/Day', async function(req, res) {
     var TID = req.body.user_id;
     var date = req.body.date;
+    console.log("Day TID:", TID);
+    console.log("Day date:", date);
     var calendar = await Get_Trainer_Day_Calendar(TID, date);
     res.send(calendar);
 })
