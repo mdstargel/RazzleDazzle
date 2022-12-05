@@ -73,7 +73,7 @@ const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions, set
                     axios.post(userType, userID).then(function (resp) { 
                         let new_user;
                         
-                        if (userPermissions.isCustomer) {
+                        if (type === 1) {
                             let name_array;
                             try {
                                 name_array = resp.data.customer_name.split(" ");
@@ -83,6 +83,7 @@ const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions, set
                                     ""
                                 ]
                             }
+                            console.log('User ID:', resp.data);
 
                             new_user = {
                                 type: userType,

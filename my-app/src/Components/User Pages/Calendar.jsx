@@ -178,6 +178,9 @@ const Calendar = ({ userPermissions, UserInfo }) => {
     // Set Day Events
     setEvents([]);
     const dayPost = { "user_id": UserInfo.id, "date": e };
+    console.log('UserInfo', UserInfo)
+    console.log('UserInfo.type:', UserInfo.type);
+    console.log('dayPost:', dayPost);
     axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
       let calendarConvertedForDay = [];
       if (resp.data) {
@@ -237,16 +240,19 @@ const Calendar = ({ userPermissions, UserInfo }) => {
   const [selectedTab, setSelectedTab] = useState('Available Appointments');
   const [showAddAppointment, setShowAddAppointment] = useState();
   
-  const handleDateChange = () => {
-    const dayPost = { "user_id": UserInfo.id, "date": selectedDate };
-    axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
-      let calendarConvertedForDay = [];
-      for (var i = 0; i < resp.data.length; i++) {
-        calendarConvertedForDay.push(Convert_Appointment(resp.data[i]));
-      }
-      console.log('calendarConvertedForDay:', calendarConvertedForDay);
-      setEvents(calendarConvertedForDay);
-    })}
+  // const handleDateChange = () => {
+    
+  //   const dayPost = { "user_id": UserInfo.id, "date": selectedDate };
+  //   console.log('UserInfo.type:', UserInfo.type);
+  //   console.log('dayPost:', dayPost);
+  //   axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
+  //     let calendarConvertedForDay = [];
+  //     for (var i = 0; i < resp.data.length; i++) {
+  //       calendarConvertedForDay.push(Convert_Appointment(resp.data[i]));
+  //     }
+  //     console.log('calendarConvertedForDay:', calendarConvertedForDay);
+  //     setEvents(calendarConvertedForDay);
+  //   })}
   function handleCancel() {
     setShowAddAppointment();
   }
@@ -266,13 +272,13 @@ const Calendar = ({ userPermissions, UserInfo }) => {
   /**
    * List out all available appointments
    */
-  let availableAppointments = userPermissions.isCustomer ? events.filter(appointment => (!appointment.signedUp && appointment.remainingSpots > 0)) : events;
+  let availableAppointments = userPermissions.isCustomer ? events.filter(appointment => (appointment.signedUp)) : events;
 
   const ChosenPopup = () => {
     let popup;
 
     if (selectedTab === 'Available Appointments') {
-      popup = <AvailableAppointments setSelectedTab={setSelectedTab} availableAppointments={availableAppointments} userPermissions={userPermissions} />;
+      popup = <AvailableAppointments UserInfo={UserInfo} setSelectedTab={setSelectedTab} availableAppointments={events} userPermissions={userPermissions} />;
     } else {
       userPermissions.isAdmin ?
         popup = <AdminCalendarView setSelectedTab={setSelectedTab} UserSchdeule={weekEvents} userPermissions={userPermissions} />
