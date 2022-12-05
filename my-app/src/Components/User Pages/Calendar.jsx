@@ -177,7 +177,7 @@ const Calendar = ({ userPermissions, UserInfo }) => {
     
     // Set Day Events
     setEvents([]);
-    const dayPost = { "user_ID": UserInfo.id, "date": e };
+    const dayPost = { "user_id": UserInfo.id, "date": e };
     axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
       let calendarConvertedForDay = [];
       if (resp.data) {
@@ -191,7 +191,7 @@ const Calendar = ({ userPermissions, UserInfo }) => {
 
     // Set Week Events
     setWeekEvents([]);
-    const weekPost = { "user_ID": UserInfo.id, "date": e };
+    const weekPost = { "user_id": UserInfo.id, "date": e };
     axios.post(UserInfo.type + '/Calendar/Week', weekPost).then(resp => {
       let calendarConvertedForWeek = [];
       if (resp.data) {
@@ -206,7 +206,7 @@ const Calendar = ({ userPermissions, UserInfo }) => {
   
   if (!isMounted) {
       // Customer/Trainer userID
-    const dayPost = { "user_ID": UserInfo.id, "date": selectedDate };
+    const dayPost = { "user_id": UserInfo.id, "date": selectedDate };
     axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
       let calendarConvertedForDay = [];
       if (resp.data) {
@@ -220,7 +220,7 @@ const Calendar = ({ userPermissions, UserInfo }) => {
     })
         // Set Week Events
         setWeekEvents([]);
-        const weekPost = { "user_ID": UserInfo.id, "date": selectedDate };
+        const weekPost = { "user_id": UserInfo.id, "date": selectedDate };
     axios.post(UserInfo.type + '/Calendar/Week', weekPost).then(resp => {
           console.log('week post events', resp.data);
           let calendarConvertedForWeek = [];
@@ -238,7 +238,7 @@ const Calendar = ({ userPermissions, UserInfo }) => {
   const [showAddAppointment, setShowAddAppointment] = useState();
   
   const handleDateChange = () => {
-    const dayPost = { "user_ID": UserInfo.id, "date": selectedDate };
+    const dayPost = { "user_id": UserInfo.id, "date": selectedDate };
     axios.post(UserInfo.type + '/Calendar/Day', dayPost).then(resp => {
       let calendarConvertedForDay = [];
       for (var i = 0; i < resp.data.length; i++) {
@@ -266,7 +266,7 @@ const Calendar = ({ userPermissions, UserInfo }) => {
   /**
    * List out all available appointments
    */
-  let availableAppointments = events.filter(appointment => (!appointment.signedUp && appointment.remainingSpots > 0))
+  let availableAppointments = userPermissions.isCustomer ? events.filter(appointment => (!appointment.signedUp && appointment.remainingSpots > 0)) : events;
 
   const ChosenPopup = () => {
     let popup;
