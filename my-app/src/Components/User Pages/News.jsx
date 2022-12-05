@@ -19,7 +19,7 @@ const newsTitleCenter = {
 }
 
 const newsImage = {
-    // backgroundImage: "url(./Assets/NewsPic1.jpg)",
+    // backgroundImage: "link(./Assets/NewsPic1.jpg)",
     position: 'absolute',
     width: '600px',
     height: '400px',
@@ -93,7 +93,7 @@ const leftsideTitle = {
     fontWeight: 'bold',
 }
 
-// Pic urls
+// Pic links
 // https://www.pexels.com/photo/man-riding-horse-across-river-9899966/
 // https://www.pexels.com/photo/cowboy-riding-a-horse-on-the-river-9899960/
 // https://www.pexels.com/photo/cowboy-during-a-rodeo-event-12950414/
@@ -105,11 +105,14 @@ const leftsideTitle = {
 
 const News = ({ newsArticles }) => {
     const [articleID, setArticleID] = useState(0);
+    // const absoulteUrl = new URL(newsArticles[articleID].link).href
+    // console.log(absoulteUrl);
+    
     const SelectedFeedItem = () => {
         return (
-            <a href={newsArticles[articleID].url} style={{ newsItem }}> 
+            <a href={newsArticles[articleID].link} target={'_blank'} rel="noopener noreferrer external" style={{ newsItem }}> 
                 {/* <div style={newsImage}>Center Feed Item{newsArticles[articleID].image}</div> */}
-                <div><img src={newsArticles[articleID].image} style={newsImage} alt="Female trainer1" /></div>
+                <div><img src={newsArticles[articleID].img_name} style={newsImage} alt="" /></div>
                 <div style={newsTitleCenter}>{newsArticles[articleID].title}</div>
                 <div style={NewsArticleText}>{newsArticles[articleID].description}</div>
             </a>
@@ -129,7 +132,7 @@ const News = ({ newsArticles }) => {
         return (
             <div>
                 {/* <div style={rightsideItem}>Right Feed Item{newsArticles[index].image}</div> */}
-                <div><img src={newsArticles[index].image} style={rightsideItem} alt="Female trainer1" /></div>
+                <div><img src={newsArticles[index].img_name} style={rightsideItem} alt="Female trainer1" /></div>
                 <div style={rightsideTitle}>{newsArticles[index].title}</div>
             </div>
         );
@@ -140,7 +143,7 @@ const News = ({ newsArticles }) => {
         return (
             <div>
                 {/* <div style={leftsideItem}>Left Feed Item{newsArticles[index].image}</div> */}
-                <div><img src={newsArticles[index].image} style={leftsideItem} alt="Female trainer1" /></div>
+                <div><img src={newsArticles[index].img_name} style={leftsideItem} alt="Female trainer1" /></div>
                 <div style={leftsideTitle}>{newsArticles[index].title}</div>
             </div>
         );

@@ -149,15 +149,10 @@ function App() {
    */
   document.body.style = 'background: #D0D0D0;';
   
-  // document.body.style = 'backgroundImage: `url(${HorseWatermark})`';
-  // 'backgroundImage: url("./Components/User Pages/Assets/FINALWATERMARK.jpg")';
-  // backgroundImage:"url(/UpmostlyLogo.png)"
-  // Or with CSS
-  // document.body.classList.add('background-red');
   const webpage = (
     <div>
       <img src={HorseWatermark} className='watermarkBack' alt="Horse Watermark" />
-      <Banner setwpage={setwpage} wpage={wpage} signedIn={signedIn} userPermissions={userPermissions} setSignedIn={setSignedIn} />
+      <Banner setUserPermissions={setUserPermissions} setUserInfo={setUserInfo} setwpage={setwpage} wpage={wpage} signedIn={signedIn} userPermissions={userPermissions} setSignedIn={setSignedIn} />
       <Help wpage={wpage} userPermissions={userPermissions} />
       <ChosenWebpage />
       {/* <Footer /> */}
