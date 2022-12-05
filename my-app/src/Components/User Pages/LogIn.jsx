@@ -74,10 +74,11 @@ const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions, set
                         let new_user;
                         
                         if (userPermissions.isCustomer) {
+                            let name_array;
                             try {
-                                let name_array = resp.data.customer_name.split(" ");
+                                name_array = resp.data.customer_name.split(" ");
                             } catch {
-                                let name_array = [
+                                name_array = [
                                     resp.data.customer_name,
                                     ""
                                 ]
@@ -94,10 +95,11 @@ const LogIn = ({ setSignedIn, setwpage, setUserPermissions, userPermissions, set
                                 TextNotifications: resp.data.Customer_Phone_Notifications
                             };
                         } else {
+                            let name_array;
                             try {
-                                let name_array = resp.data.customer_name.split(" ");
+                                name_array = resp.data.customer_name.split(" ");
                             } catch {
-                                let name_array = [
+                                name_array = [
                                     resp.data.customer_name,
                                     ""
                                 ]
