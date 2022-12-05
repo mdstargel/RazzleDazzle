@@ -643,9 +643,6 @@ async function Get_Trainer_Week_Calendar(TID, date) {
     // Create calendar
     var calendar = [];
 
-    console.log("Week back TID:", TID);
-    console.log("Week back date:", date);
-
     // Get Current Week
     const NEW_DATE = new Date(date);
     const MONDAY_SUNDAY = Get_Monday_To_Sunday(NEW_DATE);
@@ -716,10 +713,6 @@ async function Get_Trainer_Week_Calendar(TID, date) {
 async function Get_Trainer_Day_Calendar(TID, date) {
     // Create calendar
     var calendar = [];
-
-
-    console.log("Day back TID:", TID);
-    console.log("Day back date:", date);
 
     // Get Date given
     const NEW_DATE = new Date(date);
