@@ -385,11 +385,11 @@ async function Get_Customer_Week_Calendar(CID, date) {
                 }
             }
         };
+        return calendar;
     } catch (err) {
         console.error(err)
+        return calendar;
     }
-
-    return calendar;
 }
 
 /**
@@ -564,11 +564,11 @@ async function Get_Customer_Day_Calendar(CID, date) {
                 }
             }
         };
+        return calendar;
     } catch (err) {
-        console.error(err)
+        console.error(err);
+        return calendar;
     }
-
-    return calendar;
 }
 
 /**
