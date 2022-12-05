@@ -51,7 +51,14 @@ const AccessTrainer = ({AvailableTrainers, setAvailableTrainers}) => {
     //     axios.get('/Admin/Trainer').then(resp => {
     //         let trainers = [];
     //         for (var i = 0; i < resp.data.length; i++) {
-    //             let name_array = resp.data[i].trainer_name.split(" ");
+    //             try {
+    //                  let name_array = resp.data.customer_name.split(" ");
+    //             } catch {
+    //                  let name_array = [
+    //                      resp.data.customer_name,
+    //                      ""
+    //                  ]
+    //              }
     //             trainers.push({
     //                 id: resp.data[i].TID,
     //                 FirstName: name_array[0],
