@@ -13,7 +13,14 @@ const ManageCustomers = () => {
         axios.get('/Admin/Customer').then(resp => {
             let customers = [];
             for (var i = 0; i < resp.data.length; i++) {
-                let name_array = resp.data[i].customer_name.split(" ");
+                try {
+                    let name_array = resp.data.customer_name.split(" ");
+                } catch {
+                    let name_array = [
+                        resp.data.customer_name,
+                        ""
+                    ]
+                }
                 customers.push({
                     id: resp.data[i].CID,
                     FirstName: name_array[0],
