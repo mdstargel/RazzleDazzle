@@ -102,9 +102,6 @@ app.post('/Customer/Calendar', async function(req, res) {
 app.post('/Customer/Calendar/Week', async function(req, res) {
     var CID = req.body.user_id;
     var date = req.body.date;
-
-    console.log("Week CID:", CID);
-    console.log("Week date:", date);
     var calendar = await Get_Calendar.Get_Customer_Week_Calendar(CID, date);
     res.send(calendar);
 })
@@ -112,9 +109,6 @@ app.post('/Customer/Calendar/Week', async function(req, res) {
 app.post('/Customer/Calendar/Day', async function(req, res) {
     var CID = req.body.user_id;
     var date = req.body.date;
-
-    console.log("Day CID:", CID);
-    console.log("Day date:", date);
     var calendar = await Get_Calendar.Get_Customer_Day_Calendar(CID, date);
     res.send(calendar);
 })
