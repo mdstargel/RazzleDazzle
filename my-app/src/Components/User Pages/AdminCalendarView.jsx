@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
 import CalendarEditButton from '../Buttons/CalendarEditButton';
 import CalendarCancelButton from '../Buttons/CalendarCancelButton';
 import EditAppointment from './EditAppointment';
@@ -18,9 +20,14 @@ const AdminCalendarView = ({ UserSchdeule, userPermissions }) => {
     const CustomerAppointmentPill = ({ appointment, dayStyle }) => {    
         const [showIndividualAppointment, setShowIndividualAppointment] = useState(false);
         // const [hidePill, setHidePill] = useState(false);
-
+        const [isCancled, setCanceled] = useState(false);
+        function handleCancelAppointment() {
+            axios.post('/Admin/Calendar/Delete_Appointment', {"appointment_id": appointment.appointmentId}).then(resp => { })
+            console.log(appointment.appointmentId)
+            setCanceled(true);
+        };
         return (
-            <div className='appointmentPill'>
+            !isCancled && <div className='appointmentPill'>
                 <div onClick={() => setShowIndividualAppointment(!showIndividualAppointment)} className={showIndividualAppointment ? 'selectedAppointmentTitle' : 'appointmentTitle'}>
                     {appointment.isGroup ? 'Group' : 'Individual'} {appointment.ridingStyle} {appointment.startTime}-{appointment.endTime}
                 </div>
@@ -29,7 +36,7 @@ const AdminCalendarView = ({ UserSchdeule, userPermissions }) => {
                     <div>Date: {appointment.date}</div>
                     <div>Spots Left: {appointment.remainingSpots}</div>
                     <CalendarEditButton onClick={() => setModifyAppointment(<EditAppointment appointment={appointment} setModifyAppointment={setModifyAppointment}/>)}/>
-                    <CalendarCancelButton setModifyAppointment={setModifyAppointment} onClick={() => console.log('this should add appointment', appointment.appointmentId)} />
+                    <CalendarCancelButton setModifyAppointment={setModifyAppointment} onClick={() => handleCancelAppointment()} />
                 </div>}
             </div>
         );
