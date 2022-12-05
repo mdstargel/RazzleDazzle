@@ -160,7 +160,6 @@ app.get('/Admin/Calendar', async function(req, res) {
 })
 
 app.post('/Admin/Calendar/Day', async function(req, res) {
-    console.log(req.body.date);
     var date = req.body.date;
     var calendar = await Get_Administrator_Day_Calendar(date);
     res.send(calendar);

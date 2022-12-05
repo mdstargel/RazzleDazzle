@@ -102,8 +102,6 @@ async function Get_Trainer(TID) {
         // Close connection
         CON.end();
 
-        console.log(TID);
-
         // Pull values
         trainer_values = trainer_values[0];
 
