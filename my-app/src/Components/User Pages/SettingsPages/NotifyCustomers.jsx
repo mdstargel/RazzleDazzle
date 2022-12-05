@@ -73,6 +73,7 @@ const NotifyCustomers = ({ setwpage }) => {
             // Remove the below comment later
             console.log('Customer has been notified!')
         // }
+        setwpage("Calendar");
     };
 
     const handleCancel = (event) => {
@@ -105,7 +106,7 @@ const NotifyCustomers = ({ setwpage }) => {
                 <div className='buttonContainer'>
                     <br /><br />
                     <div className='button1'>
-                        <CancelButton onClick={handleCancel} />
+                        <CancelButton onClick={handleCancel} setwpage="Calendar" />
                         <ConfirmButton buttonText='Confirm' onClick={handleSubmit}/>
                     </div>
                 </div>
