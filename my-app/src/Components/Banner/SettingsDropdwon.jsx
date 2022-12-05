@@ -1,10 +1,16 @@
 import React from "react";
 import './styles.css'
 
-const SettingsDropdown = ({ userPermissions, setwpage, setSignedIn, setShowDropdown }) => {
+const SettingsDropdown = ({ setUserPermissions, userPermissions, setwpage, setSignedIn, setShowDropdown, setUserInfo }) => {
     const handleLogOut = () => {
         setwpage('About Us')
         setSignedIn(false)
+        setUserInfo();
+        setUserPermissions({
+            isAdmin: false,
+            isTrainer: false,
+            isCustomer: false,
+        })
     }
 
     const customerSettings = (

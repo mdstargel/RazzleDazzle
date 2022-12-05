@@ -5,7 +5,7 @@ import HorseLogo from '../User Pages/Assets/FINALLOGO.jpeg'
 // import HorseLogo from '../User Pages/Assets/CutLogo.png'
 import SettingsDropdown from "./SettingsDropdwon";
 
-const Banner = ({ setwpage, wpage, signedIn, userPermissions, setSignedIn }) => {
+const Banner = ({ setwpage, wpage, signedIn, userPermissions, setSignedIn, setUserInfo, setUserPermissions }) => {
 
     const [showDropdown, setShowDropdown] = useState(false);
 
@@ -53,7 +53,7 @@ const Banner = ({ setwpage, wpage, signedIn, userPermissions, setSignedIn }) => 
         <div className="loginTab">
             <div className="login" onClick={() => setwpage('Calendar')}>Calendar</div>
             <div className="signup" onClick={() => setShowDropdown(!showDropdown)}>Settings</div>
-                {showDropdown && <SettingsDropdown userPermissions={userPermissions} setwpage={setwpage} setSignedIn={setSignedIn} setShowDropdown={setShowDropdown} />}
+                {showDropdown && <SettingsDropdown setUserPermissions={setUserPermissions} setUserInfo={setUserInfo} userPermissions={userPermissions} setwpage={setwpage} setSignedIn={setSignedIn} setShowDropdown={setShowDropdown} />}
         </div>
     </div>
     );
