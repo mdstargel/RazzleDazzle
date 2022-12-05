@@ -13,10 +13,11 @@ const NotifyCustomers = ({ setwpage }) => {
         axios.get('/Admin/Customer').then(resp => {
             let customers = [];
             for (var i = 0; i < resp.data.length; i++) {
+                let name_array;
                 try {
-                    let name_array = resp.data.customer_name.split(" ");
+                    name_array = resp.data.customer_name.split(" ");
                 } catch {
-                    let name_array = [
+                    name_array = [
                         resp.data.customer_name,
                         ""
                     ]
