@@ -25,7 +25,7 @@ function Convert_Appointment(appointment) {
 
 
     var group = true;
-    var trainee = true;
+    var trainee = false;
     if (appointment.appointment_group === 0) group = false;
     if (appointment.appointment_TID_2 === 5) trainee = false;
 
