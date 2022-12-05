@@ -4,7 +4,7 @@ function Email_Appointment(email, title, notification) {
     nodemailer.sendEmail({
         auth: {
             user: "REHarris@csustudent.net",
-            pass: "password"
+            pass: "B311ao2l2"
         },
         from: 'REHarris@csustudent.net',
         to: email,
